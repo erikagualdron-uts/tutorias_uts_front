@@ -6,8 +6,6 @@
   "common": {
     "loading": "Loading…",
     "tryAgain": "Try again",
-    "show": "Show",
-    "hide": "Hide",
     "showPassword": "Show password",
     "hidePassword": "Hide password",
     "met": "Met",

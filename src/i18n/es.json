@@ -6,8 +6,6 @@
   "common": {
     "loading": "Cargando…",
     "tryAgain": "Intentar de nuevo",
-    "show": "Mostrar",
-    "hide": "Ocultar",
     "showPassword": "Mostrar contraseña",
     "hidePassword": "Ocultar contraseña",
     "met": "Cumplido",
