@@ -33,13 +33,18 @@
   },
   "validation": {
     "required": "Este campo es obligatorio.",
-    "email": "Escribe un correo válido."
+    "email": "Escribe un correo válido.",
+    "code": "El código tiene 6 dígitos.",
+    "password": "La contraseña no cumple los requisitos."
   },
   "login": {
     "title": "Inicia sesión",
     "email": "Correo institucional",
     "password": "Contraseña",
-    "submit": "Ingresar"
+    "submit": "Ingresar",
+    "createAccount": "Crear cuenta",
+    "verifyEmail": "Verificar mi correo",
+    "verified": "Correo verificado. Ya puedes iniciar sesión."
   },
   "tabs": {
     "home": "Inicio",
@@ -53,5 +58,27 @@
   "empty": {
     "title": "Aún no hay nada aquí",
     "description": "Esta sección estará disponible pronto."
+  },
+  "register": {
+    "title": "Crea tu cuenta",
+    "firstName": "Nombres",
+    "lastName": "Apellidos",
+    "email": "Correo institucional",
+    "password": "Contraseña",
+    "submit": "Registrarme",
+    "rulesTitle": "Tu contraseña debe tener:",
+    "ruleLength": "Al menos {{count}} caracteres",
+    "ruleLetter": "Una letra",
+    "ruleNumber": "Un número",
+    "hasAccount": "Ya tengo cuenta"
+  },
+  "verify": {
+    "title": "Verifica tu correo",
+    "description": "Enviamos un código de 6 dígitos a {{email}}. Escríbelo para activar tu cuenta.",
+    "code": "Código de verificación",
+    "submit": "Verificar",
+    "resend": "Reenviar código",
+    "resendIn": "Podrás reenviar el código en {{seconds}} s",
+    "resent": "Si la cuenta existe y no está verificada, enviamos un código nuevo."
   }
 }

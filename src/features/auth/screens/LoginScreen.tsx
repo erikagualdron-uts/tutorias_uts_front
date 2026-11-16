@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { router, useLocalSearchParams } from 'expo-router';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { errorMessage } from '@/api/errors';
+import { ApiError, errorMessage } from '@/api/errors';
 import { Banner } from '@/components/Banner';
 import { Button } from '@/components/Button';
 import { TextField } from '@/components/TextField';
@@ -16,8 +17,9 @@ export function LoginScreen() {
   const { t } = useTranslation();
   const palette = usePalette();
   const login = useLogin();
+  const { verified } = useLocalSearchParams<{ verified?: string }>();
   const signOutReason = useSession((state) => state.signOutReason);
-  const { control, handleSubmit, formState } = useForm<LoginForm>({
+  const { control, handleSubmit, formState, getValues } = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
     defaultValues: { email: '', password: '' },
   });
@@ -38,6 +40,8 @@ export function LoginScreen() {
 
         {login.error ? (
           <Banner message={errorMessage(t, login.error)} />
+        ) : verified ? (
+          <Banner message={t('login.verified')} />
         ) : signOutReason ? (
           <Banner
             message={t(`errors.${signOutReason}`, {
@@ -82,6 +86,24 @@ export function LoginScreen() {
             label={t('login.submit')}
             loading={login.isPending}
             onPress={handleSubmit((form) => login.mutate(form))}
+          />
+          {login.error instanceof ApiError &&
+          login.error.code === 'EMAIL_NOT_VERIFIED' ? (
+            <Button
+              label={t('login.verifyEmail')}
+              variant="outlined"
+              onPress={() =>
+                router.push({
+                  pathname: '/verify-email',
+                  params: { email: getValues('email').trim() },
+                })
+              }
+            />
+          ) : null}
+          <Button
+            label={t('login.createAccount')}
+            variant="tonal"
+            onPress={() => router.push('/register')}
           />
         </View>
       </ScrollView>
