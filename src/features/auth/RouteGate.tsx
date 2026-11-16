@@ -1,6 +1,6 @@
 import { Redirect, type Href } from 'expo-router';
 import type { ReactNode } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { useSession } from '@/store/session';
 import { routeFor } from './routing';
 
@@ -15,13 +15,7 @@ export function RouteGate({ expected, children }: RouteGateProps) {
   const status = useSession((state) => state.status);
   const user = useSession((state) => state.user);
 
-  if (status === 'loading') {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator />
-      </View>
-    );
-  }
+  if (status === 'loading') return <LoadingScreen />;
   const target = routeFor({ status, user });
   return target === expected ? (
     <>{children}</>

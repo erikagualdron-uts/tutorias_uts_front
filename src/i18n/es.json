@@ -5,7 +5,9 @@
     "show": "Mostrar",
     "hide": "Ocultar",
     "showPassword": "Mostrar contraseña",
-    "hidePassword": "Ocultar contraseña"
+    "hidePassword": "Ocultar contraseña",
+    "met": "Cumplido",
+    "unmet": "Pendiente"
   },
   "errors": {
     "UNKNOWN": "Ocurrió un error inesperado. Inténtalo de nuevo.",

@@ -91,6 +91,7 @@ export function TextField({
       </View>
       {error ? (
         <Text
+          accessibilityLiveRegion="polite"
           style={[typography.metadata, styles.error, { color: palette.error }]}
         >
           {error}

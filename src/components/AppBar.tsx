@@ -32,7 +32,12 @@ export function AppBar({ title }: { title?: string }) {
       <View style={[styles.bar, { borderBottomColor: palette.border }]}>
         <Text
           accessibilityRole="header"
-          style={[typography.screenTitle, { color: palette.textPrimary }]}
+          numberOfLines={2}
+          style={[
+            typography.screenTitle,
+            styles.title,
+            { color: palette.textPrimary },
+          ]}
         >
           {title}
         </Text>
@@ -87,7 +92,7 @@ export function AppBar({ title }: { title?: string }) {
 
 const styles = StyleSheet.create({
   bar: {
-    height: 56,
+    minHeight: 56,
     paddingLeft: spacing.lg,
     paddingRight: spacing.sm,
     flexDirection: 'row',
@@ -95,6 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderBottomWidth: 1,
   },
+  title: { flex: 1 },
   touch: {
     width: MIN_TOUCH_TARGET,
     height: MIN_TOUCH_TARGET,

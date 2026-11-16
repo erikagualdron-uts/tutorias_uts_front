@@ -5,7 +5,9 @@
     "show": "Show",
     "hide": "Hide",
     "showPassword": "Show password",
-    "hidePassword": "Hide password"
+    "hidePassword": "Hide password",
+    "met": "Met",
+    "unmet": "Not met"
   },
   "errors": {
     "UNKNOWN": "Something went wrong. Please try again.",
