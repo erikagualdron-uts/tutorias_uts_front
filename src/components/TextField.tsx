@@ -8,6 +8,8 @@ import {
   View,
   type TextInputProps,
 } from 'react-native';
+import { Icon } from '@/icons/Icon';
+import type { IconName } from '@/icons/registry';
 import {
   MIN_TOUCH_TARGET,
   radius,
@@ -21,12 +23,14 @@ interface TextFieldProps extends Omit<TextInputProps, 'style'> {
   error?: string;
   // Adds the show/hide toggle.
   password?: boolean;
+  leadingIcon?: IconName;
 }
 
 export function TextField({
   label,
   error,
   password = false,
+  leadingIcon,
   ...inputProps
 }: TextFieldProps) {
   const palette = usePalette();
@@ -55,6 +59,11 @@ export function TextField({
           },
         ]}
       >
+        {leadingIcon && (
+          <View style={styles.leading}>
+            <Icon name={leadingIcon} color={palette.textSecondary} />
+          </View>
+        )}
         <TextInput
           {...inputProps}
           accessibilityLabel={label}
@@ -84,9 +93,10 @@ export function TextField({
             onPress={() => setHidden((value) => !value)}
             style={styles.toggle}
           >
-            <Text style={[typography.label, { color: palette.link }]}>
-              {hidden ? t('common.show') : t('common.hide')}
-            </Text>
+            <Icon
+              name={hidden ? 'show' : 'hide'}
+              color={palette.textSecondary}
+            />
           </Pressable>
         )}
       </View>
@@ -113,8 +123,9 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     minHeight: MIN_TOUCH_TARGET,
-    paddingHorizontal: spacing.lg,
+    paddingHorizontal: spacing.md,
   },
+  leading: { paddingLeft: spacing.lg },
   toggle: {
     width: MIN_TOUCH_TARGET,
     height: MIN_TOUCH_TARGET,

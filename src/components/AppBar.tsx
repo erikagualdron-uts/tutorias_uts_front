@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Icon } from '@/icons/Icon';
 import { useSignOut } from '@/features/auth/hooks/useSignOut';
 import { useSession } from '@/store/session';
 import {
   MIN_TOUCH_TARGET,
   radius,
+  shadows,
   spacing,
   typography,
   usePalette,
@@ -25,11 +27,8 @@ export function AppBar({ title }: { title?: string }) {
     (user?.lastName?.charAt(0).toUpperCase() ?? '');
 
   return (
-    <SafeAreaView
-      edges={['top']}
-      style={{ backgroundColor: palette.background }}
-    >
-      <View style={[styles.bar, { borderBottomColor: palette.border }]}>
+    <SafeAreaView edges={['top']} style={{ backgroundColor: palette.card }}>
+      <View style={styles.bar}>
         <Text
           accessibilityRole="header"
           numberOfLines={2}
@@ -66,8 +65,7 @@ export function AppBar({ title }: { title?: string }) {
             style={[
               styles.menu,
               {
-                backgroundColor: palette.background,
-                borderColor: palette.border,
+                backgroundColor: palette.card,
               },
             ]}
           >
@@ -79,6 +77,7 @@ export function AppBar({ title }: { title?: string }) {
               }}
               style={styles.item}
             >
+              <Icon name="signOut" color={palette.textPrimary} />
               <Text style={[typography.body, { color: palette.textPrimary }]}>
                 {t('profile.signOut')}
               </Text>
@@ -98,7 +97,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomWidth: 1,
   },
   title: { flex: 1 },
   touch: {
@@ -123,12 +121,13 @@ const styles = StyleSheet.create({
   menu: {
     minWidth: 200,
     borderRadius: radius.input,
-    borderWidth: 1,
-    elevation: 4,
+    ...shadows.level2,
   },
   item: {
     minHeight: MIN_TOUCH_TARGET,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
     paddingHorizontal: spacing.lg,
   },
 });

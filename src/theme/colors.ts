@@ -1,6 +1,8 @@
 // Source: docs/Design.md. Only the palette of that document; derived shades are marked.
 export interface Palette {
   background: string;
+  screen: string;
+  card: string;
   surface: string;
   surfaceWarm: string;
   primary: string;
@@ -22,6 +24,8 @@ export interface Palette {
 
 export const lightPalette: Palette = {
   background: '#FFFFFF',
+  screen: '#F2F4EF', // derived: list and dashboard screens
+  card: '#FFFFFF',
   surface: '#F2F4EF', // derived
   surfaceWarm: '#F8E9D4',
   primary: '#34531F',
@@ -43,6 +47,8 @@ export const lightPalette: Palette = {
 
 export const darkPalette: Palette = {
   background: '#0B1710', // derived
+  screen: '#0B1710', // derived
+  card: '#132F20',
   surface: '#132F20',
   surfaceWarm: '#F8E9D4',
   primary: '#C3D730',

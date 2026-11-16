@@ -12,18 +12,71 @@ export const spacing = {
   lg: 16,
   xl: 24,
   xxl: 32,
-  huge: 48,
+  xxxl: 48,
+  huge: 64,
 } as const;
 
 export const radius = {
-  badge: 2,
-  input: 8,
-  banner: 8,
-  card: 12,
+  tooltip: 4,
+  badge: 8,
+  input: 12,
+  banner: 12,
+  card: 16,
+  hero: 20,
+  sheet: 24,
+  header: 32,
   pill: 9999,
 } as const;
 
 export const MIN_TOUCH_TARGET = 48;
+export const buttonHeight = { default: 52, compact: 44 } as const;
+export const iconSize = { inline: 16, button: 20, nav: 24, empty: 40 } as const;
+
+// Tinted deep-green shadows (docs/Design.md); `elevation` covers Android.
+export const shadows = {
+  level1: {
+    shadowColor: '#132F20',
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+  },
+  level2: {
+    shadowColor: '#132F20',
+    shadowOpacity: 0.1,
+    shadowRadius: 24,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 6,
+  },
+  level3: {
+    shadowColor: '#132F20',
+    shadowOpacity: 0.18,
+    shadowRadius: 48,
+    shadowOffset: { width: 0, height: 16 },
+    elevation: 12,
+  },
+} as const;
+
+// Text and decoration over the brand gradient (always white, docs/Design.md).
+export const onGradient = {
+  text: '#FFFFFF',
+  circle: 'rgba(255,255,255,0.08)',
+} as const;
+
+export const gradients = {
+  brand: {
+    colors: ['#34531F', '#132F20'] as const,
+    start: { x: 0, y: 0 },
+    end: { x: 1, y: 1 },
+  },
+} as const;
+
+export const motion = {
+  duration: { press: 150, standard: 250, sheet: 350 },
+  spring: { damping: 20, stiffness: 200 },
+  pressScale: { button: 0.97, card: 0.98 },
+  riseOffset: 8,
+} as const;
 
 export const typography = {
   screenTitle: { fontFamily: fonts.bold, fontSize: 24, lineHeight: 32 },

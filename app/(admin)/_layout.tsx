@@ -5,15 +5,15 @@ export default function Layout() {
     <RoleTabs
       role="SUPERADMIN"
       tabs={[
-        { name: 'index', titleKey: 'tabs.dashboard', icon: 'grid-outline' },
-        { name: 'modules', titleKey: 'tabs.modules', icon: 'book-outline' },
+        { name: 'index', titleKey: 'tabs.dashboard', icon: 'home' },
+        { name: 'modules', titleKey: 'tabs.modules', icon: 'modules' },
         {
           name: 'messages',
           titleKey: 'tabs.messages',
-          icon: 'chatbubbles-outline',
+          icon: 'messages',
         },
-        { name: 'pqrs', titleKey: 'tabs.pqrs', icon: 'document-text-outline' },
-        { name: 'more', titleKey: 'tabs.more', icon: 'ellipsis-horizontal' },
+        { name: 'pqrs', titleKey: 'tabs.pqrs', icon: 'pqrs' },
+        { name: 'more', titleKey: 'tabs.more', icon: 'more' },
       ]}
     />
   );

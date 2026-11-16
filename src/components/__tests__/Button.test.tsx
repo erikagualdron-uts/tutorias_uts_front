@@ -31,3 +31,17 @@ describe('Button', () => {
     expect(onPress).not.toHaveBeenCalled();
   });
 });
+
+describe('Button icon', () => {
+  it('shows the leading icon next to the label', async () => {
+    await render(<Button label="Send" icon="signIn" onPress={jest.fn()} />);
+    expect(screen.getByTestId('icon:solar:login-3-linear')).toBeTruthy();
+  });
+
+  it('shows no icon on links', async () => {
+    await render(
+      <Button label="Help" icon="signIn" variant="link" onPress={jest.fn()} />,
+    );
+    expect(screen.queryByTestId('icon:solar:login-3-linear')).toBeNull();
+  });
+});

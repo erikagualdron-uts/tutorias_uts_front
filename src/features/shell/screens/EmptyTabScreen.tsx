@@ -1,8 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Icon } from '@/icons/Icon';
 import { EmptyState } from '@/components/EmptyState';
-import { usePalette } from '@/theme';
+import { iconSize, usePalette } from '@/theme';
 
 // Placeholder for tabs that later features fill in.
 export function EmptyTabScreen() {
@@ -11,15 +11,14 @@ export function EmptyTabScreen() {
   return (
     <SafeAreaView
       edges={['bottom', 'left', 'right']}
-      style={{ flex: 1, backgroundColor: palette.background }}
+      style={{ flex: 1, backgroundColor: palette.screen }}
     >
       <EmptyState
         icon={
-          <Ionicons
-            name="albums-outline"
-            size={48}
+          <Icon
+            name="modules"
+            size={iconSize.empty}
             color={palette.textSecondary}
-            accessibilityLabel={t('empty.title')}
           />
         }
         title={t('empty.title')}

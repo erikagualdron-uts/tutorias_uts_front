@@ -1,4 +1,8 @@
 {
+  "brand": {
+    "name": "UTS Tutorías",
+    "institution": "Unidades Tecnológicas de Santander"
+  },
   "common": {
     "loading": "Cargando…",
     "tryAgain": "Intentar de nuevo",

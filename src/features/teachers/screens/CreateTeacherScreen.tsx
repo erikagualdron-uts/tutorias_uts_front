@@ -45,7 +45,7 @@ export function CreateTeacherScreen() {
   return (
     <SafeAreaView
       edges={['bottom', 'left', 'right']}
-      style={[styles.screen, { backgroundColor: palette.background }]}
+      style={[styles.screen, { backgroundColor: palette.screen }]}
     >
       <ScrollView
         contentContainerStyle={styles.content}
@@ -66,6 +66,7 @@ export function CreateTeacherScreen() {
             render={({ field }) => (
               <TextField
                 label={t(`teachers.create.${name}`)}
+                leadingIcon={name === 'email' ? 'email' : 'user'}
                 value={field.value}
                 onChangeText={field.onChange}
                 onBlur={field.onBlur}
@@ -83,6 +84,7 @@ export function CreateTeacherScreen() {
         ))}
         <Button
           label={t('teachers.create.submit')}
+          icon="userAdd"
           loading={create.isPending}
           onPress={submit}
         />

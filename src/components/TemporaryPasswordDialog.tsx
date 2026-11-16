@@ -2,7 +2,7 @@ import * as Clipboard from 'expo-clipboard';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, StyleSheet, Text, View } from 'react-native';
-import { radius, spacing, typography, usePalette } from '@/theme';
+import { radius, shadows, spacing, typography, usePalette } from '@/theme';
 import { Button } from './Button';
 
 interface TemporaryPasswordDialogProps {
@@ -27,7 +27,7 @@ export function TemporaryPasswordDialog({
   return (
     <Modal transparent animationType="fade" onRequestClose={onClose}>
       <View style={[styles.backdrop, { backgroundColor: palette.scrim }]}>
-        <View style={[styles.dialog, { backgroundColor: palette.background }]}>
+        <View style={[styles.dialog, { backgroundColor: palette.card }]}>
           <Text
             style={[typography.sectionTitle, { color: palette.textPrimary }]}
           >
@@ -53,10 +53,15 @@ export function TemporaryPasswordDialog({
                 ? t('temporaryPassword.copied')
                 : t('temporaryPassword.copy')
             }
+            icon="copy"
             variant="tonal"
             onPress={copy}
           />
-          <Button label={t('temporaryPassword.close')} onPress={onClose} />
+          <Button
+            label={t('temporaryPassword.close')}
+            icon="success"
+            onPress={onClose}
+          />
         </View>
       </View>
     </Modal>
@@ -74,9 +79,10 @@ const styles = StyleSheet.create({
   dialog: {
     width: '100%',
     maxWidth: 320,
-    borderRadius: radius.card,
-    padding: spacing.lg,
-    gap: spacing.md,
+    borderRadius: radius.hero,
+    padding: spacing.xl,
+    gap: spacing.lg,
+    ...shadows.level3,
   },
   block: {
     borderRadius: radius.input,

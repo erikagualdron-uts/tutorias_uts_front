@@ -1,17 +1,18 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import { Icon } from '@/icons/Icon';
+import type { IconName } from '@/icons/registry';
 import { AppBar } from '@/components/AppBar';
 import { RouteGate } from '@/features/auth/RouteGate';
 import { ROLE_HOME } from '@/features/auth/routing';
 import type { Role } from '@/api/types';
-import { usePalette } from '@/theme';
+import { iconSize, shadows, usePalette } from '@/theme';
 
 export interface TabSpec {
   // Route file name inside the role group ('index' for the first tab).
   name: string;
   titleKey: string;
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: IconName;
 }
 
 // Bottom tab bar of docs/Design.md (64 px, 1 px top border) for one role.
@@ -28,8 +29,9 @@ export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
           tabBarInactiveTintColor: palette.textSecondary,
           tabBarStyle: {
             height: 64,
-            backgroundColor: palette.background,
-            borderTopColor: palette.border,
+            backgroundColor: palette.card,
+            borderTopWidth: 0,
+            ...shadows.level1,
           },
         }}
       >
@@ -39,8 +41,13 @@ export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
             name={name}
             options={{
               title: t(titleKey),
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name={icon} size={size} color={String(color)} />
+              tabBarIcon: ({ color, focused }) => (
+                <Icon
+                  name={icon}
+                  active={focused}
+                  size={iconSize.nav}
+                  color={String(color)}
+                />
               ),
             }}
           />

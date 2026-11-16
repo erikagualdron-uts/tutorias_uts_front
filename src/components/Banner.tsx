@@ -1,21 +1,20 @@
-import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Icon } from '@/icons/Icon';
 import { radius, spacing, typography, usePalette } from '@/theme';
 
 interface BannerProps {
   message: string;
-  icon?: ReactNode;
 }
 
 // Notices and the rule that blocks an action (docs/Design.md: cream fill, deep green text).
-export function Banner({ message, icon }: BannerProps) {
+export function Banner({ message }: BannerProps) {
   const palette = usePalette();
   return (
     <View
       accessibilityRole="alert"
       style={[styles.box, { backgroundColor: palette.surfaceWarm }]}
     >
-      {icon}
+      <Icon name="info" color={palette.onAccent} />
       <Text style={[typography.body, styles.text, { color: palette.onAccent }]}>
         {message}
       </Text>

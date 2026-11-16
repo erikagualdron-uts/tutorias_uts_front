@@ -5,19 +5,19 @@ export default function Layout() {
     <RoleTabs
       role="STUDENT"
       tabs={[
-        { name: 'index', titleKey: 'tabs.home', icon: 'home-outline' },
-        { name: 'modules', titleKey: 'tabs.modules', icon: 'book-outline' },
+        { name: 'index', titleKey: 'tabs.home', icon: 'home' },
+        { name: 'modules', titleKey: 'tabs.modules', icon: 'modules' },
         {
           name: 'schedule',
           titleKey: 'tabs.schedule',
-          icon: 'calendar-outline',
+          icon: 'schedule',
         },
         {
           name: 'messages',
           titleKey: 'tabs.messages',
-          icon: 'chatbubbles-outline',
+          icon: 'messages',
         },
-        { name: 'pqrs', titleKey: 'tabs.pqrs', icon: 'document-text-outline' },
+        { name: 'pqrs', titleKey: 'tabs.pqrs', icon: 'pqrs' },
       ]}
     />
   );

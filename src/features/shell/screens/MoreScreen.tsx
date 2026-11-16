@@ -12,10 +12,11 @@ export function MoreScreen() {
   return (
     <SafeAreaView
       edges={['bottom', 'left', 'right']}
-      style={[styles.screen, { backgroundColor: palette.background }]}
+      style={[styles.screen, { backgroundColor: palette.screen }]}
     >
       <Button
         label={t('more.createTeacher')}
+        icon="userAdd"
         variant="tonal"
         onPress={() => router.push('/more/create-teacher')}
       />
