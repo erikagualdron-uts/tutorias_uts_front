@@ -44,7 +44,9 @@
     "submit": "Sign in",
     "createAccount": "Create account",
     "verifyEmail": "Verify my email",
-    "verified": "Email verified. You can now sign in."
+    "verified": "Email verified. You can now sign in.",
+    "forgot": "Forgot your password?",
+    "passwordReset": "Password updated. Sign in with the new one."
   },
   "tabs": {
     "home": "Home",
@@ -111,5 +113,18 @@
   "profile": {
     "menu": "Profile menu",
     "signOut": "Sign out"
+  },
+  "forgot": {
+    "title": "Reset your password",
+    "description": "Enter your institutional email and we will send you a 6-digit code.",
+    "email": "Institutional email",
+    "submit": "Send code"
+  },
+  "reset": {
+    "title": "New password",
+    "description": "Enter the code we sent to {{email}} and your new password.",
+    "code": "Recovery code",
+    "newPassword": "New password",
+    "submit": "Reset password"
   }
 }

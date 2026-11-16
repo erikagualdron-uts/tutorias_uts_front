@@ -44,7 +44,9 @@
     "submit": "Ingresar",
     "createAccount": "Crear cuenta",
     "verifyEmail": "Verificar mi correo",
-    "verified": "Correo verificado. Ya puedes iniciar sesión."
+    "verified": "Correo verificado. Ya puedes iniciar sesión.",
+    "forgot": "¿Olvidaste tu contraseña?",
+    "passwordReset": "Contraseña actualizada. Inicia sesión con la nueva."
   },
   "tabs": {
     "home": "Inicio",
@@ -111,5 +113,18 @@
   "profile": {
     "menu": "Menú de perfil",
     "signOut": "Cerrar sesión"
+  },
+  "forgot": {
+    "title": "Recupera tu contraseña",
+    "description": "Escribe tu correo institucional y te enviaremos un código de 6 dígitos.",
+    "email": "Correo institucional",
+    "submit": "Enviar código"
+  },
+  "reset": {
+    "title": "Nueva contraseña",
+    "description": "Escribe el código que enviamos a {{email}} y tu nueva contraseña.",
+    "code": "Código de recuperación",
+    "newPassword": "Nueva contraseña",
+    "submit": "Restablecer contraseña"
   }
 }

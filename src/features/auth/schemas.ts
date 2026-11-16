@@ -48,3 +48,13 @@ export const changePasswordSchema = z.object({
 });
 
 export type ChangePasswordForm = z.infer<typeof changePasswordSchema>;
+
+export const forgotPasswordSchema = z.object({ email });
+
+export const resetPasswordSchema = z.object({
+  code: z.string().regex(/^[0-9]{6}$/, 'validation.code'),
+  newPassword: password,
+});
+
+export type ForgotPasswordForm = z.infer<typeof forgotPasswordSchema>;
+export type ResetPasswordForm = z.infer<typeof resetPasswordSchema>;

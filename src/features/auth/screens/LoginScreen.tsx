@@ -17,7 +17,10 @@ export function LoginScreen() {
   const { t } = useTranslation();
   const palette = usePalette();
   const login = useLogin();
-  const { verified } = useLocalSearchParams<{ verified?: string }>();
+  const { verified, reset } = useLocalSearchParams<{
+    verified?: string;
+    reset?: string;
+  }>();
   const signOutReason = useSession((state) => state.signOutReason);
   const { control, handleSubmit, formState, getValues } = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
@@ -40,8 +43,10 @@ export function LoginScreen() {
 
         {login.error ? (
           <Banner message={errorMessage(t, login.error)} />
-        ) : verified ? (
-          <Banner message={t('login.verified')} />
+        ) : verified || reset ? (
+          <Banner
+            message={t(verified ? 'login.verified' : 'login.passwordReset')}
+          />
         ) : signOutReason ? (
           <Banner
             message={t(`errors.${signOutReason}`, {
@@ -100,6 +105,11 @@ export function LoginScreen() {
               }
             />
           ) : null}
+          <Button
+            label={t('login.forgot')}
+            variant="outlined"
+            onPress={() => router.push('/forgot-password')}
+          />
           <Button
             label={t('login.createAccount')}
             variant="tonal"
