@@ -24,9 +24,10 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#34531F",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "backgroundColor": "#FFFFFF",
+          "image": "./assets/brand/logo-uts.png",
+          "imageWidth": 240,
+          "dark": { "backgroundColor": "#0B1710", "image": "./assets/brand/logo-uts.png" }
         }
       ],
       "expo-localization",
