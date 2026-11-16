@@ -9,7 +9,10 @@ export function EmptyTabScreen() {
   const { t } = useTranslation();
   const palette = usePalette();
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: palette.background }}>
+    <SafeAreaView
+      edges={['bottom', 'left', 'right']}
+      style={{ flex: 1, backgroundColor: palette.background }}
+    >
       <EmptyState
         icon={
           <Ionicons

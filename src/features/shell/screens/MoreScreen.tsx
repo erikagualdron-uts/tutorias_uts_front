@@ -11,6 +11,7 @@ export function MoreScreen() {
   const palette = usePalette();
   return (
     <SafeAreaView
+      edges={['bottom', 'left', 'right']}
       style={[styles.screen, { backgroundColor: palette.background }]}
     >
       <Button

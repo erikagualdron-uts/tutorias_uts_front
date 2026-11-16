@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import { AppBar } from '@/components/AppBar';
 import { RouteGate } from '@/features/auth/RouteGate';
 import { ROLE_HOME } from '@/features/auth/routing';
 import type { Role } from '@/api/types';
@@ -22,7 +23,7 @@ export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
     <RouteGate expected={ROLE_HOME[role]}>
       <Tabs
         screenOptions={{
-          headerShown: false,
+          header: ({ options }) => <AppBar title={options.title} />,
           tabBarActiveTintColor: palette.primary,
           tabBarInactiveTintColor: palette.textSecondary,
           tabBarStyle: {

@@ -44,6 +44,7 @@ export function CreateTeacherScreen() {
 
   return (
     <SafeAreaView
+      edges={['bottom', 'left', 'right']}
       style={[styles.screen, { backgroundColor: palette.background }]}
     >
       <ScrollView

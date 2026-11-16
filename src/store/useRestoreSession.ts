@@ -9,9 +9,13 @@ export function useRestoreSession() {
     void (async () => {
       if (!(await loadRefreshToken()))
         return useSession.setState({ status: 'signedOut' });
-      // refreshSession closes the session itself when the server rejects the token.
+      // Still loading here means the server was unreachable; keep the token and explain why.
       if (!(await refreshSession()))
-        useSession.setState({ status: 'signedOut' });
+        useSession.setState((state) =>
+          state.status === 'loading'
+            ? { status: 'signedOut', signOutReason: 'NETWORK' }
+            : state,
+        );
     })();
   }, []);
 }

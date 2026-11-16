@@ -9,6 +9,7 @@ import { Button } from '@/components/Button';
 import { TextField } from '@/components/TextField';
 import { spacing, typography, usePalette } from '@/theme';
 import { useChangePassword } from '../hooks/useChangePassword';
+import { useSignOut } from '../hooks/useSignOut';
 import { changePasswordSchema, type ChangePasswordForm } from '../schemas';
 
 // Blocks all navigation until done: the route gate keeps the user here while mustChangePassword is true.
@@ -16,6 +17,7 @@ export function ChangePasswordScreen() {
   const { t } = useTranslation();
   const palette = usePalette();
   const change = useChangePassword();
+  const signOut = useSignOut();
   const { control, handleSubmit, formState } = useForm<ChangePasswordForm>({
     resolver: zodResolver(changePasswordSchema),
     defaultValues: { currentPassword: '', newPassword: '' },
@@ -71,6 +73,11 @@ export function ChangePasswordScreen() {
           label={t('changePassword.submit')}
           loading={change.isPending}
           onPress={handleSubmit((form) => change.mutate(form))}
+        />
+        <Button
+          label={t('profile.signOut')}
+          variant="tonal"
+          onPress={() => void signOut()}
         />
       </ScrollView>
     </SafeAreaView>
