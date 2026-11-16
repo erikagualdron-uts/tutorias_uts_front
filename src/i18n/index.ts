@@ -1,4 +1,5 @@
-import { getLocales } from 'expo-localization';
+import { getLocales, useLocales } from 'expo-localization';
+import { useEffect } from 'react';
 import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './en.json';
@@ -25,5 +26,13 @@ void i18n.use(initReactI18next).init({
   fallbackLng: 'es',
   interpolation: { escapeValue: false },
 });
+
+// Follows the device language while the app is open (the hook updates when the app returns to the foreground).
+export function useSyncDeviceLanguage() {
+  const language = resolveLocale(useLocales()[0]?.languageCode);
+  useEffect(() => {
+    void i18n.changeLanguage(language);
+  }, [language]);
+}
 
 export default i18n;
