@@ -59,6 +59,7 @@ export function TextField({
           {...inputProps}
           accessibilityLabel={label}
           secureTextEntry={password && hidden}
+          {...(password && { autoCapitalize: 'none', autoCorrect: false })}
           onFocus={(event) => {
             setFocused(true);
             inputProps.onFocus?.(event);
