@@ -1,3 +1,3 @@
-import { EmptyTabScreen } from '@/features/shell/screens/EmptyTabScreen';
+import { MoreScreen } from '@/features/shell/screens/MoreScreen';
 
-export default EmptyTabScreen;
+export default MoreScreen;

@@ -13,7 +13,12 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
   return (
     <QueryClientProvider client={queryClient}>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen
+          name="change-password"
+          options={{ gestureEnabled: false }}
+        />
+      </Stack>
     </QueryClientProvider>
   );
 }

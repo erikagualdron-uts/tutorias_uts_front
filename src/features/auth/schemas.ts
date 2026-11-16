@@ -41,3 +41,10 @@ export const verifyEmailSchema = z.object({
 export type LoginForm = z.infer<typeof loginSchema>;
 export type RegisterForm = z.infer<typeof registerSchema>;
 export type VerifyEmailForm = z.infer<typeof verifyEmailSchema>;
+
+export const changePasswordSchema = z.object({
+  currentPassword: z.string().min(1, 'validation.required'),
+  newPassword: password,
+});
+
+export type ChangePasswordForm = z.infer<typeof changePasswordSchema>;

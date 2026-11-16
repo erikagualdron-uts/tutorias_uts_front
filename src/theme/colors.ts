@@ -17,6 +17,7 @@ export interface Palette {
   success: string;
   warning: string;
   disabledText: string;
+  scrim: string;
 }
 
 export const lightPalette: Palette = {
@@ -37,6 +38,7 @@ export const lightPalette: Palette = {
   success: '#2BA640',
   warning: '#FB8C00',
   disabledText: '#878787',
+  scrim: 'rgba(0,0,0,0.4)', // derived: dialog backdrop
 };
 
 export const darkPalette: Palette = {
@@ -57,4 +59,5 @@ export const darkPalette: Palette = {
   success: '#2BA640',
   warning: '#FB8C00',
   disabledText: '#878787',
+  scrim: 'rgba(0,0,0,0.4)', // derived: dialog backdrop
 };

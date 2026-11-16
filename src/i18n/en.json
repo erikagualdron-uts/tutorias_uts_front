@@ -80,5 +80,32 @@
     "resend": "Resend code",
     "resendIn": "You can resend the code in {{seconds}} s",
     "resent": "If the account exists and is unverified, we sent a new code."
+  },
+  "changePassword": {
+    "title": "Change your password",
+    "description": "You are using a temporary password. You must change it to continue.",
+    "current": "Current password",
+    "new": "New password",
+    "submit": "Change password"
+  },
+  "teachers": {
+    "create": {
+      "title": "Create teacher",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Institutional email",
+      "submit": "Create teacher"
+    }
+  },
+  "temporaryPassword": {
+    "title": "Temporary password",
+    "body": "Copy it now: it will not be shown again.",
+    "notice": "The teacher must change it on first sign-in.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "close": "Close"
+  },
+  "more": {
+    "createTeacher": "Create teacher"
   }
 }
