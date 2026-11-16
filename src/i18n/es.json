@@ -1,0 +1,34 @@
+{
+  "common": {
+    "loading": "Cargando…",
+    "tryAgain": "Intentar de nuevo",
+    "show": "Mostrar",
+    "hide": "Ocultar",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña"
+  },
+  "errors": {
+    "UNKNOWN": "Ocurrió un error inesperado. Inténtalo de nuevo.",
+    "NETWORK": "No hay conexión con el servidor. Revisa tu internet.",
+    "VALIDATION_FAILED": "Revisa los datos ingresados.",
+    "EMAIL_ALREADY_REGISTERED": "Este correo ya está registrado. Inicia sesión o recupera tu contraseña.",
+    "EMAIL_DOMAIN_NOT_ALLOWED": "El correo no pertenece a un dominio permitido para esta acción.",
+    "CODE_INVALID": "El código no es correcto.",
+    "CODE_EXPIRED": "El código venció. Solicita uno nuevo.",
+    "CODE_ATTEMPTS_EXCEEDED": "Superaste los intentos permitidos. Solicita un código nuevo.",
+    "INVALID_CREDENTIALS": "Correo o contraseña incorrectos.",
+    "EMAIL_NOT_VERIFIED": "Debes verificar tu correo antes de iniciar sesión.",
+    "ACCOUNT_DISABLED": "Tu cuenta está desactivada. Comunícate con el CAE.",
+    "ACCOUNT_UNAVAILABLE": "Esta cuenta ya no está disponible.",
+    "SESSION_EXPIRED": "Tu sesión caducó. Inicia sesión de nuevo.",
+    "SESSION_REVOKED": "Tu sesión se cerró. Inicia sesión de nuevo.",
+    "TOKEN_INVALID": "Tu sesión no es válida. Inicia sesión de nuevo.",
+    "PASSWORD_TOO_WEAK": "La contraseña debe tener al menos 8 caracteres, con letras y números.",
+    "PASSWORD_SAME_AS_CURRENT": "La nueva contraseña debe ser distinta de la actual.",
+    "PASSWORD_CHANGE_REQUIRED": "Debes cambiar tu contraseña temporal antes de continuar.",
+    "FORBIDDEN_ROLE": "No tienes permiso para esta acción.",
+    "RATE_LIMITED": "Demasiados intentos. Inténtalo de nuevo en {{seconds}} segundos.",
+    "NOT_FOUND": "No encontramos lo que buscas.",
+    "INTERNAL_ERROR": "Ocurrió un error en el servidor. Inténtalo más tarde."
+  }
+}

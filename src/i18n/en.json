@@ -1,0 +1,34 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "tryAgain": "Try again",
+    "show": "Show",
+    "hide": "Hide",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
+  },
+  "errors": {
+    "UNKNOWN": "Something went wrong. Please try again.",
+    "NETWORK": "Cannot reach the server. Check your internet connection.",
+    "VALIDATION_FAILED": "Check the data you entered.",
+    "EMAIL_ALREADY_REGISTERED": "This email is already registered. Sign in or reset your password.",
+    "EMAIL_DOMAIN_NOT_ALLOWED": "The email does not belong to a domain allowed for this action.",
+    "CODE_INVALID": "The code is not correct.",
+    "CODE_EXPIRED": "The code has expired. Request a new one.",
+    "CODE_ATTEMPTS_EXCEEDED": "You exceeded the allowed attempts. Request a new code.",
+    "INVALID_CREDENTIALS": "Incorrect email or password.",
+    "EMAIL_NOT_VERIFIED": "You must verify your email before signing in.",
+    "ACCOUNT_DISABLED": "Your account is disabled. Contact the CAE.",
+    "ACCOUNT_UNAVAILABLE": "This account is no longer available.",
+    "SESSION_EXPIRED": "Your session expired. Sign in again.",
+    "SESSION_REVOKED": "Your session was closed. Sign in again.",
+    "TOKEN_INVALID": "Your session is not valid. Sign in again.",
+    "PASSWORD_TOO_WEAK": "The password must have at least 8 characters, with letters and numbers.",
+    "PASSWORD_SAME_AS_CURRENT": "The new password must be different from the current one.",
+    "PASSWORD_CHANGE_REQUIRED": "You must change your temporary password before continuing.",
+    "FORBIDDEN_ROLE": "You do not have permission for this action.",
+    "RATE_LIMITED": "Too many attempts. Try again in {{seconds}} seconds.",
+    "NOT_FOUND": "We could not find what you are looking for.",
+    "INTERNAL_ERROR": "A server error occurred. Please try again later."
+  }
+}
