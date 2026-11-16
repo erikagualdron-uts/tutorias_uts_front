@@ -30,5 +30,28 @@
     "RATE_LIMITED": "Demasiados intentos. Inténtalo de nuevo en {{seconds}} segundos.",
     "NOT_FOUND": "No encontramos lo que buscas.",
     "INTERNAL_ERROR": "Ocurrió un error en el servidor. Inténtalo más tarde."
+  },
+  "validation": {
+    "required": "Este campo es obligatorio.",
+    "email": "Escribe un correo válido."
+  },
+  "login": {
+    "title": "Inicia sesión",
+    "email": "Correo institucional",
+    "password": "Contraseña",
+    "submit": "Ingresar"
+  },
+  "tabs": {
+    "home": "Inicio",
+    "modules": "Módulos",
+    "schedule": "Cronograma",
+    "messages": "Mensajes",
+    "pqrs": "PQRS",
+    "dashboard": "Dashboard",
+    "more": "Más"
+  },
+  "empty": {
+    "title": "Aún no hay nada aquí",
+    "description": "Esta sección estará disponible pronto."
   }
 }
