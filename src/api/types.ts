@@ -197,3 +197,5 @@ export interface HolidayRemoval {
     reason: 'TEACHER_BUSY' | 'ROOM_BUSY';
   }[];
 }
+
+export type ModulePage = Page<Module> & { meta: { periodId: string | null } };

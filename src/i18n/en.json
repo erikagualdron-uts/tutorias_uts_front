@@ -236,6 +236,47 @@
       "5": "Friday",
       "6": "Saturday",
       "7": "Sunday"
+    },
+    "search": "Search module",
+    "loadError": "We could not load the modules",
+    "emptyFiltered": {
+      "title": "No results",
+      "description": "No module matches the search or the filters."
+    },
+    "filter": {
+      "all": "All"
+    },
+    "card": {
+      "cupo": "Capacity: {{enrolled}} / {{capacity}}"
+    },
+    "unavailable": {
+      "teacher": "Teacher unavailable",
+      "room": "Room unavailable",
+      "teacherHelp": "The teacher of this module is no longer available. Assign another teacher so the sessions have someone to teach them.",
+      "roomHelp": "The room of this module is no longer available. Change the room so the sessions have somewhere to take place."
+    },
+    "session": {
+      "SCHEDULED": "Scheduled",
+      "RESCHEDULED": "Rescheduled",
+      "CANCELLED": "Cancelled",
+      "holiday": "Cancelled for a holiday"
+    },
+    "detail": {
+      "sessions": "Sessions",
+      "noSessions": "This module has no sessions yet.",
+      "holidays": "No session because of a holiday: {{dates}}"
+    },
+    "readOnly": {
+      "PERIOD_CLOSED": "The period of this module is closed: the module is read-only."
+    },
+    "notify": "{{count}} enrolled students will be notified.",
+    "changeRoom": {
+      "action": "Change room",
+      "title": "Choose the new room",
+      "insufficient": "Not enough capacity: {{enrolled}} enrolled, this room holds {{capacity}}",
+      "confirmTitle": "Change the room",
+      "confirmMessage": "The module will move to {{room}} (capacity {{capacity}}). Future sessions use the new room and past ones keep theirs.",
+      "confirm": "Change room"
     }
   },
   "periods": {

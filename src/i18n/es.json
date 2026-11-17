@@ -236,6 +236,47 @@
       "5": "viernes",
       "6": "sábado",
       "7": "domingo"
+    },
+    "search": "Buscar módulo",
+    "loadError": "No pudimos cargar los módulos",
+    "emptyFiltered": {
+      "title": "Sin resultados",
+      "description": "Ningún módulo coincide con la búsqueda o los filtros."
+    },
+    "filter": {
+      "all": "Todos"
+    },
+    "card": {
+      "cupo": "Cupo: {{enrolled}} / {{capacity}}"
+    },
+    "unavailable": {
+      "teacher": "Docente no disponible",
+      "room": "Salón no disponible",
+      "teacherHelp": "El docente de este módulo ya no está disponible. Asigna otro docente para que las sesiones tengan quién las dicte.",
+      "roomHelp": "El salón de este módulo ya no está disponible. Cambia el salón para que las sesiones tengan dónde dictarse."
+    },
+    "session": {
+      "SCHEDULED": "Programada",
+      "RESCHEDULED": "Reprogramada",
+      "CANCELLED": "Cancelada",
+      "holiday": "Cancelada por festivo"
+    },
+    "detail": {
+      "sessions": "Sesiones",
+      "noSessions": "Este módulo aún no tiene sesiones.",
+      "holidays": "Sin sesión por festivo: {{dates}}"
+    },
+    "readOnly": {
+      "PERIOD_CLOSED": "El periodo de este módulo está cerrado: el módulo es de solo lectura."
+    },
+    "notify": "{{count}} inscritos serán avisados.",
+    "changeRoom": {
+      "action": "Cambiar salón",
+      "title": "Elige el nuevo salón",
+      "insufficient": "Capacidad insuficiente: {{enrolled}} inscritos, este salón tiene capacidad para {{capacity}}",
+      "confirmTitle": "Cambiar el salón",
+      "confirmMessage": "El módulo pasará a {{room}} (capacidad {{capacity}}). Las sesiones futuras usarán el nuevo salón y las pasadas conservan el suyo.",
+      "confirm": "Cambiar salón"
     }
   },
   "periods": {
