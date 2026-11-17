@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
 import { AppBar } from '@/components/AppBar';
@@ -15,10 +16,11 @@ export interface TabSpec {
   icon: IconName;
 }
 
-// Bottom tab bar of docs/Design.md (64 px, 1 px top border) for one role.
+// Bottom tab bar of docs/Design.md (64 px plus the bottom safe area, so it clears system buttons) for one role.
 export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
   const { t } = useTranslation();
   const palette = usePalette();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <RouteGate expected={ROLE_HOME[role]}>
@@ -28,7 +30,8 @@ export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
           tabBarActiveTintColor: palette.primary,
           tabBarInactiveTintColor: palette.textSecondary,
           tabBarStyle: {
-            height: 64,
+            height: 64 + bottom,
+            paddingBottom: bottom,
             backgroundColor: palette.card,
             borderTopWidth: 0,
             ...shadows.level1,
