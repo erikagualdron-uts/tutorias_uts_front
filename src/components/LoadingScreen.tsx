@@ -1,9 +1,8 @@
-import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, View } from 'react-native';
+import { View } from 'react-native';
 import { usePalette } from '@/theme';
+import { BrandLoader } from './BrandLoader';
 
 export function LoadingScreen() {
-  const { t } = useTranslation();
   const palette = usePalette();
   return (
     <View
@@ -14,7 +13,7 @@ export function LoadingScreen() {
         backgroundColor: palette.screen,
       }}
     >
-      <ActivityIndicator accessibilityLabel={t('common.loading')} />
+      <BrandLoader />
     </View>
   );
 }

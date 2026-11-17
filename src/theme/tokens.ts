@@ -72,6 +72,15 @@ export const motion = {
   spring: { damping: 20, stiffness: 200 },
   pressScale: { button: 0.97, card: 0.98 },
   riseOffset: 8,
+  // Brand loader (docs/Design.md, Loader): one icon per 900ms iteration; times in ms.
+  loader: {
+    iteration: 900,
+    fadeIn: 250,
+    hold: 400,
+    fadeOut: 250,
+    showAfter: 300,
+    slowAfter: 1000,
+  },
 } as const;
 
 // Sizes and weights from docs/Design.md (Typography). Components use these styles only.

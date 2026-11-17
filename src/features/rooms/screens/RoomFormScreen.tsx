@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import {
-  ActivityIndicator,
   Modal,
   Pressable,
   ScrollView,
@@ -15,6 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import { Banner } from '@/components/Banner';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { Button } from '@/components/Button';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { EmptyState } from '@/components/EmptyState';
@@ -71,8 +71,7 @@ export function RoomFormScreen() {
   const failure = [save, toggle, remove].find((m) => m.error)?.error;
   const closeOnError = { ...done, onError: () => setDialog(null) };
 
-  if (id && room.isPending)
-    return <ActivityIndicator accessibilityLabel={t('common.loading')} />;
+  if (id && room.isPending) return <LoadingScreen />;
   if (id && room.isError)
     return (
       <EmptyState

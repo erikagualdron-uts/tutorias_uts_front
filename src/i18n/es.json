@@ -15,7 +15,8 @@
     "save": "Guardar",
     "edit": "Editar",
     "delete": "Eliminar",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "loadingSlow": "Cargando… Esto está tardando más de lo normal."
   },
   "errors": {
     "UNKNOWN": "Ocurrió un error inesperado. Inténtalo de nuevo.",

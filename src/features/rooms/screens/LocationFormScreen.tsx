@@ -3,10 +3,11 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import { Banner } from '@/components/Banner';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { Button } from '@/components/Button';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { EmptyState } from '@/components/EmptyState';
@@ -39,8 +40,7 @@ export function LocationFormScreen() {
   const done = { onSuccess: () => router.back() };
   const failure = save.error ?? remove.error;
 
-  if (id && location.isPending)
-    return <ActivityIndicator accessibilityLabel={t('common.loading')} />;
+  if (id && location.isPending) return <LoadingScreen />;
   if (id && location.isError)
     return (
       <EmptyState

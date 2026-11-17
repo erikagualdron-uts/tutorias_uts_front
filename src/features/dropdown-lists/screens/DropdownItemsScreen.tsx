@@ -1,16 +1,10 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import {
-  ActivityIndicator,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import { Banner } from '@/components/Banner';
+import { BrandLoader } from '@/components/BrandLoader';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
@@ -78,7 +72,7 @@ export function DropdownItemsScreen() {
           <Banner message={errorMessage(t, reorder.error)} />
         ) : null}
         {list.isPending ? (
-          <ActivityIndicator accessibilityLabel={t('common.loading')} />
+          <BrandLoader />
         ) : list.isError ? (
           <EmptyState
             title={t('dropdowns.loadError')}

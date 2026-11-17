@@ -1,17 +1,11 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  ActivityIndicator,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import type { RoomStatus } from '@/api/types';
+import { BrandLoader } from '@/components/BrandLoader';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
@@ -74,7 +68,7 @@ export function RoomsScreen() {
         />
 
         {rooms.isPending ? (
-          <ActivityIndicator accessibilityLabel={t('common.loading')} />
+          <BrandLoader />
         ) : rooms.isError ? (
           <EmptyState
             title={t('rooms.loadError')}
