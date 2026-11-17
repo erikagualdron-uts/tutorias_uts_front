@@ -1,5 +1,5 @@
 import { motion } from '@/theme';
-import { iconOpacity } from '../brandLoaderTiming';
+import { iconMotion, iconOpacity } from '../brandLoaderTiming';
 
 const { iteration, fadeIn, hold, fadeOut } = motion.loader;
 const at = (ms: number, animated = true) =>
@@ -39,5 +39,41 @@ describe('iconOpacity', () => {
     expect(at(900, false)).toEqual([0, 1, 0]);
     expect(at(1800, false)).toEqual([0, 0, 1]);
     expect(at(2700, false)).toEqual([1, 0, 0]);
+  });
+});
+
+describe('iconMotion', () => {
+  const { iconScaleMin } = motion.loader;
+  const at1 = (ms: number, index = 0) =>
+    iconMotion(ms / iteration, index, true);
+
+  it('grows from the minimum size to full size while it enters', () => {
+    expect(at1(0).scale).toBeCloseTo(iconScaleMin);
+    expect(at1(fadeIn / 2).scale).toBeCloseTo((1 + iconScaleMin) / 2);
+    expect(at1(fadeIn).scale).toBeCloseTo(1);
+  });
+
+  it('rests at full size while it holds', () => {
+    expect(at1(fadeIn + hold / 2)).toEqual({ opacity: 1, scale: 1 });
+  });
+
+  it('shrinks back to the minimum size while it leaves', () => {
+    expect(at1(fadeIn + hold).scale).toBeCloseTo(1);
+    expect(at1(iteration - fadeOut / 2).scale).toBeCloseTo(
+      (1 + iconScaleMin) / 2,
+    );
+    expect(at1(iteration - 0.001).scale).toBeCloseTo(iconScaleMin, 2);
+  });
+
+  it('does it for every icon in turn', () => {
+    [0, 1, 2].forEach((index) => {
+      expect(at1(index * iteration, index).scale).toBeCloseTo(iconScaleMin);
+    });
+  });
+
+  it('with reduced motion keeps full size', () => {
+    for (let ms = 0; ms < 2700; ms += 10) {
+      expect(iconMotion(ms / iteration, 0, false).scale).toBe(1);
+    }
   });
 });

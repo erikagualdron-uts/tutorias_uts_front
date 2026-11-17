@@ -91,12 +91,12 @@ export const motion = {
       pulseMin: 0.4,
       trackOpacity: 0.2,
     },
-    // Sideways shake when the loader enters and leaves; offsets in px, times in ms.
-    shake: {
-      enter: { duration: 350, offsets: [0, -6, 6, -3, 3, 0] },
-      exit: { duration: 250, offsets: [0, 6, -6, 3, 0] },
-      fade: 150,
-    },
+    // Icon inside the ring: small enough to never touch the ring or the message.
+    icon: { regular: 32, compact: 14 },
+    // Each icon grows from iconScaleMin to 1 while it enters (fadeIn) and shrinks back while it
+    // leaves (fadeOut). `fade` is how the whole loader appears and leaves.
+    iconScaleMin: 0.5,
+    fade: 150,
   },
 } as const;
 

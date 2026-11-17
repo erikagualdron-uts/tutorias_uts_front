@@ -12,7 +12,6 @@ import Animated, {
   Easing,
   FadeIn,
   FadeOut,
-  Keyframe,
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
@@ -22,37 +21,19 @@ import Animated, {
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
 import { motion, spacing, typography, usePalette } from '@/theme';
-import { shakeFrames } from './brandLoaderMotion';
-import { iconOpacity } from './brandLoaderTiming';
+import { iconMotion } from './brandLoaderTiming';
 import { LoaderRing } from './LoaderRing';
 import { useLoaderPhase } from './useLoaderPhase';
 import { useMotion } from './useMotion';
 
 const SEQUENCE: IconName[] = ['openBook', 'feather', 'leaf'];
-const ICON = { regular: 48, compact: 20 } as const;
+const ICON = motion.loader.icon;
 
 interface BrandLoaderProps {
-  // regular: screens and content areas (waits 300 ms, shakes in and out, adds a message after
-  // 1000 ms). compact: buttons and inline rows (immediate, fades in and out, no message).
+  // regular: screens and content areas (waits 300 ms, adds a message after 1000 ms).
+  // compact: buttons and inline rows (immediate, no message).
   size?: keyof typeof ICON;
   color?: string;
-}
-
-// The sideways shake as a Reanimated keyframe animation (entrance or exit).
-function shakeAnimation(kind: 'enter' | 'exit') {
-  const definitions = Object.fromEntries(
-    Object.entries(shakeFrames(kind)).map(([percent, frame]) => [
-      percent,
-      {
-        opacity: frame.opacity,
-        transform: [{ translateX: frame.translateX }],
-        ...(percent !== '0' && { easing: Easing.bezier(0.2, 0, 0.0, 1) }),
-      },
-    ]),
-  );
-  return new Keyframe(
-    definitions as unknown as ConstructorParameters<typeof Keyframe>[0],
-  ).duration(motion.loader.shake[kind].duration);
 }
 
 function LoaderIcon({
@@ -70,9 +51,10 @@ function LoaderIcon({
   color: string;
   size: number;
 }) {
-  const style = useAnimatedStyle(() => ({
-    opacity: iconOpacity(t.value, index, animated),
-  }));
+  const style = useAnimatedStyle(() => {
+    const m = iconMotion(t.value, index, animated);
+    return { opacity: m.opacity, transform: [{ scale: m.scale }] };
+  });
   return (
     <Animated.View
       importantForAccessibility="no-hide-descendants"
@@ -85,7 +67,7 @@ function LoaderIcon({
 }
 
 // The app's loading indicator (docs/Design.md, Loader): one brand icon at a time,
-// book → feather → leaf, inside a spinning ring, entering and leaving with a smooth shake.
+// book → feather → leaf, inside a spinning ring; each icon grows in and shrinks out.
 export function BrandLoader({ size = 'regular', color }: BrandLoaderProps) {
   const { t, i18n } = useTranslation();
   const palette = usePalette();
@@ -96,13 +78,10 @@ export function BrandLoader({ size = 'regular', color }: BrandLoaderProps) {
   const box = motion.loader.ring[size].size;
   const tone = color ?? (dark ? palette.textPrimary : palette.primary);
 
-  // Buttons and reduce motion fade; screens shake (never inside a button, never when reduced).
   const { entering, exiting } = useMemo(() => {
-    const fade = motion.loader.shake.fade;
-    return size === 'compact' || !movement
-      ? { entering: FadeIn.duration(fade), exiting: FadeOut.duration(fade) }
-      : { entering: shakeAnimation('enter'), exiting: shakeAnimation('exit') };
-  }, [size, movement]);
+    const fade = motion.loader.fade;
+    return { entering: FadeIn.duration(fade), exiting: FadeOut.duration(fade) };
+  }, []);
 
   // One clock for the three icons keeps them in sync; it restarts from the book every time
   // the loader becomes visible.

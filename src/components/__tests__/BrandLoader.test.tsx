@@ -75,21 +75,21 @@ describe('BrandLoader regular', () => {
     cancel.mockRestore();
   });
 
-  it('uses 48 px icons', async () => {
+  it('uses 32 px icons, so they never touch the 64 px ring', async () => {
     await render(<BrandLoader />);
     await advance(300);
     expect(screen.getByTestId('icon:openBook').props.accessibilityHint).toMatch(
-      /\|48$/,
+      /\|32$/,
     );
   });
 });
 
 describe('BrandLoader compact', () => {
-  it('shows right away, at 20 px, and never shows the delay message', async () => {
+  it('shows right away, at 14 px, and never shows the delay message', async () => {
     await render(<BrandLoader size="compact" />);
     expect(painted()).toEqual(['openBook', 'feather', 'leaf']);
     expect(screen.getByTestId('icon:openBook').props.accessibilityHint).toMatch(
-      /\|20$/,
+      /\|14$/,
     );
     await advance(1500);
     expect(screen.queryByText(/tardando/)).toBeNull();
