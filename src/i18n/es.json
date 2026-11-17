@@ -18,6 +18,11 @@
     "confirm": "Confirmar",
     "loadingSlow": "Cargando… Esto está tardando más de lo normal."
   },
+  "dateField": {
+    "empty": "Sin seleccionar",
+    "hint": "Abre un selector de fecha",
+    "placeholder": "dd/mm/aaaa"
+  },
   "errors": {
     "UNKNOWN": "Ocurrió un error inesperado. Inténtalo de nuevo.",
     "NETWORK": "No hay conexión con el servidor. Revisa tu internet.",
@@ -65,7 +70,8 @@
     "required": "Este campo es obligatorio.",
     "email": "Escribe un correo válido.",
     "code": "El código tiene 6 dígitos.",
-    "password": "La contraseña no cumple los requisitos."
+    "password": "La contraseña no cumple los requisitos.",
+    "invalidDate": "Elige una fecha válida."
   },
   "login": {
     "title": "Inicia sesión",
@@ -188,9 +194,9 @@
     },
     "form": {
       "name": "Nombre",
-      "startsOn": "Fecha de inicio (AAAA-MM-DD)",
-      "endsOn": "Fecha de fin (AAAA-MM-DD)",
-      "dateFormat": "Usa el formato AAAA-MM-DD.",
+      "startsOn": "Fecha de inicio",
+      "endsOn": "Fecha de fin",
+      "endAfterStart": "Debe ser posterior a la fecha de inicio.",
       "save": "Guardar periodo"
     },
     "actions": {

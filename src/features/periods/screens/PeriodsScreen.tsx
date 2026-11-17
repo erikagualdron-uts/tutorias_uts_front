@@ -10,6 +10,7 @@ import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
 import { FilterChips } from '@/components/FilterChips';
+import { formatDay } from '@/date/day';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
 import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
@@ -110,8 +111,8 @@ export function PeriodsScreen() {
                     ]}
                   >
                     {t('periods.range', {
-                      start: period.startsOn,
-                      end: period.endsOn,
+                      start: formatDay(period.startsOn),
+                      end: formatDay(period.endsOn),
                     })}
                   </Text>
                 </View>

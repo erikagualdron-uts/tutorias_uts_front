@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,8 +10,10 @@ import { Banner } from '@/components/Banner';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { Button } from '@/components/Button';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
+import { DateField } from '@/components/DateField';
 import { EmptyState } from '@/components/EmptyState';
 import { TextField } from '@/components/TextField';
+import { addDays, isValidDay } from '@/date/day';
 import { spacing, typography, usePalette } from '@/theme';
 import {
   useActivatePeriod,
@@ -36,10 +38,12 @@ export function PeriodFormScreen() {
   const [dialog, setDialog] = useState<Dialog>(null);
   const [replacedName, setReplacedName] = useState('');
 
-  const { control, handleSubmit, formState, reset } = useForm<PeriodForm>({
-    resolver: zodResolver(periodSchema),
-    defaultValues: { name: '', startsOn: '', endsOn: '' },
-  });
+  const { control, handleSubmit, formState, reset, getValues, trigger } =
+    useForm<PeriodForm>({
+      resolver: zodResolver(periodSchema),
+      defaultValues: { name: '', startsOn: '', endsOn: '' },
+    });
+  const startsOn = useWatch({ control, name: 'startsOn' });
   useEffect(() => {
     if (period.data) {
       const { name, startsOn, endsOn } = period.data;
@@ -117,25 +121,54 @@ export function PeriodFormScreen() {
           <Banner message={errorMessage(t, failure)} />
         ) : null}
 
-        {(['name', 'startsOn', 'endsOn'] as const).map((name) => (
+        <Controller
+          control={control}
+          name="name"
+          render={({ field }) => (
+            <TextField
+              label={t('periods.form.name')}
+              leadingIcon="list"
+              onCard={false}
+              editable={!readOnly}
+              value={field.value}
+              onChangeText={field.onChange}
+              onBlur={field.onBlur}
+              error={fieldError('name')}
+              autoCapitalize="none"
+            />
+          )}
+        />
+
+        {(['startsOn', 'endsOn'] as const).map((name) => (
           <Controller
             key={name}
             control={control}
             name={name}
             render={({ field }) => (
-              <TextField
+              <DateField
                 label={t(`periods.form.${name}`)}
-                leadingIcon={name === 'name' ? 'list' : 'dateRange'}
+                placeholder={t('dateField.placeholder')}
                 onCard={false}
-                editable={!readOnly}
+                disabled={readOnly}
                 value={field.value}
-                onChangeText={field.onChange}
+                minDate={
+                  name === 'endsOn' && isValidDay(startsOn)
+                    ? addDays(startsOn, 1)
+                    : undefined
+                }
+                hint={
+                  name === 'endsOn'
+                    ? t('periods.form.endAfterStart')
+                    : undefined
+                }
+                onChange={(day) => {
+                  field.onChange(day);
+                  // Moving the start can break the end: show it now, not at save time.
+                  if (name === 'startsOn' && getValues('endsOn'))
+                    void trigger('endsOn');
+                }}
                 onBlur={field.onBlur}
                 error={fieldError(name)}
-                autoCapitalize="none"
-                keyboardType={
-                  name === 'name' ? 'default' : 'numbers-and-punctuation'
-                }
               />
             )}
           />

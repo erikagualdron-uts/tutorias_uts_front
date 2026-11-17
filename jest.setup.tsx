@@ -34,3 +34,17 @@ jest.mock('react-native-reanimated', () => {
     useReducedMotion: jest.fn(() => false),
   };
 });
+jest.mock('@react-native-community/datetimepicker', () => {
+  const { View } = require('react-native');
+  const open = jest.fn();
+  // Tests read the last props to confirm or dismiss the picker.
+  const Picker = (props: Record<string, unknown>) => {
+    (Picker as unknown as { lastProps: unknown }).lastProps = props;
+    return <View testID="date-picker" />;
+  };
+  return {
+    __esModule: true,
+    default: Picker,
+    DateTimePickerAndroid: { open, dismiss: jest.fn() },
+  };
+});

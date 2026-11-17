@@ -18,6 +18,11 @@
     "confirm": "Confirm",
     "loadingSlow": "Loading… This is taking longer than usual."
   },
+  "dateField": {
+    "empty": "Not selected",
+    "hint": "Opens a date picker",
+    "placeholder": "dd/mm/yyyy"
+  },
   "errors": {
     "UNKNOWN": "Something went wrong. Please try again.",
     "NETWORK": "Cannot reach the server. Check your internet connection.",
@@ -65,7 +70,8 @@
     "required": "This field is required.",
     "email": "Enter a valid email.",
     "code": "The code has 6 digits.",
-    "password": "The password does not meet the requirements."
+    "password": "The password does not meet the requirements.",
+    "invalidDate": "Choose a valid date."
   },
   "login": {
     "title": "Sign in",
@@ -188,9 +194,9 @@
     },
     "form": {
       "name": "Name",
-      "startsOn": "Start date (YYYY-MM-DD)",
-      "endsOn": "End date (YYYY-MM-DD)",
-      "dateFormat": "Use the YYYY-MM-DD format.",
+      "startsOn": "Start date",
+      "endsOn": "End date",
+      "endAfterStart": "Must be after the start date.",
       "save": "Save period"
     },
     "actions": {

@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -9,6 +10,7 @@ import type { ReactElement } from 'react';
 import { api } from '@/api/client';
 import { ApiError } from '@/api/errors';
 import type { Period } from '@/api/types';
+import { dayToDate, toDay } from '@/date/day';
 import i18n from '@/i18n';
 import { PeriodFormScreen } from '../screens/PeriodFormScreen';
 import { PeriodsScreen } from '../screens/PeriodsScreen';
@@ -23,6 +25,10 @@ jest.mock('expo-router', () => ({
 }));
 
 const mockedApi = api as jest.Mock;
+
+const picker = jest.requireMock('@react-native-community/datetimepicker') as {
+  default: { lastProps?: Record<string, any> };
+};
 
 const period = (overrides: Partial<Period> = {}): Period => ({
   id: 'p1',
@@ -75,7 +81,7 @@ describe('PeriodsScreen', () => {
     });
     await renderWithProviders(<PeriodsScreen />);
     expect(await screen.findByText('2030-1')).toBeTruthy();
-    expect(screen.getByText('2030-01-15 a 2030-06-15')).toBeTruthy();
+    expect(screen.getByText('15/01/2030 a 15/06/2030')).toBeTruthy();
     // once in the filter chip and once as the status of the card
     expect(screen.getAllByText('Activo')).toHaveLength(2);
   });
@@ -111,24 +117,59 @@ describe('PeriodsScreen', () => {
 });
 
 describe('PeriodFormScreen', () => {
+  // Picks a day through the date picker, as the person would: open, spin, confirm.
+  const pick = async (label: string, day: string) => {
+    await fireEvent.press(screen.getByLabelText(label));
+    await act(async () => {
+      picker.default.lastProps?.onValueChange({}, dayToDate(day));
+    });
+    await fireEvent.press(screen.getByLabelText('Confirmar'));
+  };
   const fill = async (name: string, startsOn: string, endsOn: string) => {
     await fireEvent.changeText(screen.getByLabelText('Nombre'), name);
-    await fireEvent.changeText(
-      screen.getByLabelText('Fecha de inicio (AAAA-MM-DD)'),
-      startsOn,
-    );
-    await fireEvent.changeText(
-      screen.getByLabelText('Fecha de fin (AAAA-MM-DD)'),
-      endsOn,
-    );
+    await pick('Fecha de inicio', startsOn);
+    await pick('Fecha de fin', endsOn);
   };
 
-  it('validates the name and the date format before sending', async () => {
+  it('does not let the dates be typed by hand', async () => {
     await renderWithProviders(<PeriodFormScreen />);
-    await fill('', '15/01/2030', '2030-06-15');
+    // only the name is a text input: the two dates have none
+    expect(
+      (JSON.stringify(screen.toJSON()).match(/"type":"TextInput"/g) ?? [])
+        .length,
+    ).toBe(1);
+  });
+
+  it('asks for the name and both dates before sending', async () => {
+    await renderWithProviders(<PeriodFormScreen />);
     await fireEvent.press(screen.getByLabelText('Guardar periodo'));
-    expect(await screen.findByText('Este campo es obligatorio.')).toBeTruthy();
-    expect(screen.getByText('Usa el formato AAAA-MM-DD.')).toBeTruthy();
+    expect(
+      await screen.findAllByText('Este campo es obligatorio.'),
+    ).toHaveLength(3);
+    expect(mockedApi).not.toHaveBeenCalled();
+  });
+
+  it('blocks the days up to the start in the end picker and explains the rule', async () => {
+    await renderWithProviders(<PeriodFormScreen />);
+    await pick('Fecha de inicio', '2030-02-01');
+    await fireEvent.press(screen.getByLabelText('Fecha de fin'));
+    expect(toDay(picker.default.lastProps?.minimumDate)).toBe('2030-02-02');
+    expect(
+      screen.getByText('Debe ser posterior a la fecha de inicio.'),
+    ).toBeTruthy();
+  });
+
+  it('marks the end with an error when the start moves past it', async () => {
+    await renderWithProviders(<PeriodFormScreen />);
+    await pick('Fecha de inicio', '2030-02-01');
+    await pick('Fecha de fin', '2030-02-10');
+    expect(screen.queryByTestId('icon:solar:close-circle-linear')).toBeNull();
+    await pick('Fecha de inicio', '2030-02-15');
+    expect(
+      await screen.findByTestId('icon:solar:close-circle-linear'),
+    ).toBeTruthy();
+    await fireEvent.changeText(screen.getByLabelText('Nombre'), '2030-1');
+    await fireEvent.press(screen.getByLabelText('Guardar periodo'));
     expect(mockedApi).not.toHaveBeenCalled();
   });
 
@@ -208,6 +249,18 @@ describe('PeriodFormScreen', () => {
     expect(
       screen.getByText('Solo se puede eliminar un periodo próximo.'),
     ).toBeTruthy();
+  });
+
+  it('shows the dates of a closed period as dd/mm/YYYY and does not open the picker', async () => {
+    mockParams.id = 'p1';
+    mockedApi.mockResolvedValue(period({ status: 'CLOSED' }));
+    await renderWithProviders(<PeriodFormScreen />);
+    expect(await screen.findByText('15/01/2030')).toBeTruthy();
+    expect(screen.getByText('15/06/2030')).toBeTruthy();
+    const start = screen.getByLabelText('Fecha de inicio');
+    expect(start.props.accessibilityState).toEqual({ disabled: true });
+    await fireEvent.press(start);
+    expect(screen.queryByTestId('date-picker')).toBeNull();
   });
 
   it('explains that a period with modules cannot be deleted', async () => {
