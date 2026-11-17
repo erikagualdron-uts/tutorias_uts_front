@@ -199,3 +199,82 @@ export interface HolidayRemoval {
 }
 
 export type ModulePage = Page<Module> & { meta: { periodId: string | null } };
+
+// ---- Student enrollment (spec 011, contracts/enrollments-api.yaml) ----
+
+export interface Conflict {
+  moduleName: string;
+  dayOfWeek: number;
+  startTime: string;
+  endTime: string;
+}
+
+export interface StudentRoomRef {
+  id: string;
+  name: string;
+  location: string;
+  capacity: number;
+}
+
+export interface EnrollmentRef {
+  id: string;
+  enrolledAt: string;
+}
+
+export type OfferState = 'AVAILABLE' | 'LAST_SPOTS' | 'FULL' | 'ENROLLED' | 'BLOCKED';
+export type OfferBlockReason = 'SCHEDULE_CONFLICT' | 'UNAVAILABLE';
+
+export interface StudentModule {
+  id: string;
+  name: string;
+  description: string | null;
+  teacher: PersonRef;
+  room: StudentRoomRef;
+  schedules: ScheduleInput[];
+  capacity: number;
+  availableSeats: number;
+  state: OfferState;
+  blockReason: OfferBlockReason | null;
+  conflict: Conflict | null;
+  enrollment: EnrollmentRef | null;
+}
+
+export type SessionBlockReason = 'WINDOW_PASSED' | 'PERIOD_CLOSED' | 'SESSION_CANCELLED' | 'NO_SEAT';
+
+export interface StudentSession {
+  id: string;
+  startsAt: string;
+  endsAt: string;
+  status: SessionStatus;
+  cancelReason: 'HOLIDAY' | null;
+  cancelledByStudent: boolean;
+  freeSeats: number;
+  canCancel: boolean;
+  canRestore: boolean;
+  blockReason: SessionBlockReason | null;
+}
+
+export interface StudentModuleDetail extends StudentModule {
+  readOnly: boolean;
+  cancelLeadMinutes: number;
+  sessions: StudentSession[];
+}
+
+export interface Enrollment {
+  id: string;
+  moduleId: string;
+  status: 'ACTIVE' | 'CANCELLED';
+  enrolledAt: string;
+  cancelledAt: string | null;
+  effectiveUntil: string | null;
+}
+
+export interface EnrollmentItem extends Enrollment {
+  module: StudentModule;
+  readOnly: boolean;
+  nextSession: StudentSession | null;
+  upcomingSessions: number;
+}
+
+export type StudentModulePage = Page<StudentModule> & { meta: { periodId: string | null } };
+export type EnrollmentPage = Page<EnrollmentItem>;

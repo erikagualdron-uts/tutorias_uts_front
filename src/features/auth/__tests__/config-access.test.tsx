@@ -24,7 +24,6 @@ const CONFIG_ROUTES = [
   'more/dropdown-lists',
   'more/dropdown-items',
   'more/dropdown-item-form',
-  'modules/index',
   'modules/room-form',
   'modules/locations',
   'modules/location-form',
