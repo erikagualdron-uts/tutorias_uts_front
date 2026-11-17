@@ -5,6 +5,7 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { api, refreshSession } from '@/api/client';
 import { AppBar } from '@/components/AppBar';
 import i18n from '@/i18n';
@@ -94,7 +95,16 @@ describe('AppBar sign out', () => {
       accessToken: 'a',
     });
     (api as jest.Mock).mockResolvedValue(undefined);
-    await render(<AppBar title="Inicio" />);
+    await render(
+      <SafeAreaProvider
+        initialMetrics={{
+          frame: { x: 0, y: 0, width: 360, height: 640 },
+          insets: { top: 24, left: 0, right: 0, bottom: 0 },
+        }}
+      >
+        <AppBar title="Inicio" />
+      </SafeAreaProvider>,
+    );
 
     expect(screen.getByText('AP')).toBeTruthy();
     await fireEvent.press(

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon } from '@/icons/Icon';
 import { useSignOut } from '@/features/auth/hooks/useSignOut';
 import { useSession } from '@/store/session';
@@ -14,6 +14,8 @@ import {
   usePalette,
 } from '@/theme';
 
+const BAR_HEIGHT = 56;
+
 // Top bar of docs/Design.md: screen title on the left, avatar with the profile menu on the right.
 export function AppBar({ title }: { title?: string }) {
   const { t } = useTranslation();
@@ -21,6 +23,7 @@ export function AppBar({ title }: { title?: string }) {
   const user = useSession((state) => state.user);
   const signOut = useSignOut();
   const [open, setOpen] = useState(false);
+  const { top } = useSafeAreaInsets();
 
   const initials =
     (user?.firstName ?? user?.email ?? '?').charAt(0).toUpperCase() +
@@ -46,7 +49,12 @@ export function AppBar({ title }: { title?: string }) {
           onPress={() => setOpen(true)}
           style={styles.touch}
         >
-          <View style={[styles.avatar, { backgroundColor: palette.surface }]}>
+          <View
+            style={[
+              styles.avatar,
+              { backgroundColor: palette.surface, borderColor: palette.textSecondary },
+            ]}
+          >
             <Text style={[typography.label, { color: palette.textPrimary }]}>
               {initials}
             </Text>
@@ -60,12 +68,16 @@ export function AppBar({ title }: { title?: string }) {
         animationType="fade"
         onRequestClose={() => setOpen(false)}
       >
-        <Pressable style={styles.backdrop} onPress={() => setOpen(false)}>
+        <Pressable
+          style={[styles.backdrop, { paddingTop: top + BAR_HEIGHT }]}
+          onPress={() => setOpen(false)}
+        >
           <View
             style={[
               styles.menu,
               {
                 backgroundColor: palette.card,
+                borderColor: palette.border,
               },
             ]}
           >
@@ -91,7 +103,7 @@ export function AppBar({ title }: { title?: string }) {
 
 const styles = StyleSheet.create({
   bar: {
-    minHeight: 56,
+    minHeight: BAR_HEIGHT,
     paddingLeft: spacing.lg,
     paddingRight: spacing.sm,
     flexDirection: 'row',
@@ -109,18 +121,19 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: radius.pill,
+    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   backdrop: {
     flex: 1,
     alignItems: 'flex-end',
-    paddingTop: 96,
     paddingRight: spacing.lg,
   },
   menu: {
     minWidth: 200,
     borderRadius: radius.input,
+    borderWidth: 1,
     ...shadows.level2,
   },
   item: {
