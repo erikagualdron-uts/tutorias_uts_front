@@ -15,15 +15,10 @@ import type { Period, PeriodStatus } from '@/api/types';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
+import { FilterChips } from '@/components/FilterChips';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
-import {
-  MIN_TOUCH_TARGET,
-  radius,
-  spacing,
-  typography,
-  usePalette,
-} from '@/theme';
+import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
 import { usePeriods } from '../hooks/usePeriods';
 
 const FILTERS: (PeriodStatus | undefined)[] = [
@@ -61,39 +56,14 @@ export function PeriodsScreen() {
         <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>
           {t('periods.title')}
         </Text>
-        <View style={styles.filters}>
-          {FILTERS.map((value) => {
-            const selected = value === status;
-            const label = t(`periods.filter.${value ?? 'all'}`);
-            return (
-              <Pressable
-                key={value ?? 'all'}
-                accessibilityRole="button"
-                accessibilityLabel={label}
-                accessibilityState={{ selected }}
-                onPress={() => setStatus(value)}
-                style={[
-                  styles.chip,
-                  {
-                    backgroundColor: selected ? palette.primary : palette.card,
-                    borderColor: selected ? palette.primary : palette.border,
-                  },
-                ]}
-              >
-                <Text
-                  style={[
-                    typography.label,
-                    {
-                      color: selected ? palette.onPrimary : palette.textPrimary,
-                    },
-                  ]}
-                >
-                  {label}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </View>
+        <FilterChips
+          options={FILTERS.map((value) => ({
+            value,
+            label: t(`periods.filter.${value ?? 'all'}`),
+          }))}
+          value={status}
+          onChange={setStatus}
+        />
 
         {periods.isPending ? (
           <ActivityIndicator accessibilityLabel={t('common.loading')} />
@@ -177,14 +147,6 @@ export function PeriodsScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   content: { padding: spacing.lg, gap: spacing.lg },
-  filters: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
-  chip: {
-    minHeight: MIN_TOUCH_TARGET,
-    justifyContent: 'center',
-    paddingHorizontal: spacing.lg,
-    borderRadius: radius.pill,
-    borderWidth: 1,
-  },
   card: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -219,5 +219,85 @@
         "message": "The period will no longer appear in the list."
       }
     }
+  },
+  "rooms": {
+    "title": "Rooms",
+    "create": "Create room",
+    "locationsLink": "Locations",
+    "loadError": "We could not load the rooms.",
+    "search": "Search room by name",
+    "capacity": "Capacity: {{count}}",
+    "createTitle": "New room",
+    "editTitle": "Edit room",
+    "status": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive"
+    },
+    "filter": {
+      "all": "All",
+      "allLocations": "All locations"
+    },
+    "empty": {
+      "title": "No rooms yet",
+      "description": "Create a location and then its rooms."
+    },
+    "emptyFiltered": {
+      "title": "No results",
+      "description": "No room matches the search or the filters."
+    },
+    "form": {
+      "name": "Name or code",
+      "capacity": "Capacity",
+      "capacityInvalid": "Enter a whole number greater than zero.",
+      "location": "Location",
+      "locationPlaceholder": "Choose a location",
+      "noLocations": "Create a location first.",
+      "save": "Save room"
+    },
+    "actions": {
+      "deactivate": "Deactivate room",
+      "reactivate": "Reactivate room",
+      "delete": "Delete room"
+    },
+    "confirm": {
+      "deactivate": {
+        "title": "Deactivate the room?",
+        "message": "It will not be assignable to new modules.",
+        "upcoming": "It has {{count}} modules in upcoming periods: they will keep an inactive room and you will need to reassign them."
+      },
+      "delete": {
+        "title": "Delete the room?",
+        "message": "The room will no longer appear in the list."
+      }
+    }
+  },
+  "locations": {
+    "title": "Locations",
+    "create": "Create location",
+    "createTitle": "New location",
+    "editTitle": "Edit location",
+    "loadError": "We could not load the locations.",
+    "roomCounts": "{{active}} active rooms · {{inactive}} inactive",
+    "empty": {
+      "title": "No locations yet",
+      "description": "Create a campus or a building to register its rooms."
+    },
+    "form": {
+      "name": "Location name",
+      "save": "Save location"
+    },
+    "actions": {
+      "delete": "Delete location"
+    },
+    "rules": {
+      "activeRooms": "It cannot be deleted: it has active rooms. Deactivate or delete its rooms first."
+    },
+    "confirm": {
+      "delete": {
+        "title": "Delete the location?",
+        "message": "The location will no longer appear in the list.",
+        "withRooms": "Its {{count}} inactive rooms will be deleted too."
+      }
+    }
   }
 }

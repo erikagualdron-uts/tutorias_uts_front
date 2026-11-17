@@ -219,5 +219,85 @@
         "message": "El periodo dejará de aparecer en la lista."
       }
     }
+  },
+  "rooms": {
+    "title": "Salones",
+    "create": "Crear salón",
+    "locationsLink": "Ubicaciones",
+    "loadError": "No pudimos cargar los salones.",
+    "search": "Buscar salón por nombre",
+    "capacity": "Capacidad: {{count}}",
+    "createTitle": "Nuevo salón",
+    "editTitle": "Editar salón",
+    "status": {
+      "ACTIVE": "Activo",
+      "INACTIVE": "Inactivo"
+    },
+    "filter": {
+      "all": "Todos",
+      "allLocations": "Todas las ubicaciones"
+    },
+    "empty": {
+      "title": "Aún no hay salones",
+      "description": "Crea una ubicación y luego sus salones."
+    },
+    "emptyFiltered": {
+      "title": "Sin resultados",
+      "description": "Ningún salón coincide con la búsqueda o los filtros."
+    },
+    "form": {
+      "name": "Nombre o código",
+      "capacity": "Capacidad",
+      "capacityInvalid": "Escribe un número entero mayor que cero.",
+      "location": "Ubicación",
+      "locationPlaceholder": "Elige una ubicación",
+      "noLocations": "Primero crea una ubicación.",
+      "save": "Guardar salón"
+    },
+    "actions": {
+      "deactivate": "Desactivar salón",
+      "reactivate": "Reactivar salón",
+      "delete": "Eliminar salón"
+    },
+    "confirm": {
+      "deactivate": {
+        "title": "¿Desactivar el salón?",
+        "message": "No se podrá asignar a módulos nuevos.",
+        "upcoming": "Tiene {{count}} módulos en periodos próximos: quedarán con un salón inactivo y deberás reasignarlos."
+      },
+      "delete": {
+        "title": "¿Eliminar el salón?",
+        "message": "El salón dejará de aparecer en la lista."
+      }
+    }
+  },
+  "locations": {
+    "title": "Ubicaciones",
+    "create": "Crear ubicación",
+    "createTitle": "Nueva ubicación",
+    "editTitle": "Editar ubicación",
+    "loadError": "No pudimos cargar las ubicaciones.",
+    "roomCounts": "{{active}} salones activos · {{inactive}} inactivos",
+    "empty": {
+      "title": "Aún no hay ubicaciones",
+      "description": "Crea una sede o un edificio para registrar sus salones."
+    },
+    "form": {
+      "name": "Nombre de la ubicación",
+      "save": "Guardar ubicación"
+    },
+    "actions": {
+      "delete": "Eliminar ubicación"
+    },
+    "rules": {
+      "activeRooms": "No se puede eliminar: tiene salones activos. Desactiva o elimina antes sus salones."
+    },
+    "confirm": {
+      "delete": {
+        "title": "¿Eliminar la ubicación?",
+        "message": "La ubicación dejará de aparecer en la lista.",
+        "withRooms": "Se eliminarán también sus {{count}} salones inactivos."
+      }
+    }
   }
 }
