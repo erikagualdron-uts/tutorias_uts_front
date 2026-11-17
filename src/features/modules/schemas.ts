@@ -2,6 +2,10 @@ import { z } from 'zod';
 
 const TIME = /^([01]\d|2[0-3]):[0-5]\d$/;
 
+// Hours a module may be held; the same window as MODULE_EARLIEST_TIME and MODULE_LATEST_TIME of the API.
+export const EARLIEST_TIME = '06:00';
+export const LATEST_TIME = '18:00';
+
 // "HH:mm" to minutes from midnight (the same representation the API uses).
 export const toMinutes = (time: string) =>
   Number(time.slice(0, 2)) * 60 + Number(time.slice(3, 5));
@@ -14,16 +18,14 @@ export const scheduleSchema = z
   })
   .superRefine((slot, ctx) => {
     // The server enforces it too (MODULE_SCHEDULE_INVALID); this anticipates the rule.
-    if (
-      TIME.test(slot.startTime) &&
-      TIME.test(slot.endTime) &&
-      toMinutes(slot.endTime) <= toMinutes(slot.startTime)
+    if (!TIME.test(slot.startTime) || !TIME.test(slot.endTime)) return;
+    if (toMinutes(slot.endTime) <= toMinutes(slot.startTime)) {
+      ctx.addIssue({ code: 'custom', path: ['endTime'], message: 'modules.form.endAfterStart' });
+    } else if (
+      slot.startTime < EARLIEST_TIME ||
+      slot.endTime > LATEST_TIME
     ) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['endTime'],
-        message: 'modules.form.endAfterStart',
-      });
+      ctx.addIssue({ code: 'custom', path: ['endTime'], message: 'modules.form.outOfHours' });
     }
   });
 

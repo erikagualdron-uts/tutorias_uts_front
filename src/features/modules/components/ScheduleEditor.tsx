@@ -8,16 +8,17 @@ import { FilterChips } from '@/components/FilterChips';
 import { SelectField } from '@/components/SelectField';
 import { Icon } from '@/icons/Icon';
 import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
+import { EARLIEST_TIME, LATEST_TIME } from '../schemas';
 import { PickerSheet } from './PickerSheet';
 
 const DAYS = ['1', '2', '3', '4', '5', '6', '7'] as const;
-// Hours are picked in steps of 15 minutes, from 00:00 to 23:45 (a UI choice, not a business rule).
+// Hours are picked in steps of 15 minutes (a UI choice) inside the window a module may be held.
 const TIMES = Array.from({ length: 96 }, (_, i) => {
   const minutes = i * 15;
   const hh = String(Math.floor(minutes / 60)).padStart(2, '0');
   const mm = String(minutes % 60).padStart(2, '0');
   return `${hh}:${mm}`;
-});
+}).filter((time) => time >= EARLIEST_TIME && time <= LATEST_TIME);
 
 export interface SlotErrors {
   startTime?: string;

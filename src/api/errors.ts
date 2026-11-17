@@ -40,6 +40,7 @@ export const ERROR_CODES = [
   'DROPDOWN_ITEM_IN_USE',
   'DROPDOWN_ORDER_INVALID',
   'MODULE_SCHEDULE_INVALID',
+  'MODULE_SCHEDULE_OUT_OF_HOURS',
   'MODULE_SCHEDULE_SELF_OVERLAP',
   'MODULE_TEACHER_CONFLICT',
   'MODULE_ROOM_CONFLICT',
@@ -93,8 +94,8 @@ export function errorMessage(t: TFunction, error: unknown): string {
     name: other?.name ?? '',
     module: conflict?.moduleName ?? '',
     day: conflict?.dayOfWeek ? t(`modules.days.${conflict.dayOfWeek}`) : '',
-    start: conflict?.startTime ?? '',
-    end: conflict?.endTime ?? '',
+    start: conflict?.startTime ?? (error.details?.earliest as string | undefined) ?? '',
+    end: conflict?.endTime ?? (error.details?.latest as string | undefined) ?? '',
     enrolled: Number.isFinite(enrolled) ? enrolled : 0,
     capacity: Number.isFinite(capacity) ? capacity : 0,
   });

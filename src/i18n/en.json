@@ -66,6 +66,7 @@
     "DROPDOWN_ITEM_IN_USE": "This item is in use: it can only be deactivated.",
     "DROPDOWN_ORDER_INVALID": "The order sent does not match the items in the list.",
     "MODULE_SCHEDULE_INVALID": "Each schedule needs a day and an end time after the start time, within the same day.",
+    "MODULE_SCHEDULE_OUT_OF_HOURS": "Schedules must be between {{start}} and {{end}}.",
     "MODULE_SCHEDULE_SELF_OVERLAP": "Two schedules of the same module overlap. Adjust the times.",
     "MODULE_TEACHER_CONFLICT": "The teacher already has the module {{module}} on {{day}} from {{start}} to {{end}}.",
     "MODULE_ROOM_CONFLICT": "The room is already taken by the module {{module}} on {{day}} from {{start}} to {{end}}.",
@@ -218,6 +219,7 @@
       "endTime": "End time",
       "timePlaceholder": "Choose a time",
       "endAfterStart": "The end time must be after the start time, on the same day.",
+      "outOfHours": "The schedule must be between 06:00 and 18:00.",
       "scheduleRequired": "Add at least one schedule.",
       "scheduleOverlap": "Two schedules of the module overlap.",
       "save": "Save module"

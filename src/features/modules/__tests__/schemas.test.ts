@@ -77,6 +77,18 @@ describe('moduleSchema', () => {
     }
   });
 
+  it('keeps slots inside 06:00 to 18:00, both ends included', () => {
+    for (const times of [
+      { startTime: '05:45', endTime: '08:00' },
+      { startTime: '17:00', endTime: '18:15' },
+    ]) {
+      expect(messages({ ...valid, schedules: [{ ...slot, ...times }] })).toContain(
+        'schedules.0.endTime: modules.form.outOfHours',
+      );
+    }
+    expect(messages({ ...valid, schedules: [{ ...slot, startTime: '06:00', endTime: '18:00' }] })).toEqual([]);
+  });
+
   it('rejects two slots of the same day that overlap', () => {
     expect(
       messages({ ...valid, schedules: [slot, { ...slot, startTime: '15:00', endTime: '17:00' }] }),

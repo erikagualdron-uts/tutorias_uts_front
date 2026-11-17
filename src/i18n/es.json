@@ -66,6 +66,7 @@
     "DROPDOWN_ITEM_IN_USE": "Este elemento está en uso: solo se puede desactivar.",
     "DROPDOWN_ORDER_INVALID": "El orden enviado no coincide con los elementos de la lista.",
     "MODULE_SCHEDULE_INVALID": "Cada horario necesita un día y una hora de fin posterior a la de inicio, dentro del mismo día.",
+    "MODULE_SCHEDULE_OUT_OF_HOURS": "Los horarios deben estar entre las {{start}} y las {{end}}.",
     "MODULE_SCHEDULE_SELF_OVERLAP": "Dos horarios del mismo módulo se solapan. Ajusta las horas.",
     "MODULE_TEACHER_CONFLICT": "El docente ya tiene el módulo {{module}} el {{day}} de {{start}} a {{end}}.",
     "MODULE_ROOM_CONFLICT": "El salón ya está ocupado por el módulo {{module}} el {{day}} de {{start}} a {{end}}.",
@@ -218,6 +219,7 @@
       "endTime": "Hora de fin",
       "timePlaceholder": "Elige una hora",
       "endAfterStart": "La hora de fin debe ser posterior a la de inicio, el mismo día.",
+      "outOfHours": "El horario debe estar entre las 06:00 y las 18:00.",
       "scheduleRequired": "Agrega al menos un horario.",
       "scheduleOverlap": "Dos horarios del módulo se solapan.",
       "save": "Guardar módulo"
