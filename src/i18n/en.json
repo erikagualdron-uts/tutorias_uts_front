@@ -178,6 +178,56 @@
     "submit": "Reset password"
   },
   "modules": {
+    "title": "Modules",
+    "create": "New module",
+    "roomsLink": "Rooms and locations",
+    "empty": {
+      "title": "No modules yet",
+      "description": "Create the first module of the period with its teacher, room and weekly schedule."
+    },
+    "daysShort": {
+      "1": "Mon",
+      "2": "Tue",
+      "3": "Wed",
+      "4": "Thu",
+      "5": "Fri",
+      "6": "Sat",
+      "7": "Sun"
+    },
+    "form": {
+      "createTitle": "New module",
+      "period": "Period",
+      "periodPlaceholder": "Choose a period",
+      "noPeriods": "There are no upcoming or active periods. Create or activate a period before creating modules.",
+      "name": "Name",
+      "description": "Description (optional)",
+      "teacher": "Teacher",
+      "teacherPlaceholder": "Choose a teacher",
+      "searchTeacher": "Search teacher",
+      "noTeachers": "There are no active teachers.",
+      "room": "Room",
+      "roomPlaceholder": "Choose a room",
+      "searchRoom": "Search room",
+      "noRooms": "There are no active rooms.",
+      "schedules": "Weekly schedule",
+      "slotTitle": "Schedule {{number}}",
+      "removeSchedule": "Remove schedule {{number}}",
+      "addSchedule": "Add schedule",
+      "startTime": "Start time",
+      "endTime": "End time",
+      "timePlaceholder": "Choose a time",
+      "endAfterStart": "The end time must be after the start time, on the same day.",
+      "scheduleRequired": "Add at least one schedule.",
+      "scheduleOverlap": "Two schedules of the module overlap.",
+      "save": "Save module"
+    },
+    "result": {
+      "title": "Module created",
+      "capacity": "Capacity: {{count}} students",
+      "sessions": "Sessions created: {{count}}",
+      "noSessions": "A schedule created no sessions: the chosen day does not fall within the period dates or has already passed.",
+      "done": "Done"
+    },
     "days": {
       "1": "Monday",
       "2": "Tuesday",

@@ -1,3 +1,3 @@
-import { RoomsScreen } from '@/features/rooms/screens/RoomsScreen';
+import { ModulesScreen } from '@/features/modules/screens/ModulesScreen';
 
-export default RoomsScreen;
+export default ModulesScreen;

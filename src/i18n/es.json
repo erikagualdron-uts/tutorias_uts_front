@@ -178,6 +178,56 @@
     "submit": "Restablecer contraseña"
   },
   "modules": {
+    "title": "Módulos",
+    "create": "Nuevo módulo",
+    "roomsLink": "Salones y ubicaciones",
+    "empty": {
+      "title": "Aún no hay módulos",
+      "description": "Crea el primer módulo del periodo con su docente, salón y horario semanal."
+    },
+    "daysShort": {
+      "1": "Lun",
+      "2": "Mar",
+      "3": "Mié",
+      "4": "Jue",
+      "5": "Vie",
+      "6": "Sáb",
+      "7": "Dom"
+    },
+    "form": {
+      "createTitle": "Nuevo módulo",
+      "period": "Periodo",
+      "periodPlaceholder": "Elige un periodo",
+      "noPeriods": "No hay periodos próximos ni activos. Crea o activa un periodo antes de crear módulos.",
+      "name": "Nombre",
+      "description": "Descripción (opcional)",
+      "teacher": "Docente",
+      "teacherPlaceholder": "Elige un docente",
+      "searchTeacher": "Buscar docente",
+      "noTeachers": "No hay docentes activos.",
+      "room": "Salón",
+      "roomPlaceholder": "Elige un salón",
+      "searchRoom": "Buscar salón",
+      "noRooms": "No hay salones activos.",
+      "schedules": "Horario semanal",
+      "slotTitle": "Horario {{number}}",
+      "removeSchedule": "Quitar horario {{number}}",
+      "addSchedule": "Agregar horario",
+      "startTime": "Hora de inicio",
+      "endTime": "Hora de fin",
+      "timePlaceholder": "Elige una hora",
+      "endAfterStart": "La hora de fin debe ser posterior a la de inicio, el mismo día.",
+      "scheduleRequired": "Agrega al menos un horario.",
+      "scheduleOverlap": "Dos horarios del módulo se solapan.",
+      "save": "Guardar módulo"
+    },
+    "result": {
+      "title": "Módulo creado",
+      "capacity": "Cupo: {{count}} estudiantes",
+      "sessions": "Sesiones generadas: {{count}}",
+      "noSessions": "Algún horario no generó sesiones: el día elegido no cae dentro de las fechas del periodo o ya pasó.",
+      "done": "Listo"
+    },
     "days": {
       "1": "lunes",
       "2": "martes",
