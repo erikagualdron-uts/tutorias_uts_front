@@ -1,10 +1,4 @@
-import {
-  ActivityIndicator,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -21,6 +15,7 @@ import {
   typography,
   usePalette,
 } from '@/theme';
+import { BrandLoader } from './BrandLoader';
 import { useMotion } from './useMotion';
 
 type Variant = 'primary' | 'outlined' | 'tonal' | 'link';
@@ -118,7 +113,7 @@ export function Button({
             },
           ]}
         >
-          {/* The spinner replaces the content inside the same box so the width does not change. */}
+          {/* The compact brand loader replaces the content inside the same box so the width does not change. */}
           <View style={[styles.content, loading && styles.hidden]}>
             {icon && !isLink && <Icon name={icon} color={textColor} />}
             <Text style={[typography.button, { color: textColor }]}>
@@ -128,7 +123,7 @@ export function Button({
           {loading && (
             <View style={StyleSheet.absoluteFill} pointerEvents="none">
               <View style={styles.spinner}>
-                <ActivityIndicator color={colors.text} />
+                <BrandLoader size="compact" color={colors.text} />
               </View>
             </View>
           )}

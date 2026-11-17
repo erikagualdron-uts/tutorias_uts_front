@@ -65,7 +65,7 @@ function LoaderIcon({
 // The app's loading indicator (docs/Design.md, Loader): one brand icon at a time,
 // book → feather → leaf, 900 ms each.
 export function BrandLoader({ size = 'regular', color }: BrandLoaderProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const palette = usePalette();
   const dark = useColorScheme() === 'dark';
   const { movement } = useMotion();
@@ -94,9 +94,9 @@ export function BrandLoader({ size = 'regular', color }: BrandLoaderProps) {
   // The delay message is announced once, when it appears; the label never changes with the icon.
   useEffect(() => {
     if (phase === 'slow') {
-      AccessibilityInfo.announceForAccessibility(t('common.loadingSlow'));
+      AccessibilityInfo.announceForAccessibility(i18n.t('common.loadingSlow'));
     }
-  }, [phase, t]);
+  }, [phase, i18n]);
 
   return (
     <View
