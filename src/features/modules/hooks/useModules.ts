@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/api/client';
-import type { ModuleDetail, ModuleInput, ModulePage, Page, Session } from '@/api/types';
+import type { ModuleDetail, ModuleInput, ModulePage, Page, ScheduleInput, Session } from '@/api/types';
 
 export const MODULES = 'modules';
 
@@ -44,10 +44,11 @@ export function useModuleList(filters: ModuleFilters) {
   });
 }
 
-export function useModule(id: string) {
+export function useModule(id: string, enabled = true) {
   return useQuery({
     queryKey: [MODULES, 'detail', id],
     queryFn: () => api<ModuleDetail>(`/modules/${id}`),
+    enabled,
   });
 }
 
@@ -58,11 +59,26 @@ export function useModuleSessions(id: string) {
   });
 }
 
-export function useChangeRoom(id: string) {
+function useModuleChange<T>(id: string, path: string, method: 'PATCH' | 'PUT', toBody: (input: T) => object) {
   const invalidate = useInvalidateModules();
   return useMutation({
-    mutationFn: (roomId: string) =>
-      api<ModuleDetail>(`/modules/${id}/room`, { method: 'PATCH', body: { roomId } }),
+    mutationFn: (input: T) => api<ModuleDetail>(`/modules/${id}${path}`, { method, body: toBody(input) }),
+    onSuccess: invalidate,
+  });
+}
+
+export const useChangeRoom = (id: string) => useModuleChange(id, '/room', 'PATCH', (roomId: string) => ({ roomId }));
+export const useChangeTeacher = (id: string) =>
+  useModuleChange(id, '/teacher', 'PATCH', (teacherId: string) => ({ teacherId }));
+export const useUpdateModule = (id: string) =>
+  useModuleChange(id, '', 'PATCH', (input: { name: string; description: string | null }) => input);
+export const useReplaceSchedules = (id: string) =>
+  useModuleChange(id, '/schedules', 'PUT', (schedules: ScheduleInput[]) => ({ schedules }));
+
+export function useDeleteModule(id: string) {
+  const invalidate = useInvalidateModules();
+  return useMutation({
+    mutationFn: () => api<void>(`/modules/${id}`, { method: 'DELETE' }),
     onSuccess: invalidate,
   });
 }

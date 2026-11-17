@@ -277,6 +277,25 @@
       "confirmTitle": "Change the room",
       "confirmMessage": "The module will move to {{room}} (capacity {{capacity}}). Future sessions use the new room and past ones keep theirs.",
       "confirm": "Change room"
+    },
+    "changeTeacher": {
+      "action": "Change teacher",
+      "title": "Choose the new teacher",
+      "confirmTitle": "Change the teacher",
+      "confirmMessage": "The module will move to {{teacher}}. Future sessions get the new teacher and past ones keep theirs.",
+      "confirm": "Change teacher"
+    },
+    "edit": {
+      "action": "Edit",
+      "title": "Edit module",
+      "locked": "Period, teacher and room are changed from the module detail.",
+      "schedulesLocked": "The schedules cannot be changed: the module has {{enrolled}} enrolled students. The teacher changes the time of a session."
+    },
+    "delete": {
+      "action": "Delete",
+      "title": "Delete module",
+      "message": "The module is hidden, not erased: it leaves the list and frees the teacher and the room at its hours.",
+      "confirm": "Delete module"
     }
   },
   "periods": {

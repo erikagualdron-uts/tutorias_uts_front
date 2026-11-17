@@ -1,4 +1,4 @@
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, Text } from 'react-native';
@@ -8,13 +8,15 @@ import { Banner } from '@/components/Banner';
 import { BrandLoader } from '@/components/BrandLoader';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
+import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { EmptyState } from '@/components/EmptyState';
 import { formatDay } from '@/date/day';
 import { spacing, typography, usePalette } from '@/theme';
 import { RoomChangeSheet } from '../components/RoomChangeSheet';
+import { TeacherChangeSheet } from '../components/TeacherChangeSheet';
 import { SessionRow } from '../components/SessionRow';
 import { scheduleLabel } from '../format';
-import { useModule, useModuleSessions } from '../hooks/useModules';
+import { useDeleteModule, useModule, useModuleSessions } from '../hooks/useModules';
 
 export function ModuleDetailScreen() {
   const { t } = useTranslation();
@@ -22,7 +24,8 @@ export function ModuleDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const module = useModule(id);
   const sessions = useModuleSessions(id);
-  const [changingRoom, setChangingRoom] = useState(false);
+  const [sheet, setSheet] = useState<'room' | 'teacher' | 'delete' | null>(null);
+  const remove = useDeleteModule(id);
   const day = (n: number) => t(`modules.daysShort.${n}`);
   const muted = [typography.body, { color: palette.textSecondary }];
 
@@ -61,7 +64,24 @@ export function ModuleDetailScreen() {
         </Card>
 
         {m.readOnlyReason ? null : (
-          <Button label={t('modules.changeRoom.action')} icon="swapRoom" variant="tonal" onPress={() => setChangingRoom(true)} />
+          <>
+            <Button
+              label={t('modules.edit.action')}
+              icon="edit"
+              variant="tonal"
+              onPress={() => router.push({ pathname: '/modules/module-form', params: { id } })}
+            />
+            <Button label={t('modules.changeTeacher.action')} icon="swapTeacher" variant="tonal" onPress={() => setSheet('teacher')} />
+            <Button label={t('modules.changeRoom.action')} icon="swapRoom" variant="tonal" onPress={() => setSheet('room')} />
+            <Button
+              label={t('modules.delete.action')}
+              icon="trash"
+              variant="outlined"
+              disabled={!m.canDelete}
+              helperText={m.canDelete ? undefined : t('errors.MODULE_HAS_ENROLLMENTS', { enrolled: m.enrolled })}
+              onPress={() => setSheet('delete')}
+            />
+          </>
         )}
 
         <Text accessibilityRole="header" style={[typography.sectionTitle, { color: palette.textPrimary }]}>
@@ -81,7 +101,20 @@ export function ModuleDetailScreen() {
           sessions.data.data.map((s) => <SessionRow key={s.id} session={s} />)
         )}
       </ScrollView>
-      <RoomChangeSheet module={m} visible={changingRoom} onClose={() => setChangingRoom(false)} />
+      <RoomChangeSheet module={m} visible={sheet === 'room'} onClose={() => setSheet(null)} />
+      <TeacherChangeSheet module={m} visible={sheet === 'teacher'} onClose={() => setSheet(null)} />
+      {sheet === 'delete' ? (
+        <ConfirmDialog
+          title={t('modules.delete.title')}
+          message={t('modules.delete.message')}
+          confirmLabel={t('modules.delete.confirm')}
+          confirmIcon="trash"
+          loading={remove.isPending}
+          onConfirm={() => remove.mutate(undefined, { onSuccess: () => router.back(), onError: () => setSheet(null) })}
+          onCancel={() => setSheet(null)}
+        />
+      ) : null}
+      {remove.error ? <Banner message={errorMessage(t, remove.error)} /> : null}
     </SafeAreaView>
   );
 }

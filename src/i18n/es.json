@@ -277,6 +277,25 @@
       "confirmTitle": "Cambiar el salón",
       "confirmMessage": "El módulo pasará a {{room}} (capacidad {{capacity}}). Las sesiones futuras usarán el nuevo salón y las pasadas conservan el suyo.",
       "confirm": "Cambiar salón"
+    },
+    "changeTeacher": {
+      "action": "Cambiar docente",
+      "title": "Elige el nuevo docente",
+      "confirmTitle": "Cambiar el docente",
+      "confirmMessage": "El módulo pasará a {{teacher}}. Las sesiones futuras tendrán al nuevo docente y las pasadas conservan el suyo.",
+      "confirm": "Cambiar docente"
+    },
+    "edit": {
+      "action": "Editar",
+      "title": "Editar módulo",
+      "locked": "Periodo, docente y salón se cambian desde el detalle del módulo.",
+      "schedulesLocked": "Los horarios no se pueden cambiar: el módulo tiene {{enrolled}} inscritos. La hora de una sesión la cambia el docente."
+    },
+    "delete": {
+      "action": "Eliminar",
+      "title": "Eliminar módulo",
+      "message": "El módulo se oculta, no se borra: deja de aparecer en el listado y libera al docente y al salón en sus horarios.",
+      "confirm": "Eliminar módulo"
     }
   },
   "periods": {
