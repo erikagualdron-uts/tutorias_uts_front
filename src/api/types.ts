@@ -86,3 +86,114 @@ export interface DropdownListDetail {
   nameEn: string;
   items: DropdownItem[];
 }
+
+// ---- Modules, sessions and holidays (spec 010, contracts/modules-api.yaml) ----
+
+export interface PersonRef {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface Teacher extends PersonRef {
+  status: 'ACTIVE' | 'INACTIVE';
+}
+
+export interface RoomRef {
+  id: string;
+  name: string;
+  locationName: string;
+  capacity: number;
+}
+
+// Weekly slot in local America/Bogota time. dayOfWeek: 1 = Monday ... 7 = Sunday.
+export interface ScheduleInput {
+  dayOfWeek: number;
+  startTime: string; // HH:mm
+  endTime: string; // HH:mm
+}
+
+export interface Schedule extends ScheduleInput {
+  id: string;
+  sessionsGenerated?: number;
+}
+
+export interface ModuleInput {
+  periodId: string;
+  name: string;
+  description?: string | null;
+  teacherId: string;
+  roomId: string;
+  schedules: ScheduleInput[];
+}
+
+export interface Module {
+  id: string;
+  periodId: string;
+  periodStatus: PeriodStatus;
+  name: string;
+  teacher: PersonRef;
+  room: RoomRef;
+  capacity: number; // capacity of the current room (the cupo)
+  enrolled: number;
+  schedules: ScheduleInput[];
+  roomUnavailable: boolean;
+  teacherUnavailable: boolean;
+}
+
+export interface ModuleDetail extends Omit<Module, 'schedules'> {
+  description: string | null;
+  schedules: Schedule[];
+  holidayDates: string[]; // YYYY-MM-DD
+  canChangeSchedules: boolean;
+  canDelete: boolean;
+  readOnlyReason: 'PERIOD_CLOSED' | null;
+}
+
+export type SessionStatus = 'SCHEDULED' | 'RESCHEDULED' | 'CANCELLED';
+
+export interface Session {
+  id: string;
+  startsAt: string; // ISO 8601 UTC
+  endsAt: string;
+  originalStartsAt: string;
+  status: SessionStatus;
+  cancelReason: 'HOLIDAY' | null;
+  teacher: PersonRef;
+  room: RoomRef;
+}
+
+export interface Holiday {
+  id: string;
+  date: string; // YYYY-MM-DD
+  name: string;
+  source: 'MANUAL' | 'IMPORTED';
+  isPast: boolean;
+}
+
+export interface HolidayInput {
+  date: string;
+  name: string;
+}
+
+export interface HolidayPreview {
+  date: string;
+  name: string;
+  alreadyExists: boolean;
+  isPast: boolean;
+}
+
+export interface HolidayResult {
+  holiday: Holiday;
+  cancelledSessions: number;
+}
+
+export interface HolidayRemoval {
+  restored: number;
+  generated: number;
+  notRestored: {
+    sessionId: string;
+    moduleId: string;
+    reason: 'TEACHER_BUSY' | 'ROOM_BUSY';
+  }[];
+}
