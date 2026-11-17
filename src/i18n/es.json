@@ -139,7 +139,8 @@
   "more": {
     "createTeacher": "Crear docente",
     "configuration": "Configuración",
-    "periods": "Periodos académicos"
+    "periods": "Periodos académicos",
+    "dropdownLists": "Listas desplegables"
   },
   "profile": {
     "menu": "Menú de perfil",
@@ -297,6 +298,47 @@
         "title": "¿Eliminar la ubicación?",
         "message": "La ubicación dejará de aparecer en la lista.",
         "withRooms": "Se eliminarán también sus {{count}} salones inactivos."
+      }
+    }
+  },
+  "dropdowns": {
+    "title": "Listas desplegables",
+    "loadError": "No pudimos cargar las listas.",
+    "items": "{{count}} elementos",
+    "empty": {
+      "title": "Esta lista no tiene elementos",
+      "description": "Agrega el primer elemento."
+    },
+    "addItem": "Agregar elemento",
+    "createTitle": "Nuevo elemento",
+    "editTitle": "Editar elemento",
+    "status": {
+      "ACTIVE": "Activo",
+      "INACTIVE": "Inactivo"
+    },
+    "moveUp": "Subir {{name}}",
+    "moveDown": "Bajar {{name}}",
+    "form": {
+      "labelEs": "Etiqueta en español",
+      "labelEn": "Etiqueta en inglés",
+      "save": "Guardar elemento"
+    },
+    "actions": {
+      "activate": "Activar elemento",
+      "deactivate": "Desactivar elemento",
+      "delete": "Eliminar elemento"
+    },
+    "rules": {
+      "inUse": "Este elemento está en uso: solo se puede desactivar."
+    },
+    "confirm": {
+      "deactivate": {
+        "title": "¿Desactivar el elemento?",
+        "message": "Dejará de aparecer en los selectores, pero se conserva donde ya se usó."
+      },
+      "delete": {
+        "title": "¿Eliminar el elemento?",
+        "message": "El elemento dejará de aparecer en la lista."
       }
     }
   }

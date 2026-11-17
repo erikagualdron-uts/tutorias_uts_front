@@ -139,7 +139,8 @@
   "more": {
     "createTeacher": "Create teacher",
     "configuration": "Settings",
-    "periods": "Academic periods"
+    "periods": "Academic periods",
+    "dropdownLists": "Dropdown lists"
   },
   "profile": {
     "menu": "Profile menu",
@@ -297,6 +298,47 @@
         "title": "Delete the location?",
         "message": "The location will no longer appear in the list.",
         "withRooms": "Its {{count}} inactive rooms will be deleted too."
+      }
+    }
+  },
+  "dropdowns": {
+    "title": "Dropdown lists",
+    "loadError": "We could not load the lists.",
+    "items": "{{count}} items",
+    "empty": {
+      "title": "This list has no items",
+      "description": "Add the first item."
+    },
+    "addItem": "Add item",
+    "createTitle": "New item",
+    "editTitle": "Edit item",
+    "status": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive"
+    },
+    "moveUp": "Move {{name}} up",
+    "moveDown": "Move {{name}} down",
+    "form": {
+      "labelEs": "Label in Spanish",
+      "labelEn": "Label in English",
+      "save": "Save item"
+    },
+    "actions": {
+      "activate": "Activate item",
+      "deactivate": "Deactivate item",
+      "delete": "Delete item"
+    },
+    "rules": {
+      "inUse": "This item is in use: it can only be deactivated."
+    },
+    "confirm": {
+      "deactivate": {
+        "title": "Deactivate the item?",
+        "message": "It will stop showing in selectors, but is kept where it was already used."
+      },
+      "delete": {
+        "title": "Delete the item?",
+        "message": "The item will no longer appear in the list."
       }
     }
   }

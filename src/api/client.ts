@@ -6,7 +6,7 @@ import type { AuthTokens } from './types';
 const BASE_URL = `${process.env.EXPO_PUBLIC_API_URL ?? ''}/api/v1`;
 
 interface RequestOptions {
-  method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
+  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   body?: unknown;
   // Public endpoints (login, register…) send no token and never trigger a refresh.
   auth?: boolean;
