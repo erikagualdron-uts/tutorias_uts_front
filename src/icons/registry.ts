@@ -103,6 +103,40 @@ export const icons = {
     linear: 'solar:calendar-mark-linear',
     bold: 'solar:calendar-mark-bold',
   },
+  // Modules, sessions and holidays (spec 010)
+  clock: {
+    linear: 'solar:clock-circle-linear',
+    bold: 'solar:clock-circle-bold',
+  },
+  teacher: {
+    linear: 'solar:square-academic-cap-linear',
+    bold: 'solar:square-academic-cap-bold',
+  },
+  swapRoom: {
+    linear: 'solar:transfer-horizontal-linear',
+    bold: 'solar:transfer-horizontal-bold',
+  },
+  swapTeacher: {
+    linear: 'solar:users-group-two-rounded-linear',
+    bold: 'solar:users-group-two-rounded-bold',
+  },
+  session: {
+    linear: 'solar:calendar-date-linear',
+    bold: 'solar:calendar-date-bold',
+  },
+  holiday: {
+    linear: 'solar:calendar-mark-linear',
+    bold: 'solar:calendar-mark-bold',
+  },
+  importHolidays: {
+    linear: 'solar:download-minimalistic-linear',
+    bold: 'solar:download-minimalistic-bold',
+  },
+  checkboxOn: {
+    linear: 'solar:check-square-linear',
+    bold: 'solar:check-square-bold',
+  },
+  checkboxOff: { linear: 'solar:stop-linear', bold: 'solar:stop-bold' },
   // Decorative brand pattern only: the mdi set is allowed for these three (D-049).
   leaf: { linear: 'mdi:leaf', bold: 'mdi:leaf' },
   feather: { linear: 'mdi:feather', bold: 'mdi:feather' },
