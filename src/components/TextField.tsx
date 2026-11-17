@@ -3,88 +3,49 @@ import { useTranslation } from 'react-i18next';
 import {
   Pressable,
   StyleSheet,
-  Text,
   TextInput,
-  View,
   type TextInputProps,
 } from 'react-native';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
-import {
-  MIN_TOUCH_TARGET,
-  radius,
-  spacing,
-  typography,
-  usePalette,
-} from '@/theme';
+import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
+import { FIELD_HEIGHT, FieldBox } from './FieldBox';
 
-interface TextFieldProps extends Omit<TextInputProps, 'style'> {
+export interface TextFieldProps extends Omit<TextInputProps, 'style'> {
   label: string;
+  leadingIcon: IconName;
   error?: string;
   // Adds the show/hide toggle.
   password?: boolean;
-  leadingIcon?: IconName;
+  // False when the field sits on the screen background instead of a card.
+  onCard?: boolean;
 }
 
 export function TextField({
   label,
+  leadingIcon,
   error,
   password = false,
-  leadingIcon,
+  onCard = true,
   ...inputProps
 }: TextFieldProps) {
   const palette = usePalette();
   const { t } = useTranslation();
   const [focused, setFocused] = useState(false);
   const [hidden, setHidden] = useState(true);
-
-  const borderColor = error
-    ? palette.error
-    : focused
-      ? palette.link
-      : 'transparent';
+  const disabled = inputProps.editable === false;
 
   return (
-    <View>
-      <Text style={[typography.label, { color: palette.textPrimary }]}>
-        {label}
-      </Text>
-      <View
-        style={[
-          styles.box,
-          {
-            backgroundColor: palette.surface,
-            borderColor,
-            borderWidth: focused || error ? 2 : 0,
-          },
-        ]}
-      >
-        {leadingIcon && (
-          <View style={styles.leading}>
-            <Icon name={leadingIcon} color={palette.textSecondary} />
-          </View>
-        )}
-        <TextInput
-          {...inputProps}
-          accessibilityLabel={label}
-          secureTextEntry={password && hidden}
-          {...(password && { autoCapitalize: 'none', autoCorrect: false })}
-          onFocus={(event) => {
-            setFocused(true);
-            inputProps.onFocus?.(event);
-          }}
-          onBlur={(event) => {
-            setFocused(false);
-            inputProps.onBlur?.(event);
-          }}
-          placeholderTextColor={palette.textSecondary}
-          style={[
-            typography.body,
-            styles.input,
-            { color: palette.textPrimary },
-          ]}
-        />
-        {password && (
+    <FieldBox
+      label={label}
+      errorMessage={error}
+      leadingIcon={leadingIcon}
+      focused={focused}
+      error={Boolean(error)}
+      disabled={disabled}
+      onCard={onCard}
+      trailing={
+        password ? (
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={
@@ -98,39 +59,36 @@ export function TextField({
               color={palette.textSecondary}
             />
           </Pressable>
-        )}
-      </View>
-      {error ? (
-        <Text
-          accessibilityLiveRegion="polite"
-          style={[typography.metadata, styles.error, { color: palette.error }]}
-        >
-          {error}
-        </Text>
-      ) : null}
-    </View>
+        ) : undefined
+      }
+    >
+      <TextInput
+        {...inputProps}
+        accessibilityLabel={label}
+        secureTextEntry={password && hidden}
+        {...(password && { autoCapitalize: 'none', autoCorrect: false })}
+        onFocus={(event) => {
+          setFocused(true);
+          inputProps.onFocus?.(event);
+        }}
+        onBlur={(event) => {
+          setFocused(false);
+          inputProps.onBlur?.(event);
+        }}
+        placeholderTextColor={palette.inputPlaceholder}
+        style={[typography.body, styles.input, { color: palette.textPrimary }]}
+      />
+    </FieldBox>
   );
 }
 
 const styles = StyleSheet.create({
-  box: {
-    minHeight: MIN_TOUCH_TARGET,
-    marginTop: spacing.xs,
-    borderRadius: radius.input,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  input: {
-    flex: 1,
-    minHeight: MIN_TOUCH_TARGET,
-    paddingHorizontal: spacing.md,
-  },
-  leading: { paddingLeft: spacing.lg },
+  input: { flex: 1, minHeight: FIELD_HEIGHT, paddingVertical: 0 },
   toggle: {
     width: MIN_TOUCH_TARGET,
     height: MIN_TOUCH_TARGET,
+    marginRight: -spacing.md,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  error: { marginTop: spacing.xs },
 });

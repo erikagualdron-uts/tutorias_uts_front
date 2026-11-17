@@ -34,6 +34,7 @@ export function ForgotPasswordScreen() {
         name="email"
         render={({ field }) => (
           <TextField
+            leadingIcon="email"
             label={t('forgot.email')}
             value={field.value}
             onChangeText={field.onChange}

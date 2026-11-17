@@ -27,6 +27,25 @@ describe('UI conventions', () => {
     expect(offenders).toEqual([]);
   });
 
+  it('uses the mdi set only for the decorative brand pattern icons', () => {
+    const registry = fs.readFileSync(
+      path.join(root, 'src/icons/registry.ts'),
+      'utf8',
+    );
+    const mdi = [...new Set(registry.match(/mdi:[a-z0-9-]+/g))].sort();
+    expect(mdi).toEqual([
+      'mdi:book-open-page-variant',
+      'mdi:feather',
+      'mdi:leaf',
+    ]);
+    const others = files.filter(
+      (file) =>
+        !file.endsWith(path.join('icons', 'registry.ts')) &&
+        /['"`]mdi:/.test(fs.readFileSync(file, 'utf8')),
+    );
+    expect(others).toEqual([]);
+  });
+
   it('keeps hex colors out of screens', () => {
     const screens = [
       ...sources(path.join(root, 'app')),

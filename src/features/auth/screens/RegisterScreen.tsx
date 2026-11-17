@@ -44,6 +44,7 @@ export function RegisterScreen() {
           name={name}
           render={({ field }) => (
             <TextField
+              leadingIcon={name === 'email' ? 'email' : 'user'}
               label={t(`register.${name}`)}
               value={field.value}
               onChangeText={field.onChange}
@@ -60,6 +61,7 @@ export function RegisterScreen() {
         name="password"
         render={({ field }) => (
           <TextField
+            leadingIcon="password"
             label={t('register.password')}
             value={field.value}
             onChangeText={field.onChange}

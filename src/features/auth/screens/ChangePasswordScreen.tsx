@@ -34,6 +34,7 @@ export function ChangePasswordScreen() {
           name={name}
           render={({ field }) => (
             <TextField
+              leadingIcon={name === 'currentPassword' ? 'password' : 'key'}
               label={t(
                 name === 'currentPassword'
                   ? 'changePassword.current'

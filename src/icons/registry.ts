@@ -49,6 +49,25 @@ export const icons = {
     linear: 'solar:info-circle-linear',
     bold: 'solar:info-circle-bold',
   },
+  chevronDown: {
+    linear: 'solar:alt-arrow-down-linear',
+    bold: 'solar:alt-arrow-down-bold',
+  },
+  search: {
+    linear: 'solar:magnifier-linear',
+    bold: 'solar:magnifier-bold',
+  },
+  closeCircle: {
+    linear: 'solar:close-circle-linear',
+    bold: 'solar:close-circle-bold',
+  },
+  // Decorative brand pattern only: the mdi set is allowed for these three (D-049).
+  leaf: { linear: 'mdi:leaf', bold: 'mdi:leaf' },
+  feather: { linear: 'mdi:feather', bold: 'mdi:feather' },
+  openBook: {
+    linear: 'mdi:book-open-page-variant',
+    bold: 'mdi:book-open-page-variant',
+  },
 } as const;
 
 export type IconName = keyof typeof icons;

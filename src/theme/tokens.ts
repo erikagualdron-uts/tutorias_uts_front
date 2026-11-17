@@ -57,10 +57,9 @@ export const shadows = {
   },
 } as const;
 
-// Text and decoration over the brand gradient (always white, docs/Design.md).
+// Text over the brand gradient (always white, docs/Design.md).
 export const onGradient = {
   text: '#FFFFFF',
-  circle: 'rgba(255,255,255,0.08)',
 } as const;
 
 export const gradients = {

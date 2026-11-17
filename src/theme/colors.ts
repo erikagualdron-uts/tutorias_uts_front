@@ -20,6 +20,14 @@ export interface Palette {
   warning: string;
   disabledText: string;
   scrim: string;
+  inputFill: string;
+  inputFillOnScreen: string;
+  inputBorder: string;
+  inputBorderFocus: string;
+  inputLabelFocus: string;
+  inputPlaceholder: string;
+  focusGlow: string;
+  errorGlow: string;
 }
 
 export const lightPalette: Palette = {
@@ -43,6 +51,15 @@ export const lightPalette: Palette = {
   warning: '#FB8C00',
   disabledText: '#878787',
   scrim: 'rgba(0,0,0,0.4)', // derived: dialog backdrop
+  // derived (docs/Design.md, Inputs): fields always have a fill and a soft border
+  inputFill: '#F2F4EF', // on white cards and sheets
+  inputFillOnScreen: '#FFFFFF', // on the screen background
+  inputBorder: '#C9D0C3',
+  inputBorderFocus: '#4E7A2F',
+  inputLabelFocus: '#34531F',
+  inputPlaceholder: '#767676',
+  focusGlow: 'rgba(78,122,47,0.15)',
+  errorGlow: 'rgba(179,38,30,0.12)',
 };
 
 export const darkPalette: Palette = {
@@ -66,4 +83,13 @@ export const darkPalette: Palette = {
   warning: '#FB8C00',
   disabledText: '#878787',
   scrim: 'rgba(0,0,0,0.4)', // derived: dialog backdrop
+  // derived (docs/Design.md, Inputs, dark mode)
+  inputFill: '#0B1710',
+  inputFillOnScreen: '#0B1710',
+  inputBorder: 'rgba(255,255,255,0.16)',
+  inputBorderFocus: '#C3D730',
+  inputLabelFocus: '#C3D730',
+  inputPlaceholder: '#B3B3B3',
+  focusGlow: 'rgba(195,215,48,0.18)',
+  errorGlow: 'rgba(179,38,30,0.25)',
 };

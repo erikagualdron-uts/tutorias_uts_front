@@ -5,7 +5,7 @@ const icons = [
   ...new Set(
     fs
       .readFileSync(`${__dirname}/src/icons/registry.ts`, 'utf8')
-      .match(/solar:[a-z0-9-]+/g),
+      .match(/(?:solar|mdi):[a-z0-9-]+/g),
   ),
 ];
 

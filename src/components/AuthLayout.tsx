@@ -12,6 +12,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import { BrandLogo } from './BrandLogo';
+import { BrandPattern } from './BrandPattern';
 import { FadeInView } from './FadeInView';
 import {
   gradients,
@@ -68,11 +69,8 @@ export function AuthLayout({ title, description, children }: AuthLayoutProps) {
           colors={[...gradients.brand.colors]}
           style={[styles.header, { height: headerHeight }]}
         >
-          <View style={[styles.circle, styles.circleTop]} />
-          <View style={[styles.circle, styles.circleBottom]} />
-          <View style={[styles.logoBadge, { backgroundColor: palette.card }]}>
-            <BrandLogo width={keyboard ? 96 : 144} />
-          </View>
+          <BrandPattern variant="header" />
+          <BrandLogo width={keyboard ? 120 : 200} />
           <Text style={[typography.screenTitle, styles.brandName]}>
             {t('brand.name')}
           </Text>
@@ -125,19 +123,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: radius.header,
     overflow: 'hidden',
   },
-  circle: {
-    position: 'absolute',
-    borderRadius: radius.pill,
-    backgroundColor: onGradient.circle,
-  },
-  circleTop: { width: 180, height: 180, top: -60, right: -50 },
-  circleBottom: { width: 120, height: 120, bottom: -30, left: -30 },
   brandName: { color: onGradient.text },
-  logoBadge: {
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.sm,
-    borderRadius: radius.card,
-  },
   line: { width: 48, height: 4, borderRadius: radius.pill },
   card: {
     marginTop: -spacing.xl,

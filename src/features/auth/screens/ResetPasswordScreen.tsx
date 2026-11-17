@@ -41,6 +41,7 @@ export function ResetPasswordScreen() {
         name="code"
         render={({ field }) => (
           <TextField
+            leadingIcon="key"
             label={t('reset.code')}
             value={field.value}
             onChangeText={field.onChange}
@@ -57,6 +58,7 @@ export function ResetPasswordScreen() {
         name="newPassword"
         render={({ field }) => (
           <TextField
+            leadingIcon="password"
             label={t('reset.newPassword')}
             value={field.value}
             onChangeText={field.onChange}

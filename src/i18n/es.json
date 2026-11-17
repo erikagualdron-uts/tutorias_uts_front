@@ -1,13 +1,14 @@
 {
   "brand": {
     "name": "UTS Tutorías",
-    "institution": "Unidades Tecnológicas de Santander"
+    "institution": "Institución Universitaria Tecnológica de Santander – UTS"
   },
   "common": {
     "loading": "Cargando…",
     "tryAgain": "Intentar de nuevo",
     "showPassword": "Mostrar contraseña",
     "hidePassword": "Ocultar contraseña",
+    "clearSearch": "Limpiar búsqueda",
     "met": "Cumplido",
     "unmet": "Pendiente"
   },

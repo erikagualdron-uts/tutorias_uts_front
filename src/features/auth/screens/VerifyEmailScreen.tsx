@@ -61,6 +61,7 @@ export function VerifyEmailScreen() {
         name="code"
         render={({ field }) => (
           <TextField
+            leadingIcon="key"
             label={t('verify.code')}
             value={field.value}
             onChangeText={field.onChange}

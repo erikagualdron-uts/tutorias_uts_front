@@ -67,6 +67,7 @@ export function CreateTeacherScreen() {
               <TextField
                 label={t(`teachers.create.${name}`)}
                 leadingIcon={name === 'email' ? 'email' : 'user'}
+                onCard={false}
                 value={field.value}
                 onChangeText={field.onChange}
                 onBlur={field.onBlur}
