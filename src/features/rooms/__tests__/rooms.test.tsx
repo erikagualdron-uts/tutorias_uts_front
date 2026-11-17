@@ -191,9 +191,14 @@ describe('RoomFormScreen', () => {
     });
     await renderWithProviders(<RoomFormScreen />);
     await fireEvent.press(await screen.findByLabelText('Desactivar salón'));
-    await fireEvent.press(
-      (await screen.findAllByLabelText('Desactivar salón')).at(-1)!,
+    // the confirm button stays busy until the impact numbers arrive
+    await waitFor(() =>
+      expect(
+        screen.getAllByLabelText('Desactivar salón').at(-1)!.props
+          .accessibilityState.busy,
+      ).toBeFalsy(),
     );
+    await fireEvent.press(screen.getAllByLabelText('Desactivar salón').at(-1)!);
     expect(
       await screen.findByText(
         'El salón tiene módulos en el periodo activo, así que no se puede desactivar ni eliminar.',
