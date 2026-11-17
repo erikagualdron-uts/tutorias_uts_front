@@ -158,7 +158,8 @@
     "createTeacher": "Crear docente",
     "configuration": "Configuración",
     "periods": "Periodos académicos",
-    "dropdownLists": "Listas desplegables"
+    "dropdownLists": "Listas desplegables",
+    "holidays": "Festivos"
   },
   "profile": {
     "menu": "Menú de perfil",
@@ -479,6 +480,48 @@
         "title": "¿Eliminar el elemento?",
         "message": "El elemento dejará de aparecer en la lista."
       }
+    }
+  },
+  "holidays": {
+    "title": "Festivos",
+    "loadError": "No pudimos cargar los festivos",
+    "empty": {
+      "title": "Sin festivos",
+      "description": "No hay festivos registrados este año. Agrégalos a mano o impórtalos."
+    },
+    "source": {
+      "MANUAL": "Manual",
+      "IMPORTED": "Importado"
+    },
+    "past": "Ya pasó",
+    "add": "Agregar festivo",
+    "import": "Importar festivos",
+    "addByHand": "Registrar a mano",
+    "form": {
+      "createTitle": "Nuevo festivo",
+      "editTitle": "Editar festivo",
+      "name": "Nombre",
+      "date": "Fecha",
+      "dateHint": "Desde hoy en adelante: un festivo pasado no se registra.",
+      "save": "Guardar festivo",
+      "delete": "Eliminar festivo",
+      "deleteTitle": "Eliminar festivo",
+      "deleteMessage": "El festivo se oculta, no se borra. Las sesiones que canceló vuelven a programarse si el salón y el docente siguen libres."
+    },
+    "result": {
+      "title": "Listo",
+      "cancelled": "Sesiones canceladas por el festivo: {{count}}",
+      "restored": "Sesiones restauradas: {{count}}",
+      "generated": "Sesiones generadas que faltaban: {{count}}",
+      "notRestored": "Sesiones que no se pudieron restaurar porque el salón o el docente están ocupados: {{count}}"
+    },
+    "importResult": {
+      "created": "Festivos importados: {{count}}",
+      "skipped": "Omitidos (ya existían, ya pasaron o no estaban en la lista): {{count}}"
+    },
+    "preview": {
+      "exists": "Ya registrado",
+      "confirm": "Importar ({{count}})"
     }
   }
 }

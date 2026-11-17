@@ -158,7 +158,8 @@
     "createTeacher": "Create teacher",
     "configuration": "Settings",
     "periods": "Academic periods",
-    "dropdownLists": "Dropdown lists"
+    "dropdownLists": "Dropdown lists",
+    "holidays": "Holidays"
   },
   "profile": {
     "menu": "Profile menu",
@@ -479,6 +480,48 @@
         "title": "Delete the item?",
         "message": "The item will no longer appear in the list."
       }
+    }
+  },
+  "holidays": {
+    "title": "Holidays",
+    "loadError": "We could not load the holidays",
+    "empty": {
+      "title": "No holidays",
+      "description": "There are no holidays registered this year. Add them by hand or import them."
+    },
+    "source": {
+      "MANUAL": "Manual",
+      "IMPORTED": "Imported"
+    },
+    "past": "Already passed",
+    "add": "Add holiday",
+    "import": "Import holidays",
+    "addByHand": "Add by hand",
+    "form": {
+      "createTitle": "New holiday",
+      "editTitle": "Edit holiday",
+      "name": "Name",
+      "date": "Date",
+      "dateHint": "From today on: a past holiday cannot be added.",
+      "save": "Save holiday",
+      "delete": "Delete holiday",
+      "deleteTitle": "Delete holiday",
+      "deleteMessage": "The holiday is hidden, not erased. The sessions it cancelled are scheduled again if the room and the teacher are still free."
+    },
+    "result": {
+      "title": "Done",
+      "cancelled": "Sessions cancelled by the holiday: {{count}}",
+      "restored": "Sessions restored: {{count}}",
+      "generated": "Missing sessions created: {{count}}",
+      "notRestored": "Sessions that could not be restored because the room or the teacher is busy: {{count}}"
+    },
+    "importResult": {
+      "created": "Holidays imported: {{count}}",
+      "skipped": "Skipped (already existed, already passed or not in the list): {{count}}"
+    },
+    "preview": {
+      "exists": "Already registered",
+      "confirm": "Import ({{count}})"
     }
   }
 }

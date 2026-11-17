@@ -10,6 +10,7 @@ import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
 
 const CONFIGURATION_ROWS: { label: string; icon: IconName; href: Href }[] = [
   { label: 'more.periods', icon: 'dateRange', href: '/more/periods' },
+  { label: 'more.holidays', icon: 'holiday', href: '/more/holidays' },
   { label: 'more.dropdownLists', icon: 'list', href: '/more/dropdown-lists' },
 ];
 
