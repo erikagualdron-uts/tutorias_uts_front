@@ -76,7 +76,15 @@
     "HOLIDAY_DATE_TAKEN": "A holiday is already registered on that date.",
     "HOLIDAYS_IMPORT_UNAVAILABLE": "We could not get the holidays from the external service. Try again or add them by hand.",
     "HOLIDAY_IN_PAST": "A holiday dated before today cannot be added, edited or deleted.",
-    "MODULE_HAS_ENROLLMENTS": "This module has enrolled students ({{enrolled}}): its schedules cannot be changed and it cannot be deleted."
+    "MODULE_HAS_ENROLLMENTS": "This module has enrolled students ({{enrolled}}): its schedules cannot be changed and it cannot be deleted.",
+    "ENROLLMENT_MODULE_FULL": "This module has no room in one of its sessions.",
+    "ENROLLMENT_SCHEDULE_CONFLICT": "It overlaps your module {{module}} on {{day}} from {{start}} to {{end}}.",
+    "ENROLLMENT_ALREADY_ACTIVE": "You are already enrolled in this module.",
+    "ENROLLMENT_MODULE_UNAVAILABLE": "This module is not open for enrollment: its teacher or room is unavailable, or it has no future sessions.",
+    "ENROLLMENT_PERIOD_NOT_OPEN": "You can only enroll in modules of the active period.",
+    "ENROLLMENT_NOT_ACTIVE": "This enrollment is already cancelled.",
+    "ENROLLMENT_CANCEL_WINDOW_PASSED": "You can only cancel up to {{minutes}} minutes before the session.",
+    "ENROLLMENT_SESSION_NOT_CANCELLABLE": "This session has passed or was cancelled and cannot be changed."
   },
   "validation": {
     "required": "This field is required.",

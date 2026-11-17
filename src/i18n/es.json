@@ -76,7 +76,15 @@
     "HOLIDAY_DATE_TAKEN": "Ya hay un festivo registrado en esa fecha.",
     "HOLIDAY_IN_PAST": "Un festivo con fecha anterior a hoy no se puede registrar, editar ni eliminar.",
     "HOLIDAYS_IMPORT_UNAVAILABLE": "No pudimos obtener los festivos del servicio externo. Inténtalo de nuevo o regístralos a mano.",
-    "MODULE_HAS_ENROLLMENTS": "Este módulo tiene estudiantes inscritos ({{enrolled}}): no se pueden cambiar sus horarios ni eliminarlo."
+    "MODULE_HAS_ENROLLMENTS": "Este módulo tiene estudiantes inscritos ({{enrolled}}): no se pueden cambiar sus horarios ni eliminarlo.",
+    "ENROLLMENT_MODULE_FULL": "Este módulo no tiene lugar en alguna de sus sesiones.",
+    "ENROLLMENT_SCHEDULE_CONFLICT": "Se cruza con tu módulo {{module}} el {{day}} de {{start}} a {{end}}.",
+    "ENROLLMENT_ALREADY_ACTIVE": "Ya estás inscrito en este módulo.",
+    "ENROLLMENT_MODULE_UNAVAILABLE": "Este módulo no está disponible para inscripción: el docente o el salón no están disponibles, o no tiene sesiones futuras.",
+    "ENROLLMENT_PERIOD_NOT_OPEN": "Solo puedes inscribirte a módulos del periodo activo.",
+    "ENROLLMENT_NOT_ACTIVE": "Esta inscripción ya está cancelada.",
+    "ENROLLMENT_CANCEL_WINDOW_PASSED": "Solo puedes cancelar hasta {{minutes}} minutos antes de la sesión.",
+    "ENROLLMENT_SESSION_NOT_CANCELLABLE": "Esta sesión ya pasó o fue cancelada, no se puede cambiar."
   },
   "validation": {
     "required": "Este campo es obligatorio.",

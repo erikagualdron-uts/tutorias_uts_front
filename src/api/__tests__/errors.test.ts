@@ -35,3 +35,24 @@ describe('errorMessage for modules and holidays', () => {
     expect(errorMessage(spanish, error)).toContain('regístralos a mano');
   });
 });
+
+describe('errorMessage for enrollments', () => {
+  it('names the conflicting module, day and hours', () => {
+    const error = new ApiError(409, 'ENROLLMENT_SCHEDULE_CONFLICT', {
+      conflict: { moduleName: 'Física', dayOfWeek: 2, startTime: '14:00', endTime: '16:00' },
+    });
+    expect(errorMessage(spanish, error)).toBe('Se cruza con tu módulo Física el martes de 14:00 a 16:00.');
+  });
+
+  it('shows the cancellation window in minutes', () => {
+    const error = new ApiError(409, 'ENROLLMENT_CANCEL_WINDOW_PASSED', { minutes: 60 });
+    expect(errorMessage(spanish, error)).toContain('60 minutos');
+    expect(errorMessage(english, error)).toContain('60 minutes');
+  });
+
+  it('has a text for every new code', () => {
+    for (const code of ['ENROLLMENT_MODULE_FULL', 'ENROLLMENT_ALREADY_ACTIVE', 'ENROLLMENT_MODULE_UNAVAILABLE', 'ENROLLMENT_PERIOD_NOT_OPEN', 'ENROLLMENT_NOT_ACTIVE', 'ENROLLMENT_SESSION_NOT_CANCELLABLE'] as const) {
+      expect(errorMessage(spanish, new ApiError(409, code))).not.toBe('errors.' + code);
+    }
+  });
+});
