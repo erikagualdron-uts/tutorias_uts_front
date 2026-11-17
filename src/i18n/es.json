@@ -64,7 +64,18 @@
     "ROOM_INACTIVE_OR_DELETED": "Un salón inactivo o eliminado no se puede asignar a un módulo.",
     "DROPDOWN_LABEL_REQUIRED": "Escribe la etiqueta en español y en inglés.",
     "DROPDOWN_ITEM_IN_USE": "Este elemento está en uso: solo se puede desactivar.",
-    "DROPDOWN_ORDER_INVALID": "El orden enviado no coincide con los elementos de la lista."
+    "DROPDOWN_ORDER_INVALID": "El orden enviado no coincide con los elementos de la lista.",
+    "MODULE_SCHEDULE_INVALID": "Cada horario necesita un día y una hora de fin posterior a la de inicio, dentro del mismo día.",
+    "MODULE_SCHEDULE_SELF_OVERLAP": "Dos horarios del mismo módulo se solapan. Ajusta las horas.",
+    "MODULE_TEACHER_CONFLICT": "El docente ya tiene el módulo {{module}} el {{day}} de {{start}} a {{end}}.",
+    "MODULE_ROOM_CONFLICT": "El salón ya está ocupado por el módulo {{module}} el {{day}} de {{start}} a {{end}}.",
+    "MODULE_TEACHER_UNAVAILABLE": "Solo se puede asignar un docente activo.",
+    "MODULE_ROOM_UNAVAILABLE": "Solo se puede asignar un salón activo.",
+    "MODULE_ROOM_CAPACITY_BELOW_ENROLLED": "Capacidad insuficiente: hay {{enrolled}} inscritos y este salón tiene capacidad para {{capacity}}.",
+    "HOLIDAY_DATE_TAKEN": "Ya hay un festivo registrado en esa fecha.",
+    "HOLIDAY_IN_PAST": "Un festivo con fecha anterior a hoy no se puede registrar, editar ni eliminar.",
+    "HOLIDAYS_IMPORT_UNAVAILABLE": "No pudimos obtener los festivos del servicio externo. Inténtalo de nuevo o regístralos a mano.",
+    "MODULE_HAS_ENROLLMENTS": "Este módulo tiene estudiantes inscritos ({{enrolled}}): no se pueden cambiar sus horarios ni eliminarlo."
   },
   "validation": {
     "required": "Este campo es obligatorio.",
@@ -165,6 +176,17 @@
     "code": "Código de recuperación",
     "newPassword": "Nueva contraseña",
     "submit": "Restablecer contraseña"
+  },
+  "modules": {
+    "days": {
+      "1": "lunes",
+      "2": "martes",
+      "3": "miércoles",
+      "4": "jueves",
+      "5": "viernes",
+      "6": "sábado",
+      "7": "domingo"
+    }
   },
   "periods": {
     "title": "Periodos académicos",

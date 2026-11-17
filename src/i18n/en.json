@@ -64,7 +64,18 @@
     "ROOM_INACTIVE_OR_DELETED": "An inactive or deleted room cannot be assigned to a module.",
     "DROPDOWN_LABEL_REQUIRED": "Enter the label in Spanish and in English.",
     "DROPDOWN_ITEM_IN_USE": "This item is in use: it can only be deactivated.",
-    "DROPDOWN_ORDER_INVALID": "The order sent does not match the items in the list."
+    "DROPDOWN_ORDER_INVALID": "The order sent does not match the items in the list.",
+    "MODULE_SCHEDULE_INVALID": "Each schedule needs a day and an end time after the start time, within the same day.",
+    "MODULE_SCHEDULE_SELF_OVERLAP": "Two schedules of the same module overlap. Adjust the times.",
+    "MODULE_TEACHER_CONFLICT": "The teacher already has the module {{module}} on {{day}} from {{start}} to {{end}}.",
+    "MODULE_ROOM_CONFLICT": "The room is already taken by the module {{module}} on {{day}} from {{start}} to {{end}}.",
+    "MODULE_TEACHER_UNAVAILABLE": "Only an active teacher can be assigned.",
+    "MODULE_ROOM_UNAVAILABLE": "Only an active room can be assigned.",
+    "MODULE_ROOM_CAPACITY_BELOW_ENROLLED": "Not enough capacity: {{enrolled}} enrolled, this room holds {{capacity}}.",
+    "HOLIDAY_DATE_TAKEN": "A holiday is already registered on that date.",
+    "HOLIDAYS_IMPORT_UNAVAILABLE": "We could not get the holidays from the external service. Try again or add them by hand.",
+    "HOLIDAY_IN_PAST": "A holiday dated before today cannot be added, edited or deleted.",
+    "MODULE_HAS_ENROLLMENTS": "This module has enrolled students ({{enrolled}}): its schedules cannot be changed and it cannot be deleted."
   },
   "validation": {
     "required": "This field is required.",
@@ -165,6 +176,17 @@
     "code": "Recovery code",
     "newPassword": "New password",
     "submit": "Reset password"
+  },
+  "modules": {
+    "days": {
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday",
+      "6": "Saturday",
+      "7": "Sunday"
+    }
   },
   "periods": {
     "title": "Academic periods",

@@ -1,6 +1,6 @@
 import type { TFunction } from 'i18next';
 
-// Codes defined in the auth and CAE configuration contracts (specs/001, specs/006); the API `message` is never shown.
+// Codes defined in the auth, CAE configuration and modules contracts (specs/001, 006, 010); the API `message` is never shown.
 export const ERROR_CODES = [
   'VALIDATION_FAILED',
   'EMAIL_ALREADY_REGISTERED',
@@ -39,6 +39,17 @@ export const ERROR_CODES = [
   'DROPDOWN_LABEL_REQUIRED',
   'DROPDOWN_ITEM_IN_USE',
   'DROPDOWN_ORDER_INVALID',
+  'MODULE_SCHEDULE_INVALID',
+  'MODULE_SCHEDULE_SELF_OVERLAP',
+  'MODULE_TEACHER_CONFLICT',
+  'MODULE_ROOM_CONFLICT',
+  'MODULE_TEACHER_UNAVAILABLE',
+  'MODULE_ROOM_UNAVAILABLE',
+  'MODULE_ROOM_CAPACITY_BELOW_ENROLLED',
+  'MODULE_HAS_ENROLLMENTS',
+  'HOLIDAY_DATE_TAKEN',
+  'HOLIDAY_IN_PAST',
+  'HOLIDAYS_IMPORT_UNAVAILABLE',
   'NOT_FOUND',
   'INTERNAL_ERROR',
 ] as const;
@@ -66,5 +77,25 @@ export function errorMessage(t: TFunction, error: unknown): string {
   // Rules that name the other record (overlapping or active period) get its name.
   const other = (error.details?.overlappingPeriod ??
     error.details?.activePeriod) as { name?: string } | undefined;
-  return t(`errors.${code}`, { seconds, name: other?.name ?? '' });
+  // Rules that point at another module (teacher or room conflict) and at the enrolled students.
+  const conflict = error.details?.conflict as
+    | {
+        moduleName?: string;
+        dayOfWeek?: number;
+        startTime?: string;
+        endTime?: string;
+      }
+    | undefined;
+  const enrolled = Number(error.details?.enrolled);
+  const capacity = Number(error.details?.capacity);
+  return t(`errors.${code}`, {
+    seconds,
+    name: other?.name ?? '',
+    module: conflict?.moduleName ?? '',
+    day: conflict?.dayOfWeek ? t(`modules.days.${conflict.dayOfWeek}`) : '',
+    start: conflict?.startTime ?? '',
+    end: conflict?.endTime ?? '',
+    enrolled: Number.isFinite(enrolled) ? enrolled : 0,
+    capacity: Number.isFinite(capacity) ? capacity : 0,
+  });
 }
