@@ -1,9 +1,6 @@
-export const fonts = {
-  regular: 'Roboto_400Regular',
-  medium: 'Roboto_500Medium',
-  bold: 'Roboto_700Bold',
-  mono: 'RobotoMono_400Regular',
-} as const;
+import { fonts } from './fonts';
+
+export { fonts };
 
 export const spacing = {
   xs: 4,
@@ -77,19 +74,21 @@ export const motion = {
   riseOffset: 8,
 } as const;
 
+// Sizes and weights from docs/Design.md (Typography). Components use these styles only.
 export const typography = {
-  screenTitle: { fontFamily: fonts.bold, fontSize: 24, lineHeight: 32 },
-  sectionTitle: { fontFamily: fonts.medium, fontSize: 18, lineHeight: 24 },
-  cardTitle: { fontFamily: fonts.medium, fontSize: 16, lineHeight: 22 },
-  body: { fontFamily: fonts.regular, fontSize: 14, lineHeight: 20 },
-  bodySmall: { fontFamily: fonts.regular, fontSize: 12, lineHeight: 18 },
-  metadata: { fontFamily: fonts.regular, fontSize: 12, lineHeight: 16 },
+  screenTitle: { fontFamily: fonts.bold, fontSize: 26, lineHeight: 32 },
+  sectionTitle: { fontFamily: fonts.semibold, fontSize: 19, lineHeight: 26 },
+  cardTitle: { fontFamily: fonts.semibold, fontSize: 17, lineHeight: 22 },
+  metricNumber: { fontFamily: fonts.bold, fontSize: 30, lineHeight: 36 },
+  body: { fontFamily: fonts.regular, fontSize: 15, lineHeight: 22 },
+  bodySmall: { fontFamily: fonts.regular, fontSize: 13, lineHeight: 18 },
+  metadata: { fontFamily: fonts.regular, fontSize: 13, lineHeight: 18 },
   label: {
-    fontFamily: fonts.medium,
+    fontFamily: fonts.semibold,
     fontSize: 12,
     lineHeight: 16,
     letterSpacing: 0.24,
   },
-  button: { fontFamily: fonts.medium, fontSize: 14, lineHeight: 20 },
+  button: { fontFamily: fonts.semibold, fontSize: 15, lineHeight: 20 },
   code: { fontFamily: fonts.mono, fontSize: 14, lineHeight: 20 },
 } as const;
