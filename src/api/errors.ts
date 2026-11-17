@@ -1,6 +1,6 @@
 import type { TFunction } from 'i18next';
 
-// Codes defined in specs/001-auth-roles/contracts/auth-api.yaml; the API `message` is never shown.
+// Codes defined in the auth and CAE configuration contracts (specs/001, specs/006); the API `message` is never shown.
 export const ERROR_CODES = [
   'VALIDATION_FAILED',
   'EMAIL_ALREADY_REGISTERED',
@@ -20,6 +20,25 @@ export const ERROR_CODES = [
   'PASSWORD_CHANGE_REQUIRED',
   'FORBIDDEN_ROLE',
   'RATE_LIMITED',
+  'PERIOD_NAME_TAKEN',
+  'PERIOD_DATES_INVALID',
+  'PERIOD_DATES_OVERLAP',
+  'PERIOD_ACTIVE_EXISTS',
+  'PERIOD_CLOSED_READ_ONLY',
+  'PERIOD_HAS_MODULES',
+  'PERIOD_NOT_UPCOMING',
+  'PERIOD_ALREADY_ENDED',
+  'PERIOD_NOT_ACTIVE',
+  'LOCATION_NAME_TAKEN',
+  'LOCATION_HAS_ACTIVE_ROOMS',
+  'ROOM_NAME_TAKEN',
+  'ROOM_CAPACITY_INVALID',
+  'ROOM_IN_ACTIVE_PERIOD',
+  'ROOM_CAPACITY_BELOW_ENROLLED',
+  'ROOM_INACTIVE_OR_DELETED',
+  'DROPDOWN_LABEL_REQUIRED',
+  'DROPDOWN_ITEM_IN_USE',
+  'DROPDOWN_ORDER_INVALID',
   'NOT_FOUND',
   'INTERNAL_ERROR',
 ] as const;
@@ -44,5 +63,8 @@ export function errorMessage(t: TFunction, error: unknown): string {
   if (!(error instanceof ApiError)) return t('errors.UNKNOWN');
   const code = isKnown(error.code) ? error.code : 'UNKNOWN';
   const seconds = Number(error.details?.retryAfterSeconds ?? 0);
-  return t(`errors.${code}`, { seconds });
+  // Rules that name the other record (overlapping or active period) get its name.
+  const other = (error.details?.overlappingPeriod ??
+    error.details?.activePeriod) as { name?: string } | undefined;
+  return t(`errors.${code}`, { seconds, name: other?.name ?? '' });
 }

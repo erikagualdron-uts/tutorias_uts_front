@@ -61,6 +61,48 @@ export const icons = {
     linear: 'solar:close-circle-linear',
     bold: 'solar:close-circle-bold',
   },
+  // CAE configuration (spec 006)
+  add: { linear: 'solar:add-circle-linear', bold: 'solar:add-circle-bold' },
+  edit: { linear: 'solar:pen-linear', bold: 'solar:pen-bold' },
+  trash: {
+    linear: 'solar:trash-bin-minimalistic-linear',
+    bold: 'solar:trash-bin-minimalistic-bold',
+  },
+  lock: { linear: 'solar:lock-linear', bold: 'solar:lock-bold' },
+  activate: {
+    linear: 'solar:check-circle-linear',
+    bold: 'solar:check-circle-bold',
+  },
+  stopPeriod: {
+    linear: 'solar:stop-circle-linear',
+    bold: 'solar:stop-circle-bold',
+  },
+  location: { linear: 'solar:map-point-linear', bold: 'solar:map-point-bold' },
+  building: {
+    linear: 'solar:buildings-2-linear',
+    bold: 'solar:buildings-2-bold',
+  },
+  capacity: {
+    linear: 'solar:users-group-rounded-linear',
+    bold: 'solar:users-group-rounded-bold',
+  },
+  chevronRight: {
+    linear: 'solar:alt-arrow-right-linear',
+    bold: 'solar:alt-arrow-right-bold',
+  },
+  arrowUp: { linear: 'solar:arrow-up-linear', bold: 'solar:arrow-up-bold' },
+  arrowDown: {
+    linear: 'solar:arrow-down-linear',
+    bold: 'solar:arrow-down-bold',
+  },
+  list: { linear: 'solar:list-linear', bold: 'solar:list-bold' },
+  filter: { linear: 'solar:filter-linear', bold: 'solar:filter-bold' },
+  power: { linear: 'solar:power-linear', bold: 'solar:power-bold' },
+  restart: { linear: 'solar:restart-linear', bold: 'solar:restart-bold' },
+  dateRange: {
+    linear: 'solar:calendar-mark-linear',
+    bold: 'solar:calendar-mark-bold',
+  },
   // Decorative brand pattern only: the mdi set is allowed for these three (D-049).
   leaf: { linear: 'mdi:leaf', bold: 'mdi:leaf' },
   feather: { linear: 'mdi:feather', bold: 'mdi:feather' },

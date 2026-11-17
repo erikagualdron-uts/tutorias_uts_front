@@ -10,7 +10,12 @@
     "hidePassword": "Hide password",
     "clearSearch": "Clear search",
     "met": "Met",
-    "unmet": "Not met"
+    "unmet": "Not met",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm"
   },
   "errors": {
     "UNKNOWN": "Something went wrong. Please try again.",
@@ -34,7 +39,26 @@
     "FORBIDDEN_ROLE": "You do not have permission for this action.",
     "RATE_LIMITED": "Too many attempts. Try again in {{seconds}} seconds.",
     "NOT_FOUND": "We could not find what you are looking for.",
-    "INTERNAL_ERROR": "A server error occurred. Please try again later."
+    "INTERNAL_ERROR": "A server error occurred. Please try again later.",
+    "PERIOD_NAME_TAKEN": "A period with that name already exists.",
+    "PERIOD_DATES_INVALID": "The end date must be after the start date, and an active period cannot end before today.",
+    "PERIOD_DATES_OVERLAP": "The dates overlap with period {{name}}.",
+    "PERIOD_ACTIVE_EXISTS": "There is already an active period: {{name}}.",
+    "PERIOD_CLOSED_READ_ONLY": "A closed period is read-only.",
+    "PERIOD_HAS_MODULES": "A period that has modules cannot be deleted.",
+    "PERIOD_NOT_UPCOMING": "Only an upcoming period can be activated or deleted.",
+    "PERIOD_ALREADY_ENDED": "A period whose end date has passed cannot be activated.",
+    "PERIOD_NOT_ACTIVE": "There is no active period.",
+    "LOCATION_NAME_TAKEN": "A location with that name already exists.",
+    "LOCATION_HAS_ACTIVE_ROOMS": "A location with active rooms cannot be deleted. Deactivate or delete its rooms first.",
+    "ROOM_NAME_TAKEN": "A room with that name already exists in this location.",
+    "ROOM_CAPACITY_INVALID": "Capacity must be a positive whole number.",
+    "ROOM_IN_ACTIVE_PERIOD": "The room has modules in the active period, so it cannot be deactivated or deleted.",
+    "ROOM_CAPACITY_BELOW_ENROLLED": "Capacity cannot be lower than the students already enrolled in a module that uses this room.",
+    "ROOM_INACTIVE_OR_DELETED": "An inactive or deleted room cannot be assigned to a module.",
+    "DROPDOWN_LABEL_REQUIRED": "Enter the label in Spanish and in English.",
+    "DROPDOWN_ITEM_IN_USE": "This item is in use: it can only be deactivated.",
+    "DROPDOWN_ORDER_INVALID": "The order sent does not match the items in the list."
   },
   "validation": {
     "required": "This field is required.",
@@ -113,7 +137,9 @@
     "close": "Close"
   },
   "more": {
-    "createTeacher": "Create teacher"
+    "createTeacher": "Create teacher",
+    "configuration": "Settings",
+    "periods": "Academic periods"
   },
   "profile": {
     "menu": "Profile menu",
@@ -131,5 +157,67 @@
     "code": "Recovery code",
     "newPassword": "New password",
     "submit": "Reset password"
+  },
+  "periods": {
+    "title": "Academic periods",
+    "create": "Create period",
+    "editTitle": "Edit period",
+    "createTitle": "New period",
+    "loadError": "We could not load the periods.",
+    "range": "{{start}} to {{end}}",
+    "empty": {
+      "title": "No periods yet",
+      "description": "Create the first period before creating modules."
+    },
+    "emptyFiltered": {
+      "title": "No results",
+      "description": "There are no periods with that status."
+    },
+    "filter": {
+      "all": "All",
+      "ACTIVE": "Active",
+      "UPCOMING": "Upcoming",
+      "CLOSED": "Closed"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "UPCOMING": "Upcoming",
+      "CLOSED": "Closed"
+    },
+    "form": {
+      "name": "Name",
+      "startsOn": "Start date (YYYY-MM-DD)",
+      "endsOn": "End date (YYYY-MM-DD)",
+      "dateFormat": "Use the YYYY-MM-DD format.",
+      "save": "Save period"
+    },
+    "actions": {
+      "activate": "Activate period",
+      "close": "Close period",
+      "delete": "Delete period"
+    },
+    "rules": {
+      "closedReadOnly": "This period is closed: it can only be viewed.",
+      "deleteOnlyUpcoming": "Only an upcoming period can be deleted.",
+      "deleteHasModules": "It cannot be deleted: the period has modules."
+    },
+    "confirm": {
+      "activate": {
+        "title": "Activate the period?",
+        "message": "Students will see the modules of this period."
+      },
+      "activateReplace": {
+        "title": "Activate and close the current period?",
+        "message": "The active period \"{{name}}\" will be closed and become read-only."
+      },
+      "close": {
+        "title": "Close the period?",
+        "message": "It will become read-only and cannot be reopened."
+      },
+      "delete": {
+        "title": "Delete the period?",
+        "message": "The period will no longer appear in the list."
+      }
+    }
   }
 }

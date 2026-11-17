@@ -10,7 +10,12 @@
     "hidePassword": "Ocultar contraseña",
     "clearSearch": "Limpiar búsqueda",
     "met": "Cumplido",
-    "unmet": "Pendiente"
+    "unmet": "Pendiente",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar"
   },
   "errors": {
     "UNKNOWN": "Ocurrió un error inesperado. Inténtalo de nuevo.",
@@ -34,7 +39,26 @@
     "FORBIDDEN_ROLE": "No tienes permiso para esta acción.",
     "RATE_LIMITED": "Demasiados intentos. Inténtalo de nuevo en {{seconds}} segundos.",
     "NOT_FOUND": "No encontramos lo que buscas.",
-    "INTERNAL_ERROR": "Ocurrió un error en el servidor. Inténtalo más tarde."
+    "INTERNAL_ERROR": "Ocurrió un error en el servidor. Inténtalo más tarde.",
+    "PERIOD_NAME_TAKEN": "Ya existe un periodo con ese nombre.",
+    "PERIOD_DATES_INVALID": "La fecha de fin debe ser posterior a la de inicio, y un periodo activo no puede terminar antes de hoy.",
+    "PERIOD_DATES_OVERLAP": "Las fechas se solapan con el periodo {{name}}.",
+    "PERIOD_ACTIVE_EXISTS": "Ya hay un periodo activo: {{name}}.",
+    "PERIOD_CLOSED_READ_ONLY": "Un periodo cerrado es de solo lectura.",
+    "PERIOD_HAS_MODULES": "No se puede eliminar un periodo que tiene módulos.",
+    "PERIOD_NOT_UPCOMING": "Solo un periodo próximo se puede activar o eliminar.",
+    "PERIOD_ALREADY_ENDED": "No se puede activar un periodo cuya fecha de fin ya pasó.",
+    "PERIOD_NOT_ACTIVE": "No hay un periodo activo.",
+    "LOCATION_NAME_TAKEN": "Ya existe una ubicación con ese nombre.",
+    "LOCATION_HAS_ACTIVE_ROOMS": "No se puede eliminar una ubicación con salones activos. Desactiva o elimina antes sus salones.",
+    "ROOM_NAME_TAKEN": "Ya existe un salón con ese nombre en esta ubicación.",
+    "ROOM_CAPACITY_INVALID": "La capacidad debe ser un número entero positivo.",
+    "ROOM_IN_ACTIVE_PERIOD": "El salón tiene módulos en el periodo activo, así que no se puede desactivar ni eliminar.",
+    "ROOM_CAPACITY_BELOW_ENROLLED": "La capacidad no puede ser menor que los estudiantes ya inscritos en un módulo que usa este salón.",
+    "ROOM_INACTIVE_OR_DELETED": "Un salón inactivo o eliminado no se puede asignar a un módulo.",
+    "DROPDOWN_LABEL_REQUIRED": "Escribe la etiqueta en español y en inglés.",
+    "DROPDOWN_ITEM_IN_USE": "Este elemento está en uso: solo se puede desactivar.",
+    "DROPDOWN_ORDER_INVALID": "El orden enviado no coincide con los elementos de la lista."
   },
   "validation": {
     "required": "Este campo es obligatorio.",
@@ -113,7 +137,9 @@
     "close": "Cerrar"
   },
   "more": {
-    "createTeacher": "Crear docente"
+    "createTeacher": "Crear docente",
+    "configuration": "Configuración",
+    "periods": "Periodos académicos"
   },
   "profile": {
     "menu": "Menú de perfil",
@@ -131,5 +157,67 @@
     "code": "Código de recuperación",
     "newPassword": "Nueva contraseña",
     "submit": "Restablecer contraseña"
+  },
+  "periods": {
+    "title": "Periodos académicos",
+    "create": "Crear periodo",
+    "editTitle": "Editar periodo",
+    "createTitle": "Nuevo periodo",
+    "loadError": "No pudimos cargar los periodos.",
+    "range": "{{start}} a {{end}}",
+    "empty": {
+      "title": "Aún no hay periodos",
+      "description": "Crea el primer periodo para poder crear módulos."
+    },
+    "emptyFiltered": {
+      "title": "Sin resultados",
+      "description": "No hay periodos con ese estado."
+    },
+    "filter": {
+      "all": "Todos",
+      "ACTIVE": "Activo",
+      "UPCOMING": "Próximo",
+      "CLOSED": "Cerrado"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "UPCOMING": "Próximo",
+      "CLOSED": "Cerrado"
+    },
+    "form": {
+      "name": "Nombre",
+      "startsOn": "Fecha de inicio (AAAA-MM-DD)",
+      "endsOn": "Fecha de fin (AAAA-MM-DD)",
+      "dateFormat": "Usa el formato AAAA-MM-DD.",
+      "save": "Guardar periodo"
+    },
+    "actions": {
+      "activate": "Activar periodo",
+      "close": "Cerrar periodo",
+      "delete": "Eliminar periodo"
+    },
+    "rules": {
+      "closedReadOnly": "Este periodo está cerrado: solo se puede consultar.",
+      "deleteOnlyUpcoming": "Solo se puede eliminar un periodo próximo.",
+      "deleteHasModules": "No se puede eliminar: el periodo tiene módulos."
+    },
+    "confirm": {
+      "activate": {
+        "title": "¿Activar el periodo?",
+        "message": "Los estudiantes verán los módulos de este periodo."
+      },
+      "activateReplace": {
+        "title": "¿Activar y cerrar el periodo actual?",
+        "message": "Se cerrará el periodo activo \"{{name}}\" y quedará en solo lectura."
+      },
+      "close": {
+        "title": "¿Cerrar el periodo?",
+        "message": "Quedará en solo lectura y no se podrá reabrir."
+      },
+      "delete": {
+        "title": "¿Eliminar el periodo?",
+        "message": "El periodo dejará de aparecer en la lista."
+      }
+    }
   }
 }
