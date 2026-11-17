@@ -88,10 +88,10 @@ export function AppBar({ title }: { title?: string }) {
                 setOpen(false);
                 void signOut();
               }}
-              style={styles.item}
+              style={[styles.item, { borderColor: palette.error }]}
             >
-              <Icon name="signOut" color={palette.textPrimary} />
-              <Text style={[typography.body, { color: palette.textPrimary }]}>
+              <Icon name="signOut" color={palette.error} />
+              <Text style={[typography.body, { color: palette.error }]}>
                 {t('profile.signOut')}
               </Text>
             </Pressable>
@@ -143,5 +143,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: spacing.sm,
     paddingHorizontal: spacing.lg,
+    margin: spacing.sm,
+    borderWidth: 1,
+    borderRadius: radius.input,
   },
 });
