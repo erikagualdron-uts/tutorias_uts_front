@@ -80,6 +80,23 @@ export const motion = {
     fadeOut: 250,
     showAfter: 300,
     slowAfter: 1000,
+    // Ring around the icon (D-080): a faint track plus a 90° arc, one turn per second.
+    ring: {
+      regular: { size: 64, stroke: 3 },
+      compact: { size: 28, stroke: 2 },
+      sweepDegrees: 90,
+      turn: 1000,
+      // Reduce motion: the ring stays still and its arc pulses between pulseMin and 1.
+      pulse: 1200,
+      pulseMin: 0.4,
+      trackOpacity: 0.2,
+    },
+    // Sideways shake when the loader enters and leaves; offsets in px, times in ms.
+    shake: {
+      enter: { duration: 350, offsets: [0, -6, 6, -3, 3, 0] },
+      exit: { duration: 250, offsets: [0, 6, -6, 3, 0] },
+      fade: 150,
+    },
   },
 } as const;
 

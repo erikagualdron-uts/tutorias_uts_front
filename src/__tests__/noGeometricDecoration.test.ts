@@ -12,7 +12,8 @@ function sources(dir: string): string[] {
   });
 }
 
-// Geometric decoration (circles, arcs, blobs) is replaced by BrandPattern (D-049).
+// Geometric decoration (circles, arcs, blobs) is replaced by BrandPattern (D-049). The loading ring
+// (D-080) is feedback, not decoration: it is drawn as an SVG shape in LoaderRing and adds no such key.
 describe('brand decoration', () => {
   it('has no circle, arc or blob style keys or usages', () => {
     const offenders = [

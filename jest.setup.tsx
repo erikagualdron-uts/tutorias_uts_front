@@ -14,25 +14,65 @@ jest.mock('react-native-iconify', () => ({
 }));
 jest.mock('react-native-reanimated', () => {
   const { View } = require('react-native');
-  const entering = () => {
-    const chain: Record<string, unknown> = {};
-    chain.duration = () => chain;
-    chain.delay = () => chain;
-    return chain;
+  // Entering and exiting animations only record what they were given, so the tests can read
+  // them from the `entering` and `exiting` props of a view.
+  class Animation {
+    name: string;
+    definitions?: unknown;
+    durationMs?: number;
+    constructor(label: string, defs?: unknown) {
+      this.name = label;
+      this.definitions = defs;
+    }
+    duration(ms: number) {
+      this.durationMs = ms;
+      return this;
+    }
+    delay() {
+      return this;
+    }
+  }
+  const preset = (label: string) => {
+    const animation = {
+      name: label,
+      durationMs: undefined as number | undefined,
+      duration(ms: number) {
+        animation.durationMs = ms;
+        return animation;
+      },
+      delay() {
+        return animation;
+      },
+    };
+    return animation;
   };
+  class Keyframe extends Animation {
+    constructor(definitions: unknown) {
+      super('Keyframe', definitions);
+    }
+  }
   return {
     __esModule: true,
     default: { View },
-    FadeIn: entering(),
-    FadeInDown: entering(),
+    FadeIn: preset('FadeIn'),
+    FadeInDown: preset('FadeInDown'),
+    FadeOut: preset('FadeOut'),
+    Keyframe,
     useSharedValue: (value: number) => ({ value, set: jest.fn() }),
     useAnimatedStyle: () => ({}),
     withTiming: (value: number) => value,
     withRepeat: (value: number) => value,
+    withSequence: (...values: number[]) => values[values.length - 1],
     cancelAnimation: jest.fn(),
-    Easing: { linear: 'linear' },
+    Easing: { linear: 'linear', bezier: () => 'bezier' },
     useReducedMotion: jest.fn(() => false),
   };
+});
+// Svg shapes become plain views that keep their props, so the tests can read them.
+jest.mock('react-native-svg', () => {
+  const { View } = require('react-native');
+  const Shape = (props: Record<string, unknown>) => <View {...props} />;
+  return { __esModule: true, default: Shape, Svg: Shape, Circle: Shape };
 });
 jest.mock('@react-native-community/datetimepicker', () => {
   const { View } = require('react-native');

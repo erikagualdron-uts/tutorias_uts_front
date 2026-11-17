@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   AccessibilityInfo,
@@ -10,6 +10,9 @@ import {
 import Animated, {
   cancelAnimation,
   Easing,
+  FadeIn,
+  FadeOut,
+  Keyframe,
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
@@ -19,18 +22,37 @@ import Animated, {
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
 import { motion, spacing, typography, usePalette } from '@/theme';
+import { shakeFrames } from './brandLoaderMotion';
 import { iconOpacity } from './brandLoaderTiming';
+import { LoaderRing } from './LoaderRing';
 import { useLoaderPhase } from './useLoaderPhase';
 import { useMotion } from './useMotion';
 
 const SEQUENCE: IconName[] = ['openBook', 'feather', 'leaf'];
-const SIZE = { regular: 48, compact: 20 } as const;
+const ICON = { regular: 48, compact: 20 } as const;
 
 interface BrandLoaderProps {
-  // regular: screens and content areas (waits 300 ms, adds a message after 1000 ms).
-  // compact: buttons and inline rows (immediate, no message).
-  size?: keyof typeof SIZE;
+  // regular: screens and content areas (waits 300 ms, shakes in and out, adds a message after
+  // 1000 ms). compact: buttons and inline rows (immediate, fades in and out, no message).
+  size?: keyof typeof ICON;
   color?: string;
+}
+
+// The sideways shake as a Reanimated keyframe animation (entrance or exit).
+function shakeAnimation(kind: 'enter' | 'exit') {
+  const definitions = Object.fromEntries(
+    Object.entries(shakeFrames(kind)).map(([percent, frame]) => [
+      percent,
+      {
+        opacity: frame.opacity,
+        transform: [{ translateX: frame.translateX }],
+        ...(percent !== '0' && { easing: Easing.bezier(0.2, 0, 0.0, 1) }),
+      },
+    ]),
+  );
+  return new Keyframe(
+    definitions as unknown as ConstructorParameters<typeof Keyframe>[0],
+  ).duration(motion.loader.shake[kind].duration);
 }
 
 function LoaderIcon({
@@ -63,15 +85,24 @@ function LoaderIcon({
 }
 
 // The app's loading indicator (docs/Design.md, Loader): one brand icon at a time,
-// book → feather → leaf, 900 ms each.
+// book → feather → leaf, inside a spinning ring, entering and leaving with a smooth shake.
 export function BrandLoader({ size = 'regular', color }: BrandLoaderProps) {
   const { t, i18n } = useTranslation();
   const palette = usePalette();
   const dark = useColorScheme() === 'dark';
   const { movement } = useMotion();
   const phase = useLoaderPhase(size === 'regular');
-  const px = SIZE[size];
+  const icon = ICON[size];
+  const box = motion.loader.ring[size].size;
   const tone = color ?? (dark ? palette.textPrimary : palette.primary);
+
+  // Buttons and reduce motion fade; screens shake (never inside a button, never when reduced).
+  const { entering, exiting } = useMemo(() => {
+    const fade = motion.loader.shake.fade;
+    return size === 'compact' || !movement
+      ? { entering: FadeIn.duration(fade), exiting: FadeOut.duration(fade) }
+      : { entering: shakeAnimation('enter'), exiting: shakeAnimation('exit') };
+  }, [size, movement]);
 
   // One clock for the three icons keeps them in sync; it restarts from the book every time
   // the loader becomes visible.
@@ -98,19 +129,29 @@ export function BrandLoader({ size = 'regular', color }: BrandLoaderProps) {
     }
   }, [phase, i18n]);
 
+  // First 300 ms: nothing is painted, but the space stays reserved so nothing below jumps.
+  if (!visible) return <View style={{ width: box, height: box }} />;
+
   return (
-    <View
+    // This is the view that enters and leaves: when a screen drops the loader, Reanimated
+    // keeps playing the exit over the content, which does not wait for it.
+    <Animated.View
+      entering={entering}
+      exiting={exiting}
       // Exposed to screen readers only while it is visible, so a load shorter than 300 ms
       // is never announced.
-      accessible={visible}
-      accessibilityRole={visible ? 'progressbar' : undefined}
-      accessibilityLabel={visible ? t('common.loading') : undefined}
-      accessibilityState={visible ? { busy: true } : undefined}
+      accessible
+      accessibilityRole="progressbar"
+      accessibilityLabel={t('common.loading')}
+      accessibilityState={{ busy: true }}
       style={styles.box}
     >
-      <View style={{ width: px, height: px }}>
-        {visible &&
-          SEQUENCE.map((name, index) => (
+      <View style={[styles.ringBox, { width: box, height: box }]}>
+        <View style={StyleSheet.absoluteFill}>
+          <LoaderRing size={size} color={tone} animated={movement} />
+        </View>
+        <View style={{ width: icon, height: icon }}>
+          {SEQUENCE.map((name, index) => (
             <LoaderIcon
               key={name}
               name={name}
@@ -118,9 +159,10 @@ export function BrandLoader({ size = 'regular', color }: BrandLoaderProps) {
               t={clock}
               animated={movement}
               color={tone}
-              size={px}
+              size={icon}
             />
           ))}
+        </View>
       </View>
       {phase === 'slow' && (
         <Text
@@ -133,12 +175,13 @@ export function BrandLoader({ size = 'regular', color }: BrandLoaderProps) {
           {t('common.loadingSlow')}
         </Text>
       )}
-    </View>
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   box: { alignItems: 'center', gap: spacing.md },
+  ringBox: { alignItems: 'center', justifyContent: 'center' },
   layer: { alignItems: 'center', justifyContent: 'center' },
   message: { textAlign: 'center' },
 });

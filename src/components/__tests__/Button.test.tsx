@@ -92,3 +92,23 @@ describe('Button loading', () => {
     expect(onPress).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('Button loading ring', () => {
+  beforeAll(() => configure({ defaultIncludeHiddenElements: true }));
+
+  it('shows the 28 px ring with the icon, fading in and out for 150 ms and never shaking', async () => {
+    await render(
+      <Button label="Send" icon="signIn" onPress={jest.fn()} loading />,
+    );
+    expect(screen.getByTestId('loader-ring-arc').props.r).toBe(13);
+    const bar = screen.getByRole('progressbar');
+    expect([bar.props.entering.name, bar.props.entering.durationMs]).toEqual([
+      'FadeIn',
+      150,
+    ]);
+    expect([bar.props.exiting.name, bar.props.exiting.durationMs]).toEqual([
+      'FadeOut',
+      150,
+    ]);
+  });
+});
