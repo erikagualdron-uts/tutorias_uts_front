@@ -64,12 +64,13 @@ export function AppBar({ title }: { title?: string }) {
 
       <Modal
         transparent
+        statusBarTranslucent
         visible={open}
         animationType="fade"
         onRequestClose={() => setOpen(false)}
       >
         <Pressable
-          style={[styles.backdrop, { paddingTop: top + BAR_HEIGHT }]}
+          style={[styles.backdrop, { paddingTop: top + BAR_HEIGHT - spacing.xs }]}
           onPress={() => setOpen(false)}
         >
           <View
