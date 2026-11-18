@@ -84,7 +84,20 @@
     "ENROLLMENT_PERIOD_NOT_OPEN": "You can only enroll in modules of the active period.",
     "ENROLLMENT_NOT_ACTIVE": "This enrollment is already cancelled.",
     "ENROLLMENT_CANCEL_WINDOW_PASSED": "You can only cancel up to {{minutes}} minutes before the session.",
-    "ENROLLMENT_SESSION_NOT_CANCELLABLE": "This session has passed or was cancelled and cannot be changed."
+    "ENROLLMENT_SESSION_NOT_CANCELLABLE": "This session has passed or was cancelled and cannot be changed.",
+    "SESSION_CHANGE_WINDOW_PASSED": "You can only change a session up to {{minutes}} minutes before it starts.",
+    "SESSION_NOT_CHANGEABLE": "This session cannot be changed.",
+    "SESSION_NOT_CHANGEABLE_PAST": "The session has already passed.",
+    "SESSION_NOT_CHANGEABLE_CANCELLED": "The session is already cancelled.",
+    "SESSION_NOT_CHANGEABLE_NOT_CANCELLED": "The session is not cancelled.",
+    "SESSION_NOT_CHANGEABLE_CANCELLED_BY_OTHER": "You can only restore sessions you cancelled, not holiday ones.",
+    "SESSION_RESCHEDULE_INVALID_DATE": "The new date or time is not valid.",
+    "SESSION_RESCHEDULE_INVALID_DATE_NO_CHANGE": "Pick a time different from the current one.",
+    "SESSION_RESCHEDULE_INVALID_DATE_PAST": "The new time has already passed.",
+    "SESSION_RESCHEDULE_INVALID_DATE_OUT_OF_WEEK": "You can only move the session within its own week.",
+    "SESSION_RESCHEDULE_INVALID_DATE_OUT_OF_PERIOD": "The new date is outside the module period.",
+    "SESSION_RESCHEDULE_INVALID_DATE_HOLIDAY": "{{date}} is a holiday: there are no sessions that day.",
+    "SESSION_STUDENT_CONFLICT": "{{students}} enrolled students already have another session at that time."
   },
   "validation": {
     "required": "This field is required.",
@@ -270,7 +283,8 @@
       "SCHEDULED": "Scheduled",
       "RESCHEDULED": "Rescheduled",
       "CANCELLED": "Cancelled",
-      "holiday": "Cancelled for a holiday"
+      "holiday": "Cancelled for a holiday",
+      "teacher": "Cancelled by the teacher"
     },
     "detail": {
       "sessions": "Sessions",
@@ -607,7 +621,8 @@
         "RESCHEDULED": "Rescheduled",
         "HOLIDAY": "Cancelled for a holiday",
         "CANCELLED": "Cancelled",
-        "byMe": "Cancelled by you"
+        "byMe": "Cancelled by you",
+        "TEACHER": "Cancelled by the teacher"
       },
       "block": {
         "WINDOW_PASSED": "You can no longer change it: less than {{minutes}} minutes left.",
@@ -632,6 +647,62 @@
       "next": "Next session: {{date}} · {{time}}",
       "noNext": "No upcoming sessions",
       "upcoming": "{{count}} sessions to go"
+    }
+  },
+  "teacher": {
+    "schedule": {
+      "title": "Schedule",
+      "sessions": "Upcoming sessions",
+      "all": "All",
+      "enrolled": "{{enrolled}} enrolled of {{capacity}}",
+      "attendees": "{{attendees}} attending",
+      "original": "Before: {{date}} · {{time}}",
+      "close": "Close",
+      "state": {
+        "SCHEDULED": "Scheduled",
+        "RESCHEDULED": "Rescheduled",
+        "HOLIDAY": "Cancelled for a holiday",
+        "TEACHER": "Cancelled by you"
+      },
+      "rule": "You can reschedule, cancel or restore a session up to {{minutes}} minutes before it starts.",
+      "block": {
+        "WINDOW_PASSED": "You can no longer change it: less than {{minutes}} minutes left.",
+        "PERIOD_CLOSED": "Closed period, read only.",
+        "PAST": "The session has already passed.",
+        "CANCELLED_BY_OTHER": "A holiday cancelled it: it cannot be restored from here."
+      },
+      "empty": {
+        "title": "No upcoming sessions",
+        "description": "When the CAE assigns you modules of the active period, their sessions will show up here."
+      },
+      "loadError": "We could not load your schedule"
+    },
+    "reschedule": {
+      "action": "Reschedule",
+      "scope": {
+        "SESSION": "Only this session",
+        "SERIES": "This and the following"
+      },
+      "date": "New date",
+      "time": "New time",
+      "weekHint": "You can only move it within its own week.",
+      "checking": "Checking availability…",
+      "available": "Time available. Sessions that move: {{sessions}}.",
+      "pickAnother": "Pick a date or time different from the current one.",
+      "confirm": "Confirm change",
+      "back": "Back"
+    },
+    "cancel": {
+      "action": "Cancel session",
+      "restore": "Restore session",
+      "confirm": {
+        "title": "Cancel the session?",
+        "message": {
+          "SESSION": "Enrolled students will see it cancelled by the teacher. You can restore it while 2 hours or more are left.",
+          "SERIES": "This session and the following ones of its weekly slot will be cancelled. Enrolled students will see them cancelled by the teacher."
+        },
+        "action": "Cancel session"
+      }
     }
   }
 }

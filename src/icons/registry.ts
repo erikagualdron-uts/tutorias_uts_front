@@ -146,6 +146,11 @@ export const icons = {
     bold: 'solar:calendar-minimalistic-bold',
   },
   full: { linear: 'solar:lock-linear', bold: 'solar:lock-bold' },
+  // Teacher sessions (spec 012)
+  reschedule: {
+    linear: 'solar:calendar-add-linear',
+    bold: 'solar:calendar-add-bold',
+  },
   checkboxOn: {
     linear: 'solar:check-square-linear',
     bold: 'solar:check-square-bold',

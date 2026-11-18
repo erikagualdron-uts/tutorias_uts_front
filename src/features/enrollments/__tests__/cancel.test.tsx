@@ -125,6 +125,19 @@ describe('session rows', () => {
     expect(screen.queryByLabelText('Cancelar sesión')).toBeNull();
   });
 
+  it('marks a session the teacher cancelled and offers no action', async () => {
+    detail = () =>
+      Promise.resolve(
+        detailOf({
+          ...enrolled,
+          sessions: [sessionOf({ status: 'CANCELLED', cancelReason: 'TEACHER', canCancel: false, blockReason: 'SESSION_CANCELLED' })],
+        }),
+      );
+    await renderDetail();
+    expect(await screen.findByText('Cancelada por el docente')).toBeTruthy();
+    expect(screen.queryByLabelText('Cancelar sesión')).toBeNull();
+  });
+
   it('shows a closed period as read only, without actions', async () => {
     detail = () => Promise.resolve(detailOf({ ...enrolled, readOnly: true, sessions: [] }));
     await renderDetail();

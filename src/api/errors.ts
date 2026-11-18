@@ -1,6 +1,7 @@
 import type { TFunction } from 'i18next';
+import { formatDay } from '@/date/day';
 
-// Codes defined in the auth, CAE configuration and modules contracts (specs/001, 006, 010, 011); the API `message` is never shown.
+// Codes defined in the auth, CAE configuration and modules contracts (specs/001, 006, 010, 011, 012); the API `message` is never shown.
 export const ERROR_CODES = [
   'VALIDATION_FAILED',
   'EMAIL_ALREADY_REGISTERED',
@@ -56,6 +57,10 @@ export const ERROR_CODES = [
   'ENROLLMENT_NOT_ACTIVE',
   'ENROLLMENT_CANCEL_WINDOW_PASSED',
   'ENROLLMENT_SESSION_NOT_CANCELLABLE',
+  'SESSION_CHANGE_WINDOW_PASSED',
+  'SESSION_NOT_CHANGEABLE',
+  'SESSION_RESCHEDULE_INVALID_DATE',
+  'SESSION_STUDENT_CONFLICT',
   'HOLIDAY_DATE_TAKEN',
   'HOLIDAY_IN_PAST',
   'HOLIDAYS_IMPORT_UNAVAILABLE',
@@ -98,7 +103,12 @@ export function errorMessage(t: TFunction, error: unknown): string {
   const enrolled = Number(error.details?.enrolled);
   const capacity = Number(error.details?.capacity);
   const minutes = Number(error.details?.minutes);
-  return t(`errors.${code}`, {
+  const students = Number(error.details?.students);
+  // Codes with one text per reason (`details.reason`).
+  const byReason = new Set(['SESSION_RESCHEDULE_INVALID_DATE', 'SESSION_NOT_CHANGEABLE']);
+  const reason = typeof error.details?.reason === 'string' ? `_${error.details.reason}` : '';
+  const key = byReason.has(code) && reason ? `errors.${code}${reason}` : `errors.${code}`;
+  return t(key, {
     seconds,
     name: other?.name ?? '',
     module: conflict?.moduleName ?? '',
@@ -108,5 +118,7 @@ export function errorMessage(t: TFunction, error: unknown): string {
     enrolled: Number.isFinite(enrolled) ? enrolled : 0,
     capacity: Number.isFinite(capacity) ? capacity : 0,
     minutes: Number.isFinite(minutes) ? minutes : 0,
+    students: Number.isFinite(students) ? students : 0,
+    date: typeof error.details?.date === 'string' ? formatDay(error.details.date) : '',
   });
 }

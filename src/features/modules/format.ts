@@ -9,6 +9,10 @@ export function bogotaParts(iso: string): { date: string; time: string } {
   return { date: formatDay(local.slice(0, 10)), time: local.slice(11, 16) };
 }
 
+// The Bogota calendar day of an instant, as YYYY-MM-DD.
+export const bogotaDay = (iso: string): string =>
+  new Date(Date.parse(iso) - BOGOTA_OFFSET_MS).toISOString().slice(0, 10);
+
 // "Mar 14:00–16:00"; `day` translates a day number to its short name.
 export const scheduleLabel = (s: ScheduleInput, day: (n: number) => string) =>
   `${day(s.dayOfWeek)} ${s.startTime}–${s.endTime}`;

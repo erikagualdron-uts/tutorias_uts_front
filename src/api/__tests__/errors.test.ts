@@ -56,3 +56,36 @@ describe('errorMessage for enrollments', () => {
     }
   });
 });
+
+describe('errorMessage for teacher sessions', () => {
+  it('shows the lead window in minutes', () => {
+    const error = new ApiError(409, 'SESSION_CHANGE_WINDOW_PASSED', { minutes: 120 });
+    expect(errorMessage(spanish, error)).toContain('120 minutos');
+    expect(errorMessage(english, error)).toContain('120 minutes');
+  });
+
+  it.each([
+    ['NO_CHANGE', 'Elige una hora distinta'],
+    ['PAST', 'ya pasó'],
+    ['OUT_OF_WEEK', 'misma semana'],
+    ['OUT_OF_PERIOD', 'fuera del periodo'],
+  ])('picks the text of the reason %s', (reason, text) => {
+    const error = new ApiError(422, 'SESSION_RESCHEDULE_INVALID_DATE', { reason });
+    expect(errorMessage(spanish, error)).toContain(text);
+  });
+
+  it('names the holiday date', () => {
+    const error = new ApiError(422, 'SESSION_RESCHEDULE_INVALID_DATE', { reason: 'HOLIDAY', date: '2030-01-08' });
+    expect(errorMessage(spanish, error)).toMatch(/es festivo/);
+  });
+
+  it('picks the text of each non-changeable reason and has a fallback', () => {
+    expect(errorMessage(spanish, new ApiError(409, 'SESSION_NOT_CHANGEABLE', { reason: 'CANCELLED_BY_OTHER' }))).toContain('festivo');
+    expect(errorMessage(spanish, new ApiError(409, 'SESSION_NOT_CHANGEABLE'))).toBe('Esta sesión no se puede cambiar.');
+  });
+
+  it('shows how many students overlap, without names', () => {
+    const error = new ApiError(409, 'SESSION_STUDENT_CONFLICT', { students: 2 });
+    expect(errorMessage(spanish, error)).toBe('2 estudiantes inscritos ya tienen otra tutoría a esa hora.');
+  });
+});
