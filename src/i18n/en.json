@@ -646,5 +646,34 @@
       "noNext": "No upcoming sessions",
       "upcoming": "{{count}} sessions to go"
     }
+  },
+  "teacher": {
+    "schedule": {
+      "title": "Schedule",
+      "sessions": "Upcoming sessions",
+      "all": "All",
+      "enrolled": "{{enrolled}} enrolled of {{capacity}}",
+      "attendees": "{{attendees}} attending",
+      "original": "Before: {{date}} · {{time}}",
+      "close": "Close",
+      "state": {
+        "SCHEDULED": "Scheduled",
+        "RESCHEDULED": "Rescheduled",
+        "HOLIDAY": "Cancelled for a holiday",
+        "TEACHER": "Cancelled by you"
+      },
+      "rule": "You can reschedule, cancel or restore a session up to {{minutes}} minutes before it starts.",
+      "block": {
+        "WINDOW_PASSED": "You can no longer change it: less than {{minutes}} minutes left.",
+        "PERIOD_CLOSED": "Closed period, read only.",
+        "PAST": "The session has already passed.",
+        "CANCELLED_BY_OTHER": "A holiday cancelled it: it cannot be restored from here."
+      },
+      "empty": {
+        "title": "No upcoming sessions",
+        "description": "When the CAE assigns you modules of the active period, their sessions will show up here."
+      },
+      "loadError": "We could not load your schedule"
+    }
   }
 }

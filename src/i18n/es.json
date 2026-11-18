@@ -646,5 +646,34 @@
       "noNext": "Sin sesiones próximas",
       "upcoming": "{{count}} sesiones por venir"
     }
+  },
+  "teacher": {
+    "schedule": {
+      "title": "Cronograma",
+      "sessions": "Próximas sesiones",
+      "all": "Todos",
+      "enrolled": "{{enrolled}} inscritos de {{capacity}}",
+      "attendees": "{{attendees}} asistentes",
+      "original": "Antes: {{date}} · {{time}}",
+      "close": "Cerrar",
+      "state": {
+        "SCHEDULED": "Programada",
+        "RESCHEDULED": "Reprogramada",
+        "HOLIDAY": "Cancelada por festivo",
+        "TEACHER": "Cancelada por ti"
+      },
+      "rule": "Puedes reprogramar, cancelar o reactivar una sesión hasta {{minutes}} minutos antes de que empiece.",
+      "block": {
+        "WINDOW_PASSED": "Ya no puedes cambiarla: faltan menos de {{minutes}} minutos.",
+        "PERIOD_CLOSED": "Periodo cerrado, solo lectura.",
+        "PAST": "La sesión ya pasó.",
+        "CANCELLED_BY_OTHER": "La canceló un festivo: no se puede reactivar desde aquí."
+      },
+      "empty": {
+        "title": "Sin sesiones próximas",
+        "description": "Cuando el CAE te asigne módulos del periodo activo, sus sesiones aparecerán aquí."
+      },
+      "loadError": "No pudimos cargar tu cronograma"
+    }
   }
 }

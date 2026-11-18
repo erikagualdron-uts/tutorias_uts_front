@@ -1,3 +1,3 @@
-import { EmptyTabScreen } from '@/features/shell/screens/EmptyTabScreen';
+import { TeacherScheduleScreen } from '@/features/teacher-sessions/screens/TeacherScheduleScreen';
 
-export default EmptyTabScreen;
+export default TeacherScheduleScreen;
