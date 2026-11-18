@@ -132,6 +132,20 @@ export const icons = {
     linear: 'solar:download-minimalistic-linear',
     bold: 'solar:download-minimalistic-bold',
   },
+  // Student enrollment (spec 011)
+  enroll: {
+    linear: 'solar:user-check-rounded-linear',
+    bold: 'solar:user-check-rounded-bold',
+  },
+  unenroll: {
+    linear: 'solar:user-cross-rounded-linear',
+    bold: 'solar:user-cross-rounded-bold',
+  },
+  absent: {
+    linear: 'solar:calendar-minimalistic-linear',
+    bold: 'solar:calendar-minimalistic-bold',
+  },
+  full: { linear: 'solar:lock-linear', bold: 'solar:lock-bold' },
   checkboxOn: {
     linear: 'solar:check-square-linear',
     bold: 'solar:check-square-bold',

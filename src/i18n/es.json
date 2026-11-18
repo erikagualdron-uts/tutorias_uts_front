@@ -76,7 +76,15 @@
     "HOLIDAY_DATE_TAKEN": "Ya hay un festivo registrado en esa fecha.",
     "HOLIDAY_IN_PAST": "Un festivo con fecha anterior a hoy no se puede registrar, editar ni eliminar.",
     "HOLIDAYS_IMPORT_UNAVAILABLE": "No pudimos obtener los festivos del servicio externo. Inténtalo de nuevo o regístralos a mano.",
-    "MODULE_HAS_ENROLLMENTS": "Este módulo tiene estudiantes inscritos ({{enrolled}}): no se pueden cambiar sus horarios ni eliminarlo."
+    "MODULE_HAS_ENROLLMENTS": "Este módulo tiene estudiantes inscritos ({{enrolled}}): no se pueden cambiar sus horarios ni eliminarlo.",
+    "ENROLLMENT_MODULE_FULL": "Este módulo no tiene lugar en alguna de sus sesiones.",
+    "ENROLLMENT_SCHEDULE_CONFLICT": "Se cruza con tu módulo {{module}} el {{day}} de {{start}} a {{end}}.",
+    "ENROLLMENT_ALREADY_ACTIVE": "Ya estás inscrito en este módulo.",
+    "ENROLLMENT_MODULE_UNAVAILABLE": "Este módulo no está disponible para inscripción: el docente o el salón no están disponibles, o no tiene sesiones futuras.",
+    "ENROLLMENT_PERIOD_NOT_OPEN": "Solo puedes inscribirte a módulos del periodo activo.",
+    "ENROLLMENT_NOT_ACTIVE": "Esta inscripción ya está cancelada.",
+    "ENROLLMENT_CANCEL_WINDOW_PASSED": "Solo puedes cancelar hasta {{minutes}} minutos antes de la sesión.",
+    "ENROLLMENT_SESSION_NOT_CANCELLABLE": "Esta sesión ya pasó o fue cancelada, no se puede cambiar."
   },
   "validation": {
     "required": "Este campo es obligatorio.",
@@ -524,6 +532,106 @@
     "preview": {
       "exists": "Ya registrado",
       "confirm": "Importar ({{count}})"
+    }
+  },
+  "student": {
+    "modules": {
+      "title": "Tutorías",
+      "search": "Buscar tutoría por nombre",
+      "segments": {
+        "available": "Disponibles",
+        "mine": "Mis tutorías"
+      },
+      "state": {
+        "AVAILABLE": "Cupos disponibles",
+        "LAST_SPOTS": "Últimos cupos",
+        "FULL": "Lleno",
+        "ENROLLED": "Inscrito",
+        "SCHEDULE_CONFLICT": "Cruce de horario",
+        "UNAVAILABLE": "No disponible"
+      },
+      "card": {
+        "occupied": "{{occupied}}/{{capacity}} cupos",
+        "weekly": "Semanal · {{schedule}}",
+        "room": "{{room}} · {{location}}"
+      },
+      "action": {
+        "enroll": "Inscribirme",
+        "enrolled": "Inscrito",
+        "full": "Lleno",
+        "noSeats": "Sin cupos"
+      },
+      "block": {
+        "SCHEDULE_CONFLICT": "Se cruza con {{module}} el {{day}} de {{start}} a {{end}}.",
+        "UNAVAILABLE": "El docente o el salón no están disponibles."
+      },
+      "empty": {
+        "title": "Sin tutorías disponibles",
+        "description": "Cuando el CAE publique módulos del periodo activo, aparecerán aquí."
+      },
+      "emptyFiltered": {
+        "title": "Sin resultados",
+        "description": "Ninguna tutoría coincide con tu búsqueda."
+      },
+      "loadError": "No pudimos cargar las tutorías",
+      "detail": {
+        "teacher": "Docente",
+        "room": "Salón",
+        "schedule": "Horario",
+        "sessions": "Próximas sesiones",
+        "noSessions": "No hay sesiones futuras.",
+        "enrolledNotice": "Estás inscrito en este módulo."
+      }
+    },
+    "cancel": {
+      "action": "Cancelar inscripción",
+      "back": "Volver",
+      "sheet": {
+        "title": "¿Qué quieres cancelar?",
+        "sessionRule": "Puedes cancelar una sesión hasta {{minutes}} minutos antes de que empiece.",
+        "moduleRule": "Al cancelar el módulo se libera tu lugar desde la primera sesión que empiece en más de {{minutes}} minutos."
+      },
+      "scope": {
+        "session": "Solo esta sesión",
+        "module": "Todo el módulo"
+      },
+      "confirm": {
+        "title": "¿Cancelar la inscripción?",
+        "message": "Dejarás de asistir a todas las sesiones de este módulo. Podrás volver a inscribirte si hay cupo.",
+        "action": "Cancelar inscripción"
+      },
+      "session": {
+        "cancel": "Cancelar sesión",
+        "restore": "Reactivar",
+        "SCHEDULED": "Programada",
+        "RESCHEDULED": "Reprogramada",
+        "HOLIDAY": "Cancelada por festivo",
+        "CANCELLED": "Cancelada",
+        "byMe": "Cancelada por ti"
+      },
+      "block": {
+        "WINDOW_PASSED": "Ya no puedes cambiarla: faltan menos de {{minutes}} minutos.",
+        "PERIOD_CLOSED": "Periodo cerrado, solo lectura.",
+        "SESSION_CANCELLED": "La sesión está cancelada.",
+        "NO_SEAT": "No hay lugar para reactivar esta sesión."
+      },
+      "readOnly": "Periodo cerrado, solo lectura."
+    },
+    "mine": {
+      "empty": {
+        "title": "Aún no estás inscrito",
+        "description": "Elige una tutoría del periodo activo para inscribirte.",
+        "action": "Ver tutorías disponibles"
+      },
+      "loadError": "No pudimos cargar tus tutorías",
+      "status": {
+        "ACTIVE": "Activa",
+        "CANCELLED": "Cancelada",
+        "CLOSED": "Periodo cerrado"
+      },
+      "next": "Próxima sesión: {{date}} · {{time}}",
+      "noNext": "Sin sesiones próximas",
+      "upcoming": "{{count}} sesiones por venir"
     }
   }
 }

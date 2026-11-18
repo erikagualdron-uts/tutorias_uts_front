@@ -1,6 +1,6 @@
 import type { TFunction } from 'i18next';
 
-// Codes defined in the auth, CAE configuration and modules contracts (specs/001, 006, 010); the API `message` is never shown.
+// Codes defined in the auth, CAE configuration and modules contracts (specs/001, 006, 010, 011); the API `message` is never shown.
 export const ERROR_CODES = [
   'VALIDATION_FAILED',
   'EMAIL_ALREADY_REGISTERED',
@@ -48,6 +48,14 @@ export const ERROR_CODES = [
   'MODULE_ROOM_UNAVAILABLE',
   'MODULE_ROOM_CAPACITY_BELOW_ENROLLED',
   'MODULE_HAS_ENROLLMENTS',
+  'ENROLLMENT_MODULE_FULL',
+  'ENROLLMENT_SCHEDULE_CONFLICT',
+  'ENROLLMENT_ALREADY_ACTIVE',
+  'ENROLLMENT_MODULE_UNAVAILABLE',
+  'ENROLLMENT_PERIOD_NOT_OPEN',
+  'ENROLLMENT_NOT_ACTIVE',
+  'ENROLLMENT_CANCEL_WINDOW_PASSED',
+  'ENROLLMENT_SESSION_NOT_CANCELLABLE',
   'HOLIDAY_DATE_TAKEN',
   'HOLIDAY_IN_PAST',
   'HOLIDAYS_IMPORT_UNAVAILABLE',
@@ -89,6 +97,7 @@ export function errorMessage(t: TFunction, error: unknown): string {
     | undefined;
   const enrolled = Number(error.details?.enrolled);
   const capacity = Number(error.details?.capacity);
+  const minutes = Number(error.details?.minutes);
   return t(`errors.${code}`, {
     seconds,
     name: other?.name ?? '',
@@ -98,5 +107,6 @@ export function errorMessage(t: TFunction, error: unknown): string {
     end: conflict?.endTime ?? (error.details?.latest as string | undefined) ?? '',
     enrolled: Number.isFinite(enrolled) ? enrolled : 0,
     capacity: Number.isFinite(capacity) ? capacity : 0,
+    minutes: Number.isFinite(minutes) ? minutes : 0,
   });
 }

@@ -76,7 +76,15 @@
     "HOLIDAY_DATE_TAKEN": "A holiday is already registered on that date.",
     "HOLIDAYS_IMPORT_UNAVAILABLE": "We could not get the holidays from the external service. Try again or add them by hand.",
     "HOLIDAY_IN_PAST": "A holiday dated before today cannot be added, edited or deleted.",
-    "MODULE_HAS_ENROLLMENTS": "This module has enrolled students ({{enrolled}}): its schedules cannot be changed and it cannot be deleted."
+    "MODULE_HAS_ENROLLMENTS": "This module has enrolled students ({{enrolled}}): its schedules cannot be changed and it cannot be deleted.",
+    "ENROLLMENT_MODULE_FULL": "This module has no room in one of its sessions.",
+    "ENROLLMENT_SCHEDULE_CONFLICT": "It overlaps your module {{module}} on {{day}} from {{start}} to {{end}}.",
+    "ENROLLMENT_ALREADY_ACTIVE": "You are already enrolled in this module.",
+    "ENROLLMENT_MODULE_UNAVAILABLE": "This module is not open for enrollment: its teacher or room is unavailable, or it has no future sessions.",
+    "ENROLLMENT_PERIOD_NOT_OPEN": "You can only enroll in modules of the active period.",
+    "ENROLLMENT_NOT_ACTIVE": "This enrollment is already cancelled.",
+    "ENROLLMENT_CANCEL_WINDOW_PASSED": "You can only cancel up to {{minutes}} minutes before the session.",
+    "ENROLLMENT_SESSION_NOT_CANCELLABLE": "This session has passed or was cancelled and cannot be changed."
   },
   "validation": {
     "required": "This field is required.",
@@ -524,6 +532,106 @@
     "preview": {
       "exists": "Already registered",
       "confirm": "Import ({{count}})"
+    }
+  },
+  "student": {
+    "modules": {
+      "title": "Tutoring",
+      "search": "Search tutoring by name",
+      "segments": {
+        "available": "Available",
+        "mine": "My tutoring"
+      },
+      "state": {
+        "AVAILABLE": "Spots available",
+        "LAST_SPOTS": "Last spots",
+        "FULL": "Full",
+        "ENROLLED": "Enrolled",
+        "SCHEDULE_CONFLICT": "Schedule conflict",
+        "UNAVAILABLE": "Unavailable"
+      },
+      "card": {
+        "occupied": "{{occupied}}/{{capacity}} spots",
+        "weekly": "Weekly · {{schedule}}",
+        "room": "{{room}} · {{location}}"
+      },
+      "action": {
+        "enroll": "Enroll",
+        "enrolled": "Enrolled",
+        "full": "Full",
+        "noSeats": "No spots left"
+      },
+      "block": {
+        "SCHEDULE_CONFLICT": "It overlaps {{module}} on {{day}} from {{start}} to {{end}}.",
+        "UNAVAILABLE": "The teacher or the room is unavailable."
+      },
+      "empty": {
+        "title": "No tutoring available",
+        "description": "When the CAE publishes modules for the active period, they will show up here."
+      },
+      "emptyFiltered": {
+        "title": "No results",
+        "description": "No tutoring matches your search."
+      },
+      "loadError": "We could not load the tutoring",
+      "detail": {
+        "teacher": "Teacher",
+        "room": "Room",
+        "schedule": "Schedule",
+        "sessions": "Upcoming sessions",
+        "noSessions": "There are no future sessions.",
+        "enrolledNotice": "You are enrolled in this module."
+      }
+    },
+    "cancel": {
+      "action": "Cancel enrollment",
+      "back": "Back",
+      "sheet": {
+        "title": "What do you want to cancel?",
+        "sessionRule": "You can cancel a session up to {{minutes}} minutes before it starts.",
+        "moduleRule": "Cancelling the module frees your spot from the first session that starts in more than {{minutes}} minutes."
+      },
+      "scope": {
+        "session": "Only this session",
+        "module": "The whole module"
+      },
+      "confirm": {
+        "title": "Cancel the enrollment?",
+        "message": "You will stop attending every session of this module. You can enroll again if there is room.",
+        "action": "Cancel enrollment"
+      },
+      "session": {
+        "cancel": "Cancel session",
+        "restore": "Restore",
+        "SCHEDULED": "Scheduled",
+        "RESCHEDULED": "Rescheduled",
+        "HOLIDAY": "Cancelled for a holiday",
+        "CANCELLED": "Cancelled",
+        "byMe": "Cancelled by you"
+      },
+      "block": {
+        "WINDOW_PASSED": "You can no longer change it: less than {{minutes}} minutes left.",
+        "PERIOD_CLOSED": "Closed period, read only.",
+        "SESSION_CANCELLED": "The session is cancelled.",
+        "NO_SEAT": "There is no room to restore this session."
+      },
+      "readOnly": "Closed period, read only."
+    },
+    "mine": {
+      "empty": {
+        "title": "You are not enrolled yet",
+        "description": "Pick a tutoring of the active period to enroll.",
+        "action": "See available tutoring"
+      },
+      "loadError": "We could not load your tutoring",
+      "status": {
+        "ACTIVE": "Active",
+        "CANCELLED": "Cancelled",
+        "CLOSED": "Closed period"
+      },
+      "next": "Next session: {{date}} · {{time}}",
+      "noNext": "No upcoming sessions",
+      "upcoming": "{{count}} sessions to go"
     }
   }
 }
