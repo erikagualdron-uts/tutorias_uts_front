@@ -13,7 +13,7 @@ export function SessionRow({ session }: { session: Session }) {
   const end = bogotaParts(session.endsAt);
   const cancelled = session.status === 'CANCELLED';
   const state = cancelled
-    ? t(session.cancelReason === 'HOLIDAY' ? 'modules.session.holiday' : 'modules.session.CANCELLED')
+    ? t(session.cancelReason === 'HOLIDAY' ? 'modules.session.holiday' : session.cancelReason === 'TEACHER' ? 'modules.session.teacher' : 'modules.session.CANCELLED')
     : t(`modules.session.${session.status}`);
 
   return (

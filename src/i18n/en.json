@@ -283,7 +283,8 @@
       "SCHEDULED": "Scheduled",
       "RESCHEDULED": "Rescheduled",
       "CANCELLED": "Cancelled",
-      "holiday": "Cancelled for a holiday"
+      "holiday": "Cancelled for a holiday",
+      "teacher": "Cancelled by the teacher"
     },
     "detail": {
       "sessions": "Sessions",
@@ -620,7 +621,8 @@
         "RESCHEDULED": "Rescheduled",
         "HOLIDAY": "Cancelled for a holiday",
         "CANCELLED": "Cancelled",
-        "byMe": "Cancelled by you"
+        "byMe": "Cancelled by you",
+        "TEACHER": "Cancelled by the teacher"
       },
       "block": {
         "WINDOW_PASSED": "You can no longer change it: less than {{minutes}} minutes left.",
@@ -689,6 +691,18 @@
       "pickAnother": "Pick a date or time different from the current one.",
       "confirm": "Confirm change",
       "back": "Back"
+    },
+    "cancel": {
+      "action": "Cancel session",
+      "restore": "Restore session",
+      "confirm": {
+        "title": "Cancel the session?",
+        "message": {
+          "SESSION": "Enrolled students will see it cancelled by the teacher. You can restore it while 2 hours or more are left.",
+          "SERIES": "This session and the following ones of its weekly slot will be cancelled. Enrolled students will see them cancelled by the teacher."
+        },
+        "action": "Cancel session"
+      }
     }
   }
 }

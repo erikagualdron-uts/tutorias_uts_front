@@ -54,3 +54,26 @@ export function useReschedule() {
     onSuccess: invalidate,
   });
 }
+
+interface ScopeInput {
+  sessionId: string;
+  scope: SessionScope;
+}
+
+export function useCancelSession() {
+  const invalidate = useInvalidateTeacher();
+  return useMutation({
+    mutationFn: ({ sessionId, scope }: ScopeInput) =>
+      api<SessionChange>(`/teacher/sessions/${sessionId}/cancel`, { method: 'POST', body: { scope } }),
+    onSuccess: invalidate,
+  });
+}
+
+export function useRestoreSession() {
+  const invalidate = useInvalidateTeacher();
+  return useMutation({
+    mutationFn: ({ sessionId, scope }: ScopeInput) =>
+      api<SessionChange>(`/teacher/sessions/${sessionId}/restore`, { method: 'POST', body: { scope } }),
+    onSuccess: invalidate,
+  });
+}

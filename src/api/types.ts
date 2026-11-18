@@ -158,7 +158,7 @@ export interface Session {
   endsAt: string;
   originalStartsAt: string;
   status: SessionStatus;
-  cancelReason: 'HOLIDAY' | null;
+  cancelReason: 'HOLIDAY' | 'TEACHER' | null;
   teacher: PersonRef;
   room: RoomRef;
 }

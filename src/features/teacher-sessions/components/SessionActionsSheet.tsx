@@ -5,15 +5,16 @@ import type { SessionScope, TeacherSession } from '@/api/types';
 import { errorMessage } from '@/api/errors';
 import { Banner } from '@/components/Banner';
 import { Button } from '@/components/Button';
+import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { DateField } from '@/components/DateField';
 import { FilterChips } from '@/components/FilterChips';
 import { SelectField } from '@/components/SelectField';
-import { bogotaDay, bogotaParts } from '@/features/modules/format';
 import { PickerSheet } from '@/features/modules/components/PickerSheet';
+import { bogotaDay, bogotaParts } from '@/features/modules/format';
 import { TIME_OPTIONS } from '@/features/modules/schemas';
 import { radius, spacing, typography, usePalette } from '@/theme';
-import { weekBounds, toUtcIso } from '../format';
-import { useReschedule, useRescheduleCheck } from '../hooks/useTeacherSessions';
+import { toUtcIso, weekBounds } from '../format';
+import { useCancelSession, useReschedule, useRescheduleCheck, useRestoreSession } from '../hooks/useTeacherSessions';
 
 interface SessionActionsSheetProps {
   session: TeacherSession;
@@ -21,7 +22,7 @@ interface SessionActionsSheetProps {
   onClose: () => void;
 }
 
-type Mode = 'menu' | 'reschedule';
+type Mode = 'menu' | 'reschedule' | 'cancel' | 'restore';
 
 // Bottom sheet of one session: what it is, the rule of the hour and the actions the rules allow.
 // A blocked action shows the rule that blocks it (docs/Design.md).
@@ -35,8 +36,11 @@ export function SessionActionsSheet({ session, minutes, onClose }: SessionAction
   const [day, setDay] = useState(bogotaDay(session.startsAt));
   const [time, setTime] = useState(start.time);
   const [picking, setPicking] = useState(false);
+  const [confirming, setConfirming] = useState(false);
   const check = useRescheduleCheck();
   const reschedule = useReschedule();
+  const cancel = useCancelSession();
+  const restore = useRestoreSession();
   const week = weekBounds(bogotaDay(session.startsAt));
   const startsAt = toUtcIso(day, time);
   const unchanged = startsAt === new Date(session.startsAt).toISOString();
@@ -48,8 +52,19 @@ export function SessionActionsSheet({ session, minutes, onClose }: SessionAction
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, scope, startsAt]);
 
-  const failure = [check, reschedule].find((m) => m.isError)?.error;
+  const failure = [check, reschedule, cancel, restore].find((m) => m.isError)?.error;
   const ready = mode === 'reschedule' && !unchanged && check.isSuccess && !reschedule.isPending;
+  const scopeChips = (
+    <FilterChips<SessionScope>
+      options={[
+        { value: 'SESSION', label: t('teacher.reschedule.scope.SESSION') },
+        { value: 'SERIES', label: t('teacher.reschedule.scope.SERIES') },
+      ]}
+      value={scope}
+      onChange={(value) => setScope(value ?? 'SESSION')}
+    />
+  );
+  const back = <Button label={t('teacher.reschedule.back')} icon="back" variant="tonal" onPress={() => setMode('menu')} />;
 
   return (
     <Modal transparent animationType="slide" onRequestClose={onClose}>
@@ -65,24 +80,26 @@ export function SessionActionsSheet({ session, minutes, onClose }: SessionAction
             {t('teacher.schedule.rule', { minutes })}
           </Text>
           {session.blockReason ? <Banner message={t(`teacher.schedule.block.${session.blockReason}`, { minutes })} /> : null}
+          {failure && mode !== 'reschedule' ? <Banner message={errorMessage(t, failure)} /> : null}
 
           {mode === 'menu' ? (
             <>
               {session.canReschedule ? (
                 <Button label={t('teacher.reschedule.action')} icon="reschedule" onPress={() => setMode('reschedule')} />
               ) : null}
+              {session.canCancel ? (
+                <Button label={t('teacher.cancel.action')} icon="unenroll" variant="outlined" onPress={() => setMode('cancel')} />
+              ) : null}
+              {session.canRestore ? (
+                <Button label={t('teacher.cancel.restore')} icon="restart" onPress={() => setMode('restore')} />
+              ) : null}
               <Button label={t('teacher.schedule.close')} icon="closeCircle" variant="tonal" onPress={onClose} />
             </>
-          ) : (
+          ) : null}
+
+          {mode === 'reschedule' ? (
             <>
-              <FilterChips<SessionScope>
-                options={[
-                  { value: 'SESSION', label: t('teacher.reschedule.scope.SESSION') },
-                  { value: 'SERIES', label: t('teacher.reschedule.scope.SERIES') },
-                ]}
-                value={scope}
-                onChange={(value) => setScope(value ?? 'SESSION')}
-              />
+              {scopeChips}
               <DateField
                 label={t('teacher.reschedule.date')}
                 placeholder={t('teacher.reschedule.date')}
@@ -118,9 +135,30 @@ export function SessionActionsSheet({ session, minutes, onClose }: SessionAction
                 helperText={unchanged ? t('teacher.reschedule.pickAnother') : undefined}
                 onPress={() => reschedule.mutate({ sessionId: session.id, scope, startsAt }, { onSuccess: onClose })}
               />
-              <Button label={t('teacher.reschedule.back')} icon="back" variant="tonal" onPress={() => setMode('menu')} />
+              {back}
             </>
-          )}
+          ) : null}
+
+          {mode === 'cancel' ? (
+            <>
+              {scopeChips}
+              <Button label={t('teacher.cancel.confirm.action')} icon="unenroll" variant="outlined" onPress={() => setConfirming(true)} />
+              {back}
+            </>
+          ) : null}
+
+          {mode === 'restore' ? (
+            <>
+              {scopeChips}
+              <Button
+                label={t('teacher.cancel.restore')}
+                icon="restart"
+                loading={restore.isPending}
+                onPress={() => restore.mutate({ sessionId: session.id, scope }, { onSuccess: onClose })}
+              />
+              {back}
+            </>
+          ) : null}
         </ScrollView>
       </View>
       <PickerSheet
@@ -135,6 +173,22 @@ export function SessionActionsSheet({ session, minutes, onClose }: SessionAction
           setPicking(false);
         }}
       />
+      {confirming ? (
+        <ConfirmDialog
+          title={t('teacher.cancel.confirm.title')}
+          message={t(`teacher.cancel.confirm.message.${scope}`)}
+          confirmLabel={t('teacher.cancel.confirm.action')}
+          confirmIcon="unenroll"
+          loading={cancel.isPending}
+          onConfirm={() =>
+            cancel.mutate(
+              { sessionId: session.id, scope },
+              { onSuccess: onClose, onSettled: () => setConfirming(false) },
+            )
+          }
+          onCancel={() => setConfirming(false)}
+        />
+      ) : null}
     </Modal>
   );
 }

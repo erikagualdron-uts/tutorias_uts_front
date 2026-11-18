@@ -25,7 +25,7 @@ export function SessionRow({ session, minutes, onCancel, onRestore, restoring = 
   const end = bogotaParts(session.endsAt);
   const holiday = session.status === 'CANCELLED';
   const state = holiday
-    ? t(session.cancelReason === 'HOLIDAY' ? 'student.cancel.session.HOLIDAY' : 'student.cancel.session.CANCELLED')
+    ? t(`student.cancel.session.${session.cancelReason ?? 'CANCELLED'}`)
     : session.cancelledByStudent
       ? t('student.cancel.session.byMe')
       : t(`student.cancel.session.${session.status}`);

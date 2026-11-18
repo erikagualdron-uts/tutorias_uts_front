@@ -283,7 +283,8 @@
       "SCHEDULED": "Programada",
       "RESCHEDULED": "Reprogramada",
       "CANCELLED": "Cancelada",
-      "holiday": "Cancelada por festivo"
+      "holiday": "Cancelada por festivo",
+      "teacher": "Cancelada por el docente"
     },
     "detail": {
       "sessions": "Sesiones",
@@ -620,7 +621,8 @@
         "RESCHEDULED": "Reprogramada",
         "HOLIDAY": "Cancelada por festivo",
         "CANCELLED": "Cancelada",
-        "byMe": "Cancelada por ti"
+        "byMe": "Cancelada por ti",
+        "TEACHER": "Cancelada por el docente"
       },
       "block": {
         "WINDOW_PASSED": "Ya no puedes cambiarla: faltan menos de {{minutes}} minutos.",
@@ -689,6 +691,18 @@
       "pickAnother": "Elige una fecha u hora distinta a la actual.",
       "confirm": "Confirmar cambio",
       "back": "Volver"
+    },
+    "cancel": {
+      "action": "Cancelar sesión",
+      "restore": "Reactivar sesión",
+      "confirm": {
+        "title": "¿Cancelar la sesión?",
+        "message": {
+          "SESSION": "Los estudiantes inscritos la verán cancelada por el docente. Podrás reactivarla mientras falten 2 horas o más.",
+          "SERIES": "Se cancelarán esta sesión y las futuras de su horario semanal. Los estudiantes inscritos las verán canceladas por el docente."
+        },
+        "action": "Cancelar sesión"
+      }
     }
   }
 }

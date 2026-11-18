@@ -27,6 +27,7 @@ beforeEach(async () => {
           sessionOf(),
           sessionOf({ id: 'x2', startsAt: '2030-01-15T23:30:00.000Z', endsAt: '2030-01-16T01:30:00.000Z' }),
           sessionOf({ id: 'x3', startsAt: '2030-01-22T19:00:00.000Z', status: 'CANCELLED', cancelReason: 'HOLIDAY' }),
+          sessionOf({ id: 'x4', startsAt: '2030-01-29T19:00:00.000Z', status: 'CANCELLED', cancelReason: 'TEACHER' }),
         ]),
       );
     }
@@ -58,6 +59,11 @@ describe('ModuleDetailScreen', () => {
     await renderScreen(<ModuleDetailScreen />);
     expect(await screen.findByText('Cancelada por festivo')).toBeTruthy();
     expect(screen.getAllByText('Programada')).toHaveLength(2);
+  });
+
+  it('says when the teacher cancelled a session', async () => {
+    await renderScreen(<ModuleDetailScreen />);
+    expect(await screen.findByText('Cancelada por el docente')).toBeTruthy();
   });
 
   it('lists the dates left without a session because of a holiday', async () => {
