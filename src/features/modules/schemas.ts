@@ -6,6 +6,14 @@ const TIME = /^([01]\d|2[0-3]):[0-5]\d$/;
 export const EARLIEST_TIME = '06:00';
 export const LATEST_TIME = '18:00';
 
+// Hours that can be picked, in steps of 15 minutes (a UI choice), inside that window.
+export const TIME_OPTIONS = Array.from({ length: 96 }, (_, i) => {
+  const minutes = i * 15;
+  const hh = String(Math.floor(minutes / 60)).padStart(2, '0');
+  const mm = String(minutes % 60).padStart(2, '0');
+  return `${hh}:${mm}`;
+}).filter((time) => time >= EARLIEST_TIME && time <= LATEST_TIME);
+
 // "HH:mm" to minutes from midnight (the same representation the API uses).
 export const toMinutes = (time: string) =>
   Number(time.slice(0, 2)) * 60 + Number(time.slice(3, 5));

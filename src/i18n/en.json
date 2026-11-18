@@ -674,6 +674,21 @@
         "description": "When the CAE assigns you modules of the active period, their sessions will show up here."
       },
       "loadError": "We could not load your schedule"
+    },
+    "reschedule": {
+      "action": "Reschedule",
+      "scope": {
+        "SESSION": "Only this session",
+        "SERIES": "This and the following"
+      },
+      "date": "New date",
+      "time": "New time",
+      "weekHint": "You can only move it within its own week.",
+      "checking": "Checking availability…",
+      "available": "Time available. Sessions that move: {{sessions}}.",
+      "pickAnother": "Pick a date or time different from the current one.",
+      "confirm": "Confirm change",
+      "back": "Back"
     }
   }
 }

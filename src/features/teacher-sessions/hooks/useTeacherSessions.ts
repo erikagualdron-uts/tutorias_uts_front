@@ -1,6 +1,6 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/api/client';
-import type { TeacherModulePage, TeacherSessionPage } from '@/api/types';
+import type { SessionChange, SessionScope, TeacherModulePage, TeacherSessionPage } from '@/api/types';
 
 export function useTeacherModules() {
   return useQuery({
@@ -27,4 +27,30 @@ export function useInvalidateTeacher() {
       client.invalidateQueries({ queryKey: ['student', 'modules'] }),
       client.invalidateQueries({ queryKey: ['student', 'enrollments'] }),
     ]);
+}
+
+export interface RescheduleInput {
+  sessionId: string;
+  scope: SessionScope;
+  startsAt: string;
+}
+
+// Asks the API whether the new hour would be accepted, without changing anything (dryRun).
+export function useRescheduleCheck() {
+  return useMutation({
+    mutationFn: ({ sessionId, scope, startsAt }: RescheduleInput) =>
+      api<SessionChange>(`/teacher/sessions/${sessionId}/reschedule`, {
+        method: 'POST',
+        body: { scope, startsAt, dryRun: true },
+      }),
+  });
+}
+
+export function useReschedule() {
+  const invalidate = useInvalidateTeacher();
+  return useMutation({
+    mutationFn: ({ sessionId, scope, startsAt }: RescheduleInput) =>
+      api<SessionChange>(`/teacher/sessions/${sessionId}/reschedule`, { method: 'POST', body: { scope, startsAt } }),
+    onSuccess: invalidate,
+  });
 }
