@@ -4,12 +4,8 @@ import type { TeacherSession } from '@/api/types';
 import { Card } from '@/components/Card';
 import { bogotaParts } from '@/features/modules/format';
 import { Icon } from '@/icons/Icon';
+import { sessionStateKey } from '../calendarItems';
 import { radius, spacing, typography, usePalette } from '@/theme';
-
-export function sessionStateKey(session: TeacherSession) {
-  if (session.status === 'CANCELLED') return session.cancelReason === 'TEACHER' ? 'TEACHER' : 'HOLIDAY';
-  return session.status;
-}
 
 // A session of the teacher: module, hours (Bogota), room and attendees. The state is text plus icon.
 export function TeacherSessionCard({ session, onPress }: { session: TeacherSession; onPress: () => void }) {

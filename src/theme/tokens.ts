@@ -26,6 +26,17 @@ export const radius = {
 } as const;
 
 export const MIN_TOUCH_TARGET = 48;
+
+// Weekly calendar (docs/Design.md, Weekly schedule): hour rows of 64, blocks of at least 44, phones under 600.
+export const calendarLayout = {
+  hourHeight: 64,
+  minBlockHeight: 44,
+  timeColumnWidth: 48,
+  weekColumnWidth: 132,
+  weekHeaderHeight: 56,
+  maxBodyHeight: 460,
+  tabletMinWidth: 600,
+} as const;
 export const buttonHeight = { default: 52, compact: 44 } as const;
 export const iconSize = { inline: 16, button: 20, nav: 24, empty: 40 } as const;
 

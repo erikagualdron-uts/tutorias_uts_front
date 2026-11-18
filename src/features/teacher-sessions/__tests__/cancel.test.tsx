@@ -4,7 +4,7 @@ import { api } from '@/api/client';
 import { ApiError } from '@/api/errors';
 import i18n from '@/i18n';
 import { TeacherScheduleScreen } from '../screens/TeacherScheduleScreen';
-import { modulesPage, sessionsPage, teacherModuleOf, teacherSessionOf } from '../test-fixtures';
+import { calendarPage, modulesPage, sessionsPage, teacherModuleOf, teacherSessionOf } from '../test-fixtures';
 
 jest.mock('@/api/client', () => ({ api: jest.fn() }));
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), back: jest.fn() } }));
@@ -28,6 +28,7 @@ beforeEach(async () => {
   write = () => Promise.resolve({ scope: 'SESSION', dryRun: false, sessions: [session] });
   mockedApi.mockImplementation((path: string, options?: { method?: string }) => {
     if (options?.method === 'POST') return write();
+    if (path.startsWith('/teacher/calendar')) return Promise.resolve(calendarPage([]));
     return path.startsWith('/teacher/modules') ? Promise.resolve(modulesPage([teacherModuleOf()])) : Promise.resolve(sessionsPage([session]));
   });
   await i18n.changeLanguage('es');

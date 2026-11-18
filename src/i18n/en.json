@@ -675,7 +675,8 @@
         "title": "No upcoming sessions",
         "description": "When the CAE assigns you modules of the active period, their sessions will show up here."
       },
-      "loadError": "We could not load your schedule"
+      "loadError": "We could not load your schedule",
+      "myModules": "My modules"
     },
     "reschedule": {
       "action": "Reschedule",
@@ -704,5 +705,24 @@
         "action": "Cancel session"
       }
     }
+  },
+  "calendar": {
+    "today": "Today",
+    "previousWeek": "Previous week",
+    "nextWeek": "Next week",
+    "viewDay": "Day",
+    "viewWeek": "Week",
+    "views": "Calendar view",
+    "weekRange": "{{from}} – {{to}}",
+    "outsidePeriod": "Outside the academic period",
+    "noPeriod": "No academic period",
+    "noSessionsDay": "No sessions this day",
+    "now": "Now",
+    "loadError": "We could not load the week",
+    "selected": "selected",
+    "isToday": "today",
+    "day_none": "{{label}}, no sessions",
+    "day_one": "{{label}}, {{count}} session",
+    "day_other": "{{label}}, {{count}} sessions"
   }
 }

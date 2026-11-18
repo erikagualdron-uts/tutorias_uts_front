@@ -321,3 +321,24 @@ export interface SessionChange {
   dryRun?: boolean;
   sessions: TeacherSession[];
 }
+
+// ---- Teacher weekly calendar (spec 013, contracts/teacher-calendar-api.yaml) ----
+
+export interface CalendarPeriod {
+  id: string;
+  name: string;
+  startsOn: string;
+  endsOn: string;
+  status: 'ACTIVE' | 'CLOSED';
+}
+
+export interface TeacherCalendar {
+  data: TeacherSession[];
+  meta: {
+    from: string;
+    to: string;
+    period: CalendarPeriod | null;
+    hours: { earliest: string; latest: string };
+    changeLeadMinutes: number;
+  };
+}
