@@ -84,7 +84,20 @@
     "ENROLLMENT_PERIOD_NOT_OPEN": "Solo puedes inscribirte a módulos del periodo activo.",
     "ENROLLMENT_NOT_ACTIVE": "Esta inscripción ya está cancelada.",
     "ENROLLMENT_CANCEL_WINDOW_PASSED": "Solo puedes cancelar hasta {{minutes}} minutos antes de la sesión.",
-    "ENROLLMENT_SESSION_NOT_CANCELLABLE": "Esta sesión ya pasó o fue cancelada, no se puede cambiar."
+    "ENROLLMENT_SESSION_NOT_CANCELLABLE": "Esta sesión ya pasó o fue cancelada, no se puede cambiar.",
+    "SESSION_CHANGE_WINDOW_PASSED": "Solo puedes cambiar una sesión hasta {{minutes}} minutos antes de que empiece.",
+    "SESSION_NOT_CHANGEABLE": "Esta sesión no se puede cambiar.",
+    "SESSION_NOT_CHANGEABLE_PAST": "La sesión ya pasó.",
+    "SESSION_NOT_CHANGEABLE_CANCELLED": "La sesión ya está cancelada.",
+    "SESSION_NOT_CHANGEABLE_NOT_CANCELLED": "La sesión no está cancelada.",
+    "SESSION_NOT_CHANGEABLE_CANCELLED_BY_OTHER": "Solo puedes reactivar sesiones que cancelaste tú, no las de festivo.",
+    "SESSION_RESCHEDULE_INVALID_DATE": "La nueva fecha u hora no es válida.",
+    "SESSION_RESCHEDULE_INVALID_DATE_NO_CHANGE": "Elige una hora distinta a la actual.",
+    "SESSION_RESCHEDULE_INVALID_DATE_PAST": "La nueva hora ya pasó.",
+    "SESSION_RESCHEDULE_INVALID_DATE_OUT_OF_WEEK": "Solo puedes mover la sesión dentro de su misma semana.",
+    "SESSION_RESCHEDULE_INVALID_DATE_OUT_OF_PERIOD": "La nueva fecha queda fuera del periodo del módulo.",
+    "SESSION_RESCHEDULE_INVALID_DATE_HOLIDAY": "El {{date}} es festivo: no hay tutorías ese día.",
+    "SESSION_STUDENT_CONFLICT": "{{students}} estudiantes inscritos ya tienen otra tutoría a esa hora."
   },
   "validation": {
     "required": "Este campo es obligatorio.",
