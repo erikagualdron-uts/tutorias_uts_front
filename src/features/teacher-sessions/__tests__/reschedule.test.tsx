@@ -4,7 +4,7 @@ import { api } from '@/api/client';
 import { ApiError } from '@/api/errors';
 import i18n from '@/i18n';
 import { TeacherScheduleScreen } from '../screens/TeacherScheduleScreen';
-import { modulesPage, sessionsPage, teacherModuleOf, teacherSessionOf } from '../test-fixtures';
+import { calendarPage, modulesPage, sessionsPage, teacherModuleOf, teacherSessionOf } from '../test-fixtures';
 
 jest.mock('@/api/client', () => ({ api: jest.fn() }));
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), back: jest.fn() } }));
@@ -30,6 +30,7 @@ beforeEach(async () => {
   write = (body) => Promise.resolve({ scope: body.scope, dryRun: !!body.dryRun, sessions: [teacherSessionOf()] });
   mockedApi.mockImplementation((path: string, options?: { method?: string; body?: never }) => {
     if (options?.method === 'POST') return write(options.body as never);
+    if (path.startsWith('/teacher/calendar')) return Promise.resolve(calendarPage([]));
     return path.startsWith('/teacher/modules') ? Promise.resolve(modulesPage([teacherModuleOf()])) : sessions();
   });
   await i18n.changeLanguage('es');
@@ -87,7 +88,7 @@ describe('reschedule sheet', () => {
     [new ApiError(409, 'MODULE_ROOM_CONFLICT', { conflict: { moduleName: 'Física', dayOfWeek: 2, startTime: '16:00', endTime: '18:00' } }), 'ocupado por el módulo Física'],
     [new ApiError(409, 'MODULE_TEACHER_CONFLICT', { conflict: { moduleName: 'Física', dayOfWeek: 2, startTime: '16:00', endTime: '18:00' } }), 'ya tiene el módulo Física'],
     [new ApiError(422, 'SESSION_RESCHEDULE_INVALID_DATE', { reason: 'HOLIDAY', date: '2030-01-10' }), 'festivo'],
-    [new ApiError(422, 'SESSION_RESCHEDULE_INVALID_DATE', { reason: 'OUT_OF_WEEK' }), 'misma semana'],
+    [new ApiError(422, 'SESSION_RESCHEDULE_INVALID_DATE', { reason: 'OUT_OF_WEEK' }), 'mover la sesión dentro de su misma semana'],
     [new ApiError(422, 'MODULE_SCHEDULE_OUT_OF_HOURS', { earliest: '06:00', latest: '18:00' }), 'entre las 06:00 y las 18:00'],
     [new ApiError(409, 'SESSION_STUDENT_CONFLICT', { students: 2 }), '2 estudiantes inscritos'],
   ])('shows the reason of a rejection and keeps the confirmation off (%#)', async (error, text) => {

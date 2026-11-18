@@ -150,15 +150,24 @@ interface IconButtonProps {
   label: string;
   onPress: () => void;
   color?: string;
+  // Looks and reads as disabled but still takes the press, so the caller can explain the rule.
+  blocked?: boolean;
 }
 
-export function IconButton({ icon, label, onPress, color }: IconButtonProps) {
+export function IconButton({
+  icon,
+  label,
+  onPress,
+  color,
+  blocked = false,
+}: IconButtonProps) {
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={label}
+      accessibilityState={{ disabled: blocked }}
       onPress={onPress}
-      style={styles.iconButton}
+      style={[styles.iconButton, blocked && styles.blocked]}
     >
       <Icon name={icon} size={24} color={color} />
     </Pressable>
@@ -179,6 +188,7 @@ const styles = StyleSheet.create({
   hidden: { opacity: 0 },
   spinner: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   helper: { marginTop: spacing.sm, textAlign: 'center' },
+  blocked: { opacity: 0.4 },
   iconButton: {
     width: MIN_TOUCH_TARGET,
     height: MIN_TOUCH_TARGET,
