@@ -1,0 +1,201 @@
+export type Role = 'SUPERADMIN' | 'TEACHER' | 'STUDENT';
+export type ApiLocale = 'es' | 'en';
+
+export interface UserSummary {
+  id: string;
+  email: string;
+  role: Role;
+  mustChangePassword: boolean;
+  locale: ApiLocale;
+  firstName?: string;
+  lastName?: string;
+}
+
+export interface AuthTokens {
+  accessToken: string;
+  refreshToken: string;
+  user: UserSummary;
+}
+
+export interface Page<T> {
+  data: T[];
+  meta: { page: number; limit: number; total: number };
+}
+
+export type PeriodStatus = 'UPCOMING' | 'ACTIVE' | 'CLOSED';
+
+export interface Period {
+  id: string;
+  name: string;
+  startsOn: string; // YYYY-MM-DD, America/Bogota calendar day
+  endsOn: string;
+  status: PeriodStatus;
+  closedAt: string | null;
+  closedBy: 'MANUAL' | 'AUTOMATIC' | null;
+  hasModules: boolean;
+}
+
+export interface PeriodInput {
+  name: string;
+  startsOn: string;
+  endsOn: string;
+}
+
+export interface Location {
+  id: string;
+  name: string;
+  roomCounts?: { active: number; inactive: number };
+}
+
+export type RoomStatus = 'ACTIVE' | 'INACTIVE';
+
+export interface Room {
+  id: string;
+  locationId: string;
+  locationName: string;
+  name: string;
+  capacity: number;
+  status: RoomStatus;
+}
+
+export interface RoomImpact {
+  modulesInActivePeriod: number;
+  modulesInUpcomingPeriods: number;
+  maxEnrolled: number;
+}
+
+export interface DropdownList {
+  key: string;
+  nameEs: string;
+  nameEn: string;
+  itemCount: number;
+}
+
+export interface DropdownItem {
+  id: string;
+  labelEs: string;
+  labelEn: string;
+  sortOrder: number;
+  status: 'ACTIVE' | 'INACTIVE';
+  inUse?: boolean;
+}
+
+export interface DropdownListDetail {
+  key: string;
+  nameEs: string;
+  nameEn: string;
+  items: DropdownItem[];
+}
+
+// ---- Modules, sessions and holidays (spec 010, contracts/modules-api.yaml) ----
+
+export interface PersonRef {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface Teacher extends PersonRef {
+  status: 'ACTIVE' | 'INACTIVE';
+}
+
+export interface RoomRef {
+  id: string;
+  name: string;
+  locationName: string;
+  capacity: number;
+}
+
+// Weekly slot in local America/Bogota time. dayOfWeek: 1 = Monday ... 7 = Sunday.
+export interface ScheduleInput {
+  dayOfWeek: number;
+  startTime: string; // HH:mm
+  endTime: string; // HH:mm
+}
+
+export interface Schedule extends ScheduleInput {
+  id: string;
+  sessionsGenerated?: number;
+}
+
+export interface ModuleInput {
+  periodId: string;
+  name: string;
+  description?: string | null;
+  teacherId: string;
+  roomId: string;
+  schedules: ScheduleInput[];
+}
+
+export interface Module {
+  id: string;
+  periodId: string;
+  periodStatus: PeriodStatus;
+  name: string;
+  teacher: PersonRef;
+  room: RoomRef;
+  capacity: number; // capacity of the current room (the cupo)
+  enrolled: number;
+  schedules: ScheduleInput[];
+  roomUnavailable: boolean;
+  teacherUnavailable: boolean;
+}
+
+export interface ModuleDetail extends Omit<Module, 'schedules'> {
+  description: string | null;
+  schedules: Schedule[];
+  holidayDates: string[]; // YYYY-MM-DD
+  canChangeSchedules: boolean;
+  canDelete: boolean;
+  readOnlyReason: 'PERIOD_CLOSED' | null;
+}
+
+export type SessionStatus = 'SCHEDULED' | 'RESCHEDULED' | 'CANCELLED';
+
+export interface Session {
+  id: string;
+  startsAt: string; // ISO 8601 UTC
+  endsAt: string;
+  originalStartsAt: string;
+  status: SessionStatus;
+  cancelReason: 'HOLIDAY' | null;
+  teacher: PersonRef;
+  room: RoomRef;
+}
+
+export interface Holiday {
+  id: string;
+  date: string; // YYYY-MM-DD
+  name: string;
+  source: 'MANUAL' | 'IMPORTED';
+  isPast: boolean;
+}
+
+export interface HolidayInput {
+  date: string;
+  name: string;
+}
+
+export interface HolidayPreview {
+  date: string;
+  name: string;
+  alreadyExists: boolean;
+  isPast: boolean;
+}
+
+export interface HolidayResult {
+  holiday: Holiday;
+  cancelledSessions: number;
+}
+
+export interface HolidayRemoval {
+  restored: number;
+  generated: number;
+  notRestored: {
+    sessionId: string;
+    moduleId: string;
+    reason: 'TEACHER_BUSY' | 'ROOM_BUSY';
+  }[];
+}
+
+export type ModulePage = Page<Module> & { meta: { periodId: string | null } };

@@ -1,0 +1,529 @@
+{
+  "brand": {
+    "name": "UTS Tutorías",
+    "institution": "Institución Universitaria Tecnológica de Santander – UTS"
+  },
+  "common": {
+    "loading": "Cargando…",
+    "tryAgain": "Intentar de nuevo",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "clearSearch": "Limpiar búsqueda",
+    "met": "Cumplido",
+    "unmet": "Pendiente",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "loadingSlow": "Cargando… Esto está tardando más de lo normal."
+  },
+  "dateField": {
+    "empty": "Sin seleccionar",
+    "hint": "Abre un selector de fecha",
+    "placeholder": "dd/mm/aaaa"
+  },
+  "errors": {
+    "UNKNOWN": "Ocurrió un error inesperado. Inténtalo de nuevo.",
+    "NETWORK": "No hay conexión con el servidor. Revisa tu internet.",
+    "VALIDATION_FAILED": "Revisa los datos ingresados.",
+    "EMAIL_ALREADY_REGISTERED": "Este correo ya está registrado. Inicia sesión o recupera tu contraseña.",
+    "EMAIL_DOMAIN_NOT_ALLOWED": "El correo no pertenece a un dominio permitido para esta acción.",
+    "CODE_INVALID": "El código no es correcto.",
+    "CODE_EXPIRED": "El código venció. Solicita uno nuevo.",
+    "CODE_ATTEMPTS_EXCEEDED": "Superaste los intentos permitidos. Solicita un código nuevo.",
+    "INVALID_CREDENTIALS": "Correo o contraseña incorrectos.",
+    "EMAIL_NOT_VERIFIED": "Debes verificar tu correo antes de iniciar sesión.",
+    "ACCOUNT_DISABLED": "Tu cuenta está desactivada. Comunícate con el CAE.",
+    "ACCOUNT_UNAVAILABLE": "Esta cuenta ya no está disponible.",
+    "SESSION_EXPIRED": "Tu sesión caducó. Inicia sesión de nuevo.",
+    "SESSION_REVOKED": "Tu sesión se cerró. Inicia sesión de nuevo.",
+    "TOKEN_INVALID": "Tu sesión no es válida. Inicia sesión de nuevo.",
+    "PASSWORD_TOO_WEAK": "La contraseña debe tener al menos 8 caracteres, con letras y números.",
+    "PASSWORD_SAME_AS_CURRENT": "La nueva contraseña debe ser distinta de la actual.",
+    "PASSWORD_CHANGE_REQUIRED": "Debes cambiar tu contraseña temporal antes de continuar.",
+    "FORBIDDEN_ROLE": "No tienes permiso para esta acción.",
+    "RATE_LIMITED": "Demasiados intentos. Inténtalo de nuevo en {{seconds}} segundos.",
+    "NOT_FOUND": "No encontramos lo que buscas.",
+    "INTERNAL_ERROR": "Ocurrió un error en el servidor. Inténtalo más tarde.",
+    "PERIOD_NAME_TAKEN": "Ya existe un periodo con ese nombre.",
+    "PERIOD_DATES_INVALID": "La fecha de fin debe ser posterior a la de inicio, y un periodo activo no puede terminar antes de hoy.",
+    "PERIOD_DATES_OVERLAP": "Las fechas se solapan con el periodo {{name}}.",
+    "PERIOD_ACTIVE_EXISTS": "Ya hay un periodo activo: {{name}}.",
+    "PERIOD_CLOSED_READ_ONLY": "Un periodo cerrado es de solo lectura.",
+    "PERIOD_HAS_MODULES": "No se puede eliminar un periodo que tiene módulos.",
+    "PERIOD_NOT_UPCOMING": "Solo un periodo próximo se puede activar o eliminar.",
+    "PERIOD_ALREADY_ENDED": "No se puede activar un periodo cuya fecha de fin ya pasó.",
+    "PERIOD_NOT_ACTIVE": "No hay un periodo activo.",
+    "LOCATION_NAME_TAKEN": "Ya existe una ubicación con ese nombre.",
+    "LOCATION_HAS_ACTIVE_ROOMS": "No se puede eliminar una ubicación con salones activos. Desactiva o elimina antes sus salones.",
+    "ROOM_NAME_TAKEN": "Ya existe un salón con ese nombre en esta ubicación.",
+    "ROOM_CAPACITY_INVALID": "La capacidad debe ser un número entero positivo.",
+    "ROOM_IN_ACTIVE_PERIOD": "El salón tiene módulos en el periodo activo, así que no se puede desactivar ni eliminar.",
+    "ROOM_CAPACITY_BELOW_ENROLLED": "La capacidad no puede ser menor que los estudiantes ya inscritos en un módulo que usa este salón.",
+    "ROOM_INACTIVE_OR_DELETED": "Un salón inactivo o eliminado no se puede asignar a un módulo.",
+    "DROPDOWN_LABEL_REQUIRED": "Escribe la etiqueta en español y en inglés.",
+    "DROPDOWN_ITEM_IN_USE": "Este elemento está en uso: solo se puede desactivar.",
+    "DROPDOWN_ORDER_INVALID": "El orden enviado no coincide con los elementos de la lista.",
+    "MODULE_SCHEDULE_INVALID": "Cada horario necesita un día y una hora de fin posterior a la de inicio, dentro del mismo día.",
+    "MODULE_SCHEDULE_OUT_OF_HOURS": "Los horarios deben estar entre las {{start}} y las {{end}}.",
+    "MODULE_SCHEDULE_SELF_OVERLAP": "Dos horarios del mismo módulo se solapan. Ajusta las horas.",
+    "MODULE_TEACHER_CONFLICT": "El docente ya tiene el módulo {{module}} el {{day}} de {{start}} a {{end}}.",
+    "MODULE_ROOM_CONFLICT": "El salón ya está ocupado por el módulo {{module}} el {{day}} de {{start}} a {{end}}.",
+    "MODULE_TEACHER_UNAVAILABLE": "Solo se puede asignar un docente activo.",
+    "MODULE_ROOM_UNAVAILABLE": "Solo se puede asignar un salón activo.",
+    "MODULE_ROOM_CAPACITY_BELOW_ENROLLED": "Capacidad insuficiente: hay {{enrolled}} inscritos y este salón tiene capacidad para {{capacity}}.",
+    "HOLIDAY_DATE_TAKEN": "Ya hay un festivo registrado en esa fecha.",
+    "HOLIDAY_IN_PAST": "Un festivo con fecha anterior a hoy no se puede registrar, editar ni eliminar.",
+    "HOLIDAYS_IMPORT_UNAVAILABLE": "No pudimos obtener los festivos del servicio externo. Inténtalo de nuevo o regístralos a mano.",
+    "MODULE_HAS_ENROLLMENTS": "Este módulo tiene estudiantes inscritos ({{enrolled}}): no se pueden cambiar sus horarios ni eliminarlo."
+  },
+  "validation": {
+    "required": "Este campo es obligatorio.",
+    "email": "Escribe un correo válido.",
+    "code": "El código tiene 6 dígitos.",
+    "password": "La contraseña no cumple los requisitos.",
+    "invalidDate": "Elige una fecha válida."
+  },
+  "login": {
+    "title": "Inicia sesión",
+    "email": "Correo institucional",
+    "password": "Contraseña",
+    "submit": "Ingresar",
+    "createAccount": "Crear cuenta",
+    "verifyEmail": "Verificar mi correo",
+    "verified": "Correo verificado. Ya puedes iniciar sesión.",
+    "forgot": "¿Olvidaste tu contraseña?",
+    "passwordReset": "Contraseña actualizada. Inicia sesión con la nueva."
+  },
+  "tabs": {
+    "home": "Inicio",
+    "modules": "Módulos",
+    "schedule": "Cronograma",
+    "messages": "Mensajes",
+    "pqrs": "PQRS",
+    "dashboard": "Dashboard",
+    "more": "Más"
+  },
+  "empty": {
+    "title": "Aún no hay nada aquí",
+    "description": "Esta sección estará disponible pronto."
+  },
+  "register": {
+    "title": "Crea tu cuenta",
+    "firstName": "Nombres",
+    "lastName": "Apellidos",
+    "email": "Correo institucional",
+    "password": "Contraseña",
+    "submit": "Registrarme",
+    "rulesTitle": "Tu contraseña debe tener:",
+    "ruleLength": "Al menos {{count}} caracteres",
+    "ruleLetter": "Una letra",
+    "ruleNumber": "Un número",
+    "hasAccount": "Ya tengo cuenta"
+  },
+  "verify": {
+    "title": "Verifica tu correo",
+    "description": "Enviamos un código de 6 dígitos a {{email}}. Escríbelo para activar tu cuenta.",
+    "code": "Código de verificación",
+    "submit": "Verificar",
+    "resend": "Reenviar código",
+    "resendIn": "Podrás reenviar el código en {{seconds}} s",
+    "resent": "Si la cuenta existe y no está verificada, enviamos un código nuevo."
+  },
+  "changePassword": {
+    "title": "Cambia tu contraseña",
+    "description": "Estás usando una contraseña temporal. Debes cambiarla para continuar.",
+    "current": "Contraseña actual",
+    "new": "Nueva contraseña",
+    "submit": "Cambiar contraseña"
+  },
+  "teachers": {
+    "create": {
+      "title": "Crear docente",
+      "firstName": "Nombres",
+      "lastName": "Apellidos",
+      "email": "Correo institucional",
+      "submit": "Crear docente"
+    }
+  },
+  "temporaryPassword": {
+    "title": "Contraseña temporal",
+    "body": "Cópiala ahora: no se volverá a mostrar.",
+    "notice": "El docente deberá cambiarla en su primer ingreso.",
+    "copy": "Copiar",
+    "copied": "Copiada",
+    "close": "Cerrar"
+  },
+  "more": {
+    "createTeacher": "Crear docente",
+    "configuration": "Configuración",
+    "periods": "Periodos académicos",
+    "dropdownLists": "Listas desplegables",
+    "holidays": "Festivos"
+  },
+  "profile": {
+    "menu": "Menú de perfil",
+    "signOut": "Cerrar sesión"
+  },
+  "forgot": {
+    "title": "Recupera tu contraseña",
+    "description": "Escribe tu correo institucional y te enviaremos un código de 6 dígitos.",
+    "email": "Correo institucional",
+    "submit": "Enviar código"
+  },
+  "reset": {
+    "title": "Nueva contraseña",
+    "description": "Escribe el código que enviamos a {{email}} y tu nueva contraseña.",
+    "code": "Código de recuperación",
+    "newPassword": "Nueva contraseña",
+    "submit": "Restablecer contraseña"
+  },
+  "modules": {
+    "title": "Módulos",
+    "create": "Nuevo módulo",
+    "roomsLink": "Salones y ubicaciones",
+    "empty": {
+      "title": "Aún no hay módulos",
+      "description": "Crea el primer módulo del periodo con su docente, salón y horario semanal."
+    },
+    "daysShort": {
+      "1": "Lun",
+      "2": "Mar",
+      "3": "Mié",
+      "4": "Jue",
+      "5": "Vie",
+      "6": "Sáb",
+      "7": "Dom"
+    },
+    "form": {
+      "createTitle": "Nuevo módulo",
+      "period": "Periodo",
+      "periodPlaceholder": "Elige un periodo",
+      "noPeriods": "No hay periodos próximos ni activos. Crea o activa un periodo antes de crear módulos.",
+      "name": "Nombre",
+      "description": "Descripción (opcional)",
+      "teacher": "Docente",
+      "teacherPlaceholder": "Elige un docente",
+      "searchTeacher": "Buscar docente",
+      "noTeachers": "No hay docentes activos.",
+      "room": "Salón",
+      "roomPlaceholder": "Elige un salón",
+      "searchRoom": "Buscar salón",
+      "noRooms": "No hay salones activos.",
+      "schedules": "Horario semanal",
+      "slotTitle": "Horario {{number}}",
+      "removeSchedule": "Quitar horario {{number}}",
+      "addSchedule": "Agregar horario",
+      "startTime": "Hora de inicio",
+      "endTime": "Hora de fin",
+      "timePlaceholder": "Elige una hora",
+      "endAfterStart": "La hora de fin debe ser posterior a la de inicio, el mismo día.",
+      "outOfHours": "El horario debe estar entre las 06:00 y las 18:00.",
+      "scheduleRequired": "Agrega al menos un horario.",
+      "scheduleOverlap": "Dos horarios del módulo se solapan.",
+      "save": "Guardar módulo"
+    },
+    "result": {
+      "title": "Módulo creado",
+      "capacity": "Cupo: {{count}} estudiantes",
+      "sessions": "Sesiones generadas: {{count}}",
+      "noSessions": "Algún horario no generó sesiones: el día elegido no cae dentro de las fechas del periodo o ya pasó.",
+      "done": "Listo"
+    },
+    "days": {
+      "1": "lunes",
+      "2": "martes",
+      "3": "miércoles",
+      "4": "jueves",
+      "5": "viernes",
+      "6": "sábado",
+      "7": "domingo"
+    },
+    "search": "Buscar módulo",
+    "loadError": "No pudimos cargar los módulos",
+    "emptyFiltered": {
+      "title": "Sin resultados",
+      "description": "Ningún módulo coincide con la búsqueda o los filtros."
+    },
+    "filter": {
+      "all": "Todos"
+    },
+    "card": {
+      "cupo": "Cupo: {{enrolled}} / {{capacity}}"
+    },
+    "unavailable": {
+      "teacher": "Docente no disponible",
+      "room": "Salón no disponible",
+      "teacherHelp": "El docente de este módulo ya no está disponible. Asigna otro docente para que las sesiones tengan quién las dicte.",
+      "roomHelp": "El salón de este módulo ya no está disponible. Cambia el salón para que las sesiones tengan dónde dictarse."
+    },
+    "session": {
+      "SCHEDULED": "Programada",
+      "RESCHEDULED": "Reprogramada",
+      "CANCELLED": "Cancelada",
+      "holiday": "Cancelada por festivo"
+    },
+    "detail": {
+      "sessions": "Sesiones",
+      "noSessions": "Este módulo aún no tiene sesiones.",
+      "holidays": "Sin sesión por festivo: {{dates}}"
+    },
+    "readOnly": {
+      "PERIOD_CLOSED": "El periodo de este módulo está cerrado: el módulo es de solo lectura."
+    },
+    "notify": "{{count}} inscritos serán avisados.",
+    "changeRoom": {
+      "action": "Cambiar salón",
+      "title": "Elige el nuevo salón",
+      "insufficient": "Capacidad insuficiente: {{enrolled}} inscritos, este salón tiene capacidad para {{capacity}}",
+      "confirmTitle": "Cambiar el salón",
+      "confirmMessage": "El módulo pasará a {{room}} (capacidad {{capacity}}). Las sesiones futuras usarán el nuevo salón y las pasadas conservan el suyo.",
+      "confirm": "Cambiar salón"
+    },
+    "changeTeacher": {
+      "action": "Cambiar docente",
+      "title": "Elige el nuevo docente",
+      "confirmTitle": "Cambiar el docente",
+      "confirmMessage": "El módulo pasará a {{teacher}}. Las sesiones futuras tendrán al nuevo docente y las pasadas conservan el suyo.",
+      "confirm": "Cambiar docente"
+    },
+    "edit": {
+      "action": "Editar",
+      "title": "Editar módulo",
+      "locked": "Periodo, docente y salón se cambian desde el detalle del módulo.",
+      "schedulesLocked": "Los horarios no se pueden cambiar: el módulo tiene {{enrolled}} inscritos. La hora de una sesión la cambia el docente."
+    },
+    "delete": {
+      "action": "Eliminar",
+      "title": "Eliminar módulo",
+      "message": "El módulo se oculta, no se borra: deja de aparecer en el listado y libera al docente y al salón en sus horarios.",
+      "confirm": "Eliminar módulo"
+    }
+  },
+  "periods": {
+    "title": "Periodos académicos",
+    "create": "Crear periodo",
+    "editTitle": "Editar periodo",
+    "createTitle": "Nuevo periodo",
+    "loadError": "No pudimos cargar los periodos.",
+    "range": "{{start}} a {{end}}",
+    "empty": {
+      "title": "Aún no hay periodos",
+      "description": "Crea el primer periodo para poder crear módulos."
+    },
+    "emptyFiltered": {
+      "title": "Sin resultados",
+      "description": "No hay periodos con ese estado."
+    },
+    "filter": {
+      "all": "Todos",
+      "ACTIVE": "Activo",
+      "UPCOMING": "Próximo",
+      "CLOSED": "Cerrado"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "UPCOMING": "Próximo",
+      "CLOSED": "Cerrado"
+    },
+    "form": {
+      "name": "Nombre",
+      "startsOn": "Fecha de inicio",
+      "endsOn": "Fecha de fin",
+      "endAfterStart": "Debe ser posterior a la fecha de inicio.",
+      "save": "Guardar periodo"
+    },
+    "actions": {
+      "activate": "Activar periodo",
+      "close": "Cerrar periodo",
+      "delete": "Eliminar periodo"
+    },
+    "rules": {
+      "closedReadOnly": "Este periodo está cerrado: solo se puede consultar.",
+      "deleteOnlyUpcoming": "Solo se puede eliminar un periodo próximo.",
+      "deleteHasModules": "No se puede eliminar: el periodo tiene módulos."
+    },
+    "confirm": {
+      "activate": {
+        "title": "¿Activar el periodo?",
+        "message": "Los estudiantes verán los módulos de este periodo."
+      },
+      "activateReplace": {
+        "title": "¿Activar y cerrar el periodo actual?",
+        "message": "Se cerrará el periodo activo \"{{name}}\" y quedará en solo lectura."
+      },
+      "close": {
+        "title": "¿Cerrar el periodo?",
+        "message": "Quedará en solo lectura y no se podrá reabrir."
+      },
+      "delete": {
+        "title": "¿Eliminar el periodo?",
+        "message": "El periodo dejará de aparecer en la lista."
+      }
+    }
+  },
+  "rooms": {
+    "title": "Salones",
+    "create": "Crear salón",
+    "locationsLink": "Ubicaciones",
+    "loadError": "No pudimos cargar los salones.",
+    "search": "Buscar salón por nombre",
+    "capacity": "Capacidad: {{count}}",
+    "createTitle": "Nuevo salón",
+    "editTitle": "Editar salón",
+    "status": {
+      "ACTIVE": "Activo",
+      "INACTIVE": "Inactivo"
+    },
+    "filter": {
+      "all": "Todos",
+      "allLocations": "Todas las ubicaciones"
+    },
+    "empty": {
+      "title": "Aún no hay salones",
+      "description": "Crea una ubicación y luego sus salones."
+    },
+    "emptyFiltered": {
+      "title": "Sin resultados",
+      "description": "Ningún salón coincide con la búsqueda o los filtros."
+    },
+    "form": {
+      "name": "Nombre o código",
+      "capacity": "Capacidad",
+      "capacityInvalid": "Escribe un número entero mayor que cero.",
+      "location": "Ubicación",
+      "locationPlaceholder": "Elige una ubicación",
+      "noLocations": "Primero crea una ubicación.",
+      "save": "Guardar salón"
+    },
+    "actions": {
+      "deactivate": "Desactivar salón",
+      "reactivate": "Reactivar salón",
+      "delete": "Eliminar salón"
+    },
+    "confirm": {
+      "deactivate": {
+        "title": "¿Desactivar el salón?",
+        "message": "No se podrá asignar a módulos nuevos.",
+        "upcoming": "Tiene {{count}} módulos en periodos próximos: quedarán con un salón inactivo y deberás reasignarlos."
+      },
+      "delete": {
+        "title": "¿Eliminar el salón?",
+        "message": "El salón dejará de aparecer en la lista."
+      }
+    }
+  },
+  "locations": {
+    "title": "Ubicaciones",
+    "create": "Crear ubicación",
+    "createTitle": "Nueva ubicación",
+    "editTitle": "Editar ubicación",
+    "loadError": "No pudimos cargar las ubicaciones.",
+    "roomCounts": "{{active}} salones activos · {{inactive}} inactivos",
+    "empty": {
+      "title": "Aún no hay ubicaciones",
+      "description": "Crea una sede o un edificio para registrar sus salones."
+    },
+    "form": {
+      "name": "Nombre de la ubicación",
+      "save": "Guardar ubicación"
+    },
+    "actions": {
+      "delete": "Eliminar ubicación"
+    },
+    "rules": {
+      "activeRooms": "No se puede eliminar: tiene salones activos. Desactiva o elimina antes sus salones."
+    },
+    "confirm": {
+      "delete": {
+        "title": "¿Eliminar la ubicación?",
+        "message": "La ubicación dejará de aparecer en la lista.",
+        "withRooms": "Se eliminarán también sus {{count}} salones inactivos."
+      }
+    }
+  },
+  "dropdowns": {
+    "title": "Listas desplegables",
+    "loadError": "No pudimos cargar las listas.",
+    "items": "{{count}} elementos",
+    "empty": {
+      "title": "Esta lista no tiene elementos",
+      "description": "Agrega el primer elemento."
+    },
+    "addItem": "Agregar elemento",
+    "createTitle": "Nuevo elemento",
+    "editTitle": "Editar elemento",
+    "status": {
+      "ACTIVE": "Activo",
+      "INACTIVE": "Inactivo"
+    },
+    "moveUp": "Subir {{name}}",
+    "moveDown": "Bajar {{name}}",
+    "form": {
+      "labelEs": "Etiqueta en español",
+      "labelEn": "Etiqueta en inglés",
+      "save": "Guardar elemento"
+    },
+    "actions": {
+      "activate": "Activar elemento",
+      "deactivate": "Desactivar elemento",
+      "delete": "Eliminar elemento"
+    },
+    "rules": {
+      "inUse": "Este elemento está en uso: solo se puede desactivar."
+    },
+    "confirm": {
+      "deactivate": {
+        "title": "¿Desactivar el elemento?",
+        "message": "Dejará de aparecer en los selectores, pero se conserva donde ya se usó."
+      },
+      "delete": {
+        "title": "¿Eliminar el elemento?",
+        "message": "El elemento dejará de aparecer en la lista."
+      }
+    }
+  },
+  "holidays": {
+    "title": "Festivos",
+    "loadError": "No pudimos cargar los festivos",
+    "empty": {
+      "title": "Sin festivos",
+      "description": "No hay festivos registrados este año. Agrégalos a mano o impórtalos."
+    },
+    "source": {
+      "MANUAL": "Manual",
+      "IMPORTED": "Importado"
+    },
+    "past": "Ya pasó",
+    "add": "Agregar festivo",
+    "import": "Importar festivos",
+    "addByHand": "Registrar a mano",
+    "form": {
+      "createTitle": "Nuevo festivo",
+      "editTitle": "Editar festivo",
+      "name": "Nombre",
+      "date": "Fecha",
+      "dateHint": "Desde hoy en adelante: un festivo pasado no se registra.",
+      "save": "Guardar festivo",
+      "delete": "Eliminar festivo",
+      "deleteTitle": "Eliminar festivo",
+      "deleteMessage": "El festivo se oculta, no se borra. Las sesiones que canceló vuelven a programarse si el salón y el docente siguen libres."
+    },
+    "result": {
+      "title": "Listo",
+      "cancelled": "Sesiones canceladas por el festivo: {{count}}",
+      "restored": "Sesiones restauradas: {{count}}",
+      "generated": "Sesiones generadas que faltaban: {{count}}",
+      "notRestored": "Sesiones que no se pudieron restaurar porque el salón o el docente están ocupados: {{count}}"
+    },
+    "importResult": {
+      "created": "Festivos importados: {{count}}",
+      "skipped": "Omitidos (ya existían, ya pasaron o no estaban en la lista): {{count}}"
+    },
+    "preview": {
+      "exists": "Ya registrado",
+      "confirm": "Importar ({{count}})"
+    }
+  }
+}

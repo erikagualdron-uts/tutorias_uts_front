@@ -1,0 +1,529 @@
+{
+  "brand": {
+    "name": "UTS Tutoring",
+    "institution": "Institución Universitaria Tecnológica de Santander – UTS"
+  },
+  "common": {
+    "loading": "Loading…",
+    "tryAgain": "Try again",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "clearSearch": "Clear search",
+    "met": "Met",
+    "unmet": "Not met",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "loadingSlow": "Loading… This is taking longer than usual."
+  },
+  "dateField": {
+    "empty": "Not selected",
+    "hint": "Opens a date picker",
+    "placeholder": "dd/mm/yyyy"
+  },
+  "errors": {
+    "UNKNOWN": "Something went wrong. Please try again.",
+    "NETWORK": "Cannot reach the server. Check your internet connection.",
+    "VALIDATION_FAILED": "Check the data you entered.",
+    "EMAIL_ALREADY_REGISTERED": "This email is already registered. Sign in or reset your password.",
+    "EMAIL_DOMAIN_NOT_ALLOWED": "The email does not belong to a domain allowed for this action.",
+    "CODE_INVALID": "The code is not correct.",
+    "CODE_EXPIRED": "The code has expired. Request a new one.",
+    "CODE_ATTEMPTS_EXCEEDED": "You exceeded the allowed attempts. Request a new code.",
+    "INVALID_CREDENTIALS": "Incorrect email or password.",
+    "EMAIL_NOT_VERIFIED": "You must verify your email before signing in.",
+    "ACCOUNT_DISABLED": "Your account is disabled. Contact the CAE.",
+    "ACCOUNT_UNAVAILABLE": "This account is no longer available.",
+    "SESSION_EXPIRED": "Your session expired. Sign in again.",
+    "SESSION_REVOKED": "Your session was closed. Sign in again.",
+    "TOKEN_INVALID": "Your session is not valid. Sign in again.",
+    "PASSWORD_TOO_WEAK": "The password must have at least 8 characters, with letters and numbers.",
+    "PASSWORD_SAME_AS_CURRENT": "The new password must be different from the current one.",
+    "PASSWORD_CHANGE_REQUIRED": "You must change your temporary password before continuing.",
+    "FORBIDDEN_ROLE": "You do not have permission for this action.",
+    "RATE_LIMITED": "Too many attempts. Try again in {{seconds}} seconds.",
+    "NOT_FOUND": "We could not find what you are looking for.",
+    "INTERNAL_ERROR": "A server error occurred. Please try again later.",
+    "PERIOD_NAME_TAKEN": "A period with that name already exists.",
+    "PERIOD_DATES_INVALID": "The end date must be after the start date, and an active period cannot end before today.",
+    "PERIOD_DATES_OVERLAP": "The dates overlap with period {{name}}.",
+    "PERIOD_ACTIVE_EXISTS": "There is already an active period: {{name}}.",
+    "PERIOD_CLOSED_READ_ONLY": "A closed period is read-only.",
+    "PERIOD_HAS_MODULES": "A period that has modules cannot be deleted.",
+    "PERIOD_NOT_UPCOMING": "Only an upcoming period can be activated or deleted.",
+    "PERIOD_ALREADY_ENDED": "A period whose end date has passed cannot be activated.",
+    "PERIOD_NOT_ACTIVE": "There is no active period.",
+    "LOCATION_NAME_TAKEN": "A location with that name already exists.",
+    "LOCATION_HAS_ACTIVE_ROOMS": "A location with active rooms cannot be deleted. Deactivate or delete its rooms first.",
+    "ROOM_NAME_TAKEN": "A room with that name already exists in this location.",
+    "ROOM_CAPACITY_INVALID": "Capacity must be a positive whole number.",
+    "ROOM_IN_ACTIVE_PERIOD": "The room has modules in the active period, so it cannot be deactivated or deleted.",
+    "ROOM_CAPACITY_BELOW_ENROLLED": "Capacity cannot be lower than the students already enrolled in a module that uses this room.",
+    "ROOM_INACTIVE_OR_DELETED": "An inactive or deleted room cannot be assigned to a module.",
+    "DROPDOWN_LABEL_REQUIRED": "Enter the label in Spanish and in English.",
+    "DROPDOWN_ITEM_IN_USE": "This item is in use: it can only be deactivated.",
+    "DROPDOWN_ORDER_INVALID": "The order sent does not match the items in the list.",
+    "MODULE_SCHEDULE_INVALID": "Each schedule needs a day and an end time after the start time, within the same day.",
+    "MODULE_SCHEDULE_OUT_OF_HOURS": "Schedules must be between {{start}} and {{end}}.",
+    "MODULE_SCHEDULE_SELF_OVERLAP": "Two schedules of the same module overlap. Adjust the times.",
+    "MODULE_TEACHER_CONFLICT": "The teacher already has the module {{module}} on {{day}} from {{start}} to {{end}}.",
+    "MODULE_ROOM_CONFLICT": "The room is already taken by the module {{module}} on {{day}} from {{start}} to {{end}}.",
+    "MODULE_TEACHER_UNAVAILABLE": "Only an active teacher can be assigned.",
+    "MODULE_ROOM_UNAVAILABLE": "Only an active room can be assigned.",
+    "MODULE_ROOM_CAPACITY_BELOW_ENROLLED": "Not enough capacity: {{enrolled}} enrolled, this room holds {{capacity}}.",
+    "HOLIDAY_DATE_TAKEN": "A holiday is already registered on that date.",
+    "HOLIDAYS_IMPORT_UNAVAILABLE": "We could not get the holidays from the external service. Try again or add them by hand.",
+    "HOLIDAY_IN_PAST": "A holiday dated before today cannot be added, edited or deleted.",
+    "MODULE_HAS_ENROLLMENTS": "This module has enrolled students ({{enrolled}}): its schedules cannot be changed and it cannot be deleted."
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Enter a valid email.",
+    "code": "The code has 6 digits.",
+    "password": "The password does not meet the requirements.",
+    "invalidDate": "Choose a valid date."
+  },
+  "login": {
+    "title": "Sign in",
+    "email": "Institutional email",
+    "password": "Password",
+    "submit": "Sign in",
+    "createAccount": "Create account",
+    "verifyEmail": "Verify my email",
+    "verified": "Email verified. You can now sign in.",
+    "forgot": "Forgot your password?",
+    "passwordReset": "Password updated. Sign in with the new one."
+  },
+  "tabs": {
+    "home": "Home",
+    "modules": "Modules",
+    "schedule": "Schedule",
+    "messages": "Messages",
+    "pqrs": "PQRS",
+    "dashboard": "Dashboard",
+    "more": "More"
+  },
+  "empty": {
+    "title": "Nothing here yet",
+    "description": "This section will be available soon."
+  },
+  "register": {
+    "title": "Create your account",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Institutional email",
+    "password": "Password",
+    "submit": "Sign up",
+    "rulesTitle": "Your password must have:",
+    "ruleLength": "At least {{count}} characters",
+    "ruleLetter": "A letter",
+    "ruleNumber": "A number",
+    "hasAccount": "I already have an account"
+  },
+  "verify": {
+    "title": "Verify your email",
+    "description": "We sent a 6-digit code to {{email}}. Enter it to activate your account.",
+    "code": "Verification code",
+    "submit": "Verify",
+    "resend": "Resend code",
+    "resendIn": "You can resend the code in {{seconds}} s",
+    "resent": "If the account exists and is unverified, we sent a new code."
+  },
+  "changePassword": {
+    "title": "Change your password",
+    "description": "You are using a temporary password. You must change it to continue.",
+    "current": "Current password",
+    "new": "New password",
+    "submit": "Change password"
+  },
+  "teachers": {
+    "create": {
+      "title": "Create teacher",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Institutional email",
+      "submit": "Create teacher"
+    }
+  },
+  "temporaryPassword": {
+    "title": "Temporary password",
+    "body": "Copy it now: it will not be shown again.",
+    "notice": "The teacher must change it on first sign-in.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "close": "Close"
+  },
+  "more": {
+    "createTeacher": "Create teacher",
+    "configuration": "Settings",
+    "periods": "Academic periods",
+    "dropdownLists": "Dropdown lists",
+    "holidays": "Holidays"
+  },
+  "profile": {
+    "menu": "Profile menu",
+    "signOut": "Sign out"
+  },
+  "forgot": {
+    "title": "Reset your password",
+    "description": "Enter your institutional email and we will send you a 6-digit code.",
+    "email": "Institutional email",
+    "submit": "Send code"
+  },
+  "reset": {
+    "title": "New password",
+    "description": "Enter the code we sent to {{email}} and your new password.",
+    "code": "Recovery code",
+    "newPassword": "New password",
+    "submit": "Reset password"
+  },
+  "modules": {
+    "title": "Modules",
+    "create": "New module",
+    "roomsLink": "Rooms and locations",
+    "empty": {
+      "title": "No modules yet",
+      "description": "Create the first module of the period with its teacher, room and weekly schedule."
+    },
+    "daysShort": {
+      "1": "Mon",
+      "2": "Tue",
+      "3": "Wed",
+      "4": "Thu",
+      "5": "Fri",
+      "6": "Sat",
+      "7": "Sun"
+    },
+    "form": {
+      "createTitle": "New module",
+      "period": "Period",
+      "periodPlaceholder": "Choose a period",
+      "noPeriods": "There are no upcoming or active periods. Create or activate a period before creating modules.",
+      "name": "Name",
+      "description": "Description (optional)",
+      "teacher": "Teacher",
+      "teacherPlaceholder": "Choose a teacher",
+      "searchTeacher": "Search teacher",
+      "noTeachers": "There are no active teachers.",
+      "room": "Room",
+      "roomPlaceholder": "Choose a room",
+      "searchRoom": "Search room",
+      "noRooms": "There are no active rooms.",
+      "schedules": "Weekly schedule",
+      "slotTitle": "Schedule {{number}}",
+      "removeSchedule": "Remove schedule {{number}}",
+      "addSchedule": "Add schedule",
+      "startTime": "Start time",
+      "endTime": "End time",
+      "timePlaceholder": "Choose a time",
+      "endAfterStart": "The end time must be after the start time, on the same day.",
+      "outOfHours": "The schedule must be between 06:00 and 18:00.",
+      "scheduleRequired": "Add at least one schedule.",
+      "scheduleOverlap": "Two schedules of the module overlap.",
+      "save": "Save module"
+    },
+    "result": {
+      "title": "Module created",
+      "capacity": "Capacity: {{count}} students",
+      "sessions": "Sessions created: {{count}}",
+      "noSessions": "A schedule created no sessions: the chosen day does not fall within the period dates or has already passed.",
+      "done": "Done"
+    },
+    "days": {
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday",
+      "6": "Saturday",
+      "7": "Sunday"
+    },
+    "search": "Search module",
+    "loadError": "We could not load the modules",
+    "emptyFiltered": {
+      "title": "No results",
+      "description": "No module matches the search or the filters."
+    },
+    "filter": {
+      "all": "All"
+    },
+    "card": {
+      "cupo": "Capacity: {{enrolled}} / {{capacity}}"
+    },
+    "unavailable": {
+      "teacher": "Teacher unavailable",
+      "room": "Room unavailable",
+      "teacherHelp": "The teacher of this module is no longer available. Assign another teacher so the sessions have someone to teach them.",
+      "roomHelp": "The room of this module is no longer available. Change the room so the sessions have somewhere to take place."
+    },
+    "session": {
+      "SCHEDULED": "Scheduled",
+      "RESCHEDULED": "Rescheduled",
+      "CANCELLED": "Cancelled",
+      "holiday": "Cancelled for a holiday"
+    },
+    "detail": {
+      "sessions": "Sessions",
+      "noSessions": "This module has no sessions yet.",
+      "holidays": "No session because of a holiday: {{dates}}"
+    },
+    "readOnly": {
+      "PERIOD_CLOSED": "The period of this module is closed: the module is read-only."
+    },
+    "notify": "{{count}} enrolled students will be notified.",
+    "changeRoom": {
+      "action": "Change room",
+      "title": "Choose the new room",
+      "insufficient": "Not enough capacity: {{enrolled}} enrolled, this room holds {{capacity}}",
+      "confirmTitle": "Change the room",
+      "confirmMessage": "The module will move to {{room}} (capacity {{capacity}}). Future sessions use the new room and past ones keep theirs.",
+      "confirm": "Change room"
+    },
+    "changeTeacher": {
+      "action": "Change teacher",
+      "title": "Choose the new teacher",
+      "confirmTitle": "Change the teacher",
+      "confirmMessage": "The module will move to {{teacher}}. Future sessions get the new teacher and past ones keep theirs.",
+      "confirm": "Change teacher"
+    },
+    "edit": {
+      "action": "Edit",
+      "title": "Edit module",
+      "locked": "Period, teacher and room are changed from the module detail.",
+      "schedulesLocked": "The schedules cannot be changed: the module has {{enrolled}} enrolled students. The teacher changes the time of a session."
+    },
+    "delete": {
+      "action": "Delete",
+      "title": "Delete module",
+      "message": "The module is hidden, not erased: it leaves the list and frees the teacher and the room at its hours.",
+      "confirm": "Delete module"
+    }
+  },
+  "periods": {
+    "title": "Academic periods",
+    "create": "Create period",
+    "editTitle": "Edit period",
+    "createTitle": "New period",
+    "loadError": "We could not load the periods.",
+    "range": "{{start}} to {{end}}",
+    "empty": {
+      "title": "No periods yet",
+      "description": "Create the first period before creating modules."
+    },
+    "emptyFiltered": {
+      "title": "No results",
+      "description": "There are no periods with that status."
+    },
+    "filter": {
+      "all": "All",
+      "ACTIVE": "Active",
+      "UPCOMING": "Upcoming",
+      "CLOSED": "Closed"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "UPCOMING": "Upcoming",
+      "CLOSED": "Closed"
+    },
+    "form": {
+      "name": "Name",
+      "startsOn": "Start date",
+      "endsOn": "End date",
+      "endAfterStart": "Must be after the start date.",
+      "save": "Save period"
+    },
+    "actions": {
+      "activate": "Activate period",
+      "close": "Close period",
+      "delete": "Delete period"
+    },
+    "rules": {
+      "closedReadOnly": "This period is closed: it can only be viewed.",
+      "deleteOnlyUpcoming": "Only an upcoming period can be deleted.",
+      "deleteHasModules": "It cannot be deleted: the period has modules."
+    },
+    "confirm": {
+      "activate": {
+        "title": "Activate the period?",
+        "message": "Students will see the modules of this period."
+      },
+      "activateReplace": {
+        "title": "Activate and close the current period?",
+        "message": "The active period \"{{name}}\" will be closed and become read-only."
+      },
+      "close": {
+        "title": "Close the period?",
+        "message": "It will become read-only and cannot be reopened."
+      },
+      "delete": {
+        "title": "Delete the period?",
+        "message": "The period will no longer appear in the list."
+      }
+    }
+  },
+  "rooms": {
+    "title": "Rooms",
+    "create": "Create room",
+    "locationsLink": "Locations",
+    "loadError": "We could not load the rooms.",
+    "search": "Search room by name",
+    "capacity": "Capacity: {{count}}",
+    "createTitle": "New room",
+    "editTitle": "Edit room",
+    "status": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive"
+    },
+    "filter": {
+      "all": "All",
+      "allLocations": "All locations"
+    },
+    "empty": {
+      "title": "No rooms yet",
+      "description": "Create a location and then its rooms."
+    },
+    "emptyFiltered": {
+      "title": "No results",
+      "description": "No room matches the search or the filters."
+    },
+    "form": {
+      "name": "Name or code",
+      "capacity": "Capacity",
+      "capacityInvalid": "Enter a whole number greater than zero.",
+      "location": "Location",
+      "locationPlaceholder": "Choose a location",
+      "noLocations": "Create a location first.",
+      "save": "Save room"
+    },
+    "actions": {
+      "deactivate": "Deactivate room",
+      "reactivate": "Reactivate room",
+      "delete": "Delete room"
+    },
+    "confirm": {
+      "deactivate": {
+        "title": "Deactivate the room?",
+        "message": "It will not be assignable to new modules.",
+        "upcoming": "It has {{count}} modules in upcoming periods: they will keep an inactive room and you will need to reassign them."
+      },
+      "delete": {
+        "title": "Delete the room?",
+        "message": "The room will no longer appear in the list."
+      }
+    }
+  },
+  "locations": {
+    "title": "Locations",
+    "create": "Create location",
+    "createTitle": "New location",
+    "editTitle": "Edit location",
+    "loadError": "We could not load the locations.",
+    "roomCounts": "{{active}} active rooms · {{inactive}} inactive",
+    "empty": {
+      "title": "No locations yet",
+      "description": "Create a campus or a building to register its rooms."
+    },
+    "form": {
+      "name": "Location name",
+      "save": "Save location"
+    },
+    "actions": {
+      "delete": "Delete location"
+    },
+    "rules": {
+      "activeRooms": "It cannot be deleted: it has active rooms. Deactivate or delete its rooms first."
+    },
+    "confirm": {
+      "delete": {
+        "title": "Delete the location?",
+        "message": "The location will no longer appear in the list.",
+        "withRooms": "Its {{count}} inactive rooms will be deleted too."
+      }
+    }
+  },
+  "dropdowns": {
+    "title": "Dropdown lists",
+    "loadError": "We could not load the lists.",
+    "items": "{{count}} items",
+    "empty": {
+      "title": "This list has no items",
+      "description": "Add the first item."
+    },
+    "addItem": "Add item",
+    "createTitle": "New item",
+    "editTitle": "Edit item",
+    "status": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive"
+    },
+    "moveUp": "Move {{name}} up",
+    "moveDown": "Move {{name}} down",
+    "form": {
+      "labelEs": "Label in Spanish",
+      "labelEn": "Label in English",
+      "save": "Save item"
+    },
+    "actions": {
+      "activate": "Activate item",
+      "deactivate": "Deactivate item",
+      "delete": "Delete item"
+    },
+    "rules": {
+      "inUse": "This item is in use: it can only be deactivated."
+    },
+    "confirm": {
+      "deactivate": {
+        "title": "Deactivate the item?",
+        "message": "It will stop showing in selectors, but is kept where it was already used."
+      },
+      "delete": {
+        "title": "Delete the item?",
+        "message": "The item will no longer appear in the list."
+      }
+    }
+  },
+  "holidays": {
+    "title": "Holidays",
+    "loadError": "We could not load the holidays",
+    "empty": {
+      "title": "No holidays",
+      "description": "There are no holidays registered this year. Add them by hand or import them."
+    },
+    "source": {
+      "MANUAL": "Manual",
+      "IMPORTED": "Imported"
+    },
+    "past": "Already passed",
+    "add": "Add holiday",
+    "import": "Import holidays",
+    "addByHand": "Add by hand",
+    "form": {
+      "createTitle": "New holiday",
+      "editTitle": "Edit holiday",
+      "name": "Name",
+      "date": "Date",
+      "dateHint": "From today on: a past holiday cannot be added.",
+      "save": "Save holiday",
+      "delete": "Delete holiday",
+      "deleteTitle": "Delete holiday",
+      "deleteMessage": "The holiday is hidden, not erased. The sessions it cancelled are scheduled again if the room and the teacher are still free."
+    },
+    "result": {
+      "title": "Done",
+      "cancelled": "Sessions cancelled by the holiday: {{count}}",
+      "restored": "Sessions restored: {{count}}",
+      "generated": "Missing sessions created: {{count}}",
+      "notRestored": "Sessions that could not be restored because the room or the teacher is busy: {{count}}"
+    },
+    "importResult": {
+      "created": "Holidays imported: {{count}}",
+      "skipped": "Skipped (already existed, already passed or not in the list): {{count}}"
+    },
+    "preview": {
+      "exists": "Already registered",
+      "confirm": "Import ({{count}})"
+    }
+  }
+}

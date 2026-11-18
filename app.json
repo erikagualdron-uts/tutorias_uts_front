@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "UTS Tutorías",
+    "slug": "uts-tutorias",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "utstutorias",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "icon": "./assets/expo.icon"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#34531F",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#34531F",
+          "image": "./assets/brand/splash-light.png",
+          "resizeMode": "cover",
+          "dark": {
+            "backgroundColor": "#0B1710",
+            "image": "./assets/brand/splash-dark.png",
+            "resizeMode": "cover"
+          }
+        }
+      ],
+      "expo-localization",
+      "expo-secure-store",
+      "@react-native-community/datetimepicker"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
