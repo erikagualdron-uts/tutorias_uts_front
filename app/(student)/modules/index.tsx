@@ -1,3 +1,3 @@
-import { EmptyTabScreen } from '@/features/shell/screens/EmptyTabScreen';
+import { StudentModulesScreen } from '@/features/enrollments/screens/StudentModulesScreen';
 
-export default EmptyTabScreen;
+export default StudentModulesScreen;
