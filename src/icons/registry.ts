@@ -156,6 +156,15 @@ export const icons = {
     bold: 'solar:check-square-bold',
   },
   checkboxOff: { linear: 'solar:stop-linear', bold: 'solar:stop-bold' },
+  // Teacher weekly calendar (spec 013)
+  chevronLeft: {
+    linear: 'solar:alt-arrow-left-linear',
+    bold: 'solar:alt-arrow-left-bold',
+  },
+  today: {
+    linear: 'solar:calendar-mark-linear',
+    bold: 'solar:calendar-mark-bold',
+  },
   // Decorative brand pattern only: the mdi set is allowed for these three (D-049).
   leaf: { linear: 'mdi:leaf', bold: 'mdi:leaf' },
   feather: { linear: 'mdi:feather', bold: 'mdi:feather' },

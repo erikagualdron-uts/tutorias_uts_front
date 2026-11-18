@@ -675,7 +675,8 @@
         "title": "Sin sesiones próximas",
         "description": "Cuando el CAE te asigne módulos del periodo activo, sus sesiones aparecerán aquí."
       },
-      "loadError": "No pudimos cargar tu cronograma"
+      "loadError": "No pudimos cargar tu cronograma",
+      "myModules": "Mis módulos"
     },
     "reschedule": {
       "action": "Reprogramar",
@@ -704,5 +705,24 @@
         "action": "Cancelar sesión"
       }
     }
+  },
+  "calendar": {
+    "today": "Hoy",
+    "previousWeek": "Semana anterior",
+    "nextWeek": "Semana siguiente",
+    "viewDay": "Día",
+    "viewWeek": "Semana",
+    "views": "Vista del calendario",
+    "weekRange": "{{from}} – {{to}}",
+    "outsidePeriod": "Fuera del periodo académico",
+    "noPeriod": "Sin periodo académico",
+    "noSessionsDay": "No hay sesiones este día",
+    "now": "Ahora",
+    "loadError": "No pudimos cargar la semana",
+    "selected": "seleccionado",
+    "isToday": "hoy",
+    "day_none": "{{label}}, sin sesiones",
+    "day_one": "{{label}}, {{count}} sesión",
+    "day_other": "{{label}}, {{count}} sesiones"
   }
 }
