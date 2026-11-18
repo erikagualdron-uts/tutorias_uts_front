@@ -246,7 +246,7 @@ export interface StudentSession {
   startsAt: string;
   endsAt: string;
   status: SessionStatus;
-  cancelReason: 'HOLIDAY' | null;
+  cancelReason: 'HOLIDAY' | 'TEACHER' | null;
   cancelledByStudent: boolean;
   freeSeats: number;
   canCancel: boolean;
@@ -278,3 +278,46 @@ export interface EnrollmentItem extends Enrollment {
 
 export type StudentModulePage = Page<StudentModule> & { meta: { periodId: string | null } };
 export type EnrollmentPage = Page<EnrollmentItem>;
+
+// ---- Teacher sessions (spec 012, contracts/teacher-sessions-api.yaml) ----
+
+export type SessionScope = 'SESSION' | 'SERIES';
+export type ChangeBlockReason = 'WINDOW_PASSED' | 'PERIOD_CLOSED' | 'PAST' | 'CANCELLED_BY_OTHER';
+
+export interface TeacherSession {
+  id: string;
+  moduleId: string;
+  moduleName: string;
+  startsAt: string;
+  endsAt: string;
+  originalStartsAt: string;
+  status: SessionStatus;
+  cancelReason: 'HOLIDAY' | 'TEACHER' | null;
+  room: StudentRoomRef;
+  attendees: number;
+  canReschedule: boolean;
+  canCancel: boolean;
+  canRestore: boolean;
+  blockReason: ChangeBlockReason | null;
+}
+
+export interface TeacherModule {
+  id: string;
+  name: string;
+  description: string | null;
+  room: StudentRoomRef;
+  schedules: ScheduleInput[];
+  enrolled: number;
+  capacity: number;
+  readOnly: boolean;
+  nextSession: TeacherSession | null;
+}
+
+export type TeacherModulePage = Page<TeacherModule> & { meta: { periodId: string | null } };
+export type TeacherSessionPage = Page<TeacherSession> & { meta: { changeLeadMinutes: number } };
+
+export interface SessionChange {
+  scope: SessionScope;
+  dryRun?: boolean;
+  sessions: TeacherSession[];
+}
