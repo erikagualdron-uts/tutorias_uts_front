@@ -1,7 +1,7 @@
 import type { TFunction } from 'i18next';
 import { formatDay } from '@/date/day';
 
-// Codes defined in the auth, CAE configuration and modules contracts (specs/001, 006, 010, 011, 012); the API `message` is never shown.
+// Codes defined in the auth, CAE configuration and modules contracts (specs/001, 006, 010, 011, 012, 014); the API `message` is never shown.
 export const ERROR_CODES = [
   'VALIDATION_FAILED',
   'EMAIL_ALREADY_REGISTERED',
@@ -64,6 +64,9 @@ export const ERROR_CODES = [
   'HOLIDAY_DATE_TAKEN',
   'HOLIDAY_IN_PAST',
   'HOLIDAYS_IMPORT_UNAVAILABLE',
+  'NOTIFICATION_NOT_FOUND',
+  'SMTP_PASSWORD_REQUIRED',
+  'SMTP_NOT_CONFIGURED',
   'NOT_FOUND',
   'INTERNAL_ERROR',
 ] as const;

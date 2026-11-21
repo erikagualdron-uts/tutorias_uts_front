@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   fireEvent,
   render,
@@ -94,16 +95,23 @@ describe('AppBar sign out', () => {
       user: student,
       accessToken: 'a',
     });
-    (api as jest.Mock).mockResolvedValue(undefined);
+    // The bell of the bar asks for the unread counter; every other call answers nothing.
+    (api as jest.Mock).mockImplementation((path: string) =>
+      Promise.resolve(
+        path === '/notifications/unread-count' ? { unread: 0 } : undefined,
+      ),
+    );
     await render(
-      <SafeAreaProvider
-        initialMetrics={{
-          frame: { x: 0, y: 0, width: 360, height: 640 },
-          insets: { top: 24, left: 0, right: 0, bottom: 0 },
-        }}
-      >
-        <AppBar title="Inicio" />
-      </SafeAreaProvider>,
+      <QueryClientProvider client={new QueryClient()}>
+        <SafeAreaProvider
+          initialMetrics={{
+            frame: { x: 0, y: 0, width: 360, height: 640 },
+            insets: { top: 24, left: 0, right: 0, bottom: 0 },
+          }}
+        >
+          <AppBar title="Inicio" />
+        </SafeAreaProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByText('AP')).toBeTruthy();

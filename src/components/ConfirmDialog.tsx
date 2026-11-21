@@ -9,6 +9,8 @@ interface ConfirmDialogProps {
   message: string;
   confirmLabel: string;
   confirmIcon: IconName;
+  // Defaults to "Cancel"; a dialog that only offers something may say "Not now".
+  cancelLabel?: string;
   loading?: boolean;
   onConfirm: () => void;
   onCancel: () => void;
@@ -20,6 +22,7 @@ export function ConfirmDialog({
   message,
   confirmLabel,
   confirmIcon,
+  cancelLabel,
   loading = false,
   onConfirm,
   onCancel,
@@ -52,7 +55,7 @@ export function ConfirmDialog({
             onPress={onConfirm}
           />
           <Button
-            label={t('common.cancel')}
+            label={cancelLabel ?? t('common.cancel')}
             icon="closeCircle"
             variant="outlined"
             disabled={loading}

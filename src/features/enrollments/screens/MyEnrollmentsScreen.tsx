@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { EnrollmentItem } from '@/api/types';
 import { errorMessage } from '@/api/errors';
-import { BrandLoader } from '@/components/BrandLoader';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
@@ -71,7 +71,7 @@ export function MyEnrollmentsScreen({ onBrowse }: { onBrowse: () => void }) {
   const { t } = useTranslation();
   const mine = useMyEnrollments('ACTIVE');
 
-  if (mine.isPending) return <BrandLoader />;
+  if (mine.isPending) return <LoadingScreen />;
   if (mine.isError) {
     return (
       <EmptyState

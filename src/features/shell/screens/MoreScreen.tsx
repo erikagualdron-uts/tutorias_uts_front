@@ -12,6 +12,7 @@ const CONFIGURATION_ROWS: { label: string; icon: IconName; href: Href }[] = [
   { label: 'more.periods', icon: 'dateRange', href: '/more/periods' },
   { label: 'more.holidays', icon: 'holiday', href: '/more/holidays' },
   { label: 'more.dropdownLists', icon: 'list', href: '/more/dropdown-lists' },
+  { label: 'more.smtp', icon: 'email', href: '/more/smtp' },
 ];
 
 // Entry points of the CAE "More" tab; Students arrive with their feature.

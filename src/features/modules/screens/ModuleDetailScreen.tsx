@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import { Banner } from '@/components/Banner';
 import { BrandLoader } from '@/components/BrandLoader';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
@@ -29,7 +30,7 @@ export function ModuleDetailScreen() {
   const day = (n: number) => t(`modules.daysShort.${n}`);
   const muted = [typography.body, { color: palette.textSecondary }];
 
-  if (module.isPending) return <BrandLoader />;
+  if (module.isPending) return <LoadingScreen />;
   if (module.isError) {
     return (
       <EmptyState

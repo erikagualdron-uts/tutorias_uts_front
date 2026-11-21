@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon } from '@/icons/Icon';
+import { NotificationsBell } from '@/features/notifications/components/NotificationsBell';
 import { useSignOut } from '@/features/auth/hooks/useSignOut';
 import { useSession } from '@/store/session';
 import {
@@ -43,6 +44,7 @@ export function AppBar({ title }: { title?: string }) {
         >
           {title}
         </Text>
+        <NotificationsBell />
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={t('profile.menu')}

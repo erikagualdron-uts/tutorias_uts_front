@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import type { StudentSession } from '@/api/types';
 import { errorMessage } from '@/api/errors';
 import { Banner } from '@/components/Banner';
-import { BrandLoader } from '@/components/BrandLoader';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
@@ -36,7 +36,7 @@ export function StudentModuleDetailScreen() {
   const restoreSession = useRestoreSession();
   const [picked, setPicked] = useState<StudentSession | 'module' | null>(null);
 
-  if (module.isPending) return <BrandLoader />;
+  if (module.isPending) return <LoadingScreen />;
   if (module.isError) {
     return (
       <EmptyState

@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import type { ModuleDetail } from '@/api/types';
 import { Banner } from '@/components/Banner';
-import { BrandLoader } from '@/components/BrandLoader';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
@@ -117,7 +117,7 @@ export function ModuleFormScreen() {
     ? (scheduleErrors?.message ?? scheduleErrors?.root?.message)
     : undefined;
 
-  if (editing && existing.isPending) return <BrandLoader />;
+  if (editing && existing.isPending) return <LoadingScreen />;
   if (editing && existing.isError) {
     return (
       <EmptyState
