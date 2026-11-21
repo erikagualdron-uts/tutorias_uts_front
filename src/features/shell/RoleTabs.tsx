@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
 import { AppBar } from '@/components/AppBar';
+import { PushRegistration } from '@/features/notifications/components/PushRegistration';
 import { RouteGate } from '@/features/auth/RouteGate';
 import { ROLE_HOME } from '@/features/auth/routing';
 import type { Role } from '@/api/types';
@@ -24,6 +25,7 @@ export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
 
   return (
     <RouteGate expected={ROLE_HOME[role]}>
+      <PushRegistration />
       <Tabs
         screenOptions={{
           header: ({ options }) => <AppBar title={options.title} />,
@@ -55,6 +57,11 @@ export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
             }}
           />
         ))}
+        {/* The inbox is reached from the bell of the app bar, not from a tab. */}
+        <Tabs.Screen
+          name="notifications"
+          options={{ href: null, title: t('notifications.title') }}
+        />
       </Tabs>
     </RouteGate>
   );

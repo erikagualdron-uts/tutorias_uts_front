@@ -342,3 +342,53 @@ export interface TeacherCalendar {
     changeLeadMinutes: number;
   };
 }
+
+// Notifications (spec 014). Title and body arrive already written in the user's language.
+export type NotificationType =
+  | 'MODULE_TEACHER_CHANGED'
+  | 'MODULE_ROOM_CHANGED'
+  | 'SESSIONS_CANCELLED_HOLIDAY'
+  | 'SESSIONS_RESTORED_HOLIDAY'
+  | 'SESSION_RESCHEDULED'
+  | 'SESSION_CANCELLED_TEACHER'
+  | 'SESSION_RESTORED_TEACHER';
+
+export interface AppNotification {
+  id: string;
+  type: NotificationType;
+  moduleId: string;
+  title: string;
+  body: string;
+  readAt: string | null;
+  createdAt: string;
+}
+
+export interface NotificationPage {
+  data: AppNotification[];
+  meta: { page: number; limit: number; total: number };
+}
+
+export type SmtpStatus = 'NOT_CONFIGURED' | 'CONFIGURED' | 'NEEDS_RECONFIGURATION';
+
+export interface SmtpSettings {
+  status: SmtpStatus;
+  usingEnvironment: boolean;
+  host: string | null;
+  port: number | null;
+  user: string | null;
+  from: string | null;
+  // The password is never returned, only whether one is stored.
+  hasPassword: boolean;
+}
+
+export type SmtpTestCause =
+  | 'AUTH_FAILED'
+  | 'CONNECTION_FAILED'
+  | 'TIMEOUT'
+  | 'SENDER_REJECTED'
+  | 'UNKNOWN';
+
+export interface SmtpTestResult {
+  ok: boolean;
+  cause: SmtpTestCause | null;
+}

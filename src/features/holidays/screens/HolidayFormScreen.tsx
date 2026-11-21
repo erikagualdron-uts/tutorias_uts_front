@@ -7,7 +7,7 @@ import { ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import { Banner } from '@/components/Banner';
-import { BrandLoader } from '@/components/BrandLoader';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { Button } from '@/components/Button';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { DateField } from '@/components/DateField';
@@ -39,7 +39,7 @@ export function HolidayFormScreen() {
     if (current) reset({ name: current.name, date: current.date });
   }, [current, reset]);
 
-  if (id && holidays.isPending) return <BrandLoader />;
+  if (id && holidays.isPending) return <LoadingScreen />;
   const failure = save.error ?? remove.error;
   const fieldError = (name: keyof HolidayForm) => {
     const message = formState.errors[name]?.message;

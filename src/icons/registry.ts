@@ -165,6 +165,17 @@ export const icons = {
     linear: 'solar:calendar-mark-linear',
     bold: 'solar:calendar-mark-bold',
   },
+  // Notifications and mail settings (spec 014); user, email, key and send already exist.
+  notifications: { linear: 'solar:bell-linear', bold: 'solar:bell-bold' },
+  notificationsOff: {
+    linear: 'solar:bell-off-linear',
+    bold: 'solar:bell-off-bold',
+  },
+  checkRead: {
+    linear: 'solar:check-read-linear',
+    bold: 'solar:check-read-bold',
+  },
+  server: { linear: 'solar:server-linear', bold: 'solar:server-bold' },
   // Decorative brand pattern only: the mdi set is allowed for these three (D-049).
   leaf: { linear: 'mdi:leaf', bold: 'mdi:leaf' },
   feather: { linear: 'mdi:feather', bold: 'mdi:feather' },

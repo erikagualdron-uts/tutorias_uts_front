@@ -97,14 +97,18 @@
     "SESSION_RESCHEDULE_INVALID_DATE_OUT_OF_WEEK": "You can only move the session within its own week.",
     "SESSION_RESCHEDULE_INVALID_DATE_OUT_OF_PERIOD": "The new date is outside the module period.",
     "SESSION_RESCHEDULE_INVALID_DATE_HOLIDAY": "{{date}} is a holiday: there are no sessions that day.",
-    "SESSION_STUDENT_CONFLICT": "{{students}} enrolled students already have another session at that time."
+    "SESSION_STUDENT_CONFLICT": "{{students}} enrolled students already have another session at that time.",
+    "NOTIFICATION_NOT_FOUND": "We could not find that notification.",
+    "SMTP_PASSWORD_REQUIRED": "Enter the password of the mail server.",
+    "SMTP_NOT_CONFIGURED": "Email is not configured yet. Save the server details first."
   },
   "validation": {
     "required": "This field is required.",
     "email": "Enter a valid email.",
     "code": "The code has 6 digits.",
     "password": "The password does not meet the requirements.",
-    "invalidDate": "Choose a valid date."
+    "invalidDate": "Choose a valid date.",
+    "smtpPort": "The port must be a number between 1 and 65535."
   },
   "login": {
     "title": "Sign in",
@@ -181,7 +185,8 @@
     "configuration": "Settings",
     "periods": "Academic periods",
     "dropdownLists": "Dropdown lists",
-    "holidays": "Holidays"
+    "holidays": "Holidays",
+    "smtp": "Email"
   },
   "profile": {
     "menu": "Profile menu",
@@ -724,5 +729,63 @@
     "day_none": "{{label}}, no sessions",
     "day_one": "{{label}}, {{count}} session",
     "day_other": "{{label}}, {{count}} sessions"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "bell": "Notifications",
+    "bellUnread": "Notifications, {{count}} unread",
+    "markAllRead": "Mark all as read",
+    "unread": "Unread",
+    "open": "Open notification",
+    "loadError": "We could not load your notifications",
+    "loadingMore": "Loading more…",
+    "moduleUnavailable": "This module is no longer available.",
+    "empty": {
+      "title": "You have no notifications",
+      "description": "Here you will see the changes in your modules: schedules, cancellations, teacher and room."
+    },
+    "push": {
+      "title": "Turn on notifications",
+      "description": "We will let you know right away if the time, teacher or room of your modules changes, or if a session is cancelled.",
+      "enable": "Turn on notifications",
+      "later": "Not now",
+      "disabled": "Phone notifications are turned off. Turn them on in your phone settings to get alerts right away."
+    },
+    "channel": "Module alerts"
+  },
+  "smtp": {
+    "title": "Email",
+    "intro": "The server the app uses to send emails to students and teachers.",
+    "status": {
+      "NOT_CONFIGURED": "Not configured",
+      "CONFIGURED": "Configured",
+      "NEEDS_RECONFIGURATION": "Needs to be configured again"
+    },
+    "environmentNotice": "The configuration of the app server is being used. Saving replaces it with this one.",
+    "reconfigureNotice": "The saved password cannot be read. Enter it again to send emails again.",
+    "loadError": "We could not load the email settings",
+    "form": {
+      "host": "Server",
+      "port": "Port",
+      "user": "User",
+      "password": "Password",
+      "from": "Sender",
+      "passwordKeep": "Leave it empty to keep the current one.",
+      "save": "Save",
+      "saved": "Settings saved."
+    },
+    "test": {
+      "action": "Send test email",
+      "needsSave": "Save the settings to be able to test them.",
+      "ok": "The test email was sent to your email.",
+      "failed": "The test failed. {{reason}}",
+      "cause": {
+        "AUTH_FAILED": "Wrong user or password.",
+        "CONNECTION_FAILED": "Could not connect to the server. Check the server and the port.",
+        "TIMEOUT": "The server took too long to answer.",
+        "SENDER_REJECTED": "The server rejected the sender.",
+        "UNKNOWN": "The email could not be sent."
+      }
+    }
   }
 }

@@ -97,14 +97,18 @@
     "SESSION_RESCHEDULE_INVALID_DATE_OUT_OF_WEEK": "Solo puedes mover la sesión dentro de su misma semana.",
     "SESSION_RESCHEDULE_INVALID_DATE_OUT_OF_PERIOD": "La nueva fecha queda fuera del periodo del módulo.",
     "SESSION_RESCHEDULE_INVALID_DATE_HOLIDAY": "El {{date}} es festivo: no hay tutorías ese día.",
-    "SESSION_STUDENT_CONFLICT": "{{students}} estudiantes inscritos ya tienen otra tutoría a esa hora."
+    "SESSION_STUDENT_CONFLICT": "{{students}} estudiantes inscritos ya tienen otra tutoría a esa hora.",
+    "NOTIFICATION_NOT_FOUND": "No encontramos esa notificación.",
+    "SMTP_PASSWORD_REQUIRED": "Escribe la clave del servidor de correo.",
+    "SMTP_NOT_CONFIGURED": "El correo aún no está configurado. Guarda primero los datos del servidor."
   },
   "validation": {
     "required": "Este campo es obligatorio.",
     "email": "Escribe un correo válido.",
     "code": "El código tiene 6 dígitos.",
     "password": "La contraseña no cumple los requisitos.",
-    "invalidDate": "Elige una fecha válida."
+    "invalidDate": "Elige una fecha válida.",
+    "smtpPort": "El puerto debe ser un número entre 1 y 65535."
   },
   "login": {
     "title": "Inicia sesión",
@@ -181,7 +185,8 @@
     "configuration": "Configuración",
     "periods": "Periodos académicos",
     "dropdownLists": "Listas desplegables",
-    "holidays": "Festivos"
+    "holidays": "Festivos",
+    "smtp": "Correo"
   },
   "profile": {
     "menu": "Menú de perfil",
@@ -724,5 +729,63 @@
     "day_none": "{{label}}, sin sesiones",
     "day_one": "{{label}}, {{count}} sesión",
     "day_other": "{{label}}, {{count}} sesiones"
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "bell": "Notificaciones",
+    "bellUnread": "Notificaciones, {{count}} sin leer",
+    "markAllRead": "Marcar todo como leído",
+    "unread": "Sin leer",
+    "open": "Abrir notificación",
+    "loadError": "No pudimos cargar tus notificaciones",
+    "loadingMore": "Cargando más…",
+    "moduleUnavailable": "Este módulo ya no está disponible.",
+    "empty": {
+      "title": "No tienes notificaciones",
+      "description": "Aquí verás los cambios en tus módulos: horarios, cancelaciones, docente y salón."
+    },
+    "push": {
+      "title": "Activa las notificaciones",
+      "description": "Te avisaremos al instante si cambia la hora, el docente o el salón de tus módulos, o si se cancela una sesión.",
+      "enable": "Activar notificaciones",
+      "later": "Ahora no",
+      "disabled": "Las notificaciones del teléfono están desactivadas. Actívalas en los ajustes del teléfono para recibir avisos al instante."
+    },
+    "channel": "Avisos de módulos"
+  },
+  "smtp": {
+    "title": "Correo",
+    "intro": "El servidor desde el que la app envía correos a estudiantes y docentes.",
+    "status": {
+      "NOT_CONFIGURED": "Sin configurar",
+      "CONFIGURED": "Configurado",
+      "NEEDS_RECONFIGURATION": "Requiere configurar de nuevo"
+    },
+    "environmentNotice": "Se está usando la configuración del servidor de la app. Al guardar, esta configuración la reemplaza.",
+    "reconfigureNotice": "No se puede leer la clave guardada. Escríbela de nuevo para volver a enviar correos.",
+    "loadError": "No pudimos cargar la configuración del correo",
+    "form": {
+      "host": "Servidor",
+      "port": "Puerto",
+      "user": "Usuario",
+      "password": "Clave",
+      "from": "Remitente",
+      "passwordKeep": "Déjala vacía para conservar la actual.",
+      "save": "Guardar",
+      "saved": "Configuración guardada."
+    },
+    "test": {
+      "action": "Enviar correo de prueba",
+      "needsSave": "Guarda la configuración para poder probarla.",
+      "ok": "El correo de prueba se envió a tu correo.",
+      "failed": "La prueba falló. {{reason}}",
+      "cause": {
+        "AUTH_FAILED": "Usuario o clave incorrectos.",
+        "CONNECTION_FAILED": "No se pudo conectar con el servidor. Revisa el servidor y el puerto.",
+        "TIMEOUT": "El servidor tardó demasiado en responder.",
+        "SENDER_REJECTED": "El servidor rechazó el remitente.",
+        "UNKNOWN": "No se pudo enviar el correo."
+      }
+    }
   }
 }
