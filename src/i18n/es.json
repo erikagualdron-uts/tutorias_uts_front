@@ -35,6 +35,8 @@
     "INVALID_CREDENTIALS": "Correo o contraseña incorrectos.",
     "EMAIL_NOT_VERIFIED": "Debes verificar tu correo antes de iniciar sesión.",
     "ACCOUNT_DISABLED": "Tu cuenta está desactivada. Comunícate con el CAE.",
+    "ACCOUNT_NOT_ACTIVE": "Esa cuenta está desactivada. Reactívala antes de continuar.",
+    "ACCOUNT_NOT_FOUND": "No encontramos esa cuenta.",
     "ACCOUNT_UNAVAILABLE": "Esta cuenta ya no está disponible.",
     "SESSION_EXPIRED": "Tu sesión caducó. Inicia sesión de nuevo.",
     "SESSION_REVOKED": "Tu sesión se cerró. Inicia sesión de nuevo.",

@@ -35,6 +35,8 @@
     "INVALID_CREDENTIALS": "Incorrect email or password.",
     "EMAIL_NOT_VERIFIED": "You must verify your email before signing in.",
     "ACCOUNT_DISABLED": "Your account is disabled. Contact the CAE.",
+    "ACCOUNT_NOT_ACTIVE": "That account is disabled. Reactivate it first.",
+    "ACCOUNT_NOT_FOUND": "We could not find that account.",
     "ACCOUNT_UNAVAILABLE": "This account is no longer available.",
     "SESSION_EXPIRED": "Your session expired. Sign in again.",
     "SESSION_REVOKED": "Your session was closed. Sign in again.",
