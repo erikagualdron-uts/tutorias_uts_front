@@ -13,10 +13,12 @@ interface ComposerProps {
   // Only the teacher of the module can publish an announcement.
   canAnnounce: boolean;
   onSend: (body: string, kind: MessageKind) => void;
+  // Called when the text changes and is not empty, so a direct chat can tell the other person (spec 022).
+  onTyping?: () => void;
 }
 
 // Where a message is written. "Send" is disabled while the text is empty; the counter shows the limit.
-export function Composer({ maxLength, canAnnounce, onSend }: ComposerProps) {
+export function Composer({ maxLength, canAnnounce, onSend, onTyping }: ComposerProps) {
   const { t } = useTranslation();
   const palette = usePalette();
   const [text, setText] = useState('');
@@ -46,7 +48,10 @@ export function Composer({ maxLength, canAnnounce, onSend }: ComposerProps) {
         <TextInput
           multiline
           value={text}
-          onChangeText={setText}
+          onChangeText={(value) => {
+            setText(value);
+            if (value.length > 0) onTyping?.();
+          }}
           maxLength={maxLength}
           accessibilityLabel={t('chat.composer.label')}
           placeholder={t('chat.composer.label')}

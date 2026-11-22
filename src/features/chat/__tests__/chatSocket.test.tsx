@@ -224,3 +224,63 @@ describe('sending states', () => {
     expect(mockedApi).toHaveBeenCalled();
   });
 });
+
+describe('the typing notice on screen (spec 022)', () => {
+  // `detail()` is a direct chat with Ana Pérez; `person('p1')` is the partner of the summary by default.
+  const open = (overrides = {}) =>
+    routes({
+      'GET /chat/conversations/c1': detail(overrides),
+      'GET /chat/conversations/c1/messages': page([message(1)]),
+      'POST /chat/conversations/c1/read': { unread: 0 },
+    });
+  const partnerId = () => detail().partner?.id ?? 'p1';
+
+  it('shows the dots and "está escribiendo…" while the other person types, and removes them when their message arrives', async () => {
+    open();
+    await renderWith(<ChatScreen />);
+    await screen.findByText('Mensaje 1');
+    expect(screen.queryByLabelText('está escribiendo…')).toBeNull();
+    await fire('typing', { conversationId: 'c1', userId: partnerId() });
+    expect(await screen.findByLabelText('está escribiendo…')).toBeTruthy();
+    expect(screen.getByText('está escribiendo…')).toBeTruthy();
+    await fire('message:new', message(2, { sender: person(partnerId()) }));
+    await waitFor(() => expect(screen.queryByLabelText('está escribiendo…')).toBeNull());
+  });
+
+  it('shows the words even with reduce motion, and speaks English', async () => {
+    const { useReducedMotion } = jest.requireMock('react-native-reanimated') as { useReducedMotion: jest.Mock };
+    useReducedMotion.mockReturnValue(true);
+    await i18n.changeLanguage('en');
+    open();
+    await renderWith(<ChatScreen />);
+    await screen.findByText('Mensaje 1');
+    await fire('typing', { conversationId: 'c1', userId: partnerId() });
+    expect(await screen.findByText('is typing…')).toBeTruthy();
+    useReducedMotion.mockReturnValue(false);
+  });
+
+  it('never shows it in a module chat', async () => {
+    open({ type: 'MODULE', partner: null, module: { id: 'm', name: 'Cálculo I' } });
+    await renderWith(<ChatScreen />);
+    await screen.findByText('Mensaje 1');
+    await fire('typing', { conversationId: 'c1', userId: partnerId() });
+    expect(screen.queryByLabelText('está escribiendo…')).toBeNull();
+  });
+
+  it('tells the server when I type in a direct chat, at most every 3 seconds, and never in a module chat', async () => {
+    open();
+    await renderWith(<ChatScreen />);
+    await screen.findByText('Mensaje 1');
+    await fireEvent.changeText(screen.getByLabelText('Escribe un mensaje'), 'H');
+    await fireEvent.changeText(screen.getByLabelText('Escribe un mensaje'), 'Ho');
+    expect(socket.emit.mock.calls.filter(([name]) => name === 'typing')).toEqual([['typing', { conversationId: 'c1' }]]);
+  });
+
+  it('does not tell the server when I type in a module chat, or when I clear the text', async () => {
+    open({ type: 'MODULE', partner: null, module: { id: 'm', name: 'Cálculo I' } });
+    await renderWith(<ChatScreen />);
+    await screen.findByText('Mensaje 1');
+    await fireEvent.changeText(screen.getByLabelText('Escribe un mensaje'), 'Hola');
+    expect(socket.emit.mock.calls.filter(([name]) => name === 'typing')).toHaveLength(0);
+  });
+});

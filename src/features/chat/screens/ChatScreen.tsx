@@ -13,12 +13,14 @@ import { spacing, typography, usePalette } from '@/theme';
 import { AnnouncementCard } from '../components/AnnouncementCard';
 import { Avatar } from '../components/Avatar';
 import { Composer } from '../components/Composer';
+import { TypingIndicator } from '../components/TypingIndicator';
 import { DateSeparator } from '../components/DateSeparator';
 import { MessageBubble } from '../components/MessageBubble';
 import { ReadOnlyNotice } from '../components/ReadOnlyNotice';
 import { ReconnectBanner } from '../components/ReconnectBanner';
 import { useConversation, useMarkRead, useMessages } from '../hooks/useChatData';
 import { usePendingMessages } from '../hooks/usePendingMessages';
+import { usePartnerTyping, useTypingEmitter } from '../hooks/useTyping';
 import { useOpenConversation } from '../hooks/useChatSocket';
 import { useKeyboardLift } from '../hooks/useKeyboardLift';
 import { personName, type ChatMessage, type PendingMessage } from '../types';
@@ -37,6 +39,10 @@ export function ChatScreen() {
   const { pending, send, retry, discard } = usePendingMessages(id);
   const { mutate: markAsRead } = useMarkRead(id);
   useOpenConversation(id);
+  // "Is typing" only exists in a direct chat; a module chat has no partner and a read-only chat has no composer.
+  const direct = conversation.data?.type === 'DIRECT';
+  const partnerTyping = usePartnerTyping(id, direct ? conversation.data?.partner?.id : undefined);
+  const onTyping = useTypingEmitter(id, Boolean(direct && conversation.data?.canWrite));
   const [keyboardRef, keyboardLift] = useKeyboardLift();
 
   const history = messages.data?.pages.flatMap((page) => page.data) ?? [];
@@ -88,6 +94,7 @@ export function ChatScreen() {
         contentContainerStyle={styles.list}
         onEndReachedThreshold={0.4}
         onEndReached={() => messages.hasNextPage && !messages.isFetchingNextPage && void messages.fetchNextPage()}
+        ListHeaderComponent={partnerTyping ? <TypingIndicator /> : undefined}
         ListFooterComponent={messages.isFetchingNextPage ? <BrandLoader /> : undefined}
         ListEmptyComponent={<Text style={[typography.body, styles.empty, { color: palette.textSecondary }]}>{t('chat.conversation.empty')}</Text>}
         renderItem={({ item: row, index }) => (
@@ -121,7 +128,7 @@ export function ChatScreen() {
         <View style={styles.screen}>{body}</View>
         {detail ? (
           detail.canWrite ? (
-            <Composer maxLength={detail.limits.messageMaxLength} canAnnounce={detail.canAnnounce} onSend={send} />
+            <Composer maxLength={detail.limits.messageMaxLength} canAnnounce={detail.canAnnounce} onSend={send} onTyping={onTyping} />
           ) : (
             <View style={styles.notice}>
               <ReadOnlyNotice reason={detail.readOnlyReason} />

@@ -940,7 +940,8 @@
     },
     "retry": "Tap to retry",
     "reconnecting": "Reconnecting…",
-    "discard": "Discard"
+    "discard": "Discard",
+    "typing": "is typing…"
   },
   "smtp": {
     "title": "Email",

@@ -940,7 +940,8 @@
     },
     "retry": "Toca para reintentar",
     "reconnecting": "Reconectando…",
-    "discard": "Descartar"
+    "discard": "Descartar",
+    "typing": "está escribiendo…"
   },
   "smtp": {
     "title": "Correo",
