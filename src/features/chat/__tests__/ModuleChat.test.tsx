@@ -22,7 +22,7 @@ describe('module chat pieces', () => {
     await renderWith(<ConversationRow conversation={summary({ type: 'MODULE', partner: null, module: { id: 'm', name: 'Cálculo I' } })} onPress={() => undefined} />);
     expect(screen.getByText('Cálculo I')).toBeTruthy();
     expect(screen.getByText('Sin mensajes')).toBeTruthy();
-    expect(screen.queryAllByTestId(/users-group/).length).toBeGreaterThan(0);
+    expect(screen.queryAllByTestId(/users-group/, { includeHiddenElements: true }).length).toBeGreaterThan(0);
   });
 
   it('shows a direct row with the person icon, and an announcement preview with its prefix', async () => {
@@ -30,7 +30,7 @@ describe('module chat pieces', () => {
     expect(screen.getByText('Ana Pérez')).toBeTruthy();
     expect(screen.getByText('Anuncio: Sin clase')).toBeTruthy();
     expect(screen.getByText('3 sin leer')).toBeTruthy();
-    expect(screen.queryAllByTestId(/users-group/)).toHaveLength(0);
+    expect(screen.queryAllByTestId(/users-group/, { includeHiddenElements: true })).toHaveLength(0);
   });
 
   it('renders an announcement as a card with its label, the teacher and the time, not as a bubble', async () => {

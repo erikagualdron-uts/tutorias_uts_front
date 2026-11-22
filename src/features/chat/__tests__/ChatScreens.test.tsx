@@ -54,6 +54,20 @@ describe('ChatScreen', () => {
     await waitFor(() => expect(posts('/chat/conversations/c1/read')).toHaveLength(1));
   });
 
+  it('shows the avatar of the person with initials in the header, and the group icon in a module chat', async () => {
+    open();
+    await renderWith(<ChatScreen />);
+    expect(await screen.findByText('AP', { includeHiddenElements: true })).toBeTruthy();
+    expect(screen.getAllByText('Ana Pérez').length).toBeGreaterThan(0);
+  });
+
+  it('shows the group icon in the header of a module chat', async () => {
+    open({ type: 'MODULE', partner: null, module: { id: 'm', name: 'Cálculo I' } });
+    await renderWith(<ChatScreen />);
+    await screen.findByText('Cálculo I');
+    expect(screen.getAllByTestId('icon:solar:users-group-rounded-linear', { includeHiddenElements: true }).length).toBeGreaterThan(0);
+  });
+
   it('shows what I wrote as sent and the module name with the writer of each message in a module chat', async () => {
     open({ type: 'MODULE', partner: null, module: { id: 'm', name: 'Cálculo I' } }, [message(1), message(2, { sender: person('me', 'STUDENT') })]);
     await renderWith(<ChatScreen />);
@@ -281,6 +295,23 @@ describe('MessagesScreen', () => {
     expect(mockPush).toHaveBeenCalledWith({ pathname: '/(student)/messages/[id]', params: { id: 'c1' } });
     await fireEvent.press(screen.getByLabelText('Nuevo mensaje'));
     expect(mockPush).toHaveBeenCalledWith('/(student)/messages/new');
+  });
+
+  it('shows the initials of the person and the group icon of a module, never read aloud', async () => {
+    routes({
+      'GET /chat/conversations': [
+        ...list,
+        summary({ id: 'c4', partner: person('p4', 'TEACHER', 'Luis', ''), lastMessage: null }),
+        summary({ id: 'c5', partner: person('p5', 'TEACHER', '', ''), lastMessage: null }),
+      ],
+    });
+    await renderWith(<MessagesScreen />);
+    await screen.findByText('Ana Pérez');
+    expect(screen.getByText('AP', { includeHiddenElements: true })).toBeTruthy();
+    expect(screen.getByText('L', { includeHiddenElements: true })).toBeTruthy();
+    expect(screen.getAllByTestId('icon:solar:users-group-rounded-linear', { includeHiddenElements: true })).toHaveLength(2); // the two module chats
+    expect(screen.getAllByTestId('icon:solar:user-linear', { includeHiddenElements: true })).toHaveLength(1); // the person without a name
+    expect(screen.queryByText('AP')).toBeNull(); // hidden from the screen reader
   });
 
   it('shows the alerts of the notifications when "Avisos" is chosen', async () => {

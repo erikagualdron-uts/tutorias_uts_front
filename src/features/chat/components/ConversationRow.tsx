@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Card } from '@/components/Card';
 import { bogotaParts } from '@/features/modules/format';
-import { Icon } from '@/icons/Icon';
 import { MIN_TOUCH_TARGET, radius, spacing, typography, usePalette } from '@/theme';
 import { personName, type ConversationSummary } from '../types';
+import { Avatar } from './Avatar';
 
 // One conversation of the list: who or which module, the last message, its time and the unread count as text.
 export function ConversationRow({ conversation, onPress }: { conversation: ConversationSummary; onPress: () => void }) {
@@ -24,9 +24,7 @@ export function ConversationRow({ conversation, onPress }: { conversation: Conve
       style={styles.touch}
     >
       <Card style={styles.card}>
-        <View style={[styles.avatar, { backgroundColor: palette.surface }]}>
-          <Icon name={module ? 'group' : 'user'} size={24} color={palette.primary} />
-        </View>
+        <Avatar group={Boolean(module)} firstName={partner?.firstName} lastName={partner?.lastName} />
         <View style={styles.text}>
           <Text numberOfLines={1} style={[typography.cardTitle, { color: palette.textPrimary }]}>{title}</Text>
           <Text numberOfLines={1} style={[typography.bodySmall, { color: palette.textSecondary }]}>{preview}</Text>
@@ -47,7 +45,6 @@ export function ConversationRow({ conversation, onPress }: { conversation: Conve
 const styles = StyleSheet.create({
   touch: { minHeight: MIN_TOUCH_TARGET },
   card: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
-  avatar: { width: 48, height: 48, borderRadius: radius.pill, alignItems: 'center', justifyContent: 'center' },
   text: { flex: 1, gap: spacing.xs },
   side: { alignItems: 'flex-end', gap: spacing.xs },
   pill: { borderRadius: radius.pill, paddingHorizontal: spacing.sm, paddingVertical: spacing.xs },

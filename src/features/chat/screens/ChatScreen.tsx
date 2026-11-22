@@ -11,6 +11,7 @@ import { bogotaParts } from '@/features/modules/format';
 import { useSession } from '@/store/session';
 import { spacing, typography, usePalette } from '@/theme';
 import { AnnouncementCard } from '../components/AnnouncementCard';
+import { Avatar } from '../components/Avatar';
 import { Composer } from '../components/Composer';
 import { DateSeparator } from '../components/DateSeparator';
 import { MessageBubble } from '../components/MessageBubble';
@@ -110,8 +111,11 @@ export function ChatScreen() {
     <SafeAreaView edges={['left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
       <View ref={keyboardRef} collapsable={false} style={[styles.screen, { paddingBottom: keyboardLift }]}>
         <View style={styles.header}>
-          <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>{title}</Text>
-          {detail?.module ? <Text style={[typography.bodySmall, { color: palette.textSecondary }]}>{t('chat.moduleChat')}</Text> : null}
+          {detail ? <Avatar group={Boolean(detail.module)} firstName={detail.partner?.firstName} lastName={detail.partner?.lastName} /> : null}
+          <View style={styles.titles}>
+            <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>{title}</Text>
+            {detail?.module ? <Text style={[typography.bodySmall, { color: palette.textSecondary }]}>{t('chat.moduleChat')}</Text> : null}
+          </View>
         </View>
         <ReconnectBanner />
         <View style={styles.screen}>{body}</View>
@@ -131,7 +135,8 @@ export function ChatScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1 },
-  header: { paddingHorizontal: spacing.lg, paddingTop: spacing.lg, gap: spacing.xs },
+  header: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: spacing.lg, paddingTop: spacing.lg, gap: spacing.md },
+  titles: { flex: 1, gap: spacing.xs },
   list: { padding: spacing.lg },
   cell: { gap: spacing.xs, marginTop: 2 },
   runStart: { marginTop: spacing.md },
