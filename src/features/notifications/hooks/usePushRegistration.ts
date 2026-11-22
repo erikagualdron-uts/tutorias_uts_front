@@ -17,6 +17,7 @@ interface PushData {
   notificationId?: string;
   moduleId?: string;
   pqrsId?: string;
+  conversationId?: string;
 }
 
 // Push for the signed-in user (FR-014): registers the device when the permission is already given,

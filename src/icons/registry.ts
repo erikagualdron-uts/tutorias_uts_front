@@ -62,6 +62,7 @@ export const icons = {
     bold: 'solar:close-circle-bold',
   },
   // CAE configuration (spec 006)
+  group: { linear: 'solar:users-group-rounded-linear', bold: 'solar:users-group-rounded-bold' },
   add: { linear: 'solar:add-circle-linear', bold: 'solar:add-circle-bold' },
   edit: { linear: 'solar:pen-linear', bold: 'solar:pen-bold' },
   trash: {

@@ -17,8 +17,9 @@ import { useNotifications } from '../hooks/useNotifications';
 import { usePushPermission } from '../hooks/usePushPermission';
 import { noticeTarget } from '../openTarget';
 
-// The inbox of any role: newest first, unread highlighted, more pages as the end is reached.
-export function NotificationsScreen() {
+// The content of the inbox of any role: newest first, unread highlighted, more pages as the end is reached.
+// The Messages tab embeds it as its "Alerts" section (spec 018).
+export function NotificationsPanel() {
   const { t } = useTranslation();
   const palette = usePalette();
   const role = useSession((state) => state.user?.role);
@@ -49,7 +50,7 @@ export function NotificationsScreen() {
   ) : null;
 
   return (
-    <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
+    <View style={[styles.screen, { backgroundColor: palette.screen }]}>
       {/* Above the list so it also shows with an empty inbox, where it is needed most. */}
       {push.state === 'undetermined' || push.state === 'denied' ? (
         <View style={styles.pushHint}>
@@ -88,6 +89,14 @@ export function NotificationsScreen() {
           renderItem={({ item }) => <NotificationCard notification={item} onPress={() => open(item)} />}
         />
       )}
+    </View>
+  );
+}
+
+export function NotificationsScreen() {
+  return (
+    <SafeAreaView edges={['bottom', 'left', 'right']} style={styles.screen}>
+      <NotificationsPanel />
     </SafeAreaView>
   );
 }

@@ -106,6 +106,10 @@
     "PQRS_INVALID_TRANSITION": "Esa PQRS no puede pasar a ese estado desde el actual. El orden es Radicada, En revisión y Resuelta.",
     "PQRS_NOT_IN_REVIEW": "Solo se puede responder una PQRS que está En revisión. Primero pásala a En revisión.",
     "PQRS_RESPONSE_REQUIRED": "Para resolver la PQRS primero escribe al menos una respuesta.",
+    "CHAT_NOT_FOUND": "No encontramos esa conversación.",
+    "CHAT_PARTNER_NOT_ALLOWED": "No puedes escribirle a esa persona. Solo se conversa con quien comparte un módulo contigo.",
+    "CHAT_READ_ONLY": "Esta conversación es de solo lectura por ahora.",
+    "CHAT_ANNOUNCEMENT_FORBIDDEN": "Solo el docente del módulo puede publicar anuncios.",
     "SMTP_PASSWORD_REQUIRED": "Escribe la clave del servidor de correo.",
     "SMTP_NOT_CONFIGURED": "El correo aún no está configurado. Guarda primero los datos del servidor."
   },
@@ -841,6 +845,71 @@
         "closed": "Esta PQRS está resuelta y ya no admite cambios."
       }
     }
+  },
+  "chat": {
+    "readOnly": {
+      "NO_SHARED_MODULE": "Ya no comparten un módulo, así que solo puedes leer esta conversación.",
+      "PERIOD_CLOSED": "El periodo de este módulo está cerrado, así que solo puedes leer el chat.",
+      "PARTNER_UNAVAILABLE": "La cuenta de la otra persona no está disponible, así que solo puedes leer esta conversación."
+    },
+    "tabs": {
+      "alerts": "Avisos",
+      "chats": "Chats"
+    },
+    "new": {
+      "title": "Nuevo mensaje",
+      "search": "Buscar por nombre",
+      "loadError": "No pudimos cargar a quién puedes escribir",
+      "empty": {
+        "title": "Todavía no hay con quién hablar",
+        "description": "Podrás escribir a las personas con las que compartes un módulo."
+      },
+      "emptyFiltered": {
+        "title": "Nadie coincide",
+        "description": "Prueba con otro nombre."
+      }
+    },
+    "list": {
+      "newMessage": "Nuevo mensaje",
+      "loadError": "No pudimos cargar tus chats",
+      "empty": {
+        "title": "Aún no tienes conversaciones",
+        "description": "Escribe a un docente o a un estudiante para empezar."
+      }
+    },
+    "role": {
+      "SUPERADMIN": "CAE",
+      "TEACHER": "Docente",
+      "STUDENT": "Estudiante"
+    },
+    "noMessages": "Sin mensajes",
+    "announcementPrefix": "Anuncio",
+    "unread": "{{count}} sin leer",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "moduleChat": "Chat del módulo",
+    "conversation": {
+      "loadError": "No pudimos cargar la conversación",
+      "empty": "Aún no hay mensajes. Escribe el primero.",
+      "olderError": "No pudimos cargar los mensajes anteriores"
+    },
+    "composer": {
+      "label": "Escribe un mensaje",
+      "send": "Enviar",
+      "kind": "Tipo de mensaje",
+      "asMessage": "Mensaje",
+      "asAnnouncement": "Anuncio"
+    },
+    "announcement": {
+      "label": "Anuncio"
+    },
+    "status": {
+      "sending": "Enviando…",
+      "sent": "Enviado",
+      "failed": "No se envió"
+    },
+    "retry": "Toca para reintentar",
+    "reconnecting": "Reconectando…"
   },
   "smtp": {
     "title": "Correo",

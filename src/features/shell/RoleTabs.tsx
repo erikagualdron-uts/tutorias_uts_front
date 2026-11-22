@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
 import { AppBar } from '@/components/AppBar';
+import { useChatSocket } from '@/features/chat/hooks/useChatSocket';
 import { PushRegistration } from '@/features/notifications/components/PushRegistration';
 import { RouteGate } from '@/features/auth/RouteGate';
 import { ROLE_HOME } from '@/features/auth/routing';
@@ -22,6 +23,7 @@ export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
   const { t } = useTranslation();
   const palette = usePalette();
   const { bottom } = useSafeAreaInsets();
+  useChatSocket();
 
   return (
     <RouteGate expected={ROLE_HOME[role]}>
