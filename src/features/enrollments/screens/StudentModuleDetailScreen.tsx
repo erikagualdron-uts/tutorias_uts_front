@@ -59,7 +59,7 @@ export function StudentModuleDetailScreen() {
     <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
       <ScrollView contentContainerStyle={styles.content}>
         {m.readOnly ? <Banner message={t('student.cancel.readOnly')} /> : null}
-        {failure ? <Banner message={errorMessage(t, failure)} /> : null}
+        {failure ? <Banner message={errorMessage(t, failure)} severity="error" /> : null}
         <OfferCard
           module={m}
           loading={enroll.isPending}

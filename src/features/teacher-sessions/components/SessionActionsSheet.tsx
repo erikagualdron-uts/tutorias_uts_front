@@ -79,8 +79,8 @@ export function SessionActionsSheet({ session, minutes, onClose }: SessionAction
           <Text style={[typography.body, { color: palette.textSecondary }]}>
             {t('teacher.schedule.rule', { minutes })}
           </Text>
-          {session.blockReason ? <Banner message={t(`teacher.schedule.block.${session.blockReason}`, { minutes })} /> : null}
-          {failure && mode !== 'reschedule' ? <Banner message={errorMessage(t, failure)} /> : null}
+          {session.blockReason ? <Banner message={t(`teacher.schedule.block.${session.blockReason}`, { minutes })} severity="warning" /> : null}
+          {failure && mode !== 'reschedule' ? <Banner message={errorMessage(t, failure)} severity="error" /> : null}
 
           {mode === 'menu' ? (
             <>
@@ -126,7 +126,7 @@ export function SessionActionsSheet({ session, minutes, onClose }: SessionAction
                   {t('teacher.reschedule.available', { sessions: check.data.sessions.length })}
                 </Text>
               ) : null}
-              {failure && !unchanged ? <Banner message={errorMessage(t, failure)} /> : null}
+              {failure && !unchanged ? <Banner message={errorMessage(t, failure)} severity="error" /> : null}
               <Button
                 label={t('teacher.reschedule.confirm')}
                 icon="reschedule"

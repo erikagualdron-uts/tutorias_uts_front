@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Modal, StyleSheet, Text, View } from 'react-native';
 import type { IconName } from '@/icons/registry';
 import { radius, shadows, spacing, typography, usePalette } from '@/theme';
-import { Button } from './Button';
+import { Button, type ButtonVariant } from './Button';
 
 interface ConfirmDialogProps {
   title: string;
@@ -12,6 +12,8 @@ interface ConfirmDialogProps {
   // Defaults to "Cancel"; a dialog that only offers something may say "Not now".
   cancelLabel?: string;
   loading?: boolean;
+  // Severity of the confirm button: warning for reversible closures, destructive for deletions.
+  variant?: Extract<ButtonVariant, 'primary' | 'warning' | 'destructive'>;
   onConfirm: () => void;
   onCancel: () => void;
 }
@@ -24,6 +26,7 @@ export function ConfirmDialog({
   confirmIcon,
   cancelLabel,
   loading = false,
+  variant = 'primary',
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
@@ -51,6 +54,7 @@ export function ConfirmDialog({
           <Button
             label={confirmLabel}
             icon={confirmIcon}
+            variant={variant}
             loading={loading}
             onPress={onConfirm}
           />

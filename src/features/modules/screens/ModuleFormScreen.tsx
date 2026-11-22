@@ -157,7 +157,7 @@ export function ModuleFormScreen() {
             </Text>
           </Card>
           {withoutSessions ? (
-            <Banner message={t('modules.result.noSessions')} />
+            <Banner message={t('modules.result.noSessions')} severity="warning" />
           ) : null}
           <Button
             label={t('modules.result.done')}
@@ -181,11 +181,11 @@ export function ModuleFormScreen() {
         <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>
           {t(editing ? 'modules.edit.title' : 'modules.form.createTitle')}
         </Text>
-        {failure ? <Banner message={errorMessage(t, failure)} /> : null}
+        {failure ? <Banner message={errorMessage(t, failure)} severity="error" /> : null}
         {editing ? <Banner message={t('modules.edit.locked')} /> : null}
         {locked ? <Banner message={t('modules.edit.schedulesLocked', { enrolled: existing.data?.enrolled ?? 0 })} /> : null}
         {periods.isSuccess && openPeriods.length === 0 ? (
-          <Banner message={t('modules.form.noPeriods')} />
+          <Banner message={t('modules.form.noPeriods')} severity="warning" />
         ) : null}
 
         <Controller

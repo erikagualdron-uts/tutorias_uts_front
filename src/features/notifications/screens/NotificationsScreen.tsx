@@ -52,7 +52,7 @@ export function NotificationsScreen() {
       {/* Above the list so it also shows with an empty inbox, where it is needed most. */}
       {push.state === 'undetermined' || push.state === 'denied' ? (
         <View style={styles.pushHint}>
-          <Banner message={push.state === 'denied' ? t('notifications.push.disabled') : t('notifications.push.description')} />
+          <Banner message={push.state === 'denied' ? t('notifications.push.disabled') : t('notifications.push.description')} severity="warning" />
           <Button label={t('notifications.push.enable')} icon="notifications" variant="outlined" onPress={() => void push.enable()} />
         </View>
       ) : null}
@@ -71,7 +71,7 @@ export function NotificationsScreen() {
           }}
           ListHeaderComponent={
             <View style={styles.header}>
-              {list.isError ? <Banner message={errorMessage(t, list.error)} /> : null}
+              {list.isError ? <Banner message={errorMessage(t, list.error)} severity="error" /> : null}
               {hasUnread ? (
                 <Button
                   label={t('notifications.markAllRead')}

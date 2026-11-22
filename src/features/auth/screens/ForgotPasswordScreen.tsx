@@ -27,7 +27,7 @@ export function ForgotPasswordScreen() {
 
   return (
     <AuthLayout title={t('forgot.title')} description={t('forgot.description')}>
-      {forgot.error ? <Banner message={errorMessage(t, forgot.error)} /> : null}
+      {forgot.error ? <Banner message={errorMessage(t, forgot.error)} severity="error" /> : null}
 
       <Controller
         control={control}

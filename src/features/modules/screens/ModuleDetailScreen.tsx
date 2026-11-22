@@ -48,8 +48,8 @@ export function ModuleDetailScreen() {
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>{m.name}</Text>
         {m.readOnlyReason ? <Banner message={t('modules.readOnly.PERIOD_CLOSED')} /> : null}
-        {m.teacherUnavailable ? <Banner message={t('modules.unavailable.teacherHelp')} /> : null}
-        {m.roomUnavailable ? <Banner message={t('modules.unavailable.roomHelp')} /> : null}
+        {m.teacherUnavailable ? <Banner message={t('modules.unavailable.teacherHelp')} severity="warning" /> : null}
+        {m.roomUnavailable ? <Banner message={t('modules.unavailable.roomHelp')} severity="warning" /> : null}
 
         <Card style={styles.card}>
           {m.description ? <Text style={muted}>{m.description}</Text> : null}
@@ -110,12 +110,13 @@ export function ModuleDetailScreen() {
           message={t('modules.delete.message')}
           confirmLabel={t('modules.delete.confirm')}
           confirmIcon="trash"
+          variant="destructive"
           loading={remove.isPending}
           onConfirm={() => remove.mutate(undefined, { onSuccess: () => router.back(), onError: () => setSheet(null) })}
           onCancel={() => setSheet(null)}
         />
       ) : null}
-      {remove.error ? <Banner message={errorMessage(t, remove.error)} /> : null}
+      {remove.error ? <Banner message={errorMessage(t, remove.error)} severity="error" /> : null}
     </SafeAreaView>
   );
 }

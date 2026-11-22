@@ -78,7 +78,7 @@ export function DropdownItemFormScreen() {
           {t(itemId ? 'dropdowns.editTitle' : 'dropdowns.createTitle')}
         </Text>
         {failure && dialog === null ? (
-          <Banner message={errorMessage(t, failure)} />
+          <Banner message={errorMessage(t, failure)} severity="error" />
         ) : null}
         {(['labelEs', 'labelEn'] as const).map((name) => (
           <Controller
@@ -154,6 +154,7 @@ export function DropdownItemFormScreen() {
           message={t('dropdowns.confirm.delete.message')}
           confirmLabel={t('dropdowns.actions.delete')}
           confirmIcon="trash"
+          variant="destructive"
           loading={remove.isPending}
           onConfirm={() => remove.mutate(undefined, closeOnError)}
           onCancel={() => setDialog(null)}

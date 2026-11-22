@@ -69,7 +69,7 @@ export function PickerSheet({
               onClear={() => search.onChange('')}
             />
           ) : null}
-          {error ? <Banner message={error} /> : null}
+          {error ? <Banner message={error} severity="error" /> : null}
           {loading ? (
             <BrandLoader />
           ) : options.length === 0 && !error ? (

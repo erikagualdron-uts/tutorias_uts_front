@@ -40,10 +40,10 @@ export function HolidaysImportScreen() {
 
         {done ? (
           <>
-            <Banner message={t('holidays.importResult.created', { count: done.created })} />
-            {done.skipped > 0 ? <Banner message={t('holidays.importResult.skipped', { count: done.skipped })} /> : null}
+            <Banner message={t('holidays.importResult.created', { count: done.created })} severity="success" />
+            {done.skipped > 0 ? <Banner message={t('holidays.importResult.skipped', { count: done.skipped })} severity="success" /> : null}
             {done.cancelledSessions > 0 ? (
-              <Banner message={t('holidays.result.cancelled', { count: done.cancelledSessions })} />
+              <Banner message={t('holidays.result.cancelled', { count: done.cancelledSessions })} severity="warning" />
             ) : null}
             <Button label={t('modules.result.done')} icon="success" onPress={() => router.back()} />
           </>
@@ -58,13 +58,13 @@ export function HolidaysImportScreen() {
                 setChosen(new Set());
               }}
             />
-            {run.error ? <Banner message={errorMessage(t, run.error)} /> : null}
+            {run.error ? <Banner message={errorMessage(t, run.error)} severity="error" /> : null}
 
             {preview.isPending ? (
               <BrandLoader />
             ) : preview.isError ? (
               <>
-                <Banner message={errorMessage(t, preview.error)} />
+                <Banner message={errorMessage(t, preview.error)} severity="error" />
                 <Button label={t('common.tryAgain')} icon="restart" variant="tonal" onPress={() => preview.refetch()} />
                 <Button label={t('holidays.addByHand')} icon="add" variant="tonal" onPress={() => router.replace('/more/holiday-form')} />
               </>

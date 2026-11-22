@@ -81,7 +81,7 @@ export function LocationFormScreen() {
           {t(id ? 'locations.editTitle' : 'locations.createTitle')}
         </Text>
         {failure && !confirming ? (
-          <Banner message={errorMessage(t, failure)} />
+          <Banner message={errorMessage(t, failure)} severity="error" />
         ) : null}
         <Controller
           control={control}
@@ -125,6 +125,7 @@ export function LocationFormScreen() {
           message={message}
           confirmLabel={t('locations.actions.delete')}
           confirmIcon="trash"
+          variant="destructive"
           loading={remove.isPending}
           onConfirm={() =>
             remove.mutate(undefined, {

@@ -16,8 +16,11 @@ export interface Palette {
   border: string;
   error: string;
   errorPressed: string;
+  onError: string;
   success: string;
+  successPressed: string;
   warning: string;
+  warningPressed: string;
   disabledText: string;
   scrim: string;
   inputFill: string;
@@ -47,8 +50,11 @@ export const lightPalette: Palette = {
   border: '#E5E5E5',
   error: '#B3261E', // derived
   errorPressed: '#6D100A',
+  onError: '#FFFFFF',
   success: '#2BA640',
+  successPressed: '#3DBB55', // derived: 5.8:1 with onAccent
   warning: '#FB8C00',
+  warningPressed: '#E07B00', // derived: 4.8:1 with onAccent
   disabledText: '#878787',
   scrim: 'rgba(0,0,0,0.4)', // derived: dialog backdrop
   // derived (docs/Design.md, Inputs): fields always have a fill and a soft border
@@ -79,8 +85,11 @@ export const darkPalette: Palette = {
   border: 'rgba(255,255,255,0.08)',
   error: '#B3261E',
   errorPressed: '#6D100A',
+  onError: '#FFFFFF',
   success: '#2BA640',
+  successPressed: '#3DBB55', // derived: 5.8:1 with onAccent
   warning: '#FB8C00',
+  warningPressed: '#E07B00', // derived: 4.8:1 with onAccent
   disabledText: '#878787',
   scrim: 'rgba(0,0,0,0.4)', // derived: dialog backdrop
   // derived (docs/Design.md, Inputs, dark mode)

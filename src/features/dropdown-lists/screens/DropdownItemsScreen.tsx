@@ -69,7 +69,7 @@ export function DropdownItemsScreen() {
             : t('dropdowns.title')}
         </Text>
         {reorder.error ? (
-          <Banner message={errorMessage(t, reorder.error)} />
+          <Banner message={errorMessage(t, reorder.error)} severity="error" />
         ) : null}
         {list.isPending ? (
           <BrandLoader />

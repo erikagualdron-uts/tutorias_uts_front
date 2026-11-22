@@ -34,7 +34,7 @@ export function RegisterScreen() {
   return (
     <AuthLayout title={t('register.title')}>
       {register.error ? (
-        <Banner message={errorMessage(t, register.error)} />
+        <Banner message={errorMessage(t, register.error)} severity="error" />
       ) : null}
 
       {(['firstName', 'lastName', 'email'] as const).map((name) => (

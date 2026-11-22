@@ -18,14 +18,22 @@ import {
 import { BrandLoader } from './BrandLoader';
 import { useMotion } from './useMotion';
 
-type Variant = 'primary' | 'outlined' | 'tonal' | 'link';
+// Emphasis (primary, tonal, outlined, link) and severity (success, warning, destructive), docs/Design.md.
+export type ButtonVariant =
+  | 'primary'
+  | 'outlined'
+  | 'tonal'
+  | 'link'
+  | 'success'
+  | 'warning'
+  | 'destructive';
 
 interface ButtonProps {
   label: string;
   // Leading icon; links are the only buttons without one.
   icon?: IconName;
   onPress: () => void;
-  variant?: Variant;
+  variant?: ButtonVariant;
   loading?: boolean;
   disabled?: boolean;
   // The rule that blocks the action; a disabled button always explains why (docs/Design.md).
@@ -79,6 +87,24 @@ export function Button({
       pressed: palette.border,
       text: palette.textPrimary,
       border: palette.surface,
+    },
+    success: {
+      bg: palette.success,
+      pressed: palette.successPressed,
+      text: palette.onAccent,
+      border: palette.success,
+    },
+    warning: {
+      bg: palette.warning,
+      pressed: palette.warningPressed,
+      text: palette.onAccent,
+      border: palette.warning,
+    },
+    destructive: {
+      bg: palette.error,
+      pressed: palette.errorPressed,
+      text: palette.onError,
+      border: palette.error,
     },
     link: {
       bg: 'transparent',

@@ -107,10 +107,10 @@ export function RoomFormScreen() {
           {t(id ? 'rooms.editTitle' : 'rooms.createTitle')}
         </Text>
         {failure && dialog === null ? (
-          <Banner message={errorMessage(t, failure)} />
+          <Banner message={errorMessage(t, failure)} severity="error" />
         ) : null}
         {locations.data?.data.length === 0 ? (
-          <Banner message={t('rooms.form.noLocations')} />
+          <Banner message={t('rooms.form.noLocations')} severity="warning" />
         ) : null}
 
         <Controller
@@ -242,6 +242,7 @@ export function RoomFormScreen() {
           message={t('rooms.confirm.delete.message')}
           confirmLabel={t('rooms.actions.delete')}
           confirmIcon="trash"
+          variant="destructive"
           loading={remove.isPending}
           onConfirm={() => remove.mutate(undefined, closeOnError)}
           onCancel={() => setDialog(null)}
