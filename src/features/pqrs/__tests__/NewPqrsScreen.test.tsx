@@ -7,7 +7,9 @@ import { NewPqrsScreen } from '../screens/NewPqrsScreen';
 
 jest.mock('@/api/client', () => ({ api: jest.fn() }));
 const mockBack = jest.fn();
-jest.mock('expo-router', () => ({ router: { push: jest.fn(), back: () => mockBack() } }));
+const mockReplace = jest.fn();
+jest.mock('expo-router', () => ({ router: { push: jest.fn(), back: () => mockBack(), replace: (...a: unknown[]) => mockReplace(...a) } }));
+const FILED = { id: 'a1b2c3d4-0000-4000-8000-000000000001', createdAt: '2030-01-08T19:00:00.000Z', status: 'FILED' };
 
 const mockedApi = api as jest.Mock;
 const LIMITS = { subjectMaxLength: 120, descriptionMaxLength: 2000, responseMaxLength: 2000 };
@@ -17,7 +19,7 @@ const TYPES = [
 ];
 const posts = () => mockedApi.mock.calls.filter(([path, options]) => path === '/pqrs' && options?.method === 'POST');
 
-function answer(post: () => Promise<unknown> = () => Promise.resolve({ id: 'p1' })) {
+function answer(post: () => Promise<unknown> = () => Promise.resolve(FILED)) {
   mockedApi.mockImplementation((path: string, options?: { method?: string }) => {
     if (path === '/pqrs/limits') return Promise.resolve(LIMITS);
     if (path === '/dropdown-lists/PQRS_TYPE/items') return Promise.resolve(TYPES);
@@ -68,7 +70,7 @@ describe('NewPqrsScreen', () => {
     expect(await screen.findByText('0/2000')).toBeTruthy();
   });
 
-  it('files the PQRS with the trimmed text and goes back', async () => {
+  it('files the PQRS with the trimmed text and opens the confirmation instead of going back', async () => {
     answer();
     await renderScreen();
     await fill();
@@ -76,7 +78,21 @@ describe('NewPqrsScreen', () => {
     await waitFor(() => expect(posts()).toHaveLength(1));
     expect(posts()[0][1].body).toMatchObject({ typeId: 't2', subject: 'Horario', description: 'No encuentro el horario' });
     expect(posts()[0][1].body.clientRequestId).toMatch(/^[0-9a-f-]{36}$/);
-    await waitFor(() => expect(mockBack).toHaveBeenCalled());
+    await waitFor(() =>
+      expect(mockReplace).toHaveBeenCalledWith({ pathname: '/(student)/pqrs/filed', params: FILED }),
+    );
+    expect(mockBack).not.toHaveBeenCalled();
+  });
+
+  it('leads to the same filing number when a retry gets the same PQRS back', async () => {
+    answer();
+    await renderScreen();
+    await fill();
+    await fireEvent.press(screen.getByLabelText('Radicar'));
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledTimes(1));
+    await fireEvent.press(screen.getByLabelText('Radicar'));
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledTimes(2));
+    expect(mockReplace.mock.calls[1][0].params.id).toBe(mockReplace.mock.calls[0][0].params.id);
   });
 
   it('sends a single request on a double tap', async () => {
@@ -87,7 +103,7 @@ describe('NewPqrsScreen', () => {
     await fireEvent.press(screen.getByLabelText('Radicar'));
     await fireEvent.press(screen.getByLabelText('Radicar'));
     expect(posts()).toHaveLength(1);
-    finish({ id: 'p1' });
+    finish(FILED);
   });
 
   it('keeps the same request key when the first try fails and the user retries', async () => {
@@ -107,6 +123,7 @@ describe('NewPqrsScreen', () => {
     await fill();
     await fireEvent.press(screen.getByLabelText('Radicar'));
     expect(await screen.findByText('Ese tipo de PQRS ya no está disponible. Elige otro.')).toBeTruthy();
+    expect(mockReplace).not.toHaveBeenCalled();
   });
 
   it('shows an error with retry when the types do not load', async () => {

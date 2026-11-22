@@ -41,6 +41,8 @@ describe('MyPqrsScreen', () => {
     await renderScreen(<MyPqrsScreen />);
     expect(await screen.findByText('Asunto 1')).toBeTruthy();
     expect(screen.getAllByText(/Petición · Radicada el/)).toHaveLength(3);
+    // the filing number of each PQRS (the code of its id), the same one the confirmation showed
+    for (const code of ['P1', 'P2', 'P3']) expect(screen.getByText(`N.º ${code}`)).toBeTruthy();
     expect(screen.getAllByText('Radicada').length).toBeGreaterThan(0);
     expect(screen.getAllByText('En revisión').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Resuelta').length).toBeGreaterThan(0);
@@ -101,6 +103,7 @@ describe('PqrsDetailScreen', () => {
     expect(await screen.findByText('Asunto 1')).toBeTruthy();
     expect(screen.getByText('En revisión')).toBeTruthy();
     expect(screen.getByText('No encuentro el horario')).toBeTruthy();
+    expect(screen.getByText('N.º P1')).toBeTruthy();
     const replies = screen.getAllByText(/respuesta$/).map((node) => node.props.children);
     expect(replies).toEqual(['Primera respuesta', 'Segunda respuesta']);
     expect(paths()).toContain('/pqrs/mine/p1');

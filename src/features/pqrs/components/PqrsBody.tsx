@@ -5,6 +5,7 @@ import { Card } from '@/components/Card';
 import { labelFor } from '@/features/dropdown-lists/schemas';
 import { bogotaParts } from '@/features/modules/format';
 import { spacing, typography, usePalette } from '@/theme';
+import { pqrsCode } from '../code';
 import { StatusBadge } from './StatusBadge';
 
 // What the author and the CAE both read of a PQRS: state, type, subject, description and the replies.
@@ -19,6 +20,7 @@ export function PqrsBody({ pqrs }: { pqrs: PqrsDetail }) {
     <>
       <StatusBadge status={pqrs.status} />
       <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>{pqrs.subject}</Text>
+      <Text style={[typography.code, { color: palette.textSecondary }]}>{t('pqrs.code', { code: pqrsCode(pqrs.id) })}</Text>
       <Text style={[typography.bodySmall, { color: palette.textSecondary }]}>
         {`${labelFor(pqrs.type, i18n.language)} · ${t('pqrs.list.filedOn', { date: bogotaParts(pqrs.createdAt).date })}`}
       </Text>

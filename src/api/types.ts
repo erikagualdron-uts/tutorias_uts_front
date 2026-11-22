@@ -422,6 +422,9 @@ export interface PqrsSummary {
 
 export interface PqrsDetail extends PqrsSummary {
   description: string;
+  // The dates of the steps after filing, null until each happens (the timeline of spec 020).
+  reviewedAt: string | null;
+  resolvedAt: string | null;
   messages: PqrsMessage[];
 }
 
@@ -437,10 +440,7 @@ export interface PqrsAdminSummary extends PqrsSummary {
   author: PqrsAuthor;
 }
 
-export interface PqrsAdminDetail extends PqrsAdminSummary, PqrsDetail {
-  reviewedAt: string | null;
-  resolvedAt: string | null;
-}
+export type PqrsAdminDetail = PqrsAdminSummary & PqrsDetail;
 
 export interface PqrsLimits {
   subjectMaxLength: number;

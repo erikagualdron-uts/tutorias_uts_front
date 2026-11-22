@@ -61,6 +61,8 @@ describe('AdminPqrsScreen', () => {
     await renderScreen(<AdminPqrsScreen />);
     expect(await screen.findByText('Asunto 1')).toBeTruthy();
     expect(screen.getAllByText('Ana Soto · Estudiante')).toHaveLength(2);
+    expect(screen.getByText('N.º P1')).toBeTruthy();
+    expect(screen.getByText('N.º P2')).toBeTruthy();
   });
 
   it('combines the state, the type and the author role in one request, also with a deactivated type', async () => {
@@ -105,6 +107,7 @@ describe('AdminPqrsDetailScreen', () => {
     expect(screen.queryByLabelText('Enviar respuesta')).toBeNull();
     expect(screen.queryByLabelText('Marcar como resuelta')).toBeNull();
     expect(screen.getByText('Ana Soto · Estudiante')).toBeTruthy();
+    expect(screen.getByText('N.º P1')).toBeTruthy();
     await fireEvent.press(screen.getByLabelText('Pasar a En revisión'));
     await waitFor(() => expect(calls('/pqrs/p1/review')).toHaveLength(1));
   });

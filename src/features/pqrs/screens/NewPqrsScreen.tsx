@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { router } from 'expo-router';
+import { router, type Href } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +16,7 @@ import { TextAreaField } from '@/components/TextAreaField';
 import { TextField } from '@/components/TextField';
 import { useDropdownItems } from '@/features/dropdown-lists/hooks/useDropdownLists';
 import { labelFor } from '@/features/dropdown-lists/schemas';
+import { useSession } from '@/store/session';
 import { spacing, typography, usePalette } from '@/theme';
 import { useCreatePqrs, usePqrsLimits } from '../hooks/useAuthorPqrs';
 import { newRequestId } from '../requestId';
@@ -60,6 +61,7 @@ function Form({ limits }: { limits: PqrsLimits }) {
   const palette = usePalette();
   const types = useDropdownItems('PQRS_TYPE').data ?? [];
   const create = useCreatePqrs();
+  const base = useSession((state) => (state.user?.role === 'TEACHER' ? '/(teacher)/pqrs' : '/(student)/pqrs'));
   // Kept while the form is open so a retry or a double tap files only one PQRS.
   const [requestId] = useState(newRequestId);
   const schema = useMemo(() => createPqrsSchema(limits), [limits]);
@@ -77,7 +79,12 @@ function Form({ limits }: { limits: PqrsLimits }) {
     return remote && t(remote === 'maxLength' ? 'validation.tooLong' : 'validation.required');
   };
   const submit = handleSubmit((form) => {
-    if (!create.isPending) create.mutate({ clientRequestId: requestId, ...form }, { onSuccess: () => router.back() });
+    if (create.isPending) return;
+    // `replace`: going back from the confirmation must not return to a form that was already sent.
+    create.mutate(
+      { clientRequestId: requestId, ...form },
+      { onSuccess: ({ id, createdAt, status }) => router.replace({ pathname: `${base}/filed`, params: { id, createdAt, status } } as Href) },
+    );
   });
 
   return (

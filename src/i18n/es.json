@@ -844,7 +844,16 @@
         "replyFirst": "Primero escribe al menos una respuesta para poder resolverla.",
         "closed": "Esta PQRS está resuelta y ya no admite cambios."
       }
-    }
+    },
+    "filed": {
+      "title": "Tu PQRS quedó radicada",
+      "number": "Número de radicado",
+      "date": "Fecha de radicación",
+      "hint": "Guarda este número para citarla.",
+      "view": "Ver mi PQRS",
+      "back": "Volver a mis PQRS"
+    },
+    "code": "N.º {{code}}"
   },
   "chat": {
     "readOnly": {

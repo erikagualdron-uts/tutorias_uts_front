@@ -5,6 +5,7 @@ import { Card } from '@/components/Card';
 import { labelFor } from '@/features/dropdown-lists/schemas';
 import { bogotaParts } from '@/features/modules/format';
 import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
+import { pqrsCode } from '../code';
 import { StatusBadge } from './StatusBadge';
 
 // One PQRS of a list. `authorLine` is the author the CAE sees; the authors do not need it.
@@ -15,6 +16,7 @@ export function PqrsCard({ pqrs, authorLine, onPress }: { pqrs: PqrsSummary; aut
     <Pressable accessibilityRole="button" accessibilityLabel={pqrs.subject} onPress={onPress} style={styles.touch}>
       <Card style={styles.card}>
         <Text style={[typography.cardTitle, { color: palette.textPrimary }]}>{pqrs.subject}</Text>
+        <Text style={[typography.code, { color: palette.textSecondary }]}>{t('pqrs.code', { code: pqrsCode(pqrs.id) })}</Text>
         <Text style={[typography.bodySmall, { color: palette.textSecondary }]}>
           {`${labelFor(pqrs.type, i18n.language)} · ${t('pqrs.list.filedOn', { date: bogotaParts(pqrs.createdAt).date })}`}
         </Text>

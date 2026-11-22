@@ -844,7 +844,16 @@
         "replyFirst": "Write at least one reply first to be able to resolve it.",
         "closed": "This PQRS is resolved and no longer accepts changes."
       }
-    }
+    },
+    "filed": {
+      "title": "Your PQRS was filed",
+      "number": "Filing number",
+      "date": "Filing date",
+      "hint": "Keep this number to quote it.",
+      "view": "View my PQRS",
+      "back": "Back to my PQRS"
+    },
+    "code": "No. {{code}}"
   },
   "chat": {
     "readOnly": {
