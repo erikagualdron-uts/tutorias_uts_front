@@ -15,7 +15,7 @@ import { RoomBars } from '../components/RoomBars';
 import { StatusStackBar } from '../components/StatusStackBar';
 import { durationLabel } from '../format';
 import { useAdminChanges, useAdminOverview, useAdminRooms } from '../hooks/useAdminDashboard';
-import { useRefreshOnFocus } from '../hooks/useRefreshOnFocus';
+import { useRefreshOnFocus } from '@/hooks/useRefreshOnFocus';
 
 // The CAE's entry screen (spec 019): each block loads on its own and shows its own four states.
 export function AdminDashboardScreen() {

@@ -14,7 +14,7 @@ import { HeroSessionCard } from '../components/HeroSessionCard';
 import { MetricCard } from '../components/MetricCard';
 import { MyPqrsBlock } from '../components/MyPqrsBlock';
 import { useTeacherDashboard } from '../hooks/usePersonDashboard';
-import { useRefreshOnFocus } from '../hooks/useRefreshOnFocus';
+import { useRefreshOnFocus } from '@/hooks/useRefreshOnFocus';
 
 // The teacher's entry screen (spec 019): next session, week, unread messages, seats and my PQRS.
 export function TeacherDashboardScreen() {

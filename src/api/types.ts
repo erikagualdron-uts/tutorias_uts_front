@@ -324,6 +324,33 @@ export interface TeacherSession {
   blockReason: ChangeBlockReason | null;
 }
 
+// The weekly calendar of the student (spec 021): the sessions of the modules where they attend, any state.
+export interface StudentSession {
+  id: string;
+  moduleId: string;
+  moduleName: string;
+  teacherName: string;
+  room: StudentRoomRef;
+  startsAt: string;
+  endsAt: string;
+  originalStartsAt: string;
+  status: SessionStatus;
+  cancelReason: 'HOLIDAY' | 'TEACHER' | null;
+  // The student cancelled this session only for themselves; it stays in the list.
+  absent: boolean;
+}
+
+export interface StudentCalendar {
+  data: StudentSession[];
+  meta: {
+    from: string;
+    to: string;
+    period: CalendarPeriod | null;
+    hours: { earliest: string; latest: string };
+    hasEnrollments: boolean;
+  };
+}
+
 export interface TeacherModule {
   id: string;
   name: string;

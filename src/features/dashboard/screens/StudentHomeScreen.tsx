@@ -16,7 +16,7 @@ import { HeroSessionCard } from '../components/HeroSessionCard';
 import { MetricCard } from '../components/MetricCard';
 import { MyPqrsBlock } from '../components/MyPqrsBlock';
 import { useStudentDashboard } from '../hooks/usePersonDashboard';
-import { useRefreshOnFocus } from '../hooks/useRefreshOnFocus';
+import { useRefreshOnFocus } from '@/hooks/useRefreshOnFocus';
 
 // The student's "Inicio" (spec 019): next session, week, unread alerts and messages, changes and my PQRS.
 export function StudentHomeScreen() {
