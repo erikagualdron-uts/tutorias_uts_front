@@ -11,7 +11,7 @@ interface AvatarProps {
   size?: number;
 }
 
-// The circle of a conversation. Decoration only: the name is always written next to it, so screen readers skip it.
+// The round frame of a conversation. Decoration only: the name is always written next to it, so screen readers skip it.
 export function Avatar({ group = false, firstName = '', lastName = '', size = 48 }: AvatarProps) {
   const palette = usePalette();
   const initials = group ? '' : initialsOf(firstName, lastName);
@@ -19,7 +19,7 @@ export function Avatar({ group = false, firstName = '', lastName = '', size = 48
     <View
       accessible={false}
       importantForAccessibility="no-hide-descendants"
-      style={[styles.circle, { width: size, height: size, backgroundColor: palette.surface }]}
+      style={[styles.frame, { width: size, height: size, backgroundColor: palette.surface }]}
     >
       {initials ? (
         <Text style={[typography.cardTitle, { color: palette.primary }]}>{initials}</Text>
@@ -30,4 +30,4 @@ export function Avatar({ group = false, firstName = '', lastName = '', size = 48
   );
 }
 
-const styles = StyleSheet.create({ circle: { borderRadius: radius.pill, alignItems: 'center', justifyContent: 'center' } });
+const styles = StyleSheet.create({ frame: { borderRadius: radius.pill, alignItems: 'center', justifyContent: 'center' } });
