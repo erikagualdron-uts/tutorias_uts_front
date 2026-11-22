@@ -4,6 +4,7 @@ import { StudentHomeScreen } from '../screens/StudentHomeScreen';
 import { page, pqrs, renderScreen, routes, session } from '../testing/personTestUtils';
 
 jest.mock('@/api/client', () => ({ api: jest.fn() }));
+jest.mock('../hooks/useCountUp', () => ({ useCountUp: (value: unknown) => value })); // the count has its own tests
 const mockPush = jest.fn();
 jest.mock('expo-router', () => ({ router: { push: (...a: unknown[]) => mockPush(...a) }, useFocusEffect: jest.fn() }));
 

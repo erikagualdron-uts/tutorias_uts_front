@@ -5,6 +5,7 @@ import { TeacherDashboardScreen } from '../screens/TeacherDashboardScreen';
 import { page, pqrs, renderScreen, routes, session } from '../testing/personTestUtils';
 
 jest.mock('@/api/client', () => ({ api: jest.fn() }));
+jest.mock('../hooks/useCountUp', () => ({ useCountUp: (value: unknown) => value })); // the count has its own tests
 jest.mock('expo-router', () => ({ router: { push: jest.fn() }, useFocusEffect: jest.fn() }));
 
 const dashboard = (overrides: object = {}) => ({

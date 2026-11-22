@@ -33,14 +33,19 @@ describe('CapacityBar', () => {
 });
 
 describe('MetricCard', () => {
+  it('speaks the final value from the first frame while the number counts', async () => {
+    await render(<MetricCard value={40} label="Estudiantes activos" />);
+    expect(screen.getByLabelText('40 Estudiantes activos')).toBeTruthy();
+  });
+
   it('shows the number and the label, and presses only when it leads somewhere', async () => {
     const onPress = jest.fn();
     await render(<MetricCard value={7} label="Estudiantes activos" onPress={onPress} />);
     await fireEvent.press(screen.getByLabelText('7 Estudiantes activos'));
     expect(onPress).toHaveBeenCalledTimes(1);
     await render(<MetricCard value="—" label="Sin enlace" />);
-    expect(screen.queryByLabelText('— Sin enlace')).toBeNull();
-    expect(screen.getByText('Sin enlace')).toBeTruthy();
+    expect(screen.queryByRole('button')).toBeNull();
+    expect(screen.getByLabelText('— Sin enlace')).toBeTruthy();
   });
 });
 

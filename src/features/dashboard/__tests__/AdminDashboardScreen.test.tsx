@@ -7,6 +7,7 @@ import i18n from '@/i18n';
 import { AdminDashboardScreen } from '../screens/AdminDashboardScreen';
 
 jest.mock('@/api/client', () => ({ api: jest.fn() }));
+jest.mock('../hooks/useCountUp', () => ({ useCountUp: (value: unknown) => value })); // the count has its own tests
 jest.mock('expo-router', () => ({ router: { push: jest.fn() }, useFocusEffect: jest.fn() }));
 
 const mockedApi = api as jest.Mock;
