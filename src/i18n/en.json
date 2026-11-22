@@ -101,6 +101,11 @@
     "SESSION_RESCHEDULE_INVALID_DATE_HOLIDAY": "{{date}} is a holiday: there are no sessions that day.",
     "SESSION_STUDENT_CONFLICT": "{{students}} enrolled students already have another session at that time.",
     "NOTIFICATION_NOT_FOUND": "We could not find that notification.",
+    "PQRS_NOT_FOUND": "We could not find that PQRS.",
+    "PQRS_TYPE_UNAVAILABLE": "That PQRS type is no longer available. Pick another one.",
+    "PQRS_INVALID_TRANSITION": "This PQRS cannot move to that state from the current one. The order is Filed, In review and Resolved.",
+    "PQRS_NOT_IN_REVIEW": "You can only reply to a PQRS that is In review. Move it to In review first.",
+    "PQRS_RESPONSE_REQUIRED": "To resolve the PQRS, first write at least one reply.",
     "SMTP_PASSWORD_REQUIRED": "Enter the password of the mail server.",
     "SMTP_NOT_CONFIGURED": "Email is not configured yet. Save the server details first."
   },
@@ -764,6 +769,78 @@
       "disabled": "Phone notifications are turned off. Turn them on in your phone settings to get alerts right away."
     },
     "channel": "Module alerts"
+  },
+  "pqrs": {
+    "status": {
+      "FILED": "Filed",
+      "IN_REVIEW": "In review",
+      "RESOLVED": "Resolved"
+    },
+    "list": {
+      "title": "My PQRS",
+      "new": "New PQRS",
+      "filterAll": "All",
+      "loadError": "We could not load your PQRS",
+      "empty": {
+        "title": "You have not filed any PQRS yet",
+        "description": "File a request, complaint, claim or suggestion and you will see its progress here."
+      },
+      "emptyFiltered": {
+        "title": "No PQRS with that status",
+        "description": "Try another status."
+      },
+      "filedOn": "Filed on {{date}}"
+    },
+    "new": {
+      "title": "File a PQRS",
+      "type": "Type",
+      "subject": "Subject",
+      "description": "Description",
+      "submit": "File",
+      "chooseType": "Pick a type.",
+      "typesError": "We could not load the types",
+      "noTypes": "There are no PQRS types available yet. Try again later."
+    },
+    "detail": {
+      "loadError": "We could not load the PQRS",
+      "description": "Description",
+      "replies": "Replies from the CAE",
+      "noReplies": "There are no replies yet. We will let you know when the CAE replies."
+    },
+    "admin": {
+      "title": "PQRS",
+      "loadError": "We could not load the PQRS",
+      "typeAll": "All types",
+      "empty": {
+        "title": "There are no PQRS yet",
+        "description": "When a teacher or a student files one, it will show up here."
+      },
+      "emptyFiltered": {
+        "title": "No PQRS match",
+        "description": "Change or remove a filter."
+      },
+      "role": {
+        "all": "All authors",
+        "TEACHER": "Teachers",
+        "STUDENT": "Students"
+      },
+      "authorRole": {
+        "TEACHER": "Teacher",
+        "STUDENT": "Student"
+      },
+      "author": "Author",
+      "review": "Move to In review",
+      "reply": "Your reply",
+      "sendReply": "Send reply",
+      "resolve": "Mark as resolved",
+      "resolveTitle": "Mark as resolved?",
+      "resolveMessage": "The author will get a notice and the PQRS will no longer accept replies or changes.",
+      "rule": {
+        "reviewFirst": "Move it to In review first to be able to reply to it or resolve it.",
+        "replyFirst": "Write at least one reply first to be able to resolve it.",
+        "closed": "This PQRS is resolved and no longer accepts changes."
+      }
+    }
   },
   "smtp": {
     "title": "Email",

@@ -1,4 +1,4 @@
-import { inboxRoute, targetFor } from '../openTarget';
+import { inboxRoute, noticeTarget, targetFor } from '../openTarget';
 
 describe('notification targets', () => {
   it('opens the module detail of the student', () => {
@@ -11,6 +11,19 @@ describe('notification targets', () => {
 
   it('opens the module detail of the CAE', () => {
     expect(targetFor('SUPERADMIN', 'm-1')).toEqual({ pathname: '/(admin)/modules/[id]', params: { id: 'm-1' } });
+  });
+
+  it.each([
+    ['STUDENT', '/(student)/pqrs/[id]'],
+    ['TEACHER', '/(teacher)/pqrs/[id]'],
+    ['SUPERADMIN', '/(admin)/pqrs/[id]'],
+  ] as const)('opens the PQRS of a notice for the %s', (role, pathname) => {
+    expect(noticeTarget(role, { moduleId: null, pqrsId: 'p-1' })).toEqual({ pathname, params: { id: 'p-1' } });
+  });
+
+  it('keeps opening the module of a module notice and leads nowhere without a subject', () => {
+    expect(noticeTarget('STUDENT', { moduleId: 'm-1', pqrsId: null })).toEqual(targetFor('STUDENT', 'm-1'));
+    expect(noticeTarget('STUDENT', { moduleId: null, pqrsId: null })).toBeNull();
   });
 
   it('leads the bell to the inbox of the role group', () => {
