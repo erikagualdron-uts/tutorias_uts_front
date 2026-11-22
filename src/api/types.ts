@@ -325,7 +325,7 @@ export interface TeacherSession {
 }
 
 // The weekly calendar of the student (spec 021): the sessions of the modules where they attend, any state.
-export interface StudentSession {
+export interface StudentCalendarSession {
   id: string;
   moduleId: string;
   moduleName: string;
@@ -341,7 +341,7 @@ export interface StudentSession {
 }
 
 export interface StudentCalendar {
-  data: StudentSession[];
+  data: StudentCalendarSession[];
   meta: {
     from: string;
     to: string;
