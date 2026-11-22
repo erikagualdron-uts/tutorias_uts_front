@@ -25,7 +25,7 @@ export function CapacityBar({ label, value, max, valueText, large = false }: Cap
         <Text style={[typography.bodySmall, { color: palette.textPrimary }]}>{text}</Text>
       </View>
       <View style={[styles.track, large && styles.large, { backgroundColor: palette.surface }]}>
-        <View style={[styles.fill, { width: `${percent}%`, backgroundColor: color }]} />
+        <View testID="capacity-fill" style={[styles.fill, { width: `${percent}%`, backgroundColor: color }]} />
       </View>
     </View>
   );
