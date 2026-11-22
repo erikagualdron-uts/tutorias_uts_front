@@ -1,8 +1,11 @@
+import { router, type Href } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
+import { targetFor } from '@/features/notifications/openTarget';
 import { spacing, typography, usePalette } from '@/theme';
 import { BlockState } from '../components/BlockState';
 import { CapacityBar } from '../components/CapacityBar';
@@ -36,6 +39,7 @@ export function AdminDashboardScreen() {
     await refetchAll();
     setRefreshing(false);
   };
+  const go = (href: string | { pathname: string; params: Record<string, string> }) => router.push(href as Href);
   const title = (key: string) => <Text style={[typography.sectionTitle, { color: palette.textPrimary }]}>{t(key)}</Text>;
   const data = overview.data;
   const pqrsTotal = data ? data.pqrs.filed + data.pqrs.inReview + data.pqrs.resolved : 0;
@@ -70,19 +74,22 @@ export function AdminDashboardScreen() {
                 )}
               </Card>
               <View style={styles.pair}>
-                <MetricCard value={data.modules.active} label={t('dashboard.admin.metrics.modules')} />
-                <MetricCard value={data.accounts.students} label={t('dashboard.admin.metrics.students')} />
+                <MetricCard value={data.modules.active} label={t('dashboard.admin.metrics.modules')} onPress={() => go('/(admin)/modules')} />
+                <MetricCard value={data.accounts.students} label={t('dashboard.admin.metrics.students')} onPress={() => go('/(admin)/more/students')} />
               </View>
               <View style={styles.pair}>
-                <MetricCard value={data.accounts.teachers} label={t('dashboard.admin.metrics.teachers')} />
-                <MetricCard value={data.pqrs.filed} label={t('dashboard.admin.metrics.filed')} />
+                <MetricCard value={data.accounts.teachers} label={t('dashboard.admin.metrics.teachers')} onPress={() => go('/(admin)/more/teachers')} />
+                <MetricCard value={data.pqrs.filed} label={t('dashboard.admin.metrics.filed')} onPress={() => go({ pathname: '/(admin)/pqrs', params: { status: 'FILED' } })} />
               </View>
               <Card style={styles.block}>
                 {title('dashboard.admin.pqrs.title')}
                 {pqrsTotal === 0 ? (
                   <Text style={[typography.body, { color: palette.textSecondary }]}>{t('dashboard.admin.pqrs.empty')}</Text>
                 ) : (
-                  <StatusStackBar counts={{ FILED: data.pqrs.filed, IN_REVIEW: data.pqrs.inReview, RESOLVED: data.pqrs.resolved }} />
+                  <StatusStackBar
+                    counts={{ FILED: data.pqrs.filed, IN_REVIEW: data.pqrs.inReview, RESOLVED: data.pqrs.resolved }}
+                    onSelect={(status) => go({ pathname: '/(admin)/pqrs', params: { status } })}
+                  />
                 )}
               </Card>
               <MetricCard value={durationLabel(t, data.pqrs.avgResponseSeconds)} label={t('dashboard.admin.pqrs.average')} />
@@ -93,7 +100,10 @@ export function AdminDashboardScreen() {
         <BlockState query={changes} emptyText={changes.data?.data.length === 0 ? t('dashboard.admin.changes.empty') : undefined}>
           <Card style={styles.block}>
             {title('dashboard.admin.changes.title')}
-            {changes.data?.data.map((change) => <ChangeRow key={change.sessionId} change={change} />)}
+            {changes.data?.data.map((change) => (
+              <ChangeRow key={change.sessionId} change={change} onPress={() => go(targetFor('SUPERADMIN', change.moduleId) as never)} />
+            ))}
+            <Button label={t('dashboard.admin.changes.seeAll')} icon="list" variant="link" onPress={() => go('/(admin)/changes')} />
           </Card>
         </BlockState>
 

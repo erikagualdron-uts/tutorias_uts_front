@@ -1,13 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { PqrsStatus } from '@/api/types';
 import { StatusBadge } from '@/features/pqrs/components/StatusBadge';
-import { radius, spacing, typography, usePalette } from '@/theme';
+import { MIN_TOUCH_TARGET, radius, spacing, typography, usePalette } from '@/theme';
 
 const ORDER: PqrsStatus[] = ['FILED', 'IN_REVIEW', 'RESOLVED'];
 
 // One stacked bar with the PQRS of each state; the legend writes every state and its number,
 // so the colors (neutral, orange, green) never carry the meaning alone.
-export function StatusStackBar({ counts }: { counts: Record<PqrsStatus, number> }) {
+export function StatusStackBar({ counts, onSelect }: { counts: Record<PqrsStatus, number>; onSelect?: (status: PqrsStatus) => void }) {
+  const { t } = useTranslation();
   const palette = usePalette();
   const colors: Record<PqrsStatus, string> = { FILED: palette.textSecondary, IN_REVIEW: palette.warning, RESOLVED: palette.success };
   return (
@@ -19,10 +21,17 @@ export function StatusStackBar({ counts }: { counts: Record<PqrsStatus, number> 
       </View>
       <View style={styles.legend}>
         {ORDER.map((status) => (
-          <View key={status} style={styles.item}>
+          <Pressable
+            key={status}
+            accessibilityRole={onSelect ? 'button' : undefined}
+            accessibilityLabel={`${t(`pqrs.status.${status}`)} ${counts[status]}`}
+            disabled={!onSelect}
+            onPress={() => onSelect?.(status)}
+            style={styles.item}
+          >
             <StatusBadge status={status} />
             <Text style={[typography.cardTitle, { color: palette.textPrimary }]}>{counts[status]}</Text>
-          </View>
+          </Pressable>
         ))}
       </View>
     </View>
@@ -33,5 +42,5 @@ const styles = StyleSheet.create({
   box: { gap: spacing.md },
   bar: { flexDirection: 'row', height: 14, borderRadius: radius.pill, overflow: 'hidden' },
   legend: { gap: spacing.sm },
-  item: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  item: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: MIN_TOUCH_TARGET },
 });

@@ -1,10 +1,12 @@
 import { useQueryClient } from '@tanstack/react-query';
+import { router, type Href } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card } from '@/components/Card';
 import { useChatUnread } from '@/features/chat/hooks/useChatData';
+import { noticeTarget, targetFor } from '@/features/notifications/openTarget';
 import { spacing, typography, usePalette } from '@/theme';
 import { BlockState } from '../components/BlockState';
 import { CapacityBar } from '../components/CapacityBar';
@@ -40,10 +42,13 @@ export function TeacherDashboardScreen() {
         <BlockState query={dashboard}>
           {data && (
             <>
-              <HeroSessionCard session={data.nextSession} />
+              <HeroSessionCard
+                session={data.nextSession}
+                onPress={data.nextSession ? () => router.push(targetFor('TEACHER', data.nextSession!.moduleId)) : undefined}
+              />
               <View style={styles.pair}>
                 <MetricCard value={data.weekSessions} label={t('dashboard.teacher.weekSessions')} />
-                <MetricCard value={unread.data?.unread ?? '—'} label={t('dashboard.teacher.unreadMessages')} />
+                <MetricCard value={unread.data?.unread ?? '—'} label={t('dashboard.teacher.unreadMessages')} onPress={() => router.push('/(teacher)/messages' as Href)} />
               </View>
               {data.modules.length === 0 ? (
                 <Card>
@@ -60,7 +65,10 @@ export function TeacherDashboardScreen() {
             </>
           )}
         </BlockState>
-        <MyPqrsBlock />
+        <MyPqrsBlock
+          onOpen={(id) => router.push(noticeTarget('TEACHER', { pqrsId: id }) as Href)}
+          onSeeAll={() => router.push('/(teacher)/pqrs' as Href)}
+        />
       </ScrollView>
     </SafeAreaView>
   );

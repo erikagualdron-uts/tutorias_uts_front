@@ -1,4 +1,4 @@
-import { router, type Href } from 'expo-router';
+import { router, useLocalSearchParams, type Href } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
@@ -22,7 +22,9 @@ const ROLES = ['TEACHER', 'STUDENT'] as const;
 export function AdminPqrsScreen() {
   const { t, i18n } = useTranslation();
   const palette = usePalette();
-  const [filters, setFilters] = useState<AdminPqrsFilters>({});
+  // The CAE dashboard opens this list with the state it tapped.
+  const { status: initial } = useLocalSearchParams<{ status?: string }>();
+  const [filters, setFilters] = useState<AdminPqrsFilters>(() => ({ status: STATUSES.find((s) => s === initial) }));
   const list = useAdminPqrs(filters);
   // Every type, also the deactivated ones: a PQRS keeps the type it was filed with.
   const types = useDropdownList('PQRS_TYPE').data?.items ?? [];

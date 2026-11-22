@@ -19,7 +19,7 @@ export interface TabSpec {
 }
 
 // Bottom tab bar of docs/Design.md (64 px plus the bottom safe area, so it clears system buttons) for one role.
-export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
+export function RoleTabs({ role, tabs, hidden = [] }: { role: Role; tabs: TabSpec[]; hidden?: Pick<TabSpec, 'name' | 'titleKey'>[] }) {
   const { t } = useTranslation();
   const palette = usePalette();
   const { bottom } = useSafeAreaInsets();
@@ -59,7 +59,10 @@ export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
             }}
           />
         ))}
-        {/* The inbox is reached from the bell of the app bar, not from a tab. */}
+        {/* Screens reached from a link, not from a tab (the inbox from the bell of the app bar). */}
+        {hidden.map(({ name, titleKey }) => (
+          <Tabs.Screen key={name} name={name} options={{ href: null, title: t(titleKey) }} />
+        ))}
         <Tabs.Screen
           name="notifications"
           options={{ href: null, title: t('notifications.title') }}

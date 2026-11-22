@@ -15,6 +15,7 @@ export default function Layout() {
         { name: 'pqrs', titleKey: 'tabs.pqrs', icon: 'pqrs' },
         { name: 'more', titleKey: 'tabs.more', icon: 'more' },
       ]}
+      hidden={[{ name: 'changes', titleKey: 'dashboard.admin.changes.title' }]}
     />
   );
 }

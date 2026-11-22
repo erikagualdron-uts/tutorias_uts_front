@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text } from 'react-native';
+import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { StatusBadge } from '@/features/pqrs/components/StatusBadge';
 import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
@@ -7,7 +8,7 @@ import { useRecentPqrs } from '../hooks/usePersonDashboard';
 import { BlockState } from './BlockState';
 
 // My latest PQRS (up to 3) with their state in text and icon.
-export function MyPqrsBlock({ onOpen }: { onOpen?: (id: string) => void }) {
+export function MyPqrsBlock({ onOpen, onSeeAll }: { onOpen: (id: string) => void; onSeeAll: () => void }) {
   const { t } = useTranslation();
   const palette = usePalette();
   const query = useRecentPqrs();
@@ -19,10 +20,9 @@ export function MyPqrsBlock({ onOpen }: { onOpen?: (id: string) => void }) {
         {items.map((pqrs) => (
           <Pressable
             key={pqrs.id}
-            accessibilityRole={onOpen ? 'button' : undefined}
+            accessibilityRole="button"
             accessibilityLabel={pqrs.subject}
-            disabled={!onOpen}
-            onPress={() => onOpen?.(pqrs.id)}
+            onPress={() => onOpen(pqrs.id)}
             style={styles.row}
           >
             <Text style={[typography.cardTitle, { color: palette.textPrimary }]} numberOfLines={1}>
@@ -31,6 +31,7 @@ export function MyPqrsBlock({ onOpen }: { onOpen?: (id: string) => void }) {
             <StatusBadge status={pqrs.status} />
           </Pressable>
         ))}
+        <Button label={t('dashboard.myPqrs.seeAll')} icon="list" variant="link" onPress={onSeeAll} />
       </Card>
     </BlockState>
   );

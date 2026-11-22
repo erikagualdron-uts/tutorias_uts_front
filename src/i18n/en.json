@@ -1078,7 +1078,9 @@
     },
     "myPqrs": {
       "title": "My PQRS",
-      "empty": "You have not filed any PQRS yet."
-    }
+      "empty": "You have not filed any PQRS yet.",
+      "seeAll": "See all"
+    },
+    "viewDetail": "View details"
   }
 }

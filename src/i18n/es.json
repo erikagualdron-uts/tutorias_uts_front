@@ -1078,7 +1078,9 @@
     },
     "myPqrs": {
       "title": "Mis PQRS",
-      "empty": "Aún no has radicado ninguna PQRS."
-    }
+      "empty": "Aún no has radicado ninguna PQRS.",
+      "seeAll": "Ver todas"
+    },
+    "viewDetail": "Ver detalle"
   }
 }

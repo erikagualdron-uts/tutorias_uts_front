@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { useChatUnread } from '@/features/chat/hooks/useChatData';
+import { inboxRoute, noticeTarget, targetFor } from '@/features/notifications/openTarget';
 import { useUnreadCount } from '@/features/notifications/hooks/useUnreadCount';
 import { spacing, typography, usePalette } from '@/theme';
 import { BlockState } from '../components/BlockState';
@@ -49,15 +50,16 @@ export function StudentHomeScreen() {
             <>
               <HeroSessionCard
                 session={data.nextSession}
+                onPress={data.nextSession ? () => router.push(targetFor('STUDENT', data.nextSession!.moduleId)) : undefined}
                 emptyHint={t('dashboard.student.noUpcomingHint')}
                 emptyAction={<Button label={t('dashboard.student.explore')} icon="modules" variant="primary" onPress={() => router.push('/(student)/modules' as Href)} />}
               />
               <View style={styles.pair}>
                 <MetricCard value={data.weekSessions} label={t('dashboard.student.weekSessions')} />
-                <MetricCard value={alerts} label={t('dashboard.student.unreadAlerts')} />
+                <MetricCard value={alerts} label={t('dashboard.student.unreadAlerts')} onPress={() => router.push(inboxRoute('STUDENT'))} />
               </View>
               <View style={styles.pair}>
-                <MetricCard value={messages.data?.unread ?? '—'} label={t('dashboard.student.unreadMessages')} />
+                <MetricCard value={messages.data?.unread ?? '—'} label={t('dashboard.student.unreadMessages')} onPress={() => router.push('/(student)/messages' as Href)} />
                 <View style={styles.spacer} />
               </View>
               <Card style={styles.block}>
@@ -65,13 +67,18 @@ export function StudentHomeScreen() {
                 {data.changes.length === 0 ? (
                   <Text style={[typography.body, { color: palette.textSecondary }]}>{t('dashboard.student.changes.empty')}</Text>
                 ) : (
-                  data.changes.map((change) => <ChangeRow key={change.sessionId} change={change} />)
+                  data.changes.map((change) => (
+                    <ChangeRow key={change.sessionId} change={change} onPress={() => router.push(targetFor('STUDENT', change.moduleId))} />
+                  ))
                 )}
               </Card>
             </>
           )}
         </BlockState>
-        <MyPqrsBlock />
+        <MyPqrsBlock
+          onOpen={(id) => router.push(noticeTarget('STUDENT', { pqrsId: id }) as Href)}
+          onSeeAll={() => router.push('/(student)/pqrs' as Href)}
+        />
       </ScrollView>
     </SafeAreaView>
   );
