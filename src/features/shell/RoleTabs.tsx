@@ -10,12 +10,15 @@ import { RouteGate } from '@/features/auth/RouteGate';
 import { ROLE_HOME } from '@/features/auth/routing';
 import type { Role } from '@/api/types';
 import { iconSize, shadows, usePalette } from '@/theme';
+import { tabBadgeOptions } from './badge';
 
 export interface TabSpec {
   // Route file name inside the role group ('index' for the first tab).
   name: string;
   titleKey: string;
   icon: IconName;
+  // A count for the badge of the tab; none or 0 shows no badge.
+  badge?: number;
 }
 
 // Bottom tab bar of docs/Design.md (64 px plus the bottom safe area, so it clears system buttons) for one role.
@@ -42,12 +45,13 @@ export function RoleTabs({ role, tabs, hidden = [] }: { role: Role; tabs: TabSpe
           },
         }}
       >
-        {tabs.map(({ name, titleKey, icon }) => (
+        {tabs.map(({ name, titleKey, icon, badge }) => (
           <Tabs.Screen
             key={name}
             name={name}
             options={{
               title: t(titleKey),
+              ...tabBadgeOptions(badge, palette),
               tabBarIcon: ({ color, focused }) => (
                 <Icon
                   name={icon}
