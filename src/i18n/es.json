@@ -1000,5 +1000,55 @@
     },
     "sheetError": "No pudimos cargar la cuenta",
     "regenerateBlocked": "Reactiva la cuenta para regenerar su clave."
+  },
+  "dashboard": {
+    "loadError": "No pudimos cargar este bloque",
+    "relative": {
+      "now": "Ahora",
+      "minutes": "hace {{count}} min",
+      "hours": "hace {{count}} h",
+      "days": "hace {{count}} d"
+    },
+    "duration": {
+      "minutes": "{{count}} min",
+      "hours": "{{count}} h",
+      "days": "{{count}} d"
+    },
+    "admin": {
+      "occupancy": {
+        "title": "Ocupación general",
+        "detail": "{{enrolled}} de {{capacity}} cupos",
+        "empty": "Aún no hay módulos activos en el periodo vigente.",
+        "full_one": "{{count}} módulo lleno",
+        "full_other": "{{count}} módulos llenos",
+        "low": "{{count}} con baja inscripción"
+      },
+      "metrics": {
+        "modules": "Módulos activos",
+        "students": "Estudiantes activos",
+        "teachers": "Docentes activos",
+        "filed": "PQRS radicadas"
+      },
+      "pqrs": {
+        "title": "PQRS por estado",
+        "empty": "Aún no hay PQRS radicadas.",
+        "average": "Tiempo promedio de respuesta"
+      },
+      "changes": {
+        "title": "Cambios recientes",
+        "seeAll": "Ver todo",
+        "empty": "No hay cancelaciones ni reprogramaciones recientes.",
+        "RESCHEDULED": "Reprogramada",
+        "CANCELLED": "Cancelada"
+      },
+      "rooms": {
+        "title": "Uso de salones",
+        "most": "Más ocupados",
+        "least": "Menos ocupados",
+        "empty": "Aún no hay módulos con salón asignado.",
+        "detail_one": "{{location}} · {{count}} módulo",
+        "detail_other": "{{location}} · {{count}} módulos"
+      }
+    }
   }
 }

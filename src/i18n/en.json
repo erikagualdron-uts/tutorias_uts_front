@@ -1000,5 +1000,55 @@
     },
     "sheetError": "We could not load the account",
     "regenerateBlocked": "Reactivate the account to regenerate its password."
+  },
+  "dashboard": {
+    "loadError": "We could not load this block",
+    "relative": {
+      "now": "Just now",
+      "minutes": "{{count}} min ago",
+      "hours": "{{count}} h ago",
+      "days": "{{count}} d ago"
+    },
+    "duration": {
+      "minutes": "{{count}} min",
+      "hours": "{{count}} h",
+      "days": "{{count}} d"
+    },
+    "admin": {
+      "occupancy": {
+        "title": "Overall occupancy",
+        "detail": "{{enrolled}} of {{capacity}} seats",
+        "empty": "There are no active modules in the current period yet.",
+        "full_one": "{{count}} module full",
+        "full_other": "{{count}} modules full",
+        "low": "{{count}} with low enrollment"
+      },
+      "metrics": {
+        "modules": "Active modules",
+        "students": "Active students",
+        "teachers": "Active teachers",
+        "filed": "Filed PQRS"
+      },
+      "pqrs": {
+        "title": "PQRS by status",
+        "empty": "No PQRS have been filed yet.",
+        "average": "Average response time"
+      },
+      "changes": {
+        "title": "Recent changes",
+        "seeAll": "See all",
+        "empty": "There are no recent cancellations or reschedules.",
+        "RESCHEDULED": "Rescheduled",
+        "CANCELLED": "Cancelled"
+      },
+      "rooms": {
+        "title": "Room usage",
+        "most": "Most occupied",
+        "least": "Least occupied",
+        "empty": "There are no modules with an assigned room yet.",
+        "detail_one": "{{location}} · {{count}} module",
+        "detail_other": "{{location}} · {{count}} modules"
+      }
+    }
   }
 }
