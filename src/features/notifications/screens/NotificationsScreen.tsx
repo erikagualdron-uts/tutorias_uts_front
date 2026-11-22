@@ -15,7 +15,7 @@ import { NotificationCard } from '../components/NotificationCard';
 import { useMarkAllRead, useMarkRead } from '../hooks/useMarkRead';
 import { useNotifications } from '../hooks/useNotifications';
 import { usePushPermission } from '../hooks/usePushPermission';
-import { targetFor } from '../openTarget';
+import { noticeTarget } from '../openTarget';
 
 // The inbox of any role: newest first, unread highlighted, more pages as the end is reached.
 export function NotificationsScreen() {
@@ -31,7 +31,8 @@ export function NotificationsScreen() {
 
   const open = (notice: AppNotification) => {
     if (notice.readAt === null) markRead.mutate(notice.id);
-    if (role) router.push(targetFor(role, notice.moduleId));
+    const target = role ? noticeTarget(role, notice) : null;
+    if (target) router.push(target);
   };
 
   const retry = <Button label={t('common.tryAgain')} icon="restart" variant="tonal" onPress={() => list.refetch()} />;

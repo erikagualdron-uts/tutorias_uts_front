@@ -19,6 +19,7 @@ const notice = (n: number, overrides: Partial<AppNotification> = {}): AppNotific
   id: `n-${n}`,
   type: 'SESSION_CANCELLED_TEACHER',
   moduleId: `m-${n}`,
+  pqrsId: null,
   title: `Se canceló tu tutoría ${n}`,
   body: `Cuerpo ${n}`,
   readAt: null,
@@ -82,6 +83,14 @@ describe('notifications inbox', () => {
     fireEvent.press(await screen.findByText('Se canceló tu tutoría 1'));
     await waitFor(() => expect(mockedApi).toHaveBeenCalledWith('/notifications/n-1/read', { method: 'POST' }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/(student)/modules/[id]', params: { id: 'm-1' } });
+  });
+
+  it('opens the PQRS of a PQRS notice on tap', async () => {
+    inbox = () => Promise.resolve(page([notice(1, { type: 'PQRS_RESPONDED', moduleId: null, pqrsId: 'p-1', title: 'Respondieron tu PQRS' })]));
+    await render(wrap(<NotificationsScreen />));
+    fireEvent.press(await screen.findByText('Respondieron tu PQRS'));
+    await waitFor(() => expect(mockedApi).toHaveBeenCalledWith('/notifications/n-1/read', { method: 'POST' }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/(student)/pqrs/[id]', params: { id: 'p-1' } });
   });
 
   it('opens the module without marking an already read notice', async () => {

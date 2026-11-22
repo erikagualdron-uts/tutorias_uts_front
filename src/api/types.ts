@@ -374,12 +374,17 @@ export type NotificationType =
   | 'SESSIONS_RESTORED_HOLIDAY'
   | 'SESSION_RESCHEDULED'
   | 'SESSION_CANCELLED_TEACHER'
-  | 'SESSION_RESTORED_TEACHER';
+  | 'SESSION_RESTORED_TEACHER'
+  | 'PQRS_IN_REVIEW'
+  | 'PQRS_RESPONDED'
+  | 'PQRS_RESOLVED';
 
+// A notice is about a module or about a PQRS (spec 017): exactly one of the two ids is set.
 export interface AppNotification {
   id: string;
   type: NotificationType;
-  moduleId: string;
+  moduleId: string | null;
+  pqrsId: string | null;
   title: string;
   body: string;
   readAt: string | null;
@@ -389,6 +394,58 @@ export interface AppNotification {
 export interface NotificationPage {
   data: AppNotification[];
   meta: { page: number; limit: number; total: number };
+}
+
+// PQRS (spec 017). The type comes with both labels; the app picks by the device language.
+export type PqrsStatus = 'FILED' | 'IN_REVIEW' | 'RESOLVED';
+
+export interface PqrsType {
+  id: string;
+  labelEs: string;
+  labelEn: string;
+}
+
+export interface PqrsMessage {
+  id: string;
+  body: string;
+  createdAt: string;
+}
+
+export interface PqrsSummary {
+  id: string;
+  type: PqrsType;
+  subject: string;
+  status: PqrsStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PqrsDetail extends PqrsSummary {
+  description: string;
+  messages: PqrsMessage[];
+}
+
+export interface PqrsAuthor {
+  id: string;
+  role: 'TEACHER' | 'STUDENT';
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export interface PqrsAdminSummary extends PqrsSummary {
+  author: PqrsAuthor;
+}
+
+export interface PqrsAdminDetail extends PqrsAdminSummary, PqrsDetail {
+  reviewedAt: string | null;
+  resolvedAt: string | null;
+}
+
+export interface PqrsLimits {
+  subjectMaxLength: number;
+  descriptionMaxLength: number;
+  responseMaxLength: number;
 }
 
 export type SmtpStatus = 'NOT_CONFIGURED' | 'CONFIGURED' | 'NEEDS_RECONFIGURATION';

@@ -15,6 +15,9 @@ const ICONS: Record<NotificationType, IconName> = {
   SESSIONS_RESTORED_HOLIDAY: 'success',
   MODULE_TEACHER_CHANGED: 'user',
   MODULE_ROOM_CHANGED: 'location',
+  PQRS_IN_REVIEW: 'pqrs',
+  PQRS_RESPONDED: 'pqrs',
+  PQRS_RESOLVED: 'success',
 };
 
 // One notice of the inbox. An unread one is marked by text, a bold icon and a side line, never by

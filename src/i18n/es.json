@@ -101,6 +101,11 @@
     "SESSION_RESCHEDULE_INVALID_DATE_HOLIDAY": "El {{date}} es festivo: no hay tutorías ese día.",
     "SESSION_STUDENT_CONFLICT": "{{students}} estudiantes inscritos ya tienen otra tutoría a esa hora.",
     "NOTIFICATION_NOT_FOUND": "No encontramos esa notificación.",
+    "PQRS_NOT_FOUND": "No encontramos esa PQRS.",
+    "PQRS_TYPE_UNAVAILABLE": "Ese tipo de PQRS ya no está disponible. Elige otro.",
+    "PQRS_INVALID_TRANSITION": "Esa PQRS no puede pasar a ese estado desde el actual. El orden es Radicada, En revisión y Resuelta.",
+    "PQRS_NOT_IN_REVIEW": "Solo se puede responder una PQRS que está En revisión. Primero pásala a En revisión.",
+    "PQRS_RESPONSE_REQUIRED": "Para resolver la PQRS primero escribe al menos una respuesta.",
     "SMTP_PASSWORD_REQUIRED": "Escribe la clave del servidor de correo.",
     "SMTP_NOT_CONFIGURED": "El correo aún no está configurado. Guarda primero los datos del servidor."
   },
@@ -764,6 +769,78 @@
       "disabled": "Las notificaciones del teléfono están desactivadas. Actívalas en los ajustes del teléfono para recibir avisos al instante."
     },
     "channel": "Avisos de módulos"
+  },
+  "pqrs": {
+    "status": {
+      "FILED": "Radicada",
+      "IN_REVIEW": "En revisión",
+      "RESOLVED": "Resuelta"
+    },
+    "list": {
+      "title": "Mis PQRS",
+      "new": "Nueva PQRS",
+      "filterAll": "Todas",
+      "loadError": "No pudimos cargar tus PQRS",
+      "empty": {
+        "title": "Aún no has radicado ninguna PQRS",
+        "description": "Radica una petición, queja, reclamo o sugerencia y verás aquí cómo avanza."
+      },
+      "emptyFiltered": {
+        "title": "No hay PQRS con ese estado",
+        "description": "Prueba con otro estado."
+      },
+      "filedOn": "Radicada el {{date}}"
+    },
+    "new": {
+      "title": "Radicar una PQRS",
+      "type": "Tipo",
+      "subject": "Asunto",
+      "description": "Descripción",
+      "submit": "Radicar",
+      "chooseType": "Elige un tipo.",
+      "typesError": "No pudimos cargar los tipos",
+      "noTypes": "Todavía no hay tipos de PQRS disponibles. Intenta más tarde."
+    },
+    "detail": {
+      "loadError": "No pudimos cargar la PQRS",
+      "description": "Descripción",
+      "replies": "Respuestas del CAE",
+      "noReplies": "Aún no hay respuestas. Te avisaremos cuando el CAE responda."
+    },
+    "admin": {
+      "title": "PQRS",
+      "loadError": "No pudimos cargar las PQRS",
+      "typeAll": "Todos los tipos",
+      "empty": {
+        "title": "Aún no hay PQRS",
+        "description": "Cuando un docente o un estudiante radique una, aparecerá aquí."
+      },
+      "emptyFiltered": {
+        "title": "Ninguna PQRS coincide",
+        "description": "Cambia o quita algún filtro."
+      },
+      "role": {
+        "all": "Todos los autores",
+        "TEACHER": "Docentes",
+        "STUDENT": "Estudiantes"
+      },
+      "authorRole": {
+        "TEACHER": "Docente",
+        "STUDENT": "Estudiante"
+      },
+      "author": "Autor",
+      "review": "Pasar a En revisión",
+      "reply": "Tu respuesta",
+      "sendReply": "Enviar respuesta",
+      "resolve": "Marcar como resuelta",
+      "resolveTitle": "¿Marcar como resuelta?",
+      "resolveMessage": "El autor recibirá un aviso y la PQRS ya no admitirá respuestas ni cambios.",
+      "rule": {
+        "reviewFirst": "Primero pásala a En revisión para poder responderla o resolverla.",
+        "replyFirst": "Primero escribe al menos una respuesta para poder resolverla.",
+        "closed": "Esta PQRS está resuelta y ya no admite cambios."
+      }
+    }
   },
   "smtp": {
     "title": "Correo",
