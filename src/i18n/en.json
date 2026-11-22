@@ -673,6 +673,22 @@
       "next": "Next session: {{date}} · {{time}}",
       "noNext": "No upcoming sessions",
       "upcoming": "{{count}} sessions to go"
+    },
+    "schedule": {
+      "state": {
+        "SCHEDULED": "Scheduled",
+        "RESCHEDULED": "Rescheduled",
+        "HOLIDAY": "Cancelled for a holiday",
+        "TEACHER": "Cancelled by the teacher",
+        "STUDENT": "Cancelled by you"
+      },
+      "original": "Before: {{date}} · {{time}}",
+      "noPeriodHint": "There is no academic period to show your tutoring sessions.",
+      "empty": {
+        "title": "You are not enrolled in any module yet",
+        "description": "Explore the modules and enroll to see your sessions of the week here.",
+        "action": "Explore modules"
+      }
     }
   },
   "teacher": {

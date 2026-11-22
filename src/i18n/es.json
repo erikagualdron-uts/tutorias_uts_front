@@ -673,6 +673,22 @@
       "next": "Próxima sesión: {{date}} · {{time}}",
       "noNext": "Sin sesiones próximas",
       "upcoming": "{{count}} sesiones por venir"
+    },
+    "schedule": {
+      "state": {
+        "SCHEDULED": "Programada",
+        "RESCHEDULED": "Reprogramada",
+        "HOLIDAY": "Cancelada por festivo",
+        "TEACHER": "Cancelada por el docente",
+        "STUDENT": "Cancelada por ti"
+      },
+      "original": "Antes: {{date}} · {{time}}",
+      "noPeriodHint": "No hay un periodo académico para mostrar tus tutorías.",
+      "empty": {
+        "title": "Aún no estás inscrito en ningún módulo",
+        "description": "Explora los módulos e inscríbete para ver aquí tus tutorías de la semana.",
+        "action": "Explorar módulos"
+      }
     }
   },
   "teacher": {
