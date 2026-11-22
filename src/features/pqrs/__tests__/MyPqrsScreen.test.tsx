@@ -90,6 +90,8 @@ describe('PqrsDetailScreen', () => {
   const detail = (overrides: object = {}) => ({
     ...pqrs(1, { status: 'IN_REVIEW' }),
     description: 'No encuentro el horario',
+    reviewedAt: '2030-01-09T15:00:00.000Z',
+    resolvedAt: null,
     messages: [
       { id: 'm1', body: 'Primera respuesta', createdAt: '2030-01-09T15:00:00.000Z' },
       { id: 'm2', body: 'Segunda respuesta', createdAt: '2030-01-10T15:00:00.000Z' },
@@ -101,9 +103,13 @@ describe('PqrsDetailScreen', () => {
     mockedApi.mockResolvedValue(detail());
     await renderScreen(<PqrsDetailScreen />);
     expect(await screen.findByText('Asunto 1')).toBeTruthy();
-    expect(screen.getByText('En revisión')).toBeTruthy();
+    // the badge and the current step of the timeline both say it
+    expect(screen.getAllByText('En revisión')).toHaveLength(2);
     expect(screen.getByText('No encuentro el horario')).toBeTruthy();
     expect(screen.getByText('N.º P1')).toBeTruthy();
+    // the timeline: filing and review with their dates, resolution still pending
+    expect(screen.getByLabelText('En revisión, actual, 09/01/2030 · 10:00')).toBeTruthy();
+    expect(screen.getByLabelText('Resuelta, pendiente')).toBeTruthy();
     const replies = screen.getAllByText(/respuesta$/).map((node) => node.props.children);
     expect(replies).toEqual(['Primera respuesta', 'Segunda respuesta']);
     expect(paths()).toContain('/pqrs/mine/p1');

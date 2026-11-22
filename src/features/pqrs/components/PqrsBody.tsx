@@ -7,6 +7,7 @@ import { bogotaParts } from '@/features/modules/format';
 import { spacing, typography, usePalette } from '@/theme';
 import { pqrsCode } from '../code';
 import { StatusBadge } from './StatusBadge';
+import { StatusTimeline } from './StatusTimeline';
 
 // What the author and the CAE both read of a PQRS: state, type, subject, description and the replies.
 export function PqrsBody({ pqrs }: { pqrs: PqrsDetail }) {
@@ -28,6 +29,7 @@ export function PqrsBody({ pqrs }: { pqrs: PqrsDetail }) {
         <Text style={[typography.label, { color: palette.textSecondary }]}>{t('pqrs.detail.description')}</Text>
         <Text style={[typography.body, { color: palette.textPrimary }]}>{pqrs.description}</Text>
       </Card>
+      <StatusTimeline status={pqrs.status} createdAt={pqrs.createdAt} reviewedAt={pqrs.reviewedAt} resolvedAt={pqrs.resolvedAt} />
       <Text style={[typography.sectionTitle, { color: palette.textPrimary }]}>{t('pqrs.detail.replies')}</Text>
       {pqrs.messages.length === 0 ? (
         <Text style={[typography.body, { color: palette.textSecondary }]}>{t('pqrs.detail.noReplies')}</Text>

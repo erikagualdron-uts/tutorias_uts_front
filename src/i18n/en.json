@@ -853,7 +853,12 @@
       "view": "View my PQRS",
       "back": "Back to my PQRS"
     },
-    "code": "No. {{code}}"
+    "code": "No. {{code}}",
+    "timeline": {
+      "title": "Progress",
+      "current": "Current",
+      "pending": "Pending"
+    }
   },
   "chat": {
     "readOnly": {

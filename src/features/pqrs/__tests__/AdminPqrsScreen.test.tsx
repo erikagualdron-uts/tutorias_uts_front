@@ -108,6 +108,9 @@ describe('AdminPqrsDetailScreen', () => {
     expect(screen.queryByLabelText('Marcar como resuelta')).toBeNull();
     expect(screen.getByText('Ana Soto · Estudiante')).toBeTruthy();
     expect(screen.getByText('N.º P1')).toBeTruthy();
+    // the CAE reads the same timeline as the author: a FILED PQRS has the first step current
+    expect(screen.getByLabelText(/^Radicada, actual, /)).toBeTruthy();
+    expect(screen.getByLabelText('En revisión, pendiente')).toBeTruthy();
     await fireEvent.press(screen.getByLabelText('Pasar a En revisión'));
     await waitFor(() => expect(calls('/pqrs/p1/review')).toHaveLength(1));
   });
