@@ -110,7 +110,8 @@
     "code": "El código tiene 6 dígitos.",
     "password": "La contraseña no cumple los requisitos.",
     "invalidDate": "Elige una fecha válida.",
-    "smtpPort": "El puerto debe ser un número entre 1 y 65535."
+    "smtpPort": "El puerto debe ser un número entre 1 y 65535.",
+    "tooLong": "Es demasiado largo."
   },
   "login": {
     "title": "Inicia sesión",
@@ -172,6 +173,13 @@
       "lastName": "Apellidos",
       "email": "Correo institucional",
       "submit": "Crear docente"
+    },
+    "edit": {
+      "title": "Editar docente",
+      "phone": "Teléfono (opcional)",
+      "emailReason": "El correo institucional no se puede cambiar.",
+      "submit": "Guardar cambios",
+      "loadError": "No pudimos cargar al docente"
     }
   },
   "temporaryPassword": {
@@ -188,7 +196,9 @@
     "periods": "Periodos académicos",
     "dropdownLists": "Listas desplegables",
     "holidays": "Festivos",
-    "smtp": "Correo"
+    "smtp": "Correo",
+    "teachers": "Docentes",
+    "students": "Estudiantes"
   },
   "profile": {
     "menu": "Menú de perfil",
@@ -789,5 +799,60 @@
         "UNKNOWN": "No se pudo enviar el correo."
       }
     }
+  },
+  "accounts": {
+    "search": "Buscar por nombre o correo",
+    "filter": {
+      "all": "Todas",
+      "active": "Activas",
+      "inactive": "Desactivadas"
+    },
+    "status": {
+      "ACTIVE": "Activa",
+      "INACTIVE": "Desactivada"
+    },
+    "loadError": "No pudimos cargar las cuentas",
+    "empty": {
+      "teachers": {
+        "title": "Aún no hay docentes",
+        "description": "Crea un docente desde la pestaña Más y aparecerá aquí."
+      },
+      "students": {
+        "title": "Aún no hay estudiantes",
+        "description": "Los estudiantes aparecen aquí cuando se registran y verifican su correo."
+      }
+    },
+    "emptyFiltered": {
+      "title": "Sin resultados",
+      "description": "Ningún resultado coincide con tu búsqueda o filtro. Prueba con otro nombre o correo."
+    },
+    "modules_one": "{{count}} módulo",
+    "modules_other": "{{count}} módulos",
+    "enrollments_one": "{{count}} inscripción",
+    "enrollments_other": "{{count}} inscripciones",
+    "actions": {
+      "deactivate": "Desactivar",
+      "reactivate": "Reactivar",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "regenerate": "Regenerar clave"
+    },
+    "baja": {
+      "title": {
+        "deactivate": "¿Desactivar esta cuenta?",
+        "delete": "¿Eliminar esta cuenta?"
+      },
+      "teacher_one": "{{count}} módulo quedará con docente no disponible.",
+      "teacher_other": "{{count}} módulos quedarán con docente no disponible.",
+      "student_one": "{{count}} inscripción se cancelará y se liberará {{count}} cupo.",
+      "student_other": "{{count}} inscripciones se cancelarán y se liberarán {{count}} cupos.",
+      "noEffect": {
+        "teacher": "No tiene módulos en el periodo activo.",
+        "student": "No tiene inscripciones vigentes en el periodo activo."
+      },
+      "deleteWarning": "La cuenta saldrá de las listas y no se puede deshacer desde la app."
+    },
+    "sheetError": "No pudimos cargar la cuenta",
+    "regenerateBlocked": "Reactiva la cuenta para regenerar su clave."
   }
 }

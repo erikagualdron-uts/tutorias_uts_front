@@ -112,6 +112,11 @@ export const icons = {
     linear: 'solar:square-academic-cap-linear',
     bold: 'solar:square-academic-cap-bold',
   },
+  phone: { linear: 'solar:phone-linear', bold: 'solar:phone-bold' },
+  student: {
+    linear: 'solar:backpack-linear',
+    bold: 'solar:backpack-bold',
+  },
   swapRoom: {
     linear: 'solar:transfer-horizontal-linear',
     bold: 'solar:transfer-horizontal-bold',

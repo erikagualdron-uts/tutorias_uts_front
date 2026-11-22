@@ -110,7 +110,8 @@
     "code": "The code has 6 digits.",
     "password": "The password does not meet the requirements.",
     "invalidDate": "Choose a valid date.",
-    "smtpPort": "The port must be a number between 1 and 65535."
+    "smtpPort": "The port must be a number between 1 and 65535.",
+    "tooLong": "This is too long."
   },
   "login": {
     "title": "Sign in",
@@ -172,6 +173,13 @@
       "lastName": "Last name",
       "email": "Institutional email",
       "submit": "Create teacher"
+    },
+    "edit": {
+      "title": "Edit teacher",
+      "phone": "Phone (optional)",
+      "emailReason": "The institutional email cannot be changed.",
+      "submit": "Save changes",
+      "loadError": "We could not load the teacher"
     }
   },
   "temporaryPassword": {
@@ -188,7 +196,9 @@
     "periods": "Academic periods",
     "dropdownLists": "Dropdown lists",
     "holidays": "Holidays",
-    "smtp": "Email"
+    "smtp": "Email",
+    "teachers": "Teachers",
+    "students": "Students"
   },
   "profile": {
     "menu": "Profile menu",
@@ -789,5 +799,60 @@
         "UNKNOWN": "The email could not be sent."
       }
     }
+  },
+  "accounts": {
+    "search": "Search by name or email",
+    "filter": {
+      "all": "All",
+      "active": "Active",
+      "inactive": "Disabled"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Disabled"
+    },
+    "loadError": "We could not load the accounts",
+    "empty": {
+      "teachers": {
+        "title": "No teachers yet",
+        "description": "Create a teacher from the More tab and they will appear here."
+      },
+      "students": {
+        "title": "No students yet",
+        "description": "Students appear here once they register and verify their email."
+      }
+    },
+    "emptyFiltered": {
+      "title": "No results",
+      "description": "Nothing matches your search or filter. Try another name or email."
+    },
+    "modules_one": "{{count}} module",
+    "modules_other": "{{count}} modules",
+    "enrollments_one": "{{count}} enrollment",
+    "enrollments_other": "{{count}} enrollments",
+    "actions": {
+      "deactivate": "Deactivate",
+      "reactivate": "Reactivate",
+      "delete": "Delete",
+      "edit": "Edit",
+      "regenerate": "Regenerate password"
+    },
+    "baja": {
+      "title": {
+        "deactivate": "Deactivate this account?",
+        "delete": "Delete this account?"
+      },
+      "teacher_one": "{{count}} module will be left with an unavailable teacher.",
+      "teacher_other": "{{count}} modules will be left with an unavailable teacher.",
+      "student_one": "{{count}} enrollment will be cancelled and {{count}} seat will be freed.",
+      "student_other": "{{count}} enrollments will be cancelled and {{count}} seats will be freed.",
+      "noEffect": {
+        "teacher": "They have no modules in the active period.",
+        "student": "They have no current enrollments in the active period."
+      },
+      "deleteWarning": "The account will leave the lists and cannot be undone from the app."
+    },
+    "sheetError": "We could not load the account",
+    "regenerateBlocked": "Reactivate the account to regenerate its password."
   }
 }
