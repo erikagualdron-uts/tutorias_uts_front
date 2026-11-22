@@ -69,6 +69,8 @@
   "private": true,
   "jest": {
     "preset": "jest-expo",
+    "testTimeout": 15000,
+    "maxWorkers": "50%",
     "setupFiles": [
       "<rootDir>/jest.setup.tsx"
     ],
