@@ -939,7 +939,8 @@
       "failed": "Not sent"
     },
     "retry": "Tap to retry",
-    "reconnecting": "Reconnecting…"
+    "reconnecting": "Reconnecting…",
+    "discard": "Discard"
   },
   "smtp": {
     "title": "Email",

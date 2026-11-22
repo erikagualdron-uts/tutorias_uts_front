@@ -33,7 +33,7 @@ export function ChatScreen() {
   const me = useSession((s) => s.user?.id);
   const conversation = useConversation(id);
   const messages = useMessages(id);
-  const { pending, send, retry } = usePendingMessages(id);
+  const { pending, send, retry, discard } = usePendingMessages(id);
   const { mutate: markAsRead } = useMarkRead(id);
   useOpenConversation(id);
   const [keyboardRef, keyboardLift] = useKeyboardLift();
@@ -93,7 +93,7 @@ export function ChatScreen() {
           <View style={[styles.cell, startsRun(index) && styles.runStart]}>
             {startsDay(index) ? <DateSeparator iso={row.item.createdAt} /> : null}
             {row.kind === 'pending' ? (
-              <MessageBubble message={row.item} mine first={startsRun(index)} state={row.item.status} onRetry={() => retry(row.item.clientMessageId)} />
+              <MessageBubble message={row.item} mine first={startsRun(index)} state={row.item.status} onRetry={() => retry(row.item.clientMessageId)} onDiscard={() => discard(row.item.clientMessageId)} />
             ) : row.item.kind === 'ANNOUNCEMENT' ? (
               <AnnouncementCard message={row.item} />
             ) : (

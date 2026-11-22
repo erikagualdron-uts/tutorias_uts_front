@@ -87,6 +87,69 @@ describe('ChatScreen', () => {
     expect(await screen.findByText('Hola profe')).toBeTruthy();
   });
 
+  it('shows a pending message in its conversation, with its state and a way to discard it', async () => {
+    open();
+    usePendingStore.getState().add({
+      clientMessageId: '00000000-0000-4000-8000-0000000000aa',
+      conversationId: 'c1',
+      body: 'Sin enviar',
+      kind: 'TEXT',
+      createdAt: '2030-01-08T19:00:00.000Z',
+      status: 'sending',
+      userId: 'me',
+    });
+    usePendingStore.getState().add({
+      clientMessageId: '00000000-0000-4000-8000-0000000000bb',
+      conversationId: 'c1',
+      body: 'Rechazado',
+      kind: 'TEXT',
+      createdAt: '2030-01-08T19:01:00.000Z',
+      status: 'failed',
+      errorCode: 'INTERNAL_ERROR',
+      userId: 'me',
+    });
+    usePendingStore.getState().add({
+      clientMessageId: '00000000-0000-4000-8000-0000000000cc',
+      conversationId: 'c1',
+      body: 'De otra cuenta',
+      kind: 'TEXT',
+      createdAt: '2030-01-08T19:02:00.000Z',
+      status: 'sending',
+      userId: 'someone-else',
+    });
+    await renderWith(<ChatScreen />);
+    expect(await screen.findByText('Sin enviar')).toBeTruthy();
+    expect(screen.getByText('Rechazado')).toBeTruthy();
+    expect(screen.queryByText('De otra cuenta')).toBeNull();
+    expect(screen.getByText('No se envió')).toBeTruthy();
+    expect(screen.getByLabelText('Toca para reintentar')).toBeTruthy();
+    expect(screen.getAllByLabelText('Descartar')).toHaveLength(2);
+
+    await fireEvent.press(screen.getAllByLabelText('Descartar')[0]);
+    await waitFor(() => expect(screen.getAllByLabelText('Descartar')).toHaveLength(1));
+    await fireEvent.press(screen.getByLabelText('Descartar'));
+    await waitFor(() => expect(screen.queryByText('Rechazado')).toBeNull());
+    expect(screen.queryByText('Sin enviar')).toBeNull();
+    expect(usePendingStore.getState().items.map((i) => i.body)).toEqual(['De otra cuenta']);
+  });
+
+  it('says "Discard" in English', async () => {
+    await i18n.changeLanguage('en');
+    open();
+    usePendingStore.getState().add({
+      clientMessageId: '00000000-0000-4000-8000-0000000000dd',
+      conversationId: 'c1',
+      body: 'Unsent',
+      kind: 'TEXT',
+      createdAt: '2030-01-08T19:00:00.000Z',
+      status: 'failed',
+      userId: 'me',
+    });
+    await renderWith(<ChatScreen />);
+    expect(await screen.findByLabelText('Discard')).toBeTruthy();
+    expect(screen.getByLabelText('Tap to retry')).toBeTruthy();
+  });
+
   it('shows the counter with the limit that the API gives', async () => {
     open({ limits: { messageMaxLength: 500 } });
     await renderWith(<ChatScreen />);

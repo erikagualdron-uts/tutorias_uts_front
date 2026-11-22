@@ -939,7 +939,8 @@
       "failed": "No se envió"
     },
     "retry": "Toca para reintentar",
-    "reconnecting": "Reconectando…"
+    "reconnecting": "Reconectando…",
+    "discard": "Descartar"
   },
   "smtp": {
     "title": "Correo",

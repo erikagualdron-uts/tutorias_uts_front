@@ -46,8 +46,8 @@ export interface MessagePage {
   next: string | null;
 }
 
-// A message the user wrote that the server has not confirmed yet. Lives in memory only: if the app closes,
-// it is gone (spec 018 clarification).
+// A message the user wrote that the server has not confirmed yet. It is kept on the device (spec 022) so it
+// survives the app closing, and it belongs to the user who wrote it: nobody else sees it or sends it.
 export interface PendingMessage {
   clientMessageId: string;
   conversationId: string;
@@ -56,6 +56,7 @@ export interface PendingMessage {
   createdAt: string;
   status: 'sending' | 'failed';
   errorCode?: string;
+  userId: string;
 }
 
 export const personName = (p: Pick<ChatPerson, 'firstName' | 'lastName'>) => `${p.firstName} ${p.lastName}`.trim();

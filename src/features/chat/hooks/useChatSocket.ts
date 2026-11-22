@@ -5,7 +5,7 @@ import { useSession } from '@/store/session';
 import { chatSocket, closeChatSocket, openChatSocket } from '../socket';
 import type { ChatMessage } from '../types';
 import { chatKeys, insertMessage } from './useChatData';
-import { flushPending } from './usePendingMessages';
+import { flushPending, useClearPendingOnSignOut, usePendingStore } from './usePendingMessages';
 
 // Mounted once while signed in: keeps the socket up, feeds the queries with what arrives and, when the
 // connection comes back or the app returns to the front, asks again for what may have been missed and
@@ -13,6 +13,9 @@ import { flushPending } from './usePendingMessages';
 export function useChatSocket() {
   const client = useQueryClient();
   const signedIn = useSession((s) => s.status === 'signedIn');
+  useClearPendingOnSignOut();
+  // The pending messages are read from the device after the app opens: what was waiting goes out as soon as they are here.
+  useEffect(() => usePendingStore.persist.onFinishHydration(() => flushPending(client)), [client]);
 
   useEffect(() => {
     if (!signedIn) {

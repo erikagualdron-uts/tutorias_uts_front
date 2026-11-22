@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { bogotaParts } from '@/features/modules/format';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
-import { radius, shadows, spacing, typography, usePalette } from '@/theme';
+import { MIN_TOUCH_TARGET, radius, shadows, spacing, typography, usePalette } from '@/theme';
 import { personName, type ChatMessage } from '../types';
 
 export type DeliveryState = 'sending' | 'sent' | 'failed';
@@ -20,9 +20,11 @@ interface MessageBubbleProps {
   // Only for what I wrote: sending, sent or failed (with a tap to retry). Never color alone.
   state?: DeliveryState;
   onRetry?: () => void;
+  // Takes a message that was not sent out of the conversation and the device (sending or failed).
+  onDiscard?: () => void;
 }
 
-export function MessageBubble({ message, mine, showSender = false, first = true, state, onRetry }: MessageBubbleProps) {
+export function MessageBubble({ message, mine, showSender = false, first = true, state, onRetry, onDiscard }: MessageBubbleProps) {
   const { t } = useTranslation();
   const palette = usePalette();
   const ink = mine ? palette.onPrimary : palette.textPrimary;
@@ -50,13 +52,27 @@ export function MessageBubble({ message, mine, showSender = false, first = true,
     </View>
   );
 
-  if (!failed || !onRetry) return <View style={mine ? styles.rowMine : styles.rowTheirs}>{bubble}</View>;
+  const discard = onDiscard ? (
+    <Pressable accessibilityRole="button" accessibilityLabel={t('chat.discard')} onPress={onDiscard} style={styles.discard}>
+      <Icon name="trash" size={16} color={palette.textSecondary} />
+      <Text style={[typography.metadata, { color: palette.textSecondary }]}>{t('chat.discard')}</Text>
+    </Pressable>
+  ) : null;
+  if (!failed || !onRetry) {
+    return (
+      <View style={mine ? styles.rowMine : styles.rowTheirs}>
+        {bubble}
+        {discard}
+      </View>
+    );
+  }
   return (
     <View style={styles.rowMine}>
       <Pressable accessibilityRole="button" accessibilityLabel={t('chat.retry')} onPress={onRetry}>
         {bubble}
         <Text style={[typography.metadata, styles.retry, { color: palette.error }]}>{t('chat.retry')}</Text>
       </Pressable>
+      {discard}
     </View>
   );
 }
@@ -69,4 +85,5 @@ const styles = StyleSheet.create({
   theirsTail: { borderTopLeftRadius: radius.tooltip },
   footer: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs, alignSelf: 'flex-end' },
   retry: { textAlign: 'right', marginTop: spacing.xs },
+  discard: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs, minHeight: MIN_TOUCH_TARGET, alignSelf: 'flex-end' },
 });
