@@ -1049,6 +1049,36 @@
         "detail_one": "{{location}} · {{count}} module",
         "detail_other": "{{location}} · {{count}} modules"
       }
+    },
+    "noUpcoming": "No upcoming sessions",
+    "nextSession": "Next tutoring",
+    "hero": {
+      "room": "Room {{room}}",
+      "attendees_one": "{{count}} student",
+      "attendees_other": "{{count}} students"
+    },
+    "teacher": {
+      "weekSessions": "Sessions this week",
+      "unreadMessages": "Unread messages",
+      "capacity": {
+        "title": "Seats in your modules",
+        "empty": "You have no modules in the current period yet."
+      }
+    },
+    "student": {
+      "weekSessions": "Sessions this week",
+      "unreadAlerts": "Unread alerts",
+      "unreadMessages": "Unread messages",
+      "explore": "Explore modules",
+      "noUpcomingHint": "Enroll in a module to see your next tutoring here.",
+      "changes": {
+        "title": "Recent changes",
+        "empty": "There are no recent changes in your modules."
+      }
+    },
+    "myPqrs": {
+      "title": "My PQRS",
+      "empty": "You have not filed any PQRS yet."
     }
   }
 }

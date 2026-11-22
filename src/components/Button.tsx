@@ -24,6 +24,7 @@ export type ButtonVariant =
   | 'outlined'
   | 'tonal'
   | 'link'
+  | 'accent'
   | 'success'
   | 'warning'
   | 'destructive';
@@ -105,6 +106,13 @@ export function Button({
       pressed: palette.errorPressed,
       text: palette.onError,
       border: palette.error,
+    },
+    // Dark surfaces only (docs/Design.md): lime fill, deep green text and icon.
+    accent: {
+      bg: palette.accent,
+      pressed: palette.accent,
+      text: palette.onAccent,
+      border: palette.accent,
     },
     link: {
       bg: 'transparent',

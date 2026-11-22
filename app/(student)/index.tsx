@@ -1,3 +1,3 @@
-import { EmptyTabScreen } from '@/features/shell/screens/EmptyTabScreen';
+import { StudentHomeScreen } from '@/features/dashboard/screens/StudentHomeScreen';
 
-export default EmptyTabScreen;
+export default StudentHomeScreen;

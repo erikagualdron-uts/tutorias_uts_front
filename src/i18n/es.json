@@ -1049,6 +1049,36 @@
         "detail_one": "{{location}} · {{count}} módulo",
         "detail_other": "{{location}} · {{count}} módulos"
       }
+    },
+    "noUpcoming": "Sin sesiones próximas",
+    "nextSession": "Próxima tutoría",
+    "hero": {
+      "room": "Salón {{room}}",
+      "attendees_one": "{{count}} estudiante",
+      "attendees_other": "{{count}} estudiantes"
+    },
+    "teacher": {
+      "weekSessions": "Tutorías de la semana",
+      "unreadMessages": "Mensajes sin leer",
+      "capacity": {
+        "title": "Cupo de tus módulos",
+        "empty": "Aún no tienes módulos en el periodo vigente."
+      }
+    },
+    "student": {
+      "weekSessions": "Tutorías esta semana",
+      "unreadAlerts": "Avisos sin leer",
+      "unreadMessages": "Mensajes sin leer",
+      "explore": "Explorar módulos",
+      "noUpcomingHint": "Inscríbete a un módulo para ver aquí tu próxima tutoría.",
+      "changes": {
+        "title": "Cambios recientes",
+        "empty": "No hay cambios recientes en tus módulos."
+      }
+    },
+    "myPqrs": {
+      "title": "Mis PQRS",
+      "empty": "Aún no has radicado ninguna PQRS."
     }
   }
 }
