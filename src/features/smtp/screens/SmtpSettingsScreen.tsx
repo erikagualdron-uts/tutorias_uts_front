@@ -80,9 +80,9 @@ export function SmtpSettingsScreen() {
         </Card>
 
         {data.usingEnvironment ? <Banner message={t('smtp.environmentNotice')} /> : null}
-        {data.status === 'NEEDS_RECONFIGURATION' ? <Banner message={t('smtp.reconfigureNotice')} /> : null}
-        {save.isError ? <Banner message={errorMessage(t, save.error)} /> : null}
-        {saved && !save.isError ? <Banner message={t('smtp.form.saved')} /> : null}
+        {data.status === 'NEEDS_RECONFIGURATION' ? <Banner message={t('smtp.reconfigureNotice')} severity="warning" /> : null}
+        {save.isError ? <Banner message={errorMessage(t, save.error)} severity="error" /> : null}
+        {saved && !save.isError ? <Banner message={t('smtp.form.saved')} severity="success" /> : null}
 
         <Controller
           control={control}
@@ -195,7 +195,7 @@ export function SmtpSettingsScreen() {
           helperText={canTest ? undefined : t('smtp.test.needsSave')}
           onPress={() => test.mutate()}
         />
-        {test.isError ? <Banner message={errorMessage(t, test.error)} /> : null}
+        {test.isError ? <Banner message={errorMessage(t, test.error)} severity="error" /> : null}
         {result ? (
           <Banner
             message={
@@ -203,6 +203,7 @@ export function SmtpSettingsScreen() {
                 ? t('smtp.test.ok')
                 : t('smtp.test.failed', { reason: t(`smtp.test.cause.${result.cause ?? 'UNKNOWN'}`) })
             }
+            severity={result.ok ? 'success' : 'error'}
           />
         ) : null}
       </ScrollView>

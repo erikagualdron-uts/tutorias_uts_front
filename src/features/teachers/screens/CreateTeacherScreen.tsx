@@ -55,7 +55,7 @@ export function CreateTeacherScreen() {
           {t('teachers.create.title')}
         </Text>
         {create.error && !domainError ? (
-          <Banner message={errorMessage(t, create.error)} />
+          <Banner message={errorMessage(t, create.error)} severity="error" />
         ) : null}
 
         {(['firstName', 'lastName', 'email'] as const).map((name) => (

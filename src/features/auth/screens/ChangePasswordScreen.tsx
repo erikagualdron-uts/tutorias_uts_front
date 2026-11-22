@@ -25,7 +25,7 @@ export function ChangePasswordScreen() {
       title={t('changePassword.title')}
       description={t('changePassword.description')}
     >
-      {change.error ? <Banner message={errorMessage(t, change.error)} /> : null}
+      {change.error ? <Banner message={errorMessage(t, change.error)} severity="error" /> : null}
 
       {(['currentPassword', 'newPassword'] as const).map((name) => (
         <Controller

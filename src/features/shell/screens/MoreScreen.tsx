@@ -8,6 +8,11 @@ import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
 import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
 
+const ACCOUNT_ROWS: { label: string; icon: IconName; href: Href }[] = [
+  { label: 'more.teachers', icon: 'teacher', href: '/more/teachers' },
+  { label: 'more.students', icon: 'student', href: '/more/students' },
+];
+
 const CONFIGURATION_ROWS: { label: string; icon: IconName; href: Href }[] = [
   { label: 'more.periods', icon: 'dateRange', href: '/more/periods' },
   { label: 'more.holidays', icon: 'holiday', href: '/more/holidays' },
@@ -19,6 +24,27 @@ const CONFIGURATION_ROWS: { label: string; icon: IconName; href: Href }[] = [
 export function MoreScreen() {
   const { t } = useTranslation();
   const palette = usePalette();
+  const renderRow = (row: (typeof CONFIGURATION_ROWS)[number]) => (
+    <Pressable
+      key={row.label}
+      accessibilityRole="button"
+      accessibilityLabel={t(row.label)}
+      onPress={() => router.push(row.href)}
+      style={styles.row}
+    >
+      <Icon name={row.icon} />
+      <Text
+        style={[
+          typography.body,
+          styles.rowLabel,
+          { color: palette.textPrimary },
+        ]}
+      >
+        {t(row.label)}
+      </Text>
+      <Icon name="chevronRight" color={palette.textSecondary} />
+    </Pressable>
+  );
   return (
     <SafeAreaView
       edges={['bottom', 'left', 'right']}
@@ -30,32 +56,11 @@ export function MoreScreen() {
         variant="tonal"
         onPress={() => router.push('/more/create-teacher')}
       />
+      <Card style={styles.group}>{ACCOUNT_ROWS.map(renderRow)}</Card>
       <Text style={[typography.sectionTitle, { color: palette.textPrimary }]}>
         {t('more.configuration')}
       </Text>
-      <Card style={styles.group}>
-        {CONFIGURATION_ROWS.map((row) => (
-          <Pressable
-            key={row.label}
-            accessibilityRole="button"
-            accessibilityLabel={t(row.label)}
-            onPress={() => router.push(row.href)}
-            style={styles.row}
-          >
-            <Icon name={row.icon} />
-            <Text
-              style={[
-                typography.body,
-                styles.rowLabel,
-                { color: palette.textPrimary },
-              ]}
-            >
-              {t(row.label)}
-            </Text>
-            <Icon name="chevronRight" color={palette.textSecondary} />
-          </Pressable>
-        ))}
-      </Card>
+      <Card style={styles.group}>{CONFIGURATION_ROWS.map(renderRow)}</Card>
     </SafeAreaView>
   );
 }

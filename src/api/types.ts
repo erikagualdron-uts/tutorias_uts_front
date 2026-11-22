@@ -95,8 +95,31 @@ export interface PersonRef {
   lastName: string;
 }
 
+export type AccountStatus = 'ACTIVE' | 'INACTIVE';
+
 export interface Teacher extends PersonRef {
-  status: 'ACTIVE' | 'INACTIVE';
+  email: string;
+  status: AccountStatus;
+  modulesCount: number; // live modules of the active period
+}
+
+export interface AccountActionResult {
+  id: string;
+  status: AccountStatus;
+  deleted?: boolean;
+  unavailableModules?: number; // teachers: modules of the active period left without a teacher
+  cancelledEnrollments?: number; // students: enrollments cancelled by the closure
+}
+
+export interface TeacherDetail extends Teacher {
+  phone: string | null;
+}
+
+export interface StudentAccount extends PersonRef {
+  email: string;
+  program: string | null;
+  status: AccountStatus;
+  enrolledCount: number; // ACTIVE enrollments of the active period
 }
 
 export interface RoomRef {

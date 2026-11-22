@@ -1,24 +1,55 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Icon } from '@/icons/Icon';
-import { radius, spacing, typography, usePalette } from '@/theme';
+import type { IconName } from '@/icons/registry';
+import { radius, shadows, spacing, typography, usePalette } from '@/theme';
+import { FadeInView } from './FadeInView';
+
+export type BannerSeverity = 'info' | 'success' | 'warning' | 'error';
 
 interface BannerProps {
   message: string;
+  severity?: BannerSeverity;
 }
 
-// Notices and the rule that blocks an action (docs/Design.md: cream fill, deep green text).
-export function Banner({ message }: BannerProps) {
+const ICONS: Record<BannerSeverity, IconName> = {
+  info: 'info',
+  success: 'success',
+  warning: 'warning',
+  error: 'error',
+};
+
+// Notices and the rule that blocks an action (docs/Design.md, Banners). `info` is the quiet cream
+// notice; the other severities are solid fills with a shadow so an alert is seen before anything else.
+export function Banner({ message, severity = 'info' }: BannerProps) {
   const palette = usePalette();
+  const { fill, ink } = {
+    info: { fill: palette.surfaceWarm, ink: palette.onAccent },
+    success: { fill: palette.success, ink: palette.onAccent },
+    warning: { fill: palette.warning, ink: palette.onAccent },
+    error: { fill: palette.error, ink: palette.onError },
+  }[severity];
   return (
-    <View
-      accessibilityRole="alert"
-      style={[styles.box, { backgroundColor: palette.surfaceWarm }]}
-    >
-      <Icon name="info" color={palette.onAccent} />
-      <Text style={[typography.body, styles.text, { color: palette.onAccent }]}>
-        {message}
-      </Text>
-    </View>
+    <FadeInView>
+      <View
+        accessibilityRole="alert"
+        style={[
+          styles.box,
+          { backgroundColor: fill },
+          severity !== 'info' && shadows.level1,
+        ]}
+      >
+        <Icon name={ICONS[severity]} color={ink} />
+        <Text
+          style={[
+            severity === 'info' ? typography.body : typography.button,
+            styles.text,
+            { color: ink },
+          ]}
+        >
+          {message}
+        </Text>
+      </View>
+    </FadeInView>
   );
 }
 

@@ -34,7 +34,7 @@ export function ResetPasswordScreen() {
       title={t('reset.title')}
       description={t('reset.description', { email })}
     >
-      {reset.error ? <Banner message={errorMessage(t, reset.error)} /> : null}
+      {reset.error ? <Banner message={errorMessage(t, reset.error)} severity="error" /> : null}
 
       <Controller
         control={control}

@@ -29,16 +29,18 @@ export function LoginScreen() {
   return (
     <AuthLayout title={t('login.title')}>
       {login.error ? (
-        <Banner message={errorMessage(t, login.error)} />
+        <Banner message={errorMessage(t, login.error)} severity="error" />
       ) : verified || reset ? (
         <Banner
           message={t(verified ? 'login.verified' : 'login.passwordReset')}
+          severity="success"
         />
       ) : signOutReason ? (
         <Banner
           message={t(`errors.${signOutReason}`, {
             defaultValue: t('errors.UNKNOWN'),
           })}
+          severity="warning"
         />
       ) : null}
 

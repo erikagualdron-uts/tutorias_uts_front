@@ -118,7 +118,7 @@ export function PeriodFormScreen() {
           <Banner message={t('periods.rules.closedReadOnly')} />
         ) : null}
         {failure && dialog === null ? (
-          <Banner message={errorMessage(t, failure)} />
+          <Banner message={errorMessage(t, failure)} severity="error" />
         ) : null}
 
         <Controller
@@ -242,6 +242,7 @@ export function PeriodFormScreen() {
           message={t('periods.confirm.delete.message')}
           confirmLabel={t('periods.actions.delete')}
           confirmIcon="trash"
+          variant="destructive"
           loading={remove.isPending}
           onConfirm={() =>
             remove.mutate(undefined, {

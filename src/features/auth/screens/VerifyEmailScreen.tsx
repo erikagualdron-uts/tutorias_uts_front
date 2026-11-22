@@ -51,9 +51,9 @@ export function VerifyEmailScreen() {
       description={t('verify.description', { email })}
     >
       {error ? (
-        <Banner message={errorMessage(t, error)} />
+        <Banner message={errorMessage(t, error)} severity="error" />
       ) : resent ? (
-        <Banner message={t('verify.resent')} />
+        <Banner message={t('verify.resent')} severity="success" />
       ) : null}
 
       <Controller

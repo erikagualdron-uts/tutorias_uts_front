@@ -66,7 +66,7 @@ export function HolidayFormScreen() {
         <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>
           {t(id ? 'holidays.form.editTitle' : 'holidays.form.createTitle')}
         </Text>
-        {failure && !deleting ? <Banner message={errorMessage(t, failure)} /> : null}
+        {failure && !deleting ? <Banner message={errorMessage(t, failure)} severity="error" /> : null}
         <Controller
           control={control}
           name="name"
@@ -120,6 +120,7 @@ export function HolidayFormScreen() {
           message={t('holidays.form.deleteMessage')}
           confirmLabel={t('holidays.form.delete')}
           confirmIcon="trash"
+          variant="destructive"
           loading={remove.isPending}
           onConfirm={() =>
             remove.mutate(undefined, {
