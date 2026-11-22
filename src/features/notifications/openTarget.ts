@@ -17,10 +17,24 @@ const PQRS_DETAIL = {
 } as const;
 
 // A PQRS notice opens that PQRS; a module notice opens its module; neither leads nowhere (spec 017).
-export function noticeTarget(role: Role, notice: { moduleId?: string | null; pqrsId?: string | null }): Href | null {
+export function noticeTarget(
+  role: Role,
+  notice: { moduleId?: string | null; pqrsId?: string | null; conversationId?: string | null },
+): Href | null {
+  if (notice.conversationId) return chatTarget(role, notice.conversationId);
   if (notice.pqrsId) return { pathname: PQRS_DETAIL[role], params: { id: notice.pqrsId } } as Href;
   return notice.moduleId ? targetFor(role, notice.moduleId) : null;
 }
+
+const CHAT = {
+  STUDENT: '/(student)/messages/[id]',
+  TEACHER: '/(teacher)/messages/[id]',
+  SUPERADMIN: '/(admin)/messages/[id]',
+} as const;
+
+// A chat push leads to that conversation (spec 018).
+export const chatTarget = (role: Role, conversationId: string): Href =>
+  ({ pathname: CHAT[role], params: { id: conversationId } }) as Href;
 
 // The inbox of each role group (the bell leads here).
 export const inboxRoute = (role: Role): Href =>

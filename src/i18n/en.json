@@ -106,6 +106,10 @@
     "PQRS_INVALID_TRANSITION": "This PQRS cannot move to that state from the current one. The order is Filed, In review and Resolved.",
     "PQRS_NOT_IN_REVIEW": "You can only reply to a PQRS that is In review. Move it to In review first.",
     "PQRS_RESPONSE_REQUIRED": "To resolve the PQRS, first write at least one reply.",
+    "CHAT_NOT_FOUND": "We could not find that conversation.",
+    "CHAT_PARTNER_NOT_ALLOWED": "You cannot write to that person. You can only chat with someone who shares a module with you.",
+    "CHAT_READ_ONLY": "This conversation is read-only for now.",
+    "CHAT_ANNOUNCEMENT_FORBIDDEN": "Only the teacher of the module can post announcements.",
     "SMTP_PASSWORD_REQUIRED": "Enter the password of the mail server.",
     "SMTP_NOT_CONFIGURED": "Email is not configured yet. Save the server details first."
   },
@@ -841,6 +845,71 @@
         "closed": "This PQRS is resolved and no longer accepts changes."
       }
     }
+  },
+  "chat": {
+    "readOnly": {
+      "NO_SHARED_MODULE": "You no longer share a module, so you can only read this conversation.",
+      "PERIOD_CLOSED": "The period of this module is closed, so you can only read the chat.",
+      "PARTNER_UNAVAILABLE": "The account of the other person is not available, so you can only read this conversation."
+    },
+    "tabs": {
+      "alerts": "Alerts",
+      "chats": "Chats"
+    },
+    "new": {
+      "title": "New message",
+      "search": "Search by name",
+      "loadError": "We could not load who you can write to",
+      "empty": {
+        "title": "There is nobody to talk to yet",
+        "description": "You will be able to write to the people you share a module with."
+      },
+      "emptyFiltered": {
+        "title": "Nobody matches",
+        "description": "Try another name."
+      }
+    },
+    "list": {
+      "newMessage": "New message",
+      "loadError": "We could not load your chats",
+      "empty": {
+        "title": "You have no conversations yet",
+        "description": "Write to a teacher or a student to start."
+      }
+    },
+    "role": {
+      "SUPERADMIN": "CAE",
+      "TEACHER": "Teacher",
+      "STUDENT": "Student"
+    },
+    "noMessages": "No messages",
+    "announcementPrefix": "Announcement",
+    "unread": "{{count}} unread",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "moduleChat": "Module chat",
+    "conversation": {
+      "loadError": "We could not load the conversation",
+      "empty": "There are no messages yet. Write the first one.",
+      "olderError": "We could not load the earlier messages"
+    },
+    "composer": {
+      "label": "Write a message",
+      "send": "Send",
+      "kind": "Message type",
+      "asMessage": "Message",
+      "asAnnouncement": "Announcement"
+    },
+    "announcement": {
+      "label": "Announcement"
+    },
+    "status": {
+      "sending": "Sending…",
+      "sent": "Sent",
+      "failed": "Not sent"
+    },
+    "retry": "Tap to retry",
+    "reconnecting": "Reconnecting…"
   },
   "smtp": {
     "title": "Email",

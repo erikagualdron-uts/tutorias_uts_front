@@ -88,3 +88,9 @@ jest.mock('@react-native-community/datetimepicker', () => {
     DateTimePickerAndroid: { open, dismiss: jest.fn() },
   };
 });
+
+// The chat socket never connects for real in tests; a test that needs events replaces this mock.
+jest.mock('socket.io-client', () => {
+  const socket = { connected: false, on: jest.fn(), off: jest.fn(), emit: jest.fn(), connect: jest.fn(), close: jest.fn() };
+  return { io: jest.fn(() => socket) };
+});

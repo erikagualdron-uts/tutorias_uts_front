@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import {
   Keyboard,
   KeyboardAvoidingView,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -57,7 +56,7 @@ export function AuthLayout({ title, description, children }: AuthLayoutProps) {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      behavior="padding"
       style={[styles.screen, { backgroundColor: palette.screen }]}
     >
       <ScrollView
