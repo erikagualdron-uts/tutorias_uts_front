@@ -15,6 +15,7 @@ export interface Palette {
   textSecondary: string;
   border: string;
   error: string;
+  errorText: string;
   errorPressed: string;
   onError: string;
   success: string;
@@ -49,6 +50,7 @@ export const lightPalette: Palette = {
   textSecondary: '#575756',
   border: '#E5E5E5',
   error: '#B3261E', // derived
+  errorText: '#B3261E', // error as text or icon on a card or screen
   errorPressed: '#6D100A',
   onError: '#FFFFFF',
   success: '#2BA640',
@@ -63,7 +65,7 @@ export const lightPalette: Palette = {
   inputBorder: '#C9D0C3',
   inputBorderFocus: '#4E7A2F',
   inputLabelFocus: '#34531F',
-  inputPlaceholder: '#767676',
+  inputPlaceholder: '#6E6E6E', // derived: 4.6:1 on the field fill (#767676 was 4.1:1)
   focusGlow: 'rgba(78,122,47,0.15)',
   errorGlow: 'rgba(179,38,30,0.12)',
 };
@@ -84,6 +86,7 @@ export const darkPalette: Palette = {
   textSecondary: '#B3B3B3',
   border: 'rgba(255,255,255,0.08)',
   error: '#B3261E',
+  errorText: '#FF8A80', // derived: 6.3:1 on the card; #B3261E is 2.2:1 on dark
   errorPressed: '#6D100A',
   onError: '#FFFFFF',
   success: '#2BA640',

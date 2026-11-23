@@ -45,6 +45,8 @@ export function SelectField({
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={label}
+        accessibilityValue={value ? { text: value } : undefined}
+        accessibilityHint={error}
         accessibilityState={{ disabled }}
         disabled={disabled}
         onPress={onPress}

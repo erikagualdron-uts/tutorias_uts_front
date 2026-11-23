@@ -38,8 +38,8 @@ export function ModuleCard({ module }: { module: Module }) {
         </View>
         {notices.map((text) => (
           <View key={String(text)} style={styles.row}>
-            <Icon name="warning" size={16} color={palette.error} />
-            <Text style={[typography.bodySmall, { color: palette.error }]}>{text}</Text>
+            <Icon name="warning" size={16} color={palette.errorText} />
+            <Text style={[typography.bodySmall, { color: palette.errorText }]}>{text}</Text>
           </View>
         ))}
       </Card>

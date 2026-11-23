@@ -35,8 +35,8 @@ export function SessionRow({ session, minutes, onCancel, onRestore, restoring = 
     <View style={styles.row} accessibilityLabel={`${start.date} ${start.time} ${state}`}>
       <Text style={[typography.body, { color: palette.textPrimary }]}>{`${start.date} · ${start.time}–${end.time}`}</Text>
       <View style={styles.state}>
-        <Icon name={bad ? 'absent' : 'success'} size={16} color={bad ? palette.error : palette.primary} />
-        <Text style={[typography.bodySmall, { color: bad ? palette.error : palette.textSecondary }]}>{state}</Text>
+        <Icon name={bad ? 'absent' : 'success'} size={16} color={bad ? palette.errorText : palette.primary} />
+        <Text style={[typography.bodySmall, { color: bad ? palette.errorText : palette.textSecondary }]}>{state}</Text>
       </View>
       {actions && !holiday ? (
         session.cancelledByStudent ? (

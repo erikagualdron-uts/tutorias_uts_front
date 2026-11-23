@@ -72,6 +72,7 @@
     "preset": "jest-expo",
     "testTimeout": 15000,
     "maxWorkers": "50%",
+    "setupFilesAfterEnv": ["<rootDir>/src/testing/setupA11y.ts"],
     "setupFiles": [
       "<rootDir>/jest.setup.tsx"
     ],

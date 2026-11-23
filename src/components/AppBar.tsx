@@ -72,6 +72,8 @@ export function AppBar({ title }: { title?: string }) {
         onRequestClose={() => setOpen(false)}
       >
         <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={t('common.close')}
           style={[styles.backdrop, { paddingTop: top + BAR_HEIGHT - spacing.xs }]}
           onPress={() => setOpen(false)}
         >
@@ -92,8 +94,8 @@ export function AppBar({ title }: { title?: string }) {
               }}
               style={[styles.item, { borderColor: palette.error }]}
             >
-              <Icon name="signOut" color={palette.error} />
-              <Text style={[typography.body, { color: palette.error }]}>
+              <Icon name="signOut" color={palette.errorText} />
+              <Text style={[typography.body, { color: palette.errorText }]}>
                 {t('profile.signOut')}
               </Text>
             </Pressable>

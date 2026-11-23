@@ -46,8 +46,8 @@ export function MessageBubble({ message, mine, showSender = false, first = true,
       <Text style={[typography.body, { color: ink }]}>{message.body}</Text>
       <View style={styles.footer} accessible={Boolean(state)} accessibilityLabel={state ? t(`chat.status.${state}`) : undefined}>
         <Text style={[typography.metadata, { color: meta }]}>{bogotaParts(message.createdAt).time}</Text>
-        {state ? <Icon name={ICONS[state]} size={14} color={failed ? palette.error : meta} /> : null}
-        {failed ? <Text style={[typography.metadata, { color: palette.error }]}>{t('chat.status.failed')}</Text> : null}
+        {state ? <Icon name={ICONS[state]} size={14} color={failed ? palette.errorText : meta} /> : null}
+        {failed ? <Text style={[typography.metadata, { color: palette.errorText }]}>{t('chat.status.failed')}</Text> : null}
       </View>
     </View>
   );
@@ -70,7 +70,7 @@ export function MessageBubble({ message, mine, showSender = false, first = true,
     <View style={styles.rowMine}>
       <Pressable accessibilityRole="button" accessibilityLabel={t('chat.retry')} onPress={onRetry}>
         {bubble}
-        <Text style={[typography.metadata, styles.retry, { color: palette.error }]}>{t('chat.retry')}</Text>
+        <Text style={[typography.metadata, styles.retry, { color: palette.errorText }]}>{t('chat.retry')}</Text>
       </Pressable>
       {discard}
     </View>

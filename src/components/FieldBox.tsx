@@ -120,10 +120,10 @@ export function FieldBox({
       {footer}
       {errorMessage ? (
         <View style={styles.errorRow}>
-          <Icon name="error" size={16} color={palette.error} />
+          <Icon name="error" size={16} color={palette.errorText} />
           <Text
             accessibilityLiveRegion="polite"
-            style={[typography.metadata, { color: palette.error }]}
+            style={[typography.metadata, { color: palette.errorText }]}
           >
             {errorMessage}
           </Text>

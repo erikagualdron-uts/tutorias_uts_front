@@ -65,6 +65,7 @@ export function TextField({
       <TextInput
         {...inputProps}
         accessibilityLabel={label}
+        accessibilityHint={error}
         secureTextEntry={password && hidden}
         {...(password && { autoCapitalize: 'none', autoCorrect: false })}
         onFocus={(event) => {
