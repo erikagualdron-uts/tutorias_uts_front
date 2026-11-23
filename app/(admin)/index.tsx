@@ -1,3 +1,3 @@
-import { EmptyTabScreen } from '@/features/shell/screens/EmptyTabScreen';
+import { AdminDashboardScreen } from '@/features/dashboard/screens/AdminDashboardScreen';
 
-export default EmptyTabScreen;
+export default AdminDashboardScreen;

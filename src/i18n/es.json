@@ -101,6 +101,15 @@
     "SESSION_RESCHEDULE_INVALID_DATE_HOLIDAY": "El {{date}} es festivo: no hay tutorías ese día.",
     "SESSION_STUDENT_CONFLICT": "{{students}} estudiantes inscritos ya tienen otra tutoría a esa hora.",
     "NOTIFICATION_NOT_FOUND": "No encontramos esa notificación.",
+    "PQRS_NOT_FOUND": "No encontramos esa PQRS.",
+    "PQRS_TYPE_UNAVAILABLE": "Ese tipo de PQRS ya no está disponible. Elige otro.",
+    "PQRS_INVALID_TRANSITION": "Esa PQRS no puede pasar a ese estado desde el actual. El orden es Radicada, En revisión y Resuelta.",
+    "PQRS_NOT_IN_REVIEW": "Solo se puede responder una PQRS que está En revisión. Primero pásala a En revisión.",
+    "PQRS_RESPONSE_REQUIRED": "Para resolver la PQRS primero escribe al menos una respuesta.",
+    "CHAT_NOT_FOUND": "No encontramos esa conversación.",
+    "CHAT_PARTNER_NOT_ALLOWED": "No puedes escribirle a esa persona. Solo se conversa con quien comparte un módulo contigo.",
+    "CHAT_READ_ONLY": "Esta conversación es de solo lectura por ahora.",
+    "CHAT_ANNOUNCEMENT_FORBIDDEN": "Solo el docente del módulo puede publicar anuncios.",
     "SMTP_PASSWORD_REQUIRED": "Escribe la clave del servidor de correo.",
     "SMTP_NOT_CONFIGURED": "El correo aún no está configurado. Guarda primero los datos del servidor."
   },
@@ -664,6 +673,22 @@
       "next": "Próxima sesión: {{date}} · {{time}}",
       "noNext": "Sin sesiones próximas",
       "upcoming": "{{count}} sesiones por venir"
+    },
+    "schedule": {
+      "state": {
+        "SCHEDULED": "Programada",
+        "RESCHEDULED": "Reprogramada",
+        "HOLIDAY": "Cancelada por festivo",
+        "TEACHER": "Cancelada por el docente",
+        "STUDENT": "Cancelada por ti"
+      },
+      "original": "Antes: {{date}} · {{time}}",
+      "noPeriodHint": "No hay un periodo académico para mostrar tus tutorías.",
+      "empty": {
+        "title": "Aún no estás inscrito en ningún módulo",
+        "description": "Explora los módulos e inscríbete para ver aquí tus tutorías de la semana.",
+        "action": "Explorar módulos"
+      }
     }
   },
   "teacher": {
@@ -765,6 +790,159 @@
     },
     "channel": "Avisos de módulos"
   },
+  "pqrs": {
+    "status": {
+      "FILED": "Radicada",
+      "IN_REVIEW": "En revisión",
+      "RESOLVED": "Resuelta"
+    },
+    "list": {
+      "title": "Mis PQRS",
+      "new": "Nueva PQRS",
+      "filterAll": "Todas",
+      "loadError": "No pudimos cargar tus PQRS",
+      "empty": {
+        "title": "Aún no has radicado ninguna PQRS",
+        "description": "Radica una petición, queja, reclamo o sugerencia y verás aquí cómo avanza."
+      },
+      "emptyFiltered": {
+        "title": "No hay PQRS con ese estado",
+        "description": "Prueba con otro estado."
+      },
+      "filedOn": "Radicada el {{date}}"
+    },
+    "new": {
+      "title": "Radicar una PQRS",
+      "type": "Tipo",
+      "subject": "Asunto",
+      "description": "Descripción",
+      "submit": "Radicar",
+      "chooseType": "Elige un tipo.",
+      "typesError": "No pudimos cargar los tipos",
+      "noTypes": "Todavía no hay tipos de PQRS disponibles. Intenta más tarde."
+    },
+    "detail": {
+      "loadError": "No pudimos cargar la PQRS",
+      "description": "Descripción",
+      "replies": "Respuestas del CAE",
+      "noReplies": "Aún no hay respuestas. Te avisaremos cuando el CAE responda."
+    },
+    "admin": {
+      "title": "PQRS",
+      "loadError": "No pudimos cargar las PQRS",
+      "typeAll": "Todos los tipos",
+      "empty": {
+        "title": "Aún no hay PQRS",
+        "description": "Cuando un docente o un estudiante radique una, aparecerá aquí."
+      },
+      "emptyFiltered": {
+        "title": "Ninguna PQRS coincide",
+        "description": "Cambia o quita algún filtro."
+      },
+      "role": {
+        "all": "Todos los autores",
+        "TEACHER": "Docentes",
+        "STUDENT": "Estudiantes"
+      },
+      "authorRole": {
+        "TEACHER": "Docente",
+        "STUDENT": "Estudiante"
+      },
+      "author": "Autor",
+      "review": "Pasar a En revisión",
+      "reply": "Tu respuesta",
+      "sendReply": "Enviar respuesta",
+      "resolve": "Marcar como resuelta",
+      "resolveTitle": "¿Marcar como resuelta?",
+      "resolveMessage": "El autor recibirá un aviso y la PQRS ya no admitirá respuestas ni cambios.",
+      "rule": {
+        "reviewFirst": "Primero pásala a En revisión para poder responderla o resolverla.",
+        "replyFirst": "Primero escribe al menos una respuesta para poder resolverla.",
+        "closed": "Esta PQRS está resuelta y ya no admite cambios."
+      }
+    },
+    "filed": {
+      "title": "Tu PQRS quedó radicada",
+      "number": "Número de radicado",
+      "date": "Fecha de radicación",
+      "hint": "Guarda este número para citarla.",
+      "view": "Ver mi PQRS",
+      "back": "Volver a mis PQRS"
+    },
+    "code": "N.º {{code}}",
+    "timeline": {
+      "title": "Seguimiento",
+      "current": "Actual",
+      "pending": "Pendiente"
+    }
+  },
+  "chat": {
+    "readOnly": {
+      "NO_SHARED_MODULE": "Ya no comparten un módulo, así que solo puedes leer esta conversación.",
+      "PERIOD_CLOSED": "El periodo de este módulo está cerrado, así que solo puedes leer el chat.",
+      "PARTNER_UNAVAILABLE": "La cuenta de la otra persona no está disponible, así que solo puedes leer esta conversación."
+    },
+    "tabs": {
+      "alerts": "Avisos",
+      "chats": "Chats"
+    },
+    "new": {
+      "title": "Nuevo mensaje",
+      "search": "Buscar por nombre",
+      "loadError": "No pudimos cargar a quién puedes escribir",
+      "empty": {
+        "title": "Todavía no hay con quién hablar",
+        "description": "Podrás escribir a las personas con las que compartes un módulo."
+      },
+      "emptyFiltered": {
+        "title": "Nadie coincide",
+        "description": "Prueba con otro nombre."
+      }
+    },
+    "list": {
+      "newMessage": "Nuevo mensaje",
+      "loadError": "No pudimos cargar tus chats",
+      "empty": {
+        "title": "Aún no tienes conversaciones",
+        "description": "Escribe a un docente o a un estudiante para empezar."
+      }
+    },
+    "role": {
+      "SUPERADMIN": "CAE",
+      "TEACHER": "Docente",
+      "STUDENT": "Estudiante"
+    },
+    "noMessages": "Sin mensajes",
+    "announcementPrefix": "Anuncio",
+    "unread": "{{count}} sin leer",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "moduleChat": "Chat del módulo",
+    "conversation": {
+      "loadError": "No pudimos cargar la conversación",
+      "empty": "Aún no hay mensajes. Escribe el primero.",
+      "olderError": "No pudimos cargar los mensajes anteriores"
+    },
+    "composer": {
+      "label": "Escribe un mensaje",
+      "send": "Enviar",
+      "kind": "Tipo de mensaje",
+      "asMessage": "Mensaje",
+      "asAnnouncement": "Anuncio"
+    },
+    "announcement": {
+      "label": "Anuncio"
+    },
+    "status": {
+      "sending": "Enviando…",
+      "sent": "Enviado",
+      "failed": "No se envió"
+    },
+    "retry": "Toca para reintentar",
+    "reconnecting": "Reconectando…",
+    "discard": "Descartar",
+    "typing": "está escribiendo…"
+  },
   "smtp": {
     "title": "Correo",
     "intro": "El servidor desde el que la app envía correos a estudiantes y docentes.",
@@ -854,5 +1032,87 @@
     },
     "sheetError": "No pudimos cargar la cuenta",
     "regenerateBlocked": "Reactiva la cuenta para regenerar su clave."
+  },
+  "dashboard": {
+    "loadError": "No pudimos cargar este bloque",
+    "relative": {
+      "now": "Ahora",
+      "minutes": "hace {{count}} min",
+      "hours": "hace {{count}} h",
+      "days": "hace {{count}} d"
+    },
+    "duration": {
+      "minutes": "{{count}} min",
+      "hours": "{{count}} h",
+      "days": "{{count}} d"
+    },
+    "admin": {
+      "occupancy": {
+        "title": "Ocupación general",
+        "detail": "{{enrolled}} de {{capacity}} cupos",
+        "empty": "Aún no hay módulos activos en el periodo vigente.",
+        "full_one": "{{count}} módulo lleno",
+        "full_other": "{{count}} módulos llenos",
+        "low": "{{count}} con baja inscripción"
+      },
+      "metrics": {
+        "modules": "Módulos activos",
+        "students": "Estudiantes activos",
+        "teachers": "Docentes activos",
+        "filed": "PQRS radicadas"
+      },
+      "pqrs": {
+        "title": "PQRS por estado",
+        "empty": "Aún no hay PQRS radicadas.",
+        "average": "Tiempo promedio de respuesta"
+      },
+      "changes": {
+        "title": "Cambios recientes",
+        "seeAll": "Ver todo",
+        "empty": "No hay cancelaciones ni reprogramaciones recientes.",
+        "RESCHEDULED": "Reprogramada",
+        "CANCELLED": "Cancelada"
+      },
+      "rooms": {
+        "title": "Uso de salones",
+        "most": "Más ocupados",
+        "least": "Menos ocupados",
+        "empty": "Aún no hay módulos con salón asignado.",
+        "detail_one": "{{location}} · {{count}} módulo",
+        "detail_other": "{{location}} · {{count}} módulos"
+      }
+    },
+    "noUpcoming": "Sin sesiones próximas",
+    "nextSession": "Próxima tutoría",
+    "hero": {
+      "room": "Salón {{room}}",
+      "attendees_one": "{{count}} estudiante",
+      "attendees_other": "{{count}} estudiantes"
+    },
+    "teacher": {
+      "weekSessions": "Tutorías de la semana",
+      "unreadMessages": "Mensajes sin leer",
+      "capacity": {
+        "title": "Cupo de tus módulos",
+        "empty": "Aún no tienes módulos en el periodo vigente."
+      }
+    },
+    "student": {
+      "weekSessions": "Tutorías esta semana",
+      "unreadAlerts": "Avisos sin leer",
+      "unreadMessages": "Mensajes sin leer",
+      "explore": "Explorar módulos",
+      "noUpcomingHint": "Inscríbete a un módulo para ver aquí tu próxima tutoría.",
+      "changes": {
+        "title": "Cambios recientes",
+        "empty": "No hay cambios recientes en tus módulos."
+      }
+    },
+    "myPqrs": {
+      "title": "Mis PQRS",
+      "empty": "Aún no has radicado ninguna PQRS.",
+      "seeAll": "Ver todas"
+    },
+    "viewDetail": "Ver detalle"
   }
 }

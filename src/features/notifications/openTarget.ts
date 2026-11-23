@@ -10,6 +10,32 @@ export function targetFor(role: Role, moduleId: string): Href {
   return { pathname: '/(admin)/modules/[id]', params: { id: moduleId } } as Href;
 }
 
+const PQRS_DETAIL = {
+  STUDENT: '/(student)/pqrs/[id]',
+  TEACHER: '/(teacher)/pqrs/[id]',
+  SUPERADMIN: '/(admin)/pqrs/[id]',
+} as const;
+
+// A PQRS notice opens that PQRS; a module notice opens its module; neither leads nowhere (spec 017).
+export function noticeTarget(
+  role: Role,
+  notice: { moduleId?: string | null; pqrsId?: string | null; conversationId?: string | null },
+): Href | null {
+  if (notice.conversationId) return chatTarget(role, notice.conversationId);
+  if (notice.pqrsId) return { pathname: PQRS_DETAIL[role], params: { id: notice.pqrsId } } as Href;
+  return notice.moduleId ? targetFor(role, notice.moduleId) : null;
+}
+
+const CHAT = {
+  STUDENT: '/(student)/messages/[id]',
+  TEACHER: '/(teacher)/messages/[id]',
+  SUPERADMIN: '/(admin)/messages/[id]',
+} as const;
+
+// A chat push leads to that conversation (spec 018).
+export const chatTarget = (role: Role, conversationId: string): Href =>
+  ({ pathname: CHAT[role], params: { id: conversationId } }) as Href;
+
 // The inbox of each role group (the bell leads here).
 export const inboxRoute = (role: Role): Href =>
   (role === 'STUDENT' ? '/(student)/notifications' : role === 'TEACHER' ? '/(teacher)/notifications' : '/(admin)/notifications') as Href;

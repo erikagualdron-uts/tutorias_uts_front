@@ -101,6 +101,15 @@
     "SESSION_RESCHEDULE_INVALID_DATE_HOLIDAY": "{{date}} is a holiday: there are no sessions that day.",
     "SESSION_STUDENT_CONFLICT": "{{students}} enrolled students already have another session at that time.",
     "NOTIFICATION_NOT_FOUND": "We could not find that notification.",
+    "PQRS_NOT_FOUND": "We could not find that PQRS.",
+    "PQRS_TYPE_UNAVAILABLE": "That PQRS type is no longer available. Pick another one.",
+    "PQRS_INVALID_TRANSITION": "This PQRS cannot move to that state from the current one. The order is Filed, In review and Resolved.",
+    "PQRS_NOT_IN_REVIEW": "You can only reply to a PQRS that is In review. Move it to In review first.",
+    "PQRS_RESPONSE_REQUIRED": "To resolve the PQRS, first write at least one reply.",
+    "CHAT_NOT_FOUND": "We could not find that conversation.",
+    "CHAT_PARTNER_NOT_ALLOWED": "You cannot write to that person. You can only chat with someone who shares a module with you.",
+    "CHAT_READ_ONLY": "This conversation is read-only for now.",
+    "CHAT_ANNOUNCEMENT_FORBIDDEN": "Only the teacher of the module can post announcements.",
     "SMTP_PASSWORD_REQUIRED": "Enter the password of the mail server.",
     "SMTP_NOT_CONFIGURED": "Email is not configured yet. Save the server details first."
   },
@@ -664,6 +673,22 @@
       "next": "Next session: {{date}} · {{time}}",
       "noNext": "No upcoming sessions",
       "upcoming": "{{count}} sessions to go"
+    },
+    "schedule": {
+      "state": {
+        "SCHEDULED": "Scheduled",
+        "RESCHEDULED": "Rescheduled",
+        "HOLIDAY": "Cancelled for a holiday",
+        "TEACHER": "Cancelled by the teacher",
+        "STUDENT": "Cancelled by you"
+      },
+      "original": "Before: {{date}} · {{time}}",
+      "noPeriodHint": "There is no academic period to show your tutoring sessions.",
+      "empty": {
+        "title": "You are not enrolled in any module yet",
+        "description": "Explore the modules and enroll to see your sessions of the week here.",
+        "action": "Explore modules"
+      }
     }
   },
   "teacher": {
@@ -765,6 +790,159 @@
     },
     "channel": "Module alerts"
   },
+  "pqrs": {
+    "status": {
+      "FILED": "Filed",
+      "IN_REVIEW": "In review",
+      "RESOLVED": "Resolved"
+    },
+    "list": {
+      "title": "My PQRS",
+      "new": "New PQRS",
+      "filterAll": "All",
+      "loadError": "We could not load your PQRS",
+      "empty": {
+        "title": "You have not filed any PQRS yet",
+        "description": "File a request, complaint, claim or suggestion and you will see its progress here."
+      },
+      "emptyFiltered": {
+        "title": "No PQRS with that status",
+        "description": "Try another status."
+      },
+      "filedOn": "Filed on {{date}}"
+    },
+    "new": {
+      "title": "File a PQRS",
+      "type": "Type",
+      "subject": "Subject",
+      "description": "Description",
+      "submit": "File",
+      "chooseType": "Pick a type.",
+      "typesError": "We could not load the types",
+      "noTypes": "There are no PQRS types available yet. Try again later."
+    },
+    "detail": {
+      "loadError": "We could not load the PQRS",
+      "description": "Description",
+      "replies": "Replies from the CAE",
+      "noReplies": "There are no replies yet. We will let you know when the CAE replies."
+    },
+    "admin": {
+      "title": "PQRS",
+      "loadError": "We could not load the PQRS",
+      "typeAll": "All types",
+      "empty": {
+        "title": "There are no PQRS yet",
+        "description": "When a teacher or a student files one, it will show up here."
+      },
+      "emptyFiltered": {
+        "title": "No PQRS match",
+        "description": "Change or remove a filter."
+      },
+      "role": {
+        "all": "All authors",
+        "TEACHER": "Teachers",
+        "STUDENT": "Students"
+      },
+      "authorRole": {
+        "TEACHER": "Teacher",
+        "STUDENT": "Student"
+      },
+      "author": "Author",
+      "review": "Move to In review",
+      "reply": "Your reply",
+      "sendReply": "Send reply",
+      "resolve": "Mark as resolved",
+      "resolveTitle": "Mark as resolved?",
+      "resolveMessage": "The author will get a notice and the PQRS will no longer accept replies or changes.",
+      "rule": {
+        "reviewFirst": "Move it to In review first to be able to reply to it or resolve it.",
+        "replyFirst": "Write at least one reply first to be able to resolve it.",
+        "closed": "This PQRS is resolved and no longer accepts changes."
+      }
+    },
+    "filed": {
+      "title": "Your PQRS was filed",
+      "number": "Filing number",
+      "date": "Filing date",
+      "hint": "Keep this number to quote it.",
+      "view": "View my PQRS",
+      "back": "Back to my PQRS"
+    },
+    "code": "No. {{code}}",
+    "timeline": {
+      "title": "Progress",
+      "current": "Current",
+      "pending": "Pending"
+    }
+  },
+  "chat": {
+    "readOnly": {
+      "NO_SHARED_MODULE": "You no longer share a module, so you can only read this conversation.",
+      "PERIOD_CLOSED": "The period of this module is closed, so you can only read the chat.",
+      "PARTNER_UNAVAILABLE": "The account of the other person is not available, so you can only read this conversation."
+    },
+    "tabs": {
+      "alerts": "Alerts",
+      "chats": "Chats"
+    },
+    "new": {
+      "title": "New message",
+      "search": "Search by name",
+      "loadError": "We could not load who you can write to",
+      "empty": {
+        "title": "There is nobody to talk to yet",
+        "description": "You will be able to write to the people you share a module with."
+      },
+      "emptyFiltered": {
+        "title": "Nobody matches",
+        "description": "Try another name."
+      }
+    },
+    "list": {
+      "newMessage": "New message",
+      "loadError": "We could not load your chats",
+      "empty": {
+        "title": "You have no conversations yet",
+        "description": "Write to a teacher or a student to start."
+      }
+    },
+    "role": {
+      "SUPERADMIN": "CAE",
+      "TEACHER": "Teacher",
+      "STUDENT": "Student"
+    },
+    "noMessages": "No messages",
+    "announcementPrefix": "Announcement",
+    "unread": "{{count}} unread",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "moduleChat": "Module chat",
+    "conversation": {
+      "loadError": "We could not load the conversation",
+      "empty": "There are no messages yet. Write the first one.",
+      "olderError": "We could not load the earlier messages"
+    },
+    "composer": {
+      "label": "Write a message",
+      "send": "Send",
+      "kind": "Message type",
+      "asMessage": "Message",
+      "asAnnouncement": "Announcement"
+    },
+    "announcement": {
+      "label": "Announcement"
+    },
+    "status": {
+      "sending": "Sending…",
+      "sent": "Sent",
+      "failed": "Not sent"
+    },
+    "retry": "Tap to retry",
+    "reconnecting": "Reconnecting…",
+    "discard": "Discard",
+    "typing": "is typing…"
+  },
   "smtp": {
     "title": "Email",
     "intro": "The server the app uses to send emails to students and teachers.",
@@ -854,5 +1032,87 @@
     },
     "sheetError": "We could not load the account",
     "regenerateBlocked": "Reactivate the account to regenerate its password."
+  },
+  "dashboard": {
+    "loadError": "We could not load this block",
+    "relative": {
+      "now": "Just now",
+      "minutes": "{{count}} min ago",
+      "hours": "{{count}} h ago",
+      "days": "{{count}} d ago"
+    },
+    "duration": {
+      "minutes": "{{count}} min",
+      "hours": "{{count}} h",
+      "days": "{{count}} d"
+    },
+    "admin": {
+      "occupancy": {
+        "title": "Overall occupancy",
+        "detail": "{{enrolled}} of {{capacity}} seats",
+        "empty": "There are no active modules in the current period yet.",
+        "full_one": "{{count}} module full",
+        "full_other": "{{count}} modules full",
+        "low": "{{count}} with low enrollment"
+      },
+      "metrics": {
+        "modules": "Active modules",
+        "students": "Active students",
+        "teachers": "Active teachers",
+        "filed": "Filed PQRS"
+      },
+      "pqrs": {
+        "title": "PQRS by status",
+        "empty": "No PQRS have been filed yet.",
+        "average": "Average response time"
+      },
+      "changes": {
+        "title": "Recent changes",
+        "seeAll": "See all",
+        "empty": "There are no recent cancellations or reschedules.",
+        "RESCHEDULED": "Rescheduled",
+        "CANCELLED": "Cancelled"
+      },
+      "rooms": {
+        "title": "Room usage",
+        "most": "Most occupied",
+        "least": "Least occupied",
+        "empty": "There are no modules with an assigned room yet.",
+        "detail_one": "{{location}} · {{count}} module",
+        "detail_other": "{{location}} · {{count}} modules"
+      }
+    },
+    "noUpcoming": "No upcoming sessions",
+    "nextSession": "Next tutoring",
+    "hero": {
+      "room": "Room {{room}}",
+      "attendees_one": "{{count}} student",
+      "attendees_other": "{{count}} students"
+    },
+    "teacher": {
+      "weekSessions": "Sessions this week",
+      "unreadMessages": "Unread messages",
+      "capacity": {
+        "title": "Seats in your modules",
+        "empty": "You have no modules in the current period yet."
+      }
+    },
+    "student": {
+      "weekSessions": "Sessions this week",
+      "unreadAlerts": "Unread alerts",
+      "unreadMessages": "Unread messages",
+      "explore": "Explore modules",
+      "noUpcomingHint": "Enroll in a module to see your next tutoring here.",
+      "changes": {
+        "title": "Recent changes",
+        "empty": "There are no recent changes in your modules."
+      }
+    },
+    "myPqrs": {
+      "title": "My PQRS",
+      "empty": "You have not filed any PQRS yet.",
+      "seeAll": "See all"
+    },
+    "viewDetail": "View details"
   }
 }

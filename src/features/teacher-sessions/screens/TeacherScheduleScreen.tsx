@@ -1,21 +1,18 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import type { TeacherCalendar, TeacherSession } from '@/api/types';
+import type { TeacherSession } from '@/api/types';
 import { errorMessage } from '@/api/errors';
 import { BrandLoader } from '@/components/BrandLoader';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
-import { initialWeek, selectDayForWeek, weekStartOf } from '@/components/calendar/calendarMath';
-import type { CalendarView } from '@/components/calendar/types';
-import { useNow } from '@/components/calendar/useNow';
+import { useWeekNavigation } from '@/components/calendar/useWeekNavigation';
 import { WeekCalendar } from '@/components/calendar/WeekCalendar';
 import { EmptyState } from '@/components/EmptyState';
 import { FilterChips } from '@/components/FilterChips';
-import { addDays, todayInBogota } from '@/date/day';
 import { bogotaParts, scheduleLabel } from '@/features/modules/format';
-import { calendarLayout, spacing, typography, usePalette } from '@/theme';
+import { spacing, typography, usePalette } from '@/theme';
 import { toCalendarItem } from '../calendarItems';
 import { SessionActionsSheet } from '../components/SessionActionsSheet';
 import { TeacherSessionCard } from '../components/TeacherSessionCard';
@@ -29,33 +26,13 @@ const UNKNOWN_HOURS = { earliest: '00:00', latest: '00:00' };
 export function TeacherScheduleScreen() {
   const { t } = useTranslation();
   const palette = usePalette();
-  const { width } = useWindowDimensions();
-  const now = useNow();
-  const today = todayInBogota(now);
-  const [week, setWeek] = useState<string | null>(null);
-  const [selected, setSelected] = useState<string | null>(null);
-  const [view, setView] = useState<CalendarView>(width >= calendarLayout.tabletMinWidth ? 'week' : 'day');
-  const [meta, setMeta] = useState<TeacherCalendar['meta']>();
+  const { calendar, meta, now, today, weekStart, selectedDay, view, onViewChange, onSelectDay, onWeekChange } =
+    useWeekNavigation(useTeacherCalendar);
   const [moduleId, setModuleId] = useState<string>();
   const [picked, setPicked] = useState<string | null>(null);
-
-  const weekStart = week ?? weekStartOf(today);
-  const selectedDay = selected ?? selectDayForWeek(weekStart, today, today);
-  const calendar = useTeacherCalendar(weekStart, addDays(weekStart, 6));
   const modules = useTeacherModules();
   const sessions = useTeacherSessions(moduleId);
   const day = (n: number) => t(`modules.daysShort.${n}`);
-
-  // The period comes with every week. Keep the last one while another loads, and the first time open on the
-  // week of the period closest to today when today is outside it (state adjusted while rendering).
-  if (calendar.data && !calendar.isPlaceholderData && calendar.data.meta !== meta) {
-    setMeta(calendar.data.meta);
-    if (week === null) {
-      const start = initialWeek(today, calendar.data.meta.period);
-      setWeek(start);
-      if (start !== weekStart) setSelected(selectDayForWeek(start, today, today));
-    }
-  }
 
   const shown = calendar.isPlaceholderData ? [] : (calendar.data?.data ?? []);
   const groups = new Map<string, TeacherSession[]>();
@@ -89,12 +66,9 @@ export function TeacherScheduleScreen() {
             items={shown.map((s) => toCalendarItem(s, t))}
             hours={meta?.hours ?? UNKNOWN_HOURS}
             period={meta?.period}
-            onWeekChange={(start, picked) => {
-              setWeek(start);
-              setSelected(picked);
-            }}
-            onSelectDay={setSelected}
-            onViewChange={setView}
+            onWeekChange={onWeekChange}
+            onSelectDay={onSelectDay}
+            onViewChange={onViewChange}
             onPressItem={setPicked}
             body={body}
           />

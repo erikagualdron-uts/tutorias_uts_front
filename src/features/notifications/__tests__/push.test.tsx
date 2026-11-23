@@ -148,6 +148,27 @@ describe('push received and tapped', () => {
     expect(mockedApi).toHaveBeenCalledWith('/notifications/n-1/read', { method: 'POST' });
   });
 
+  it('opens the PQRS when the tapped push is about a PQRS', async () => {
+    permissions.mockResolvedValue(status('granted'));
+    await render(wrap(<PushRegistration />));
+    const tapped = (Notifications.addNotificationResponseReceivedListener as jest.Mock).mock.calls[0][0];
+
+    await act(async () => tapped(responseFor({ notificationId: 'n-3', pqrsId: 'p-1' })));
+
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/(student)/pqrs/[id]', params: { id: 'p-1' } });
+    expect(mockedApi).toHaveBeenCalledWith('/notifications/n-3/read', { method: 'POST' });
+  });
+
+  it('opens the conversation when the tapped push is about a chat', async () => {
+    permissions.mockResolvedValue(status('granted'));
+    await render(wrap(<PushRegistration />));
+    const tapped = (Notifications.addNotificationResponseReceivedListener as jest.Mock).mock.calls[0][0];
+
+    await act(async () => tapped(responseFor({ conversationId: 'c-1' })));
+
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/(student)/messages/[id]', params: { id: 'c-1' } });
+  });
+
   it('opens the module of the push that started the app', async () => {
     permissions.mockResolvedValue(status('granted'));
     (Notifications.getLastNotificationResponse as jest.Mock).mockReturnValue(responseFor({ notificationId: 'n-2', moduleId: 'm-2' }));

@@ -4,24 +4,29 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
 import { AppBar } from '@/components/AppBar';
+import { useChatSocket } from '@/features/chat/hooks/useChatSocket';
 import { PushRegistration } from '@/features/notifications/components/PushRegistration';
 import { RouteGate } from '@/features/auth/RouteGate';
 import { ROLE_HOME } from '@/features/auth/routing';
 import type { Role } from '@/api/types';
 import { iconSize, shadows, usePalette } from '@/theme';
+import { tabBadgeOptions } from './badge';
 
 export interface TabSpec {
   // Route file name inside the role group ('index' for the first tab).
   name: string;
   titleKey: string;
   icon: IconName;
+  // A count for the badge of the tab; none or 0 shows no badge.
+  badge?: number;
 }
 
 // Bottom tab bar of docs/Design.md (64 px plus the bottom safe area, so it clears system buttons) for one role.
-export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
+export function RoleTabs({ role, tabs, hidden = [] }: { role: Role; tabs: TabSpec[]; hidden?: Pick<TabSpec, 'name' | 'titleKey'>[] }) {
   const { t } = useTranslation();
   const palette = usePalette();
   const { bottom } = useSafeAreaInsets();
+  useChatSocket();
 
   return (
     <RouteGate expected={ROLE_HOME[role]}>
@@ -40,12 +45,13 @@ export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
           },
         }}
       >
-        {tabs.map(({ name, titleKey, icon }) => (
+        {tabs.map(({ name, titleKey, icon, badge }) => (
           <Tabs.Screen
             key={name}
             name={name}
             options={{
               title: t(titleKey),
+              ...tabBadgeOptions(badge, palette),
               tabBarIcon: ({ color, focused }) => (
                 <Icon
                   name={icon}
@@ -57,7 +63,10 @@ export function RoleTabs({ role, tabs }: { role: Role; tabs: TabSpec[] }) {
             }}
           />
         ))}
-        {/* The inbox is reached from the bell of the app bar, not from a tab. */}
+        {/* Screens reached from a link, not from a tab (the inbox from the bell of the app bar). */}
+        {hidden.map(({ name, titleKey }) => (
+          <Tabs.Screen key={name} name={name} options={{ href: null, title: t(titleKey) }} />
+        ))}
         <Tabs.Screen
           name="notifications"
           options={{ href: null, title: t('notifications.title') }}

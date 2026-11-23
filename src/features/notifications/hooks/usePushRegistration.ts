@@ -5,7 +5,7 @@ import * as SecureStore from 'expo-secure-store';
 import { useCallback, useEffect, useState } from 'react';
 import { api } from '@/api/client';
 import { useSession } from '@/store/session';
-import { targetFor } from '../openTarget';
+import { noticeTarget } from '../openTarget';
 import { configurePushHandler, pushPermission, registerDevice, requestPushPermission } from '../push';
 
 const SEEN_KEY = 'push-prompt-seen';
@@ -16,6 +16,8 @@ const markPromptSeen = () => SecureStore.setItemAsync(SEEN_KEY, '1');
 interface PushData {
   notificationId?: string;
   moduleId?: string;
+  pqrsId?: string;
+  conversationId?: string;
 }
 
 // Push for the signed-in user (FR-014): registers the device when the permission is already given,
@@ -54,7 +56,8 @@ export function usePushRegistration() {
           .then(refresh)
           .catch(() => undefined);
       }
-      if (data.moduleId) router.push(targetFor(role, data.moduleId));
+      const target = noticeTarget(role, data);
+      if (target) router.push(target);
       Notifications.clearLastNotificationResponse();
     };
     const received = Notifications.addNotificationReceivedListener(() => void refresh());

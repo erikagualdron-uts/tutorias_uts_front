@@ -324,6 +324,33 @@ export interface TeacherSession {
   blockReason: ChangeBlockReason | null;
 }
 
+// The weekly calendar of the student (spec 021): the sessions of the modules where they attend, any state.
+export interface StudentCalendarSession {
+  id: string;
+  moduleId: string;
+  moduleName: string;
+  teacherName: string;
+  room: StudentRoomRef;
+  startsAt: string;
+  endsAt: string;
+  originalStartsAt: string;
+  status: SessionStatus;
+  cancelReason: 'HOLIDAY' | 'TEACHER' | null;
+  // The student cancelled this session only for themselves; it stays in the list.
+  absent: boolean;
+}
+
+export interface StudentCalendar {
+  data: StudentCalendarSession[];
+  meta: {
+    from: string;
+    to: string;
+    period: CalendarPeriod | null;
+    hours: { earliest: string; latest: string };
+    hasEnrollments: boolean;
+  };
+}
+
 export interface TeacherModule {
   id: string;
   name: string;
@@ -374,12 +401,17 @@ export type NotificationType =
   | 'SESSIONS_RESTORED_HOLIDAY'
   | 'SESSION_RESCHEDULED'
   | 'SESSION_CANCELLED_TEACHER'
-  | 'SESSION_RESTORED_TEACHER';
+  | 'SESSION_RESTORED_TEACHER'
+  | 'PQRS_IN_REVIEW'
+  | 'PQRS_RESPONDED'
+  | 'PQRS_RESOLVED';
 
+// A notice is about a module or about a PQRS (spec 017): exactly one of the two ids is set.
 export interface AppNotification {
   id: string;
   type: NotificationType;
-  moduleId: string;
+  moduleId: string | null;
+  pqrsId: string | null;
   title: string;
   body: string;
   readAt: string | null;
@@ -389,6 +421,58 @@ export interface AppNotification {
 export interface NotificationPage {
   data: AppNotification[];
   meta: { page: number; limit: number; total: number };
+}
+
+// PQRS (spec 017). The type comes with both labels; the app picks by the device language.
+export type PqrsStatus = 'FILED' | 'IN_REVIEW' | 'RESOLVED';
+
+export interface PqrsType {
+  id: string;
+  labelEs: string;
+  labelEn: string;
+}
+
+export interface PqrsMessage {
+  id: string;
+  body: string;
+  createdAt: string;
+}
+
+export interface PqrsSummary {
+  id: string;
+  type: PqrsType;
+  subject: string;
+  status: PqrsStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PqrsDetail extends PqrsSummary {
+  description: string;
+  // The dates of the steps after filing, null until each happens (the timeline of spec 020).
+  reviewedAt: string | null;
+  resolvedAt: string | null;
+  messages: PqrsMessage[];
+}
+
+export interface PqrsAuthor {
+  id: string;
+  role: 'TEACHER' | 'STUDENT';
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export interface PqrsAdminSummary extends PqrsSummary {
+  author: PqrsAuthor;
+}
+
+export type PqrsAdminDetail = PqrsAdminSummary & PqrsDetail;
+
+export interface PqrsLimits {
+  subjectMaxLength: number;
+  descriptionMaxLength: number;
+  responseMaxLength: number;
 }
 
 export type SmtpStatus = 'NOT_CONFIGURED' | 'CONFIGURED' | 'NEEDS_RECONFIGURATION';
