@@ -1,11 +1,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import { StyleSheet } from 'react-native';
 import { api } from '@/api/client';
 import { ApiError } from '@/api/errors';
 import type { AppNotification, NotificationPage } from '@/api/types';
 import i18n from '@/i18n';
 import { useSession } from '@/store/session';
+import { lightPalette } from '@/theme/colors';
 import { NotificationsBell } from '../components/NotificationsBell';
 import { NotificationsScreen } from '../screens/NotificationsScreen';
 
@@ -63,6 +65,20 @@ beforeEach(async () => {
 });
 
 describe('notifications inbox', () => {
+  // It sits above the tab bar, which already clears the bottom inset: no inset of its own, and the
+  // whole screen painted, or a blank band shows above the bar (spec 024).
+  it('does not reserve the bottom inset and paints its whole area', async () => {
+    await render(wrap(<NotificationsScreen />));
+    type Edges = string[] | Record<string, string>; // the native view takes an object, the component a list
+    type Host = { props: { edges?: Edges; style?: unknown }; children: (Host | string)[] };
+    const find = (node: Host): Host | undefined =>
+      node.props.edges ? node : node.children.flatMap((c) => (typeof c === 'string' ? [] : [find(c)])).find(Boolean);
+    const root = find(screen.container as unknown as Host)!;
+    const edges = root.props.edges as Edges;
+    expect(Array.isArray(edges) ? edges.includes('bottom') : edges.bottom !== 'off').toBe(false);
+    expect(StyleSheet.flatten(root.props.style as object)).toMatchObject({ flex: 1, backgroundColor: lightPalette.screen });
+  });
+
   it('shows the notices with the unread ones marked as text (scenario 1)', async () => {
     await render(wrap(<NotificationsScreen />));
     expect(await screen.findByText('Se canceló tu tutoría 1')).toBeTruthy();
