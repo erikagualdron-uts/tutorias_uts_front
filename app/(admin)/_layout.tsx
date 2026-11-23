@@ -1,23 +1,10 @@
 import { useFiledCount } from '@/features/pqrs/hooks/useFiledCount';
 import { RoleTabs } from '@/features/shell/RoleTabs';
+import { ROLE_TABS } from '@/features/shell/roleTabs.config';
 
 export default function Layout() {
   const filed = useFiledCount();
-  return (
-    <RoleTabs
-      role="SUPERADMIN"
-      tabs={[
-        { name: 'index', titleKey: 'tabs.dashboard', icon: 'home' },
-        { name: 'modules', titleKey: 'tabs.modules', icon: 'modules' },
-        {
-          name: 'messages',
-          titleKey: 'tabs.messages',
-          icon: 'messages',
-        },
-        { name: 'pqrs', titleKey: 'tabs.pqrs', icon: 'pqrs', badge: filed },
-        { name: 'more', titleKey: 'tabs.more', icon: 'more' },
-      ]}
-      hidden={[{ name: 'changes', titleKey: 'dashboard.admin.changes.title' }]}
-    />
-  );
+  const { tabs, hidden } = ROLE_TABS.SUPERADMIN;
+  // The count of filed PQRS is live data, so it is added to the tab here and not in the config.
+  return <RoleTabs role="SUPERADMIN" tabs={tabs.map((tab) => (tab.name === 'pqrs' ? { ...tab, badge: filed } : tab))} hidden={hidden} />;
 }

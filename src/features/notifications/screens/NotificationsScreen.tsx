@@ -94,8 +94,10 @@ export function NotificationsPanel() {
 }
 
 export function NotificationsScreen() {
+  const palette = usePalette();
+  // The bottom edge is the tab bar's: reserving it here too left a blank band above the bar (spec 024).
   return (
-    <SafeAreaView edges={['bottom', 'left', 'right']} style={styles.screen}>
+    <SafeAreaView edges={['left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
       <NotificationsPanel />
     </SafeAreaView>
   );

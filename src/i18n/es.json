@@ -141,7 +141,8 @@
     "messages": "Mensajes",
     "pqrs": "PQRS",
     "dashboard": "Dashboard",
-    "more": "Más"
+    "more": "Más",
+    "position": "{{title}}, pestaña {{index}} de {{count}}"
   },
   "empty": {
     "title": "Aún no hay nada aquí",
