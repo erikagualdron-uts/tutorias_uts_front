@@ -101,7 +101,7 @@ function Form({ limits }: { limits: PqrsLimits }) {
               value={field.value || undefined}
               onChange={(value) => field.onChange(value ?? '')}
             />
-            {fieldError('typeId') ? <Text style={[typography.bodySmall, { color: palette.error }]}>{fieldError('typeId')}</Text> : null}
+            {fieldError('typeId') ? <Text style={[typography.bodySmall, { color: palette.errorText }]}>{fieldError('typeId')}</Text> : null}
           </>
         )}
       />

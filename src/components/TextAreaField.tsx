@@ -54,6 +54,7 @@ export function TextAreaField({
         multiline
         maxLength={maxLength}
         accessibilityLabel={label}
+        accessibilityHint={error}
         onContentSizeChange={(event) =>
           setHeight(
             Math.min(

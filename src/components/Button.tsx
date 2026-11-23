@@ -130,6 +130,7 @@ export function Button({
           accessibilityRole={isLink ? 'link' : 'button'}
           accessibilityLabel={label}
           accessibilityState={{ disabled: inactive, busy: loading }}
+          accessibilityHint={disabled ? helperText : undefined}
           disabled={inactive}
           onPress={onPress}
           onPressIn={press.onPressIn}

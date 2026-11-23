@@ -22,8 +22,8 @@ export function SessionRow({ session }: { session: Session }) {
         {`${start.date} · ${start.time}–${end.time}`}
       </Text>
       <View style={styles.state}>
-        <Icon name={cancelled ? 'error' : 'success'} size={16} color={cancelled ? palette.error : palette.primary} />
-        <Text style={[typography.bodySmall, { color: cancelled ? palette.error : palette.textSecondary }]}>
+        <Icon name={cancelled ? 'error' : 'success'} size={16} color={cancelled ? palette.errorText : palette.primary} />
+        <Text style={[typography.bodySmall, { color: cancelled ? palette.errorText : palette.textSecondary }]}>
           {state}
         </Text>
       </View>

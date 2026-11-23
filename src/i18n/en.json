@@ -16,6 +16,7 @@
     "edit": "Edit",
     "delete": "Delete",
     "confirm": "Confirm",
+    "close": "Close",
     "loadingSlow": "Loading… This is taking longer than usual."
   },
   "dateField": {

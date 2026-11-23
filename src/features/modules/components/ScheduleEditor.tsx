@@ -67,7 +67,7 @@ export function ScheduleEditor({
                 onPress={() => onChange(value.filter((_, i) => i !== index))}
                 style={styles.remove}
               >
-                <Icon name="trash" color={palette.error} />
+                <Icon name="trash" color={palette.errorText} />
               </Pressable>
             ) : null}
           </View>
@@ -96,7 +96,7 @@ export function ScheduleEditor({
         </Card>
       ))}
       {error ? (
-        <Text accessibilityRole="alert" style={[typography.bodySmall, { color: palette.error }]}>
+        <Text accessibilityRole="alert" style={[typography.bodySmall, { color: palette.errorText }]}>
           {error}
         </Text>
       ) : null}

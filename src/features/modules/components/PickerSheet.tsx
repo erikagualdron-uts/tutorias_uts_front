@@ -109,7 +109,7 @@ export function PickerSheet({
                           typography.bodySmall,
                           {
                             color: item.disabled
-                              ? palette.error
+                              ? palette.errorText
                               : palette.textSecondary,
                           },
                         ]}
