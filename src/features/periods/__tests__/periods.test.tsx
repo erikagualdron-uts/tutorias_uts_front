@@ -65,6 +65,13 @@ beforeEach(async () => {
 });
 
 describe('PeriodsScreen', () => {
+  it('opens with the brand header and the count', async () => {
+    mockedApi.mockResolvedValue({ data: [], meta: { page: 1, limit: 100, total: 0 } });
+    await renderWithProviders(<PeriodsScreen />);
+    expect(await screen.findByRole('header', { name: i18n.t('periods.title') })).toBeTruthy();
+    expect(screen.getByText('0')).toBeTruthy();
+  });
+
   it('shows the empty state', async () => {
     mockedApi.mockResolvedValue({
       data: [],

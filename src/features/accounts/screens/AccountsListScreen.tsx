@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import type { AccountStatus } from '@/api/types';
@@ -9,7 +9,8 @@ import { Button } from '@/components/Button';
 import { EmptyState } from '@/components/EmptyState';
 import { FilterChips } from '@/components/FilterChips';
 import { SearchField } from '@/components/SearchField';
-import { spacing, typography, usePalette } from '@/theme';
+import { ScreenHeader } from '@/components/ScreenHeader';
+import { spacing, usePalette } from '@/theme';
 import { AccountCard } from '../components/AccountCard';
 import { AccountSheet } from '../components/AccountSheet';
 import { useAccountList, type AccountKind } from '../hooks/useAccountList';
@@ -37,9 +38,7 @@ export function AccountsListScreen({ kind }: { kind: AccountKind }) {
 
   const header = (
     <View style={styles.header}>
-      <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>
-        {t(`more.${kinds}`)}
-      </Text>
+      <ScreenHeader title={t(`more.${kinds}`)} count={list.data?.pages[0]?.meta.total} />
       <SearchField
         label={t('accounts.search')}
         onCard={false}

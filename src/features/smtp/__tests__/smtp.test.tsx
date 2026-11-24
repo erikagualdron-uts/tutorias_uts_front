@@ -4,6 +4,8 @@ import { api } from '@/api/client';
 import { ApiError } from '@/api/errors';
 import type { SmtpSettings, SmtpTestResult } from '@/api/types';
 import i18n from '@/i18n';
+import * as ReactNative from 'react-native';
+import { darkPalette } from '@/theme/colors';
 import { SmtpSettingsScreen } from '../screens/SmtpSettingsScreen';
 
 jest.mock('@/api/client', () => ({ api: jest.fn() }));
@@ -55,6 +57,19 @@ describe('mail settings', () => {
     current = none;
     await renderScreen();
     expect(await screen.findByText('Sin configurar')).toBeTruthy();
+  });
+
+  it.each([
+    ['CONFIGURED', 'Configurado', darkPalette.successText],
+    ['NEEDS_RECONFIGURATION', 'Requiere configurar de nuevo', darkPalette.warningText],
+  ] as const)('draws the %s status badge with its text role in dark', async (status, label, color) => {
+    jest.spyOn(ReactNative, 'useColorScheme').mockReturnValue('dark');
+    current = { ...saved, status };
+    await renderScreen();
+    const text = await screen.findByText(label);
+    expect(ReactNative.StyleSheet.flatten(text.props.style).color).toBe(color);
+    expect(ReactNative.StyleSheet.flatten(text.parent?.props.style).borderColor).toBe(color);
+    jest.restoreAllMocks();
   });
 
   it('warns that the environment settings are in use until the CAE saves (scenario 1)', async () => {

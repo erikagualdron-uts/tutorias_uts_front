@@ -34,6 +34,13 @@ describe('ChangesScreen', () => {
     expect(mockPush).toHaveBeenCalledWith({ pathname: '/(admin)/modules/[id]', params: { id: 'm2' } });
   });
 
+  it('opens with the brand header and the total', async () => {
+    mockedApi.mockResolvedValue(pageOf([change(1), change(2)], 2));
+    await renderScreen(<ChangesScreen />);
+    expect(await screen.findByRole('header', { name: i18n.t('dashboard.admin.changes.title') })).toBeTruthy();
+    expect(screen.getByText('2')).toBeTruthy();
+  });
+
   it('loads the next page at the end of the list', async () => {
     mockedApi.mockImplementation((path: string) =>
       Promise.resolve(path.includes('page=2') ? pageOf([change(21)], 21, 2) : pageOf(Array.from({ length: 20 }, (_, i) => change(i + 1)), 21)),

@@ -74,6 +74,13 @@ describe('TeachersScreen', () => {
     expect(screen.getByText('· 1 módulo')).toBeTruthy();
   });
 
+  it('opens with the brand header and the total', async () => {
+    mockedApi.mockResolvedValue(page([teacher(1), teacher(2)]));
+    await renderScreen(<TeachersScreen />);
+    expect(await screen.findByRole('header', { name: i18n.t('more.teachers') })).toBeTruthy();
+    expect(screen.getByText('2')).toBeTruthy();
+  });
+
   it('shows the loading, empty, and error-with-retry states', async () => {
     mockedApi.mockReturnValue(new Promise(() => undefined));
     const loading = await renderScreen(<TeachersScreen />);

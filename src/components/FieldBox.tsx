@@ -32,7 +32,7 @@ export function fieldVisual(state: FieldVisualState, palette: Palette) {
   const base = onCard ? palette.inputFill : palette.inputFillOnScreen;
   if (error) {
     return {
-      borderColor: palette.error,
+      borderColor: palette.errorText,
       borderWidth: 1,
       backgroundColor: base,
       glow: palette.errorGlow,

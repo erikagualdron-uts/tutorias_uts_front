@@ -8,6 +8,7 @@ import { BrandLoader } from '@/components/BrandLoader';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
 import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
@@ -61,13 +62,7 @@ export function DropdownItemsScreen() {
       style={[styles.screen, { backgroundColor: palette.screen }]}
     >
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>
-          {list.data
-            ? i18n.language.startsWith('en')
-              ? list.data.nameEn
-              : list.data.nameEs
-            : t('dropdowns.title')}
-        </Text>
+        <ScreenHeader title={list.data ? i18n.language.startsWith('en') ? list.data.nameEn : list.data.nameEs : t('dropdowns.title')} count={list.data ? items.length : undefined} />
         {reorder.error ? (
           <Banner message={errorMessage(t, reorder.error)} severity="error" />
         ) : null}

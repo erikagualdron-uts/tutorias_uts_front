@@ -43,6 +43,12 @@ describe('ModulesScreen', () => {
     expect(await screen.findByText('2030-1 · Activo')).toBeTruthy();
   });
 
+  it('opens with the brand header and the count', async () => {
+    await renderScreen(<ModulesScreen />);
+    expect(await screen.findByRole('header', { name: i18n.t('modules.title') })).toBeTruthy();
+    expect(screen.getByText('1')).toBeTruthy();
+  });
+
   it('opens the detail of a module', async () => {
     await renderScreen(<ModulesScreen />);
     await fireEvent.press(await screen.findByLabelText('Cálculo I'));

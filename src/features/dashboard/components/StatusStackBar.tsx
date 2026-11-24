@@ -11,7 +11,7 @@ const ORDER: PqrsStatus[] = ['FILED', 'IN_REVIEW', 'RESOLVED'];
 export function StatusStackBar({ counts, onSelect }: { counts: Record<PqrsStatus, number>; onSelect?: (status: PqrsStatus) => void }) {
   const { t } = useTranslation();
   const palette = usePalette();
-  const colors: Record<PqrsStatus, string> = { FILED: palette.textSecondary, IN_REVIEW: palette.warning, RESOLVED: palette.success };
+  const colors: Record<PqrsStatus, string> = { FILED: palette.textSecondary, IN_REVIEW: palette.warningText, RESOLVED: palette.successText };
   return (
     <View style={styles.box}>
       <View style={[styles.bar, { backgroundColor: palette.surface }]}>

@@ -87,6 +87,13 @@ describe('DropdownItemsScreen', () => {
     item({ id: 'i2', labelEs: 'Queja', labelEn: 'Complaint', sortOrder: 2 }),
   ];
 
+  it('opens with the brand header and the item count', async () => {
+    serve({ '/dropdown-lists/PQRS_TYPE': list(two) });
+    await renderWithProviders(<DropdownItemsScreen />);
+    expect(await screen.findByRole('header')).toBeTruthy();
+    expect(screen.getByText('2')).toBeTruthy();
+  });
+
   it('moves an item down by sending the whole new order', async () => {
     serve({
       '/dropdown-lists/PQRS_TYPE/items/order': list(two),

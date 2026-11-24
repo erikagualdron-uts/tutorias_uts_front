@@ -7,6 +7,7 @@ import { BrandLoader } from '@/components/BrandLoader';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { Icon } from '@/icons/Icon';
 import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
 import { useLocations } from '../hooks/useRooms';
@@ -22,9 +23,7 @@ export function LocationsScreen() {
       style={[styles.screen, { backgroundColor: palette.screen }]}
     >
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>
-          {t('locations.title')}
-        </Text>
+        <ScreenHeader title={t('locations.title')} count={locations.data?.data.length} />
         {locations.isPending ? (
           <BrandLoader />
         ) : locations.isError ? (

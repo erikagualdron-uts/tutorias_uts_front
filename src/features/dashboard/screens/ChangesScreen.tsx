@@ -7,6 +7,7 @@ import { BrandLoader } from '@/components/BrandLoader';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { targetFor } from '@/features/notifications/openTarget';
 import { spacing, usePalette } from '@/theme';
 import { ChangeRow } from '../components/ChangeRow';
@@ -38,6 +39,7 @@ export function ChangesScreen() {
         data={items}
         keyExtractor={(item) => item.sessionId}
         contentContainerStyle={styles.content}
+        ListHeaderComponent={<ScreenHeader title={t('dashboard.admin.changes.title')} count={list.data?.pages[0]?.meta.total} />}
         ListEmptyComponent={body}
         onEndReached={() => list.hasNextPage && !list.isFetchingNextPage && list.fetchNextPage()}
         refreshing={list.isRefetching && !list.isFetchingNextPage}
