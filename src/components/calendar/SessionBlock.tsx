@@ -19,7 +19,7 @@ export function SessionBlock({ item, compact = false, onPress, style }: SessionB
   const end = bogotaParts(item.endsAt).time;
   const cancelled = item.status === 'CANCELLED';
   const moved = item.status === 'RESCHEDULED';
-  const accent = cancelled ? palette.error : moved ? palette.warning : palette.primary;
+  const accent = cancelled ? palette.errorText : moved ? palette.warningText : palette.primary;
   const struck = item.strike ? styles.struck : null;
 
   return (

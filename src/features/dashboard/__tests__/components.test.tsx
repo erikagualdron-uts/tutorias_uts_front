@@ -1,8 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
+import * as ReactNative from 'react-native';
 import { StyleSheet, Text } from 'react-native';
 import { ApiError } from '@/api/errors';
 import i18n from '@/i18n';
-import { lightPalette } from '@/theme/colors';
+import { darkPalette, lightPalette } from '@/theme/colors';
 import { BlockState } from '../components/BlockState';
 import { CapacityBar } from '../components/CapacityBar';
 import { MetricCard } from '../components/MetricCard';
@@ -14,13 +15,20 @@ beforeEach(() => i18n.changeLanguage('es'));
 describe('CapacityBar', () => {
   it.each([
     [18, 30, lightPalette.primary], // 60 %
-    [24, 30, lightPalette.warning], // 80 %
-    [29, 30, lightPalette.warning], // 96.7 %
+    [24, 30, lightPalette.warningText], // 80 %
+    [29, 30, lightPalette.warningText], // 96.7 %
     [30, 30, lightPalette.textSecondary], // full
   ])('colors %i of %i by the capacity rules', async (value, max, color) => {
     await render(<CapacityBar label="Cálculo" value={value} max={max} />);
     expect(fill().backgroundColor).toBe(color);
     expect(screen.getByText(`${value}/${max}`)).toBeTruthy();
+  });
+
+  it('colors the 80 to 99 % fill with the warning text role in dark', async () => {
+    jest.spyOn(ReactNative, 'useColorScheme').mockReturnValue('dark');
+    await render(<CapacityBar label="Cálculo" value={24} max={30} />);
+    expect(fill().backgroundColor).toBe(darkPalette.warningText);
+    jest.restoreAllMocks();
   });
 
   it('writes the numbers, caps the fill at 100 % and survives a zero capacity', async () => {

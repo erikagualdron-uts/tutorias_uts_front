@@ -16,8 +16,8 @@ export function NowLine({ top }: { top: number }) {
       pointerEvents="none"
       style={[styles.row, { top: top - DOT / 2 }]}
     >
-      <View style={[styles.dot, { backgroundColor: palette.error }]} />
-      <View style={[styles.line, { backgroundColor: palette.error }]} />
+      <View style={[styles.dot, { backgroundColor: palette.errorText }]} />
+      <View style={[styles.line, { backgroundColor: palette.errorText }]} />
     </View>
   );
 }

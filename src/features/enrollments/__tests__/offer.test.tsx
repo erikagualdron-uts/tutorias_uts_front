@@ -1,9 +1,12 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import type { ReactElement } from 'react';
+import * as ReactNative from 'react-native';
+import { StyleSheet } from 'react-native';
 import { api } from '@/api/client';
 import { ApiError } from '@/api/errors';
 import i18n from '@/i18n';
+import { darkPalette, lightPalette } from '@/theme/colors';
 import { StudentModuleDetailScreen } from '../screens/StudentModuleDetailScreen';
 import { StudentModulesScreen } from '../screens/StudentModulesScreen';
 import { detailOf, offerOf, offerPage } from '../test-fixtures';
@@ -64,6 +67,30 @@ describe('offer cards', () => {
     await screen.findByText('Cálculo I');
     expect(screen.getAllByText(badge).length).toBeGreaterThan(0);
     expect(screen.getByLabelText(action)).toBeTruthy();
+  });
+
+  it('keeps the card order: name and state, teacher, schedule, room, occupancy', async () => {
+    await renderScreen(<StudentModulesScreen />);
+    await screen.findByText('Cálculo I');
+    const texts = screen.queryAllByText(/./).map((node) => node.props.children as string);
+    const at = (text: string) => texts.indexOf(text);
+    const order = ['Cálculo I', 'Cupos disponibles', 'Ana Pérez', 'Semanal · Mar 14:00–16:00', 'A-101 · Sede Central', '18/30 cupos'].map(at);
+    expect(order.every((i) => i >= 0)).toBe(true);
+    expect(order).toEqual([...order].sort((x, y) => x - y));
+  });
+
+  it.each([
+    ['light', lightPalette],
+    ['dark', darkPalette],
+  ] as const)('colors the last-spots badge and bar with the warning text role in %s', async (mode, palette) => {
+    jest.spyOn(ReactNative, 'useColorScheme').mockReturnValue(mode);
+    offer = () => Promise.resolve(offerPage([offerOf({ availableSeats: 4, state: 'LAST_SPOTS' })]));
+    await renderScreen(<StudentModulesScreen />);
+    await screen.findByText('Cálculo I');
+    const label = screen.getByText('Últimos cupos');
+    expect(StyleSheet.flatten(label.props.style).color).toBe(palette.warningText);
+    expect(StyleSheet.flatten(label.parent?.props.style).borderColor).toBe(palette.warningText);
+    jest.restoreAllMocks();
   });
 
   it('disables a full module and says why', async () => {
