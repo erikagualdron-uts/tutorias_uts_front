@@ -46,7 +46,7 @@ export function DayStrip({ days, selected, today, counts, onSelect }: DayStripPr
               styles.pill,
               {
                 backgroundColor: isSelected ? palette.primary : palette.card,
-                borderColor: isToday || isSelected ? palette.primary : palette.border,
+                borderColor: isToday || isSelected ? palette.primary : palette.controlBorder,
                 borderWidth: isToday ? 2 : 1,
               },
             ]}

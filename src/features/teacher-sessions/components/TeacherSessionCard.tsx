@@ -17,7 +17,7 @@ export function TeacherSessionCard({ session, onPress }: { session: TeacherSessi
   const cancelled = session.status === 'CANCELLED';
   const moved = session.status === 'RESCHEDULED';
   const state = t(`teacher.schedule.state.${sessionStateKey(session)}`);
-  const color = cancelled ? palette.error : moved ? palette.warning : palette.primary;
+  const color = cancelled ? palette.errorText : moved ? palette.warningText : palette.primary;
 
   return (
     <Pressable

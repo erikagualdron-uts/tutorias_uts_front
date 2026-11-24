@@ -14,7 +14,7 @@ interface CapacityBarProps {
 export function CapacityBar({ label, value, max, valueText, large = false }: CapacityBarProps) {
   const palette = usePalette();
   const percent = max <= 0 ? 0 : Math.min(100, (value / max) * 100);
-  const color = percent >= 100 ? palette.textSecondary : percent >= 80 ? palette.warning : palette.primary;
+  const color = percent >= 100 ? palette.textSecondary : percent >= 80 ? palette.warningText : palette.primary;
   const text = valueText ?? `${value}/${max}`;
   return (
     <View style={styles.box} accessible accessibilityLabel={`${label} ${text}`}>

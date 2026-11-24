@@ -4,6 +4,8 @@ import { Text } from 'react-native';
 import { cloneElement, type ReactElement } from 'react';
 import { AnnouncementCard } from '@/features/chat/components/AnnouncementCard';
 import { MetricCard } from '@/features/dashboard/components/MetricCard';
+import { OfferCard } from '@/features/enrollments/components/OfferCard';
+import { offerOf } from '@/features/enrollments/test-fixtures';
 import { contrast } from '@/testing/contrast';
 import { lightOnly, paintedColors } from '@/testing/darkColors';
 import { gradients, onGradient } from '@/theme';
@@ -13,6 +15,7 @@ import { Button } from '../Button';
 import { Card } from '../Card';
 import { ConfirmDialog } from '../ConfirmDialog';
 import { EmptyState } from '../EmptyState';
+import { SessionBlock } from '../calendar/SessionBlock';
 import { FilterChips } from '../FilterChips';
 import { HeroCard } from '../HeroCard';
 import { SegmentedControl } from '../SegmentedControl';
@@ -103,6 +106,16 @@ const samples: [string, ReactElement][] = [
     </HeroCard>,
   ],
   ['MetricCard', <MetricCard key="m" value={3} label="Métrica" />],
+  ['OfferCard last spots', <OfferCard key="o" module={offerOf({ availableSeats: 4, state: 'LAST_SPOTS' })} onPress={noop} />],
+  ['OfferCard blocked', <OfferCard key="ob" module={offerOf({ state: 'BLOCKED' })} onPress={noop} />],
+  [
+    'SessionBlock cancelled',
+    <SessionBlock
+      key="sb"
+      onPress={noop}
+      item={{ id: '1', title: 'Cálculo', room: 'A-101', detail: '', startsAt: '2030-03-05T15:00:00.000Z', endsAt: '2030-03-05T16:00:00.000Z', status: 'CANCELLED', badge: 'Cancelada', strike: true }}
+    />,
+  ],
   [
     'EmptyState',
     <EmptyState key="e" title="Vacío" description="Nada por aquí" />,

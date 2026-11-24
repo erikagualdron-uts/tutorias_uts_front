@@ -46,18 +46,16 @@ export function OfferCard({ module, onPress, onAction = onPress, loading = false
   const day = (n: number) => t(`modules.daysShort.${n}`);
   const occupied = module.capacity - module.availableSeats;
   const ratio = module.capacity > 0 ? occupied / module.capacity : 1;
-  const barColor = ratio >= 1 ? palette.textSecondary : ratio >= LAST_SPOTS_RATIO ? palette.warning : palette.primary;
+  const barColor = ratio >= 1 ? palette.textSecondary : ratio >= LAST_SPOTS_RATIO ? palette.warningText : palette.primary;
   const blockText = useBlockText(module);
   const closed = module.state === 'FULL' || module.state === 'BLOCKED';
-  const badge: Record<OfferState, string> = {
+  const badgeColor: Record<OfferState, string> = {
     AVAILABLE: palette.primary,
-    LAST_SPOTS: palette.warning,
+    LAST_SPOTS: palette.warningText,
     FULL: palette.textSecondary,
     ENROLLED: palette.link,
-    BLOCKED: palette.error,
+    BLOCKED: palette.errorText,
   };
-
-  const badgeText: Record<OfferState, string> = { ...badge, LAST_SPOTS: palette.warningText, BLOCKED: palette.errorText };
 
   return (
     <Card style={styles.card}>
@@ -66,8 +64,8 @@ export function OfferCard({ module, onPress, onAction = onPress, loading = false
           <Text numberOfLines={2} style={[typography.cardTitle, styles.name, { color: palette.textPrimary }]}>
             {module.name}
           </Text>
-          <View style={[styles.badge, { borderColor: badge[module.state] }]}>
-            <Text style={[typography.label, { color: badgeText[module.state] }]}>
+          <View style={[styles.badge, { borderColor: badgeColor[module.state] }]}>
+            <Text style={[typography.label, { color: badgeColor[module.state] }]}>
               {t(`student.modules.state.${offerLabelKey(module)}`)}
             </Text>
           </View>
