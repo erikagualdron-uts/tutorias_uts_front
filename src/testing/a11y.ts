@@ -17,6 +17,7 @@ export interface ControlIssue {
 const ROLES = ['button', 'link', 'switch', 'tab', 'radio', 'checkbox'];
 
 const walk = (node: Node, out: Node[] = []): Node[] => {
+  if ((StyleSheet.flatten(node.props.style as ViewStyle) as ViewStyle | undefined)?.display === 'none') return out; // not on screen
   out.push(node);
   for (const child of node.children) if (typeof child !== 'string') walk(child, out);
   return out;
@@ -46,7 +47,7 @@ export function controlIssues(root: Node = screen.container as unknown as Node):
   const issues: ControlIssue[] = [];
   for (const node of walk(root)) {
     if (node.props.accessible === false) continue; // hidden on purpose, like a tap-outside backdrop
-    const role = node.props.accessibilityRole as string | undefined;
+    const role = (node.props.accessibilityRole ?? node.props.role) as string | undefined;
     if (!node.props.onClick && !(role && ROLES.includes(role))) continue;
     const name = (node.props.accessibilityLabel as string) || text(node).trim();
     const control = name || `<${role ?? node.type}>`;

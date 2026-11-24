@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render, screen } from '@testing-library/react-native';
+import { fireEvent, render, screen } from '@testing-library/react-native';
+import { router } from 'expo-router';
 import type { ReactElement } from 'react';
 import { api } from '@/api/client';
 import { ApiError } from '@/api/errors';
@@ -65,6 +66,13 @@ describe('AdminDashboardScreen', () => {
     expect(screen.getByText('Módulo 1')).toBeTruthy();
     expect(screen.getByText('Alta')).toBeTruthy();
     expect(screen.getAllByText('Sede Central · 2 módulos')).toHaveLength(2);
+  });
+
+  it('opens the list of changes from its link (a screen without a tab, spec 024)', async () => {
+    routes(full);
+    await renderScreen(<AdminDashboardScreen />);
+    await fireEvent.press(await screen.findByLabelText('Ver todo'));
+    expect(router.push).toHaveBeenCalledWith('/(admin)/changes');
   });
 
   it('writes the same in English', async () => {

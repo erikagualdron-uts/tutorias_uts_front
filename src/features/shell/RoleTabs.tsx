@@ -22,7 +22,11 @@ export interface TabSpec {
 }
 
 // Bottom tab bar of docs/Design.md (64 px plus the bottom safe area, so it clears system buttons) for one role.
-export function RoleTabs({ role, tabs, hidden = [] }: { role: Role; tabs: TabSpec[]; hidden?: Pick<TabSpec, 'name' | 'titleKey'>[] }) {
+// `href: null` would hide a screen but Expo Router 58 then refuses to navigate to it (the bell and the
+// changes link landed on the home screen), so it is hidden by its tab button instead (spec 024).
+const HIDDEN_TAB = { display: 'none' as const };
+
+export function RoleTabs({ role, tabs, hidden }: { role: Role; tabs: TabSpec[]; hidden: Pick<TabSpec, 'name' | 'titleKey'>[] }) {
   const { t } = useTranslation();
   const palette = usePalette();
   const { bottom } = useSafeAreaInsets();
@@ -32,6 +36,7 @@ export function RoleTabs({ role, tabs, hidden = [] }: { role: Role; tabs: TabSpe
     <RouteGate expected={ROLE_HOME[role]}>
       <PushRegistration />
       <Tabs
+        backBehavior="history"
         screenOptions={{
           header: ({ options }) => <AppBar title={options.title} />,
           tabBarActiveTintColor: palette.primary,
@@ -45,12 +50,14 @@ export function RoleTabs({ role, tabs, hidden = [] }: { role: Role; tabs: TabSpe
           },
         }}
       >
-        {tabs.map(({ name, titleKey, icon, badge }) => (
+        {tabs.map(({ name, titleKey, icon, badge }, index) => (
           <Tabs.Screen
             key={name}
             name={name}
             options={{
               title: t(titleKey),
+              // The bar would count the hidden screens too ("1 of 6" with 5 tabs).
+              tabBarAccessibilityLabel: t('tabs.position', { title: t(titleKey), index: index + 1, count: tabs.length }),
               ...tabBadgeOptions(badge, palette),
               tabBarIcon: ({ color, focused }) => (
                 <Icon
@@ -63,14 +70,9 @@ export function RoleTabs({ role, tabs, hidden = [] }: { role: Role; tabs: TabSpe
             }}
           />
         ))}
-        {/* Screens reached from a link, not from a tab (the inbox from the bell of the app bar). */}
         {hidden.map(({ name, titleKey }) => (
-          <Tabs.Screen key={name} name={name} options={{ href: null, title: t(titleKey) }} />
+          <Tabs.Screen key={name} name={name} options={{ title: t(titleKey), tabBarItemStyle: HIDDEN_TAB }} />
         ))}
-        <Tabs.Screen
-          name="notifications"
-          options={{ href: null, title: t('notifications.title') }}
-        />
       </Tabs>
     </RouteGate>
   );
