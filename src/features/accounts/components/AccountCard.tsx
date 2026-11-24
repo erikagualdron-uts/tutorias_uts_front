@@ -41,7 +41,7 @@ export function AccountCard({
           <Icon
             name={active ? 'success' : 'power'}
             size={16}
-            color={active ? palette.success : palette.textSecondary}
+            color={active ? palette.successText : palette.textSecondary}
           />
           <Text style={[typography.label, { color: palette.textPrimary }]}>
             {t(`accounts.status.${status}`)}

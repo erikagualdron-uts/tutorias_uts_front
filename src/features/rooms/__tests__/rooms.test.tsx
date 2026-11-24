@@ -78,6 +78,13 @@ beforeEach(async () => {
 });
 
 describe('RoomsScreen', () => {
+  it('opens with the brand header and the count', async () => {
+    serve({ '/locations': page([location()]), '/rooms': page([room()]) });
+    await renderWithProviders(<RoomsScreen />);
+    expect(await screen.findByRole('header', { name: i18n.t('rooms.title') })).toBeTruthy();
+    expect(screen.getByText('1')).toBeTruthy();
+  });
+
   it('shows the empty state', async () => {
     serve({ '/locations': page([]), '/rooms': page([]) });
     await renderWithProviders(<RoomsScreen />);

@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.pill,
     borderWidth: 1,
   },
-  // Android clips the last glyph of short labels measured with the corporate font and letter spacing.
-  label: { flexShrink: 0, marginRight: spacing.xs },
+  // Android clips the last glyph of short labels ("All" showed "Al") when the text box is measured with the
+  // corporate font and letter spacing; margin sits outside that box, so the room is padding and the spacing is dropped.
+  label: { flexShrink: 0, paddingHorizontal: spacing.xs, letterSpacing: 0 },
 });

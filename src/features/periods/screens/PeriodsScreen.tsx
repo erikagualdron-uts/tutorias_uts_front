@@ -10,6 +10,7 @@ import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
 import { FilterChips } from '@/components/FilterChips';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { formatDay } from '@/date/day';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
@@ -48,9 +49,7 @@ export function PeriodsScreen() {
       style={[styles.screen, { backgroundColor: palette.screen }]}
     >
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>
-          {t('periods.title')}
-        </Text>
+        <ScreenHeader title={t('periods.title')} count={periods.data?.data.length} />
         <FilterChips
           options={FILTERS.map((value) => ({
             value,

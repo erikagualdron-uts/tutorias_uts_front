@@ -94,7 +94,7 @@ export function AppBar({ title }: { title?: string }) {
                 setOpen(false);
                 void signOut();
               }}
-              style={[styles.item, { borderColor: palette.error }]}
+              style={[styles.item, { borderColor: palette.errorText }]}
             >
               <Icon name="signOut" color={palette.errorText} />
               <Text style={[typography.body, { color: palette.errorText }]}>

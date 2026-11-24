@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
 import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
@@ -50,6 +51,7 @@ export function MoreScreen() {
       edges={['bottom', 'left', 'right']}
       style={[styles.screen, { backgroundColor: palette.screen }]}
     >
+      <ScreenHeader title={t('tabs.more')} />
       <Button
         label={t('more.createTeacher')}
         icon="userAdd"

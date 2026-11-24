@@ -11,6 +11,7 @@ import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
 import { FilterChips } from '@/components/FilterChips';
 import { SearchField } from '@/components/SearchField';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { Icon } from '@/icons/Icon';
 import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
 import { useLocations, useRooms } from '../hooks/useRooms';
@@ -37,9 +38,7 @@ export function RoomsScreen() {
         contentContainerStyle={styles.content}
         keyboardShouldPersistTaps="handled"
       >
-        <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>
-          {t('rooms.title')}
-        </Text>
+        <ScreenHeader title={t('rooms.title')} count={rooms.data?.data.length} />
         <SearchField
           label={t('rooms.search')}
           onCard={false}

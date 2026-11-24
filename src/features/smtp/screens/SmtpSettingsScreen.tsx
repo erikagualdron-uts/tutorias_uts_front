@@ -61,7 +61,6 @@ export function SmtpSettingsScreen() {
     const message = formState.errors[name]?.message;
     return message ? t(message) : undefined;
   };
-  const color = data.status === 'CONFIGURED' ? palette.success : data.status === 'NEEDS_RECONFIGURATION' ? palette.warning : palette.textSecondary;
   const textColor = data.status === 'CONFIGURED' ? palette.successText : data.status === 'NEEDS_RECONFIGURATION' ? palette.warningText : palette.textSecondary;
   const result = test.data;
   // Testing uses what is saved, so it needs a saved configuration of the CAE (not the environment's).
@@ -74,8 +73,8 @@ export function SmtpSettingsScreen() {
         <Text style={[typography.body, { color: palette.textSecondary }]}>{t('smtp.intro')}</Text>
 
         <Card>
-          <View style={[styles.badge, { borderColor: color }]} accessibilityRole="text">
-            <Icon name={STATUS_ICON[data.status]} size={16} color={color} />
+          <View style={[styles.badge, { borderColor: textColor }]} accessibilityRole="text">
+            <Icon name={STATUS_ICON[data.status]} size={16} color={textColor} />
             <Text style={[typography.label, { color: textColor }]}>{t(`smtp.status.${data.status}`)}</Text>
           </View>
         </Card>

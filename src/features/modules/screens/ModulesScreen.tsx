@@ -1,7 +1,7 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import { BrandLoader } from '@/components/BrandLoader';
@@ -9,9 +9,10 @@ import { Button } from '@/components/Button';
 import { EmptyState } from '@/components/EmptyState';
 import { SearchField } from '@/components/SearchField';
 import { SelectField } from '@/components/SelectField';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { usePeriods } from '@/features/periods/hooks/usePeriods';
 import { useRooms } from '@/features/rooms/hooks/useRooms';
-import { spacing, typography, usePalette } from '@/theme';
+import { spacing, usePalette } from '@/theme';
 import { ModuleCard } from '../components/ModuleCard';
 import { PickerSheet, type PickerOption } from '../components/PickerSheet';
 import { useModuleList } from '../hooks/useModules';
@@ -47,7 +48,7 @@ export function ModulesScreen() {
   return (
     <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>{t('modules.title')}</Text>
+        <ScreenHeader title={t('modules.title')} count={modules.data?.data.length} />
         <SelectField
           label={t('modules.form.period')}
           leadingIcon="dateRange"

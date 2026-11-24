@@ -11,6 +11,17 @@ const REVIEWED = [
   'src/features/student-schedule',
   'src/features/teacher-sessions',
   'src/features/dashboard/components/CapacityBar.tsx',
+  'src/features/accounts',
+  'src/features/periods',
+  'src/features/holidays',
+  'src/features/rooms',
+  'src/features/modules',
+  'src/features/dropdown-lists',
+  'src/features/smtp',
+  'src/features/teachers',
+  'src/components/AppBar.tsx',
+  'src/components/FieldBox.tsx',
+  'src/features/dashboard/components/StatusStackBar.tsx',
 ];
 
 const files = (path: string): string[] =>

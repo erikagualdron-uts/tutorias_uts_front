@@ -3,6 +3,7 @@ import * as ReactNative from 'react-native';
 import { Text } from 'react-native';
 import { cloneElement, type ReactElement } from 'react';
 import { AnnouncementCard } from '@/features/chat/components/AnnouncementCard';
+import { AccountCard } from '@/features/accounts/components/AccountCard';
 import { MetricCard } from '@/features/dashboard/components/MetricCard';
 import { OfferCard } from '@/features/enrollments/components/OfferCard';
 import { offerOf } from '@/features/enrollments/test-fixtures';
@@ -18,6 +19,7 @@ import { EmptyState } from '../EmptyState';
 import { SessionBlock } from '../calendar/SessionBlock';
 import { FilterChips } from '../FilterChips';
 import { HeroCard } from '../HeroCard';
+import { ScreenHeader } from '../ScreenHeader';
 import { SegmentedControl } from '../SegmentedControl';
 import { TextField } from '../TextField';
 
@@ -116,6 +118,8 @@ const samples: [string, ReactElement][] = [
       item={{ id: '1', title: 'Cálculo', room: 'A-101', detail: '', startsAt: '2030-03-05T15:00:00.000Z', endsAt: '2030-03-05T16:00:00.000Z', status: 'CANCELLED', badge: 'Cancelada', strike: true }}
     />,
   ],
+  ['ScreenHeader', <ScreenHeader key="sh" title="Salones" count={3} />],
+  ['AccountCard', <AccountCard key="ac" name="Ana" email="a@uts.edu.co" status="ACTIVE" countLabel="2" onPress={noop} />],
   [
     'EmptyState',
     <EmptyState key="e" title="Vacío" description="Nada por aquí" />,

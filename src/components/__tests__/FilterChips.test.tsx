@@ -31,7 +31,8 @@ describe('labels are never clipped', () => {
     const chip = screen.getByRole('button', { name: 'All' });
     expect(style(chip)).toMatchObject({ flexShrink: 0 });
     expect(Number(style(chip).minWidth)).toBeGreaterThanOrEqual(MIN_TOUCH_TARGET);
-    expect(style(screen.getByText('All'))).toMatchObject({ flexShrink: 0 });
+    expect(style(screen.getByText('All'))).toMatchObject({ flexShrink: 0, letterSpacing: 0 });
+    expect(Number(style(screen.getByText('All')).paddingHorizontal)).toBeGreaterThan(0);
   });
 
   it('gives a button label no fixed width', async () => {

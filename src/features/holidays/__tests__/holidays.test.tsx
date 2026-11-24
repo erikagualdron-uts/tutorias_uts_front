@@ -53,6 +53,12 @@ beforeEach(async () => {
 const writes = () => mockedApi.mock.calls.filter(([, o]) => o?.method).map(([p, o]) => [o.method, p, o.body]);
 
 describe('HolidaysScreen', () => {
+  it('opens with the brand header and the count', async () => {
+    await renderScreen(<HolidaysScreen />);
+    expect(await screen.findByRole('header', { name: i18n.t('holidays.title') })).toBeTruthy();
+    expect(screen.getByText('0')).toBeTruthy();
+  });
+
   it('shows the empty state, and the way to add or import', async () => {
     await renderScreen(<HolidaysScreen />);
     expect(await screen.findByText('Sin festivos')).toBeTruthy();

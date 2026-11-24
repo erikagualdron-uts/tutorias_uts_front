@@ -9,6 +9,7 @@ import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { EmptyState } from '@/components/EmptyState';
 import { FilterChips } from '@/components/FilterChips';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { formatDay, todayInBogota } from '@/date/day';
 import { Icon } from '@/icons/Icon';
 import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
@@ -25,7 +26,7 @@ export function HolidaysScreen() {
   return (
     <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>{t('holidays.title')}</Text>
+        <ScreenHeader title={t('holidays.title')} count={holidays.data?.data.length} />
         <FilterChips
           options={[thisYear, thisYear + 1, thisYear + 2].map((y) => ({ value: String(y), label: String(y) }))}
           value={String(year)}
