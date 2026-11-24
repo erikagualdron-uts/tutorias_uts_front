@@ -12,6 +12,7 @@ const REVIEWED = [
   'src/features/teacher-sessions',
   'src/features/dashboard/components/CapacityBar.tsx',
   'src/features/accounts',
+  'src/features/account',
   'src/features/periods',
   'src/features/holidays',
   'src/features/rooms',

@@ -4,6 +4,11 @@ import type { TabSpec } from './RoleTabs';
 type HiddenSpec = Pick<TabSpec, 'name' | 'titleKey'>;
 
 const INBOX: HiddenSpec = { name: 'notifications', titleKey: 'notifications.title' };
+// "My account" and its voluntary password change, reached from the avatar menu.
+const ACCOUNT: HiddenSpec[] = [
+  { name: 'account', titleKey: 'account.title' },
+  { name: 'account-password', titleKey: 'account.password.title' },
+];
 
 // The one declaration of the tab bar of each role: the tabs, and the screens that have no tab and are
 // reached from a link (the inbox from the bell, the changes list from the CAE dashboard). The layouts
@@ -17,7 +22,7 @@ export const ROLE_TABS: Record<Role, { tabs: TabSpec[]; hidden: HiddenSpec[] }> 
       { name: 'messages', titleKey: 'tabs.messages', icon: 'messages' },
       { name: 'pqrs', titleKey: 'tabs.pqrs', icon: 'pqrs' },
     ],
-    hidden: [INBOX],
+    hidden: [INBOX, ...ACCOUNT],
   },
   TEACHER: {
     tabs: [
@@ -26,7 +31,7 @@ export const ROLE_TABS: Record<Role, { tabs: TabSpec[]; hidden: HiddenSpec[] }> 
       { name: 'messages', titleKey: 'tabs.messages', icon: 'messages' },
       { name: 'pqrs', titleKey: 'tabs.pqrs', icon: 'pqrs' },
     ],
-    hidden: [INBOX],
+    hidden: [INBOX, ...ACCOUNT],
   },
   SUPERADMIN: {
     tabs: [
@@ -36,6 +41,10 @@ export const ROLE_TABS: Record<Role, { tabs: TabSpec[]; hidden: HiddenSpec[] }> 
       { name: 'pqrs', titleKey: 'tabs.pqrs', icon: 'pqrs' },
       { name: 'more', titleKey: 'tabs.more', icon: 'more' },
     ],
-    hidden: [INBOX, { name: 'changes', titleKey: 'dashboard.admin.changes.title' }],
+    hidden: [
+      INBOX,
+      { name: 'changes', titleKey: 'dashboard.admin.changes.title' },
+      ...ACCOUNT,
+    ],
   },
 };

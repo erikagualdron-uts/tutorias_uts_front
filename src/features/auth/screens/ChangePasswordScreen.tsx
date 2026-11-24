@@ -1,11 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { errorMessage } from '@/api/errors';
 import { AuthLayout } from '@/components/AuthLayout';
 import { Banner } from '@/components/Banner';
 import { Button } from '@/components/Button';
-import { TextField } from '@/components/TextField';
+import { PasswordFields } from '../components/PasswordFields';
 import { useChangePassword } from '../hooks/useChangePassword';
 import { useSignOut } from '../hooks/useSignOut';
 import { changePasswordSchema, type ChangePasswordForm } from '../schemas';
@@ -27,35 +27,7 @@ export function ChangePasswordScreen() {
     >
       {change.error ? <Banner message={errorMessage(t, change.error)} severity="error" /> : null}
 
-      {(['currentPassword', 'newPassword'] as const).map((name) => (
-        <Controller
-          key={name}
-          control={control}
-          name={name}
-          render={({ field }) => (
-            <TextField
-              leadingIcon={name === 'currentPassword' ? 'password' : 'key'}
-              label={t(
-                name === 'currentPassword'
-                  ? 'changePassword.current'
-                  : 'changePassword.new',
-              )}
-              value={field.value}
-              onChangeText={field.onChange}
-              onBlur={field.onBlur}
-              error={
-                formState.errors[name]?.message
-                  ? t(formState.errors[name].message)
-                  : undefined
-              }
-              autoComplete={
-                name === 'newPassword' ? 'new-password' : 'current-password'
-              }
-              password
-            />
-          )}
-        />
-      ))}
+      <PasswordFields control={control} errors={formState.errors} />
       <Button
         label={t('changePassword.submit')}
         icon="password"

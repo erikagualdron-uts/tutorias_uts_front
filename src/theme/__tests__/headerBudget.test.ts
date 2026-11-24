@@ -22,6 +22,7 @@ const WITH_HEADER = [
   'src/features/enrollments/screens/StudentModulesScreen.tsx',
   'src/features/student-schedule/screens/StudentScheduleScreen.tsx',
   'src/features/teacher-sessions/screens/TeacherScheduleScreen.tsx',
+  'src/features/account/screens/AccountScreen.tsx',
 ];
 const FORMS = [
   'src/features/modules/screens/ModuleFormScreen.tsx',
@@ -42,6 +43,7 @@ const FORMS = [
   'src/features/pqrs/screens/NewPqrsScreen.tsx',
   'src/features/pqrs/screens/PqrsFiledScreen.tsx',
   'src/features/enrollments/screens/StudentModuleDetailScreen.tsx',
+  'src/features/account/screens/AccountPasswordScreen.tsx',
 ];
 const count = (text: string, token: string) => text.split(token).length - 1;
 

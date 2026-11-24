@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -5,6 +6,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Icon } from '@/icons/Icon';
 import { NotificationsBell } from '@/features/notifications/components/NotificationsBell';
 import { useSignOut } from '@/features/auth/hooks/useSignOut';
+import { ROLE_HOME } from '@/features/auth/routing';
 import { useSession } from '@/store/session';
 import {
   MIN_TOUCH_TARGET,
@@ -88,6 +90,21 @@ export function AppBar({ title }: { title?: string }) {
               },
             ]}
           >
+            {user ? (
+              <Pressable
+                accessibilityRole="menuitem"
+                onPress={() => {
+                  setOpen(false);
+                  router.push(`${ROLE_HOME[user.role]}/account` as never);
+                }}
+                style={[styles.item, { borderColor: palette.border }]}
+              >
+                <Icon name="user" color={palette.textPrimary} />
+                <Text style={[typography.body, { color: palette.textPrimary }]}>
+                  {t('profile.myAccount')}
+                </Text>
+              </Pressable>
+            ) : null}
             <Pressable
               accessibilityRole="menuitem"
               onPress={() => {
