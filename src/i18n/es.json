@@ -211,8 +211,30 @@
     "teachers": "Docentes",
     "students": "Estudiantes"
   },
+  "account": {
+    "title": "Mi cuenta",
+    "fullName": "Nombre",
+    "email": "Correo institucional",
+    "role": "Rol",
+    "roles": {
+      "STUDENT": "Estudiante",
+      "TEACHER": "Docente",
+      "SUPERADMIN": "CAE"
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "granted": "Activadas",
+      "undetermined": "Sin activar",
+      "blocked": "Desactivadas en el teléfono. Actívalas desde los ajustes del teléfono"
+    },
+    "password": {
+      "title": "Cambiar contraseña",
+      "success": "Tu contraseña se cambió"
+    }
+  },
   "profile": {
     "menu": "Menú de perfil",
+    "myAccount": "Mi cuenta",
     "signOut": "Cerrar sesión"
   },
   "forgot": {
