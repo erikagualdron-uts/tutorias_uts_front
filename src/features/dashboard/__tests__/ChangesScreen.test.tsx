@@ -38,7 +38,7 @@ describe('ChangesScreen', () => {
     mockedApi.mockResolvedValue(pageOf([change(1), change(2)], 2));
     await renderScreen(<ChangesScreen />);
     expect(await screen.findByRole('header', { name: i18n.t('dashboard.admin.changes.title') })).toBeTruthy();
-    expect(screen.getByText('2')).toBeTruthy();
+    expect(await screen.findByText('2')).toBeTruthy();
   });
 
   it('loads the next page at the end of the list', async () => {

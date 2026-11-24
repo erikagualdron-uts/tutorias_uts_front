@@ -1,7 +1,7 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import { BrandLoader } from '@/components/BrandLoader';
@@ -9,7 +9,8 @@ import { Button } from '@/components/Button';
 import { EmptyState } from '@/components/EmptyState';
 import { FilterChips } from '@/components/FilterChips';
 import { SearchField } from '@/components/SearchField';
-import { spacing, typography, usePalette } from '@/theme';
+import { ScreenHeader } from '@/components/ScreenHeader';
+import { spacing, usePalette } from '@/theme';
 import { OfferCard } from '../components/OfferCard';
 import { useStudentModules } from '../hooks/useStudentModules';
 import { MyEnrollmentsScreen } from './MyEnrollmentsScreen';
@@ -28,7 +29,7 @@ export function StudentModulesScreen() {
   return (
     <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>{t('student.modules.title')}</Text>
+        <ScreenHeader title={t('student.modules.title')} count={segment === 'available' ? offer.data?.data.length : undefined} />
         <FilterChips<Segment>
           options={[
             { value: 'available', label: t('student.modules.segments.available') },

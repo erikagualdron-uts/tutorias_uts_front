@@ -66,6 +66,12 @@ beforeEach(async () => {
 });
 
 describe('week of the student (day view)', () => {
+  it('opens with the brand header above the calendar', async () => {
+    await renderScreen();
+    await range('07/01/2030 – 13/01/2030');
+    expect(screen.getByRole('header', { name: i18n.t('tabs.schedule') })).toBeTruthy();
+  });
+
   it('opens on the current week with today selected and a dot on the days with sessions', async () => {
     await renderScreen();
     expect(await range('07/01/2030 – 13/01/2030')).toBeTruthy();

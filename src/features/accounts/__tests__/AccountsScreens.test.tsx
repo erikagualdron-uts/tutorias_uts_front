@@ -78,7 +78,7 @@ describe('TeachersScreen', () => {
     mockedApi.mockResolvedValue(page([teacher(1), teacher(2)]));
     await renderScreen(<TeachersScreen />);
     expect(await screen.findByRole('header', { name: i18n.t('more.teachers') })).toBeTruthy();
-    expect(screen.getByText('2')).toBeTruthy();
+    expect(await screen.findByText('2')).toBeTruthy();
   });
 
   it('shows the loading, empty, and error-with-retry states', async () => {

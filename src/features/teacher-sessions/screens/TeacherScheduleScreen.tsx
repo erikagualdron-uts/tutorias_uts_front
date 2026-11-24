@@ -11,6 +11,7 @@ import { useWeekNavigation } from '@/components/calendar/useWeekNavigation';
 import { WeekCalendar } from '@/components/calendar/WeekCalendar';
 import { EmptyState } from '@/components/EmptyState';
 import { FilterChips } from '@/components/FilterChips';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { bogotaParts, scheduleLabel } from '@/features/modules/format';
 import { spacing, typography, usePalette } from '@/theme';
 import { toCalendarItem } from '../calendarItems';
@@ -54,7 +55,7 @@ export function TeacherScheduleScreen() {
   return (
     <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>{t('teacher.schedule.title')}</Text>
+        <ScreenHeader title={t('teacher.schedule.title')} />
 
         <Card>
           <WeekCalendar

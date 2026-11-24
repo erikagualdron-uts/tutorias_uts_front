@@ -69,7 +69,7 @@ describe('PeriodsScreen', () => {
     mockedApi.mockResolvedValue({ data: [], meta: { page: 1, limit: 100, total: 0 } });
     await renderWithProviders(<PeriodsScreen />);
     expect(await screen.findByRole('header', { name: i18n.t('periods.title') })).toBeTruthy();
-    expect(screen.getByText('0')).toBeTruthy();
+    expect(await screen.findByText('0')).toBeTruthy();
   });
 
   it('shows the empty state', async () => {

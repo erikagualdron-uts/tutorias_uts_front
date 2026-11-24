@@ -35,6 +35,11 @@ beforeEach(async () => {
 });
 
 describe('teacher schedule', () => {
+  it('opens with the brand header and no count', async () => {
+    await renderScreen();
+    expect(await screen.findByRole('header', { name: i18n.t('teacher.schedule.title') })).toBeTruthy();
+  });
+
   it('lists the module with room, schedule and enrolled, and the session with hours in Bogota time', async () => {
     await renderScreen();
     expect(await screen.findByText('Cronograma')).toBeTruthy();

@@ -9,6 +9,7 @@ import { Card } from '@/components/Card';
 import { useWeekNavigation } from '@/components/calendar/useWeekNavigation';
 import { WeekCalendar } from '@/components/calendar/WeekCalendar';
 import { EmptyState } from '@/components/EmptyState';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { useRefreshOnFocus } from '@/hooks/useRefreshOnFocus';
 import { targetFor } from '@/features/notifications/openTarget';
 import { spacing, usePalette } from '@/theme';
@@ -46,6 +47,7 @@ export function StudentScheduleScreen() {
   return (
     <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
       <ScrollView contentContainerStyle={styles.content}>
+        <ScreenHeader title={t('tabs.schedule')} />
         <Card>
           {loaded?.period && !loaded.hasEnrollments ? (
             <EmptyState title={t('student.schedule.empty.title')} description={t('student.schedule.empty.description')} action={explore} />

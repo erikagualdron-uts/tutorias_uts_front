@@ -82,7 +82,7 @@ describe('RoomsScreen', () => {
     serve({ '/locations': page([location()]), '/rooms': page([room()]) });
     await renderWithProviders(<RoomsScreen />);
     expect(await screen.findByRole('header', { name: i18n.t('rooms.title') })).toBeTruthy();
-    expect(screen.getByText('1')).toBeTruthy();
+    expect(await screen.findByText('1')).toBeTruthy();
   });
 
   it('shows the empty state', async () => {
