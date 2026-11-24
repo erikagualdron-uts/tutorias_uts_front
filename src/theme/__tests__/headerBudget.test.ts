@@ -16,6 +16,9 @@ const WITH_HEADER = [
   'src/features/dropdown-lists/screens/DropdownItemsScreen.tsx',
   'src/features/dashboard/screens/ChangesScreen.tsx',
   'src/features/shell/screens/MoreScreen.tsx',
+  'src/features/chat/screens/MessagesScreen.tsx',
+  'src/features/pqrs/screens/MyPqrsScreen.tsx',
+  'src/features/pqrs/screens/AdminPqrsScreen.tsx',
 ];
 const FORMS = [
   'src/features/modules/screens/ModuleFormScreen.tsx',
@@ -29,6 +32,12 @@ const FORMS = [
   'src/features/holidays/screens/HolidaysImportScreen.tsx',
   'src/features/dropdown-lists/screens/DropdownItemFormScreen.tsx',
   'src/features/smtp/screens/SmtpSettingsScreen.tsx',
+  'src/features/chat/screens/ChatScreen.tsx',
+  'src/features/chat/screens/NewChatScreen.tsx',
+  'src/features/pqrs/screens/PqrsDetailScreen.tsx',
+  'src/features/pqrs/screens/AdminPqrsDetailScreen.tsx',
+  'src/features/pqrs/screens/NewPqrsScreen.tsx',
+  'src/features/pqrs/screens/PqrsFiledScreen.tsx',
 ];
 const count = (text: string, token: string) => text.split(token).length - 1;
 

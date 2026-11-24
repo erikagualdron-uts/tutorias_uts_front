@@ -4,6 +4,8 @@ import { Text } from 'react-native';
 import { cloneElement, type ReactElement } from 'react';
 import { AnnouncementCard } from '@/features/chat/components/AnnouncementCard';
 import { AccountCard } from '@/features/accounts/components/AccountCard';
+import { MessageBubble } from '@/features/chat/components/MessageBubble';
+import { StatusBadge } from '@/features/pqrs/components/StatusBadge';
 import { MetricCard } from '@/features/dashboard/components/MetricCard';
 import { OfferCard } from '@/features/enrollments/components/OfferCard';
 import { offerOf } from '@/features/enrollments/test-fixtures';
@@ -120,6 +122,10 @@ const samples: [string, ReactElement][] = [
   ],
   ['ScreenHeader', <ScreenHeader key="sh" title="Salones" count={3} />],
   ['AccountCard', <AccountCard key="ac" name="Ana" email="a@uts.edu.co" status="ACTIVE" countLabel="2" onPress={noop} />],
+  ['MessageBubble theirs', <MessageBubble key="mb" message={{ body: 'Hola', createdAt: '2030-01-08T19:00:00.000Z' }} mine={false} />],
+  ['StatusBadge filed', <StatusBadge key="sf" status="FILED" />],
+  ['StatusBadge in review', <StatusBadge key="sr" status="IN_REVIEW" />],
+  ['StatusBadge resolved', <StatusBadge key="sv" status="RESOLVED" />],
   [
     'EmptyState',
     <EmptyState key="e" title="Vacío" description="Nada por aquí" />,

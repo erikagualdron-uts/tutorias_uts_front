@@ -1,7 +1,7 @@
 import { router, type Href } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import type { PqrsStatus } from '@/api/types';
@@ -9,8 +9,9 @@ import { BrandLoader } from '@/components/BrandLoader';
 import { Button } from '@/components/Button';
 import { EmptyState } from '@/components/EmptyState';
 import { FilterChips } from '@/components/FilterChips';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { useSession } from '@/store/session';
-import { spacing, typography, usePalette } from '@/theme';
+import { spacing, usePalette } from '@/theme';
 import { PqrsCard } from '../components/PqrsCard';
 import { useMyPqrs } from '../hooks/useAuthorPqrs';
 
@@ -27,9 +28,10 @@ export function MyPqrsScreen() {
 
   const header = (
     <View style={styles.header}>
-      <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>{t('pqrs.list.title')}</Text>
+      <ScreenHeader title={t('pqrs.list.title')} count={list.data?.pages[0]?.meta.total} />
       <Button label={t('pqrs.list.new')} icon="add" onPress={() => router.push(`${base}/new` as Href)} />
       <FilterChips
+        scroll
         options={[
           { value: undefined, label: t('pqrs.list.filterAll') },
           ...STATUSES.map((value) => ({ value, label: t(`pqrs.status.${value}`) })),

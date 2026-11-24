@@ -1,7 +1,7 @@
 import { router, useLocalSearchParams, type Href } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { errorMessage } from '@/api/errors';
 import type { PqrsStatus } from '@/api/types';
@@ -9,9 +9,10 @@ import { BrandLoader } from '@/components/BrandLoader';
 import { Button } from '@/components/Button';
 import { EmptyState } from '@/components/EmptyState';
 import { FilterChips } from '@/components/FilterChips';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { useDropdownList } from '@/features/dropdown-lists/hooks/useDropdownLists';
 import { labelFor } from '@/features/dropdown-lists/schemas';
-import { spacing, typography, usePalette } from '@/theme';
+import { spacing, usePalette } from '@/theme';
 import { PqrsCard } from '../components/PqrsCard';
 import { useAdminPqrs, type AdminPqrsFilters } from '../hooks/useAdminPqrs';
 
@@ -34,8 +35,9 @@ export function AdminPqrsScreen() {
 
   const header = (
     <View style={styles.header}>
-      <Text style={[typography.screenTitle, { color: palette.textPrimary }]}>{t('pqrs.admin.title')}</Text>
+      <ScreenHeader title={t('pqrs.admin.title')} count={list.data?.pages[0]?.meta.total} />
       <FilterChips
+        scroll
         options={[
           { value: undefined, label: t('pqrs.list.filterAll') },
           ...STATUSES.map((value) => ({ value, label: t(`pqrs.status.${value}`) })),
@@ -44,6 +46,7 @@ export function AdminPqrsScreen() {
         onChange={set('status')}
       />
       <FilterChips
+        scroll
         options={[
           { value: undefined, label: t('pqrs.admin.typeAll') },
           ...types.map((item) => ({ value: item.id, label: labelFor(item, i18n.language) })),
@@ -52,6 +55,7 @@ export function AdminPqrsScreen() {
         onChange={set('typeId')}
       />
       <FilterChips
+        scroll
         options={[
           { value: undefined, label: t('pqrs.admin.role.all') },
           ...ROLES.map((value) => ({ value, label: t(`pqrs.admin.role.${value}`) })),
