@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, TextInput } from 'react-native';
 import { Icon } from '@/icons/Icon';
-import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
+import { MIN_TOUCH_TARGET, spacing, typography, useInputProps, usePalette } from '@/theme';
 import { FIELD_HEIGHT, FieldBox } from './FieldBox';
 import type { TextFieldProps } from './TextField';
 
@@ -21,6 +21,7 @@ export function SearchField({
   ...inputProps
 }: SearchFieldProps) {
   const palette = usePalette();
+  const inputTheme = useInputProps();
   const { t } = useTranslation();
   const [focused, setFocused] = useState(false);
   const hasText = Boolean(inputProps.value);
@@ -59,7 +60,7 @@ export function SearchField({
           setFocused(false);
           inputProps.onBlur?.(event);
         }}
-        placeholderTextColor={palette.inputPlaceholder}
+        {...inputTheme}
         style={[typography.body, styles.input, { color: palette.textPrimary }]}
       />
     </FieldBox>

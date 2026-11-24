@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Icon } from '@/icons/Icon';
 import { useSession } from '@/store/session';
-import { MIN_TOUCH_TARGET, iconSize, typography, usePalette } from '@/theme';
+import { MIN_TOUCH_TARGET, iconSize, radius, typography, usePalette } from '@/theme';
 import { useUnreadCount } from '../hooks/useUnreadCount';
 import { inboxRoute } from '../openTarget';
 
@@ -27,7 +27,7 @@ export function NotificationsBell() {
       <Icon name="notifications" active={unread > 0} size={iconSize.nav} color={palette.textPrimary} />
       {unread > 0 ? (
         <View style={[styles.badge, { backgroundColor: palette.error }]}>
-          <Text style={[typography.label, styles.count, { color: palette.onPrimary }]}>
+          <Text style={[typography.counter, { color: palette.onPrimary }]}>
             {unread > MAX_SHOWN ? `${MAX_SHOWN}+` : String(unread)}
           </Text>
         </View>
@@ -44,10 +44,9 @@ const styles = StyleSheet.create({
     right: 4,
     minWidth: 16,
     height: 16,
-    borderRadius: 8,
+    borderRadius: radius.badge,
     paddingHorizontal: 4,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  count: { fontSize: 10, lineHeight: 14 },
 });

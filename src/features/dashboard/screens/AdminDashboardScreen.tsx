@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { targetFor } from '@/features/notifications/openTarget';
-import { spacing, typography, usePalette } from '@/theme';
+import { spacing, typography, usePalette, useRefreshColors } from '@/theme';
 import { BlockState } from '../components/BlockState';
 import { CapacityBar } from '../components/CapacityBar';
 import { ChangeRow } from '../components/ChangeRow';
@@ -21,6 +21,7 @@ import { useRefreshOnFocus } from '@/hooks/useRefreshOnFocus';
 export function AdminDashboardScreen() {
   const { t } = useTranslation();
   const palette = usePalette();
+  const refreshColors = useRefreshColors();
   const overview = useAdminOverview();
   const changes = useAdminChanges();
   const rooms = useAdminRooms();
@@ -49,7 +50,7 @@ export function AdminDashboardScreen() {
       <ScrollView
         testID="admin-dashboard"
         contentContainerStyle={styles.content}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} {...refreshColors} />}
       >
         <BlockState query={overview}>
           {data && (

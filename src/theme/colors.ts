@@ -32,6 +32,13 @@ export interface Palette {
   inputPlaceholder: string;
   focusGlow: string;
   errorGlow: string;
+  onSurfaceWarm: string;
+  shadow: string;
+  successText: string;
+  warningText: string;
+  selected: string;
+  tabActive: string;
+  tabInactive: string;
 }
 
 export const lightPalette: Palette = {
@@ -68,14 +75,21 @@ export const lightPalette: Palette = {
   inputPlaceholder: '#6E6E6E', // derived: 4.6:1 on the field fill (#767676 was 4.1:1)
   focusGlow: 'rgba(78,122,47,0.15)',
   errorGlow: 'rgba(179,38,30,0.12)',
+  onSurfaceWarm: '#132F20', // text on the cream notice (11.8:1)
+  shadow: '#132F20',
+  successText: '#1B7A2E', // derived: success as text, 4.9:1 on the screen
+  warningText: '#8A4B00', // derived: warning as text, 6.1:1 on the screen
+  selected: '#E4EBDD', // derived: selected row, chip or card
+  tabActive: '#34531F',
+  tabInactive: '#575756',
 };
 
 export const darkPalette: Palette = {
   background: '#0B1710', // derived
   screen: '#0B1710', // derived
   card: '#132F20',
-  surface: '#132F20',
-  surfaceWarm: '#F8E9D4',
+  surface: '#1B3D2A', // derived: lighter than the card, 5.7:1 with textSecondary
+  surfaceWarm: '#2E2718', // derived: dark cream for notices (the light cream is a light surface)
   primary: '#C3D730',
   primaryPressed: '#C3D730',
   onPrimary: '#132F20',
@@ -104,4 +118,11 @@ export const darkPalette: Palette = {
   inputPlaceholder: '#B3B3B3',
   focusGlow: 'rgba(195,215,48,0.18)',
   errorGlow: 'rgba(179,38,30,0.25)',
+  onSurfaceWarm: '#F8E9D4', // text on the dark cream notice (12.4:1)
+  shadow: '#000000', // derived: a deep green shadow is invisible on dark
+  successText: '#5BD16E', // derived: 7.4:1 on the card
+  warningText: '#FFB74D', // derived: 8.3:1 on the card
+  selected: '#224A33', // derived: selected row, chip or card (4.8:1 with textSecondary)
+  tabActive: '#C3D730',
+  tabInactive: '#B3B3B3',
 };

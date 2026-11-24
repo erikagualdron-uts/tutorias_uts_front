@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SegmentedControl } from '@/components/SegmentedControl';
 import { Icon } from '@/icons/Icon';
-import { MIN_TOUCH_TARGET, radius, spacing, typography, usePalette } from '@/theme';
+import { MIN_TOUCH_TARGET, radius, spacing, typography, useInputProps, usePalette } from '@/theme';
 import type { MessageKind } from '../types';
 
 const MAX_LINES = 5;
@@ -21,6 +21,7 @@ interface ComposerProps {
 export function Composer({ maxLength, canAnnounce, onSend, onTyping }: ComposerProps) {
   const { t } = useTranslation();
   const palette = usePalette();
+  const inputTheme = useInputProps();
   const [text, setText] = useState('');
   const [kind, setKind] = useState<MessageKind>('TEXT');
   const body = text.trim();
@@ -55,7 +56,7 @@ export function Composer({ maxLength, canAnnounce, onSend, onTyping }: ComposerP
           maxLength={maxLength}
           accessibilityLabel={t('chat.composer.label')}
           placeholder={t('chat.composer.label')}
-          placeholderTextColor={palette.inputPlaceholder}
+          {...inputTheme}
           style={[typography.body, styles.input, { color: palette.textPrimary, backgroundColor: palette.inputFillOnScreen, borderColor: palette.inputBorder }]}
         />
         <Pressable

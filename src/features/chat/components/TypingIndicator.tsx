@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 import { useMotion } from '@/components/useMotion';
-import { radius, shadows, spacing, typography, usePalette } from '@/theme';
+import { radius, useShadows, spacing, typography, usePalette } from '@/theme';
 
 // Each dot breathes at its own pace, so the three never move together.
 const DOT_MS = [380, 480, 580];
@@ -23,6 +23,7 @@ function Dot({ period, color }: { period: number; color: string }) {
 export function TypingIndicator() {
   const { t } = useTranslation();
   const palette = usePalette();
+  const shadows = useShadows();
   return (
     <View style={styles.row} accessible accessibilityLiveRegion="polite" accessibilityLabel={t('chat.typing')}>
       <View style={[styles.bubble, shadows.level1, { backgroundColor: palette.card }]}>

@@ -1,4 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -17,7 +18,7 @@ import {
   gradients,
   onGradient,
   radius,
-  shadows,
+  useShadows,
   spacing,
   typography,
   usePalette,
@@ -50,6 +51,7 @@ function useKeyboardVisible() {
 export function AuthLayout({ title, description, children }: AuthLayoutProps) {
   const { t } = useTranslation();
   const palette = usePalette();
+  const shadows = useShadows();
   const { height } = useWindowDimensions();
   const keyboard = useKeyboardVisible();
   const headerHeight = Math.round(height * (keyboard ? 0.22 : 0.35));
@@ -59,6 +61,7 @@ export function AuthLayout({ title, description, children }: AuthLayoutProps) {
       behavior="padding"
       style={[styles.screen, { backgroundColor: palette.screen }]}
     >
+      <StatusBar style="light" />
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={styles.scroll}

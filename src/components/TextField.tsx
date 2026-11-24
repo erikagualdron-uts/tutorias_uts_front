@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
-import { MIN_TOUCH_TARGET, spacing, typography, usePalette } from '@/theme';
+import { MIN_TOUCH_TARGET, spacing, typography, useInputProps, usePalette } from '@/theme';
 import { FIELD_HEIGHT, FieldBox } from './FieldBox';
 
 export interface TextFieldProps extends Omit<TextInputProps, 'style'> {
@@ -30,6 +30,7 @@ export function TextField({
   ...inputProps
 }: TextFieldProps) {
   const palette = usePalette();
+  const inputTheme = useInputProps();
   const { t } = useTranslation();
   const [focused, setFocused] = useState(false);
   const [hidden, setHidden] = useState(true);
@@ -76,7 +77,7 @@ export function TextField({
           setFocused(false);
           inputProps.onBlur?.(event);
         }}
-        placeholderTextColor={palette.inputPlaceholder}
+        {...inputTheme}
         style={[typography.body, styles.input, { color: palette.textPrimary }]}
       />
     </FieldBox>

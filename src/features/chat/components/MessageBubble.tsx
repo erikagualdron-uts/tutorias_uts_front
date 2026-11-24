@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { bogotaParts } from '@/features/modules/format';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
-import { MIN_TOUCH_TARGET, radius, shadows, spacing, typography, usePalette } from '@/theme';
+import { MIN_TOUCH_TARGET, radius, useShadows, spacing, typography, usePalette } from '@/theme';
 import { personName, type ChatMessage } from '../types';
 
 export type DeliveryState = 'sending' | 'sent' | 'failed';
@@ -27,6 +27,7 @@ interface MessageBubbleProps {
 export function MessageBubble({ message, mine, showSender = false, first = true, state, onRetry, onDiscard }: MessageBubbleProps) {
   const { t } = useTranslation();
   const palette = usePalette();
+  const shadows = useShadows();
   const ink = mine ? palette.onPrimary : palette.textPrimary;
   const meta = mine ? palette.onPrimary : palette.textSecondary;
   const failed = state === 'failed';

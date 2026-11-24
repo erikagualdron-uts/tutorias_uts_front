@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
-import { radius, shadows, spacing, typography, usePalette } from '@/theme';
+import { radius, useShadows, spacing, typography, usePalette } from '@/theme';
 import { FadeInView } from './FadeInView';
 
 export type BannerSeverity = 'info' | 'success' | 'warning' | 'error';
@@ -22,8 +22,9 @@ const ICONS: Record<BannerSeverity, IconName> = {
 // notice; the other severities are solid fills with a shadow so an alert is seen before anything else.
 export function Banner({ message, severity = 'info' }: BannerProps) {
   const palette = usePalette();
+  const shadows = useShadows();
   const { fill, ink } = {
-    info: { fill: palette.surfaceWarm, ink: palette.onAccent },
+    info: { fill: palette.surfaceWarm, ink: palette.onSurfaceWarm },
     success: { fill: palette.success, ink: palette.onAccent },
     warning: { fill: palette.warning, ink: palette.onAccent },
     error: { fill: palette.error, ink: palette.onError },

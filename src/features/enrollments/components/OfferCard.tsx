@@ -57,6 +57,8 @@ export function OfferCard({ module, onPress, onAction = onPress, loading = false
     BLOCKED: palette.error,
   };
 
+  const badgeText: Record<OfferState, string> = { ...badge, LAST_SPOTS: palette.warningText, BLOCKED: palette.errorText };
+
   return (
     <Card style={styles.card}>
       <Pressable accessibilityRole="button" accessibilityLabel={module.name} disabled={!onPress} onPress={onPress} style={styles.body}>
@@ -65,7 +67,7 @@ export function OfferCard({ module, onPress, onAction = onPress, loading = false
             {module.name}
           </Text>
           <View style={[styles.badge, { borderColor: badge[module.state] }]}>
-            <Text style={[typography.label, { color: badge[module.state] }]}>
+            <Text style={[typography.label, { color: badgeText[module.state] }]}>
               {t(`student.modules.state.${offerLabelKey(module)}`)}
             </Text>
           </View>

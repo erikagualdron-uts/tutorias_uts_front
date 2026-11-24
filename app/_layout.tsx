@@ -2,6 +2,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { useSyncDeviceLanguage } from '@/i18n';
 import { useRestoreSession } from '@/store/useRestoreSession';
@@ -24,6 +25,7 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
   return (
     <QueryClientProvider client={queryClient}>
+      <StatusBar style="auto" />
       <Stack
         screenOptions={{
           headerShown: false,
