@@ -10,8 +10,12 @@ describe('palette parity', () => {
     );
   });
 
-  it('has the 39 roles of docs/Design.md', () => {
-    expect(Object.keys(lightPalette)).toHaveLength(39);
+  it('has the 40 roles of docs/Design.md', () => {
+    expect(Object.keys(lightPalette)).toHaveLength(40);
+  });
+
+  it('has a pressed primary that differs from primary in dark', () => {
+    expect(darkPalette.primaryPressed).not.toBe(darkPalette.primary);
   });
 
   it.each([

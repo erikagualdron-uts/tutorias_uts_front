@@ -39,6 +39,7 @@ export interface Palette {
   selected: string;
   tabActive: string;
   tabInactive: string;
+  controlBorder: string;
 }
 
 export const lightPalette: Palette = {
@@ -82,6 +83,7 @@ export const lightPalette: Palette = {
   selected: '#E4EBDD', // derived: selected row, chip or card
   tabActive: '#34531F',
   tabInactive: '#575756',
+  controlBorder: '#76827A', // derived: 3:1 border of outlined and tonal buttons and unselected chips (4.0 on white, 3.3 on selected)
 };
 
 export const darkPalette: Palette = {
@@ -91,7 +93,7 @@ export const darkPalette: Palette = {
   surface: '#1B3D2A', // derived: lighter than the card, 5.7:1 with textSecondary
   surfaceWarm: '#2E2718', // derived: dark cream for notices (the light cream is a light surface)
   primary: '#C3D730',
-  primaryPressed: '#C3D730',
+  primaryPressed: '#9FB01F', // derived: darker lime so the press shows (onPrimary 6.0:1)
   onPrimary: '#132F20',
   accent: '#C3D730',
   onAccent: '#132F20',
@@ -125,4 +127,5 @@ export const darkPalette: Palette = {
   selected: '#224A33', // derived: selected row, chip or card (4.8:1 with textSecondary)
   tabActive: '#C3D730',
   tabInactive: '#B3B3B3',
+  controlBorder: '#7A9A85', // derived: 3:1 control border (4.7 on card, 5.9 on screen, 3.2 on selected)
 };

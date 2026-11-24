@@ -28,7 +28,7 @@ export function NotificationCard({ notification, onPress }: { notification: AppN
   const unread = notification.readAt === null;
   const when = bogotaParts(notification.createdAt);
   const cancelled = notification.type === 'SESSION_CANCELLED_TEACHER' || notification.type === 'SESSIONS_CANCELLED_HOLIDAY';
-  const color = cancelled ? palette.error : palette.primary;
+  const color = cancelled ? palette.errorText : palette.primary; // errorText: 4.5:1 on the card in dark too
 
   return (
     <Pressable

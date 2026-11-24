@@ -1,6 +1,6 @@
 import type { IconName } from '@/icons/registry';
 
-export type PatternVariant = 'header' | 'hero';
+export type PatternVariant = 'header' | 'hero' | 'empty';
 
 export interface PatternPlacement {
   // Center of the icon, in % of the container.
@@ -174,6 +174,44 @@ export const brandPatternLayouts: Record<PatternVariant, PatternPlacement[]> = {
       icon: 'feather',
       tone: 'white',
       opacity: 0.1,
+    },
+  ],
+  empty: [
+    {
+      x: 10,
+      y: 18,
+      size: 44,
+      rotation: -20,
+      icon: 'leaf',
+      tone: 'white',
+      opacity: 0.14,
+    },
+    {
+      x: 88,
+      y: 22,
+      size: 38,
+      rotation: 16,
+      icon: 'feather',
+      tone: 'white',
+      opacity: 0.12,
+    },
+    {
+      x: 14,
+      y: 84,
+      size: 40,
+      rotation: 18,
+      icon: 'openBook',
+      tone: 'white',
+      opacity: 0.12,
+    },
+    {
+      x: 86,
+      y: 80,
+      size: 46,
+      rotation: -14,
+      icon: 'leaf',
+      tone: 'white',
+      opacity: 0.14,
     },
   ],
 };

@@ -1,13 +1,14 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import * as ReactNative from 'react-native';
 import { StyleSheet } from 'react-native';
 import { api } from '@/api/client';
 import { ApiError } from '@/api/errors';
 import type { AppNotification, NotificationPage } from '@/api/types';
 import i18n from '@/i18n';
 import { useSession } from '@/store/session';
-import { lightPalette } from '@/theme/colors';
+import { darkPalette, lightPalette } from '@/theme/colors';
 import { NotificationsBell } from '../components/NotificationsBell';
 import { NotificationsScreen } from '../screens/NotificationsScreen';
 
@@ -128,6 +129,21 @@ describe('notifications inbox', () => {
     await render(wrap(<NotificationsScreen />));
     expect(await screen.findByText('No tienes notificaciones')).toBeTruthy();
     expect(screen.queryByText('Marcar todo como leído')).toBeNull();
+  });
+
+  it('writes a cancelled notice in the readable error color in dark mode', async () => {
+    jest.spyOn(ReactNative, 'useColorScheme').mockReturnValue('dark');
+    await render(wrap(<NotificationsScreen />));
+    const unreadLabel = (await screen.findAllByText('Sin leer'))[0];
+    expect(StyleSheet.flatten(unreadLabel.props.style).color).toBe(darkPalette.errorText);
+    jest.restoreAllMocks();
+  });
+
+  it('shows the brand pattern in the empty inbox', async () => {
+    inbox = () => Promise.resolve(page([]));
+    await render(wrap(<NotificationsScreen />));
+    await screen.findByText(i18n.t('notifications.empty.title'));
+    expect(screen.getAllByTestId(/^icon:mdi:/, { includeHiddenElements: true }).length).toBeGreaterThanOrEqual(4);
   });
 
   it('shows the error with a retry that works (scenario 5)', async () => {

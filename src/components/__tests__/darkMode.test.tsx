@@ -1,8 +1,12 @@
 import { render, screen } from '@testing-library/react-native';
 import * as ReactNative from 'react-native';
-import { StyleSheet, Text } from 'react-native';
+import { Text } from 'react-native';
 import { cloneElement, type ReactElement } from 'react';
 import { AnnouncementCard } from '@/features/chat/components/AnnouncementCard';
+import { MetricCard } from '@/features/dashboard/components/MetricCard';
+import { contrast } from '@/testing/contrast';
+import { lightOnly, paintedColors } from '@/testing/darkColors';
+import { gradients, onGradient } from '@/theme';
 import { darkPalette, lightPalette } from '@/theme/colors';
 import { Banner } from '../Banner';
 import { Button } from '../Button';
@@ -10,34 +14,9 @@ import { Card } from '../Card';
 import { ConfirmDialog } from '../ConfirmDialog';
 import { EmptyState } from '../EmptyState';
 import { FilterChips } from '../FilterChips';
+import { HeroCard } from '../HeroCard';
 import { SegmentedControl } from '../SegmentedControl';
 import { TextField } from '../TextField';
-
-type Node = { props?: { style?: unknown }; children?: unknown[] | null };
-const COLOR_KEYS = ['backgroundColor', 'color', 'borderColor', 'tintColor'];
-
-// Colors a component paints: every color of every resolved style in the rendered tree.
-function paintedColors(node: Node | Node[] | null): string[] {
-  if (!node) return [];
-  if (Array.isArray(node)) return node.flatMap(paintedColors);
-  const style = StyleSheet.flatten(node.props?.style as never) as
-    Record<string, unknown> | undefined;
-  const own = COLOR_KEYS.map((key) => style?.[key]).filter(
-    (value): value is string => typeof value === 'string',
-  );
-  return [
-    ...own,
-    ...(node.children ?? []).flatMap((child) =>
-      typeof child === 'object' ? paintedColors(child as Node) : [],
-    ),
-  ];
-}
-
-const darkValues = new Set(Object.values(darkPalette));
-// Roles whose light value is not used by any dark role: it would be a leftover of the light mode.
-const lightOnly = Object.entries(lightPalette)
-  .filter(([, value]) => !darkValues.has(value))
-  .map(([, value]) => value);
 
 const noop = () => {};
 const samples: [string, ReactElement][] = [
@@ -52,6 +31,14 @@ const samples: [string, ReactElement][] = [
   ['Banner warning', <Banner key="bw" message="Aviso" severity="warning" />],
   ['Banner error', <Banner key="be" message="Aviso" severity="error" />],
   ['Button', <Button key="b" label="Acción" icon="user" onPress={noop} />],
+  [
+    'Button outlined',
+    <Button key="bo" label="Acción" icon="user" variant="outlined" onPress={noop} />,
+  ],
+  [
+    'Button tonal',
+    <Button key="bt" label="Acción" icon="user" variant="tonal" onPress={noop} />,
+  ],
   [
     'Button destructive',
     <Button
@@ -109,6 +96,13 @@ const samples: [string, ReactElement][] = [
       onCancel={noop}
     />,
   ],
+  [
+    'HeroCard',
+    <HeroCard key="h">
+      <Text>Ocupación</Text>
+    </HeroCard>,
+  ],
+  ['MetricCard', <MetricCard key="m" value={3} label="Métrica" />],
   [
     'EmptyState',
     <EmptyState key="e" title="Vacío" description="Nada por aquí" />,
@@ -174,5 +168,11 @@ describe('a screen with every shared component', () => {
         lightOnly.includes(color),
       ),
     ).toEqual([]);
+  });
+});
+
+describe('text on the brand gradient', () => {
+  it.each(gradients.brand.colors)('has 4.5:1 on %s', (end) => {
+    expect(contrast(onGradient.text, end)).toBeGreaterThanOrEqual(4.5);
   });
 });

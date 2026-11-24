@@ -50,6 +50,15 @@ beforeEach(async () => {
 });
 
 describe('AdminDashboardScreen', () => {
+  it('opens with the featured block, then the metrics (same order as the other roles)', async () => {
+    routes(full);
+    await renderScreen(<AdminDashboardScreen />);
+    await screen.findByText('1 módulo lleno · 1 con baja inscripción');
+    const order = (text: string) => screen.queryAllByText(/./).findIndex((node) => node === screen.getByText(text));
+    expect(order('17 / 30')).toBeGreaterThan(-1);
+    expect(order('17 / 30')).toBeLessThan(order('Módulos activos'));
+  });
+
   it('shows the occupancy, the counters, the PQRS by state, the changes and the rooms', async () => {
     routes(full);
     await renderScreen(<AdminDashboardScreen />);

@@ -35,13 +35,14 @@ export function FilterChips<T extends string>({
               styles.chip,
               {
                 backgroundColor: selected ? palette.primary : palette.card,
-                borderColor: selected ? palette.primary : palette.border,
+                borderColor: selected ? palette.primary : palette.controlBorder,
               },
             ]}
           >
             <Text
               style={[
                 typography.label,
+                styles.label,
                 { color: selected ? palette.onPrimary : palette.textPrimary },
               ]}
             >
@@ -58,9 +59,13 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
   chip: {
     minHeight: MIN_TOUCH_TARGET,
+    minWidth: MIN_TOUCH_TARGET,
+    flexShrink: 0,
     justifyContent: 'center',
     paddingHorizontal: spacing.lg,
     borderRadius: radius.pill,
     borderWidth: 1,
   },
+  // Android clips the last glyph of short labels measured with the corporate font and letter spacing.
+  label: { flexShrink: 0, marginRight: spacing.xs },
 });
