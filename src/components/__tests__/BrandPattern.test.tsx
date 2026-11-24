@@ -75,3 +75,19 @@ describe('brandPatternLayouts', () => {
     );
   });
 });
+
+describe('empty variant', () => {
+  it('has 4 fixed icons around the centre', () => {
+    const { empty } = brandPatternLayouts;
+    expect(empty).toHaveLength(4);
+    expect(
+      empty.filter(
+        (p) =>
+          p.x > CLEAR_ZONE.x[0] &&
+          p.x < CLEAR_ZONE.x[1] &&
+          p.y > CLEAR_ZONE.y[0] &&
+          p.y < CLEAR_ZONE.y[1],
+      ),
+    ).toEqual([]);
+  });
+});

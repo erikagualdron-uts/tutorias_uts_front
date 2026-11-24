@@ -49,6 +49,7 @@ const ICON_PAIRS: [Opaque, Opaque][] = [
     ['card'],
   ),
   ['textSecondary', 'inputFill'],
+  ...text(['controlBorder'], ['card', 'screen', 'selected']),
 ];
 
 // Every text, icon and indicator pair of the palette (docs/Design.md, role table), with its minimum.

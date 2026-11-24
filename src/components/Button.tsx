@@ -81,13 +81,13 @@ export function Button({
       bg: 'transparent',
       pressed: palette.surface,
       text: palette.textPrimary,
-      border: palette.border,
+      border: palette.controlBorder,
     },
     tonal: {
       bg: palette.surface,
       pressed: palette.border,
       text: palette.textPrimary,
-      border: palette.surface,
+      border: palette.controlBorder,
     },
     success: {
       bg: palette.success,

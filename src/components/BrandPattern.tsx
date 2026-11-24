@@ -12,11 +12,13 @@ const DARK_OPACITY = 0.06;
 
 interface BrandPatternProps {
   variant: PatternVariant;
+  // On a screen or card instead of the brand gradient: the pattern takes the primary role.
+  onSurface?: boolean;
 }
 
 // Decorative leaves, feathers and books (docs/Design.md, "Brand pattern").
 // Static, deterministic, ignores touches and is hidden from screen readers.
-function BrandPatternBase({ variant }: BrandPatternProps) {
+function BrandPatternBase({ variant, onSurface = false }: BrandPatternProps) {
   const palette = usePalette();
   const dark = useColorScheme() === 'dark';
   const reduced = useReducedMotion();
@@ -51,7 +53,11 @@ function BrandPatternBase({ variant }: BrandPatternProps) {
             name={p.icon}
             size={p.size}
             color={
-              dark || p.tone === 'white' ? onGradient.text : palette.accent
+              onSurface
+                ? palette.primary
+                : dark || p.tone === 'white'
+                  ? onGradient.text
+                  : palette.accent
             }
           />
         </View>

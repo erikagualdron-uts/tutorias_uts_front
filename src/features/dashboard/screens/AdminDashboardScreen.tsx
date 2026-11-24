@@ -5,8 +5,9 @@ import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
+import { HeroCard } from '@/components/HeroCard';
 import { targetFor } from '@/features/notifications/openTarget';
-import { spacing, typography, usePalette, useRefreshColors } from '@/theme';
+import { onGradient, radius, spacing, typography, usePalette, useRefreshColors } from '@/theme';
 import { BlockState } from '../components/BlockState';
 import { CapacityBar } from '../components/CapacityBar';
 import { ChangeRow } from '../components/ChangeRow';
@@ -55,25 +56,33 @@ export function AdminDashboardScreen() {
         <BlockState query={overview}>
           {data && (
             <>
-              <Card style={styles.block}>
-                {title('dashboard.admin.occupancy.title')}
+              <HeroCard style={styles.hero}>
+                <View style={styles.heroTitle}>
+                  <Text style={[typography.label, styles.onBrand]}>{t('dashboard.admin.occupancy.title')}</Text>
+                  <View style={[styles.line, { backgroundColor: palette.accent }]} />
+                </View>
                 {data.modules.active === 0 ? (
-                  <Text style={[typography.body, { color: palette.textSecondary }]}>{t('dashboard.admin.occupancy.empty')}</Text>
+                  <Text style={[typography.body, styles.onBrand]}>{t('dashboard.admin.occupancy.empty')}</Text>
                 ) : (
                   <>
-                    <CapacityBar
-                      large
-                      label={t('dashboard.admin.occupancy.detail', { enrolled: data.occupancy.enrolled, capacity: data.occupancy.capacity })}
-                      value={data.occupancy.enrolled}
-                      max={data.occupancy.capacity}
-                      valueText={`${data.occupancy.percent} %`}
-                    />
-                    <Text style={[typography.body, { color: palette.textSecondary }]}>
+                    <Text style={[typography.metricNumber, styles.onBrand]}>{`${data.occupancy.enrolled} / ${data.occupancy.capacity}`}</Text>
+                    <Text style={[typography.body, styles.onBrand]}>
                       {`${t('dashboard.admin.occupancy.full', { count: data.modules.full })} · ${t('dashboard.admin.occupancy.low', { count: data.modules.lowEnrollment })}`}
                     </Text>
                   </>
                 )}
-              </Card>
+              </HeroCard>
+              {data.modules.active > 0 && (
+                <Card>
+                  <CapacityBar
+                    large
+                    label={t('dashboard.admin.occupancy.detail', { enrolled: data.occupancy.enrolled, capacity: data.occupancy.capacity })}
+                    value={data.occupancy.enrolled}
+                    max={data.occupancy.capacity}
+                    valueText={`${data.occupancy.percent} %`}
+                  />
+                </Card>
+              )}
               <View style={styles.pair}>
                 <MetricCard value={data.modules.active} label={t('dashboard.admin.metrics.modules')} onPress={() => go('/(admin)/modules')} />
                 <MetricCard value={data.accounts.students} label={t('dashboard.admin.metrics.students')} onPress={() => go('/(admin)/more/students')} />
@@ -124,4 +133,8 @@ const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.lg },
   block: { gap: spacing.md },
   pair: { flexDirection: 'row', gap: spacing.lg },
+  hero: { gap: spacing.sm },
+  heroTitle: { gap: spacing.xs, alignSelf: 'flex-start' },
+  line: { height: 4, borderRadius: radius.line },
+  onBrand: { color: onGradient.text },
 });

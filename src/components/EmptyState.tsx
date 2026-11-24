@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { spacing, typography, usePalette } from '@/theme';
+import { BrandPattern } from './BrandPattern';
 
 interface EmptyStateProps {
   title: string;
@@ -18,6 +19,7 @@ export function EmptyState({
   const palette = usePalette();
   return (
     <View style={styles.box}>
+      <BrandPattern variant="empty" onSurface />
       {icon}
       <Text style={[typography.sectionTitle, { color: palette.textPrimary }]}>
         {title}

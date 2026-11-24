@@ -111,5 +111,5 @@ const styles = StyleSheet.create({
   content: { padding: spacing.lg },
   header: { gap: spacing.lg, marginBottom: spacing.lg },
   pushHint: { gap: spacing.lg, padding: spacing.lg, paddingBottom: 0 },
-  gap: { height: spacing.lg },
+  gap: { height: spacing.md },
 });
