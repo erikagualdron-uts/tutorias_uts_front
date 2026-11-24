@@ -62,6 +62,7 @@ export function SmtpSettingsScreen() {
     return message ? t(message) : undefined;
   };
   const color = data.status === 'CONFIGURED' ? palette.success : data.status === 'NEEDS_RECONFIGURATION' ? palette.warning : palette.textSecondary;
+  const textColor = data.status === 'CONFIGURED' ? palette.successText : data.status === 'NEEDS_RECONFIGURATION' ? palette.warningText : palette.textSecondary;
   const result = test.data;
   // Testing uses what is saved, so it needs a saved configuration of the CAE (not the environment's).
   const canTest = data.status === 'CONFIGURED';
@@ -75,7 +76,7 @@ export function SmtpSettingsScreen() {
         <Card>
           <View style={[styles.badge, { borderColor: color }]} accessibilityRole="text">
             <Icon name={STATUS_ICON[data.status]} size={16} color={color} />
-            <Text style={[typography.label, { color }]}>{t(`smtp.status.${data.status}`)}</Text>
+            <Text style={[typography.label, { color: textColor }]}>{t(`smtp.status.${data.status}`)}</Text>
           </View>
         </Card>
 

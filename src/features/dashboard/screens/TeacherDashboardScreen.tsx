@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card } from '@/components/Card';
 import { useChatUnread } from '@/features/chat/hooks/useChatData';
 import { noticeTarget, targetFor } from '@/features/notifications/openTarget';
-import { spacing, typography, usePalette } from '@/theme';
+import { spacing, typography, usePalette, useRefreshColors } from '@/theme';
 import { BlockState } from '../components/BlockState';
 import { CapacityBar } from '../components/CapacityBar';
 import { HeroSessionCard } from '../components/HeroSessionCard';
@@ -20,6 +20,7 @@ import { useRefreshOnFocus } from '@/hooks/useRefreshOnFocus';
 export function TeacherDashboardScreen() {
   const { t } = useTranslation();
   const palette = usePalette();
+  const refreshColors = useRefreshColors();
   const client = useQueryClient();
   const dashboard = useTeacherDashboard();
   const unread = useChatUnread();
@@ -38,7 +39,7 @@ export function TeacherDashboardScreen() {
 
   return (
     <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
-      <ScrollView testID="teacher-dashboard" contentContainerStyle={styles.content} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}>
+      <ScrollView testID="teacher-dashboard" contentContainerStyle={styles.content} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} {...refreshColors} />}>
         <BlockState query={dashboard}>
           {data && (
             <>

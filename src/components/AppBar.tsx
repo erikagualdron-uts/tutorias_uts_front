@@ -9,7 +9,7 @@ import { useSession } from '@/store/session';
 import {
   MIN_TOUCH_TARGET,
   radius,
-  shadows,
+  useShadows,
   spacing,
   typography,
   usePalette,
@@ -21,6 +21,7 @@ const BAR_HEIGHT = 56;
 export function AppBar({ title }: { title?: string }) {
   const { t } = useTranslation();
   const palette = usePalette();
+  const shadows = useShadows();
   const user = useSession((state) => state.user);
   const signOut = useSignOut();
   const [open, setOpen] = useState(false);
@@ -80,6 +81,7 @@ export function AppBar({ title }: { title?: string }) {
           <View
             style={[
               styles.menu,
+              shadows.level2,
               {
                 backgroundColor: palette.card,
                 borderColor: palette.border,
@@ -139,7 +141,6 @@ const styles = StyleSheet.create({
     minWidth: 200,
     borderRadius: radius.input,
     borderWidth: 1,
-    ...shadows.level2,
   },
   item: {
     minHeight: MIN_TOUCH_TARGET,

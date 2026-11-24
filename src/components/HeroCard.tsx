@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import type { ReactNode } from 'react';
 import { StyleSheet, type StyleProp, type ViewStyle } from 'react-native';
-import { gradients, radius, shadows, spacing } from '@/theme';
+import { gradients, radius, useShadows, spacing } from '@/theme';
 import { BrandPattern } from './BrandPattern';
 
 // Featured card: brand gradient with 3 pattern icons in the bottom-right corner.
@@ -13,6 +13,7 @@ export function HeroCard({
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
 }) {
+  const shadows = useShadows();
   return (
     <LinearGradient
       {...gradients.brand}

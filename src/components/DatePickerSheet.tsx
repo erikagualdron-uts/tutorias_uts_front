@@ -13,7 +13,7 @@ import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 import {
   motion,
   radius,
-  shadows,
+  useShadows,
   spacing,
   typography,
   usePalette,
@@ -44,6 +44,7 @@ export function DatePickerSheet({
 }: DatePickerSheetProps) {
   const { t, i18n } = useTranslation();
   const palette = usePalette();
+  const shadows = useShadows();
   const dark = useColorScheme() === 'dark';
   const { movement } = useMotion();
   const [draft, setDraft] = useState(value);

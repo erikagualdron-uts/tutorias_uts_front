@@ -5,7 +5,7 @@ import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { HeroCard } from '@/components/HeroCard';
 import { bogotaParts } from '@/features/modules/format';
-import { onGradient, spacing, typography, usePalette } from '@/theme';
+import { onGradient, radius, spacing, typography, usePalette } from '@/theme';
 import type { NextSession } from '../types';
 
 interface HeroSessionCardProps {
@@ -56,7 +56,7 @@ export function HeroSessionCard({ session, onPress, emptyHint, emptyAction }: He
 const styles = StyleSheet.create({
   hero: { gap: spacing.sm },
   title: { gap: spacing.xs, alignSelf: 'flex-start' },
-  line: { height: 4, borderRadius: 2 },
+  line: { height: 4, borderRadius: radius.line },
   light: { color: onGradient.text },
   empty: { gap: spacing.sm },
 });

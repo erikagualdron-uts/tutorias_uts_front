@@ -2,7 +2,7 @@ import * as Clipboard from 'expo-clipboard';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, StyleSheet, Text, View } from 'react-native';
-import { radius, shadows, spacing, typography, usePalette } from '@/theme';
+import { radius, useShadows, spacing, typography, usePalette } from '@/theme';
 import { Button } from './Button';
 
 interface TemporaryPasswordDialogProps {
@@ -17,6 +17,7 @@ export function TemporaryPasswordDialog({
 }: TemporaryPasswordDialogProps) {
   const { t } = useTranslation();
   const palette = usePalette();
+  const shadows = useShadows();
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
@@ -27,7 +28,13 @@ export function TemporaryPasswordDialog({
   return (
     <Modal transparent animationType="fade" onRequestClose={onClose}>
       <View style={[styles.backdrop, { backgroundColor: palette.scrim }]}>
-        <View style={[styles.dialog, { backgroundColor: palette.card }]}>
+        <View
+          style={[
+            styles.dialog,
+            shadows.level3,
+            { backgroundColor: palette.card },
+          ]}
+        >
           <Text
             style={[typography.sectionTitle, { color: palette.textPrimary }]}
           >
@@ -82,7 +89,6 @@ const styles = StyleSheet.create({
     borderRadius: radius.hero,
     padding: spacing.xl,
     gap: spacing.lg,
-    ...shadows.level3,
   },
   block: {
     borderRadius: radius.input,

@@ -14,6 +14,7 @@ export const spacing = {
 } as const;
 
 export const radius = {
+  line: 2,
   tooltip: 4,
   badge: 8,
   input: 12,
@@ -128,4 +129,11 @@ export const typography = {
   },
   button: { fontFamily: fonts.semibold, fontSize: 15, lineHeight: 20 },
   code: { fontFamily: fonts.mono, fontSize: 14, lineHeight: 20 },
+  codeLarge: { fontFamily: fonts.mono, fontSize: 28, lineHeight: 36 },
+  counter: {
+    fontFamily: fonts.semibold,
+    fontSize: 10,
+    lineHeight: 14,
+    letterSpacing: 0.24,
+  },
 } as const;

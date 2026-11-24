@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput } from 'react-native';
-import { spacing, typography, usePalette } from '@/theme';
+import { spacing, typography, useInputProps, usePalette } from '@/theme';
 import { FIELD_HEIGHT, FieldBox } from './FieldBox';
 import type { TextFieldProps } from './TextField';
 
@@ -20,6 +20,7 @@ export function TextAreaField({
   ...inputProps
 }: TextAreaFieldProps) {
   const palette = usePalette();
+  const inputTheme = useInputProps();
   const [focused, setFocused] = useState(false);
   const [height, setHeight] = useState(FIELD_HEIGHT);
   const maxHeight = typography.body.lineHeight * MAX_LINES + spacing.xl;
@@ -74,7 +75,7 @@ export function TextAreaField({
           setFocused(false);
           inputProps.onBlur?.(event);
         }}
-        placeholderTextColor={palette.inputPlaceholder}
+        {...inputTheme}
         textAlignVertical="top"
         style={[
           typography.body,

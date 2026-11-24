@@ -9,7 +9,7 @@ import { PushRegistration } from '@/features/notifications/components/PushRegist
 import { RouteGate } from '@/features/auth/RouteGate';
 import { ROLE_HOME } from '@/features/auth/routing';
 import type { Role } from '@/api/types';
-import { iconSize, shadows, usePalette } from '@/theme';
+import { iconSize, useShadows, usePalette } from '@/theme';
 import { tabBadgeOptions } from './badge';
 
 export interface TabSpec {
@@ -29,6 +29,7 @@ const HIDDEN_TAB = { display: 'none' as const };
 export function RoleTabs({ role, tabs, hidden }: { role: Role; tabs: TabSpec[]; hidden: Pick<TabSpec, 'name' | 'titleKey'>[] }) {
   const { t } = useTranslation();
   const palette = usePalette();
+  const shadows = useShadows();
   const { bottom } = useSafeAreaInsets();
   useChatSocket();
 
@@ -39,8 +40,8 @@ export function RoleTabs({ role, tabs, hidden }: { role: Role; tabs: TabSpec[]; 
         backBehavior="history"
         screenOptions={{
           header: ({ options }) => <AppBar title={options.title} />,
-          tabBarActiveTintColor: palette.primary,
-          tabBarInactiveTintColor: palette.textSecondary,
+          tabBarActiveTintColor: palette.tabActive,
+          tabBarInactiveTintColor: palette.tabInactive,
           tabBarStyle: {
             height: 64 + bottom,
             paddingBottom: bottom,

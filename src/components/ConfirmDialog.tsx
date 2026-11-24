@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Modal, StyleSheet, Text, View } from 'react-native';
 import type { IconName } from '@/icons/registry';
-import { radius, shadows, spacing, typography, usePalette } from '@/theme';
+import { radius, useShadows, spacing, typography, usePalette } from '@/theme';
 import { Button, type ButtonVariant } from './Button';
 
 interface ConfirmDialogProps {
@@ -32,6 +32,7 @@ export function ConfirmDialog({
 }: ConfirmDialogProps) {
   const { t } = useTranslation();
   const palette = usePalette();
+  const shadows = useShadows();
   return (
     <Modal transparent animationType="fade" onRequestClose={onCancel}>
       <View style={[styles.backdrop, { backgroundColor: palette.scrim }]}>

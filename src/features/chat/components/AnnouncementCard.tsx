@@ -13,12 +13,12 @@ export function AnnouncementCard({ message }: { message: Pick<ChatMessage, 'body
   return (
     <Card style={[styles.card, { backgroundColor: palette.surfaceWarm }]}>
       <View style={styles.header}>
-        <Icon name="notifications" size={18} color={palette.textPrimary} />
-        <Text style={[typography.label, { color: palette.textPrimary }]}>{t('chat.announcement.label')}</Text>
-        <Text style={[typography.metadata, { color: palette.textPrimary }]}>{`· ${personName(message.sender)}`}</Text>
+        <Icon name="notifications" size={18} color={palette.onSurfaceWarm} />
+        <Text style={[typography.label, { color: palette.onSurfaceWarm }]}>{t('chat.announcement.label')}</Text>
+        <Text style={[typography.metadata, { color: palette.onSurfaceWarm }]}>{`· ${personName(message.sender)}`}</Text>
       </View>
-      <Text style={[typography.body, { color: palette.textPrimary }]}>{message.body}</Text>
-      <Text style={[typography.metadata, styles.time, { color: palette.textPrimary }]}>{bogotaParts(message.createdAt).time}</Text>
+      <Text style={[typography.body, { color: palette.onSurfaceWarm }]}>{message.body}</Text>
+      <Text style={[typography.metadata, styles.time, { color: palette.onSurfaceWarm }]}>{bogotaParts(message.createdAt).time}</Text>
     </Card>
   );
 }

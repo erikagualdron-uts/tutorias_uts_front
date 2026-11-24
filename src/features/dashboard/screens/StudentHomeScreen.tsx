@@ -9,7 +9,7 @@ import { Card } from '@/components/Card';
 import { useChatUnread } from '@/features/chat/hooks/useChatData';
 import { inboxRoute, noticeTarget, targetFor } from '@/features/notifications/openTarget';
 import { useUnreadCount } from '@/features/notifications/hooks/useUnreadCount';
-import { spacing, typography, usePalette } from '@/theme';
+import { spacing, typography, usePalette, useRefreshColors } from '@/theme';
 import { BlockState } from '../components/BlockState';
 import { ChangeRow } from '../components/ChangeRow';
 import { HeroSessionCard } from '../components/HeroSessionCard';
@@ -22,6 +22,7 @@ import { useRefreshOnFocus } from '@/hooks/useRefreshOnFocus';
 export function StudentHomeScreen() {
   const { t } = useTranslation();
   const palette = usePalette();
+  const refreshColors = useRefreshColors();
   const client = useQueryClient();
   const dashboard = useStudentDashboard();
   const alerts = useUnreadCount();
@@ -44,7 +45,7 @@ export function StudentHomeScreen() {
 
   return (
     <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
-      <ScrollView testID="student-home" contentContainerStyle={styles.content} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}>
+      <ScrollView testID="student-home" contentContainerStyle={styles.content} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} {...refreshColors} />}>
         <BlockState query={dashboard}>
           {data && (
             <>

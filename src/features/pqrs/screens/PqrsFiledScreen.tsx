@@ -31,7 +31,7 @@ export function PqrsFiledScreen() {
         </View>
         <Card style={styles.card}>
           <Text style={[typography.label, { color: palette.textSecondary }]}>{t('pqrs.filed.number')}</Text>
-          <Text style={[typography.code, styles.number, { color: palette.textPrimary }]}>{pqrsCode(id)}</Text>
+          <Text style={[typography.codeLarge, { color: palette.textPrimary }]}>{pqrsCode(id)}</Text>
           <Text style={[typography.label, { color: palette.textSecondary }]}>{t('pqrs.filed.date')}</Text>
           <Text style={[typography.body, { color: palette.textPrimary }]}>{`${date} · ${time}`}</Text>
           <StatusBadge status={status} />
@@ -53,5 +53,4 @@ const styles = StyleSheet.create({
   header: { alignItems: 'center', gap: spacing.sm },
   center: { textAlign: 'center' },
   card: { gap: spacing.sm },
-  number: { fontSize: 28, lineHeight: 36 },
 });
