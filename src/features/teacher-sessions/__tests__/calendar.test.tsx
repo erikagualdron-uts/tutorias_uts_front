@@ -105,6 +105,7 @@ describe('week of the teacher (day view)', () => {
     await range('07/01/2030 – 13/01/2030');
     await screen.findByText('Mis módulos');
     expect(screen.getAllByRole('header').map((h) => h.props.children)).toEqual([
+      'Cronograma',
       '07/01/2030 – 13/01/2030',
       'Próximas sesiones',
       'Mis módulos',

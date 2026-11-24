@@ -91,7 +91,7 @@ describe('DropdownItemsScreen', () => {
     serve({ '/dropdown-lists/PQRS_TYPE': list(two) });
     await renderWithProviders(<DropdownItemsScreen />);
     expect(await screen.findByRole('header')).toBeTruthy();
-    expect(screen.getByText('2')).toBeTruthy();
+    expect(await screen.findByText('2')).toBeTruthy();
   });
 
   it('moves an item down by sending the whole new order', async () => {

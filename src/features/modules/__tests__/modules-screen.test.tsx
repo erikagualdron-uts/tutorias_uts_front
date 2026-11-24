@@ -46,7 +46,7 @@ describe('ModulesScreen', () => {
   it('opens with the brand header and the count', async () => {
     await renderScreen(<ModulesScreen />);
     expect(await screen.findByRole('header', { name: i18n.t('modules.title') })).toBeTruthy();
-    expect(screen.getByText('1')).toBeTruthy();
+    expect(await screen.findByText('1')).toBeTruthy();
   });
 
   it('opens the detail of a module', async () => {

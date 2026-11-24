@@ -60,7 +60,7 @@ describe('AdminPqrsScreen', () => {
     mockedApi.mockResolvedValue({ data: [], meta: { page: 1, limit: 20, total: 0 } });
     await renderScreen(<AdminPqrsScreen />);
     expect(await screen.findByRole('header', { name: i18n.t('pqrs.admin.title') })).toBeTruthy();
-    expect(screen.getByText('0')).toBeTruthy();
+    expect(await screen.findByText('0')).toBeTruthy();
   });
 
   it('shows the author with the role next to each PQRS', async () => {

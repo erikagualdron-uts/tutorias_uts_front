@@ -69,6 +69,13 @@ describe('offer cards', () => {
     expect(screen.getByLabelText(action)).toBeTruthy();
   });
 
+  it('opens with the brand header and the module count', async () => {
+    await renderScreen(<StudentModulesScreen />);
+    await screen.findByText('Cálculo I');
+    expect(screen.getByRole('header', { name: i18n.t('student.modules.title') })).toBeTruthy();
+    expect(screen.getByText('1')).toBeTruthy();
+  });
+
   it('keeps the card order: name and state, teacher, schedule, room, occupancy', async () => {
     await renderScreen(<StudentModulesScreen />);
     await screen.findByText('Cálculo I');
