@@ -56,6 +56,13 @@ beforeEach(async () => {
 describe('AdminPqrsScreen', () => {
   const list = { 'GET /pqrs?': page([summary(1), summary(2, { status: 'RESOLVED' })]), 'GET /dropdown-lists/PQRS_TYPE': { key: 'PQRS_TYPE', items: [{ ...type, sortOrder: 1, status: 'INACTIVE' }] } };
 
+  it('opens with the brand header and the total', async () => {
+    mockedApi.mockResolvedValue({ data: [], meta: { page: 1, limit: 20, total: 0 } });
+    await renderScreen(<AdminPqrsScreen />);
+    expect(await screen.findByRole('header', { name: i18n.t('pqrs.admin.title') })).toBeTruthy();
+    expect(screen.getByText('0')).toBeTruthy();
+  });
+
   it('shows the author with the role next to each PQRS', async () => {
     routes(list);
     await renderScreen(<AdminPqrsScreen />);

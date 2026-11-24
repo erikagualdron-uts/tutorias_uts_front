@@ -36,6 +36,15 @@ beforeEach(async () => {
 });
 
 describe('MyPqrsScreen', () => {
+  it('opens with the brand header, the total and one compact filter row', async () => {
+    mockedApi.mockResolvedValue(page([pqrs(1), pqrs(2)]));
+    await renderScreen(<MyPqrsScreen />);
+    await screen.findByText('Asunto 1');
+    expect(screen.getByRole('header', { name: i18n.t('pqrs.list.title') })).toBeTruthy();
+    expect(screen.getByText('2')).toBeTruthy();
+    for (const label of ['Todas', 'Radicada', 'En revisión', 'Resuelta']) expect(screen.getAllByRole('button', { name: label }).length).toBeGreaterThan(0);
+  });
+
   it('shows each PQRS with its subject, type, date and the state as text', async () => {
     mockedApi.mockResolvedValue(page([pqrs(1), pqrs(2, { status: 'IN_REVIEW' }), pqrs(3, { status: 'RESOLVED' })]));
     await renderScreen(<MyPqrsScreen />);

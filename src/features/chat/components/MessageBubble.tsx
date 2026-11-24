@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, useColorScheme } from 'react-native';
 import { bogotaParts } from '@/features/modules/format';
 import { Icon } from '@/icons/Icon';
 import type { IconName } from '@/icons/registry';
@@ -28,6 +28,7 @@ export function MessageBubble({ message, mine, showSender = false, first = true,
   const { t } = useTranslation();
   const palette = usePalette();
   const shadows = useShadows();
+  const dark = useColorScheme() === 'dark';
   const ink = mine ? palette.onPrimary : palette.textPrimary;
   const meta = mine ? palette.onPrimary : palette.textSecondary;
   const failed = state === 'failed';
@@ -37,6 +38,7 @@ export function MessageBubble({ message, mine, showSender = false, first = true,
       style={[
         styles.bubble,
         !mine && shadows.level1,
+        !mine && dark && { borderWidth: 1, borderColor: palette.border },
         first && (mine ? styles.mineTail : styles.theirsTail),
         { backgroundColor: mine ? palette.primary : palette.card, opacity: state === 'sending' ? 0.6 : 1 },
       ]}

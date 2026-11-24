@@ -282,6 +282,11 @@ describe('MessagesScreen', () => {
     summary({ id: 'c3', type: 'MODULE', partner: null, module: { id: 'n', name: 'Física' } }),
   ];
 
+  it('opens with the brand header and no count', async () => {
+    await renderWith(<MessagesScreen />);
+    expect(await screen.findByRole('header', { name: i18n.t('tabs.messages') })).toBeTruthy();
+  });
+
   it('has Alerts and Chats, lists the chats with the unread count as text and opens one', async () => {
     routes({ 'GET /chat/conversations': list });
     await renderWith(<MessagesScreen />);

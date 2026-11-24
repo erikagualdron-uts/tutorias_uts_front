@@ -9,6 +9,7 @@ import { BrandLoader } from '@/components/BrandLoader';
 import { Button } from '@/components/Button';
 import { EmptyState } from '@/components/EmptyState';
 import { SegmentedControl } from '@/components/SegmentedControl';
+import { ScreenHeader } from '@/components/ScreenHeader';
 import { NotificationsPanel } from '@/features/notifications/screens/NotificationsScreen';
 import { useSession } from '@/store/session';
 import { spacing, usePalette } from '@/theme';
@@ -32,6 +33,9 @@ export function MessagesScreen() {
 
   return (
     <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
+      <View style={styles.header}>
+        <ScreenHeader title={t('tabs.messages')} />
+      </View>
       <View style={styles.tabs}>
         <SegmentedControl
           label={t('tabs.messages')}
@@ -89,6 +93,7 @@ function Chats({ onNew, onOpen }: { onNew: () => void; onOpen: (id: string) => v
 
 const styles = StyleSheet.create({
   screen: { flex: 1 },
+  header: { padding: spacing.lg, paddingBottom: 0 },
   tabs: { padding: spacing.lg, paddingBottom: spacing.sm },
   content: { padding: spacing.lg, gap: spacing.md },
 });

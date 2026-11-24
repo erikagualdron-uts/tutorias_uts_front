@@ -25,7 +25,7 @@ export function PqrsFiledScreen() {
     <SafeAreaView edges={['bottom', 'left', 'right']} style={[styles.screen, { backgroundColor: palette.screen }]}>
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.header}>
-          <Icon name="success" size={48} color={palette.success} />
+          <Icon name="success" size={48} color={palette.successText} />
           <Text style={[typography.screenTitle, styles.center, { color: palette.textPrimary }]}>{t('pqrs.filed.title')}</Text>
           <Text style={[typography.body, styles.center, { color: palette.textSecondary }]}>{t('pqrs.filed.hint')}</Text>
         </View>

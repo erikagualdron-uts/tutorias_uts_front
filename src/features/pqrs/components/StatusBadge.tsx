@@ -11,7 +11,7 @@ const ICONS: Record<PqrsStatus, IconName> = { FILED: 'pqrs', IN_REVIEW: 'clock',
 export function StatusBadge({ status }: { status: PqrsStatus }) {
   const { t } = useTranslation();
   const palette = usePalette();
-  const color = status === 'RESOLVED' ? palette.success : status === 'IN_REVIEW' ? palette.warning : palette.primary;
+  const color = status === 'RESOLVED' ? palette.successText : status === 'IN_REVIEW' ? palette.warningText : palette.primary;
   return (
     <View style={[styles.badge, { borderColor: color }]}>
       <Icon name={ICONS[status]} size={16} color={color} />
