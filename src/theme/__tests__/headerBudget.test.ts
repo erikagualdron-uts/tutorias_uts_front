@@ -44,6 +44,7 @@ const FORMS = [
   'src/features/pqrs/screens/PqrsFiledScreen.tsx',
   'src/features/enrollments/screens/StudentModuleDetailScreen.tsx',
   'src/features/account/screens/AccountPasswordScreen.tsx',
+  'src/features/account/screens/AccountNameScreen.tsx',
 ];
 const count = (text: string, token: string) => text.split(token).length - 1;
 

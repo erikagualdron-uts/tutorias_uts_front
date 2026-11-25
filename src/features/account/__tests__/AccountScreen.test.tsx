@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { act, fireEvent, render, screen } from '@testing-library/react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import type { Role } from '@/api/types';
 import i18n from '@/i18n';
@@ -132,4 +132,43 @@ describe('AccountScreen: notifications', () => {
       expect(screen.queryByRole('button', { name: i18n.t('notifications.push.enable') })).toBeNull();
     },
   );
+});
+
+describe('AccountScreen: own name (spec 033)', () => {
+  it('lets a student open the name editor', async () => {
+    await open();
+    await fireEvent.press(screen.getByRole('button', { name: 'Editar nombre' }));
+    expect(router.push).toHaveBeenCalledWith('/(student)/account-name');
+  });
+
+  it('explains to a teacher that the CAE manages the name, with no edit action', async () => {
+    signIn('TEACHER');
+    await open();
+    expect(screen.getByText('Tu nombre lo gestiona el CAE')).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Editar nombre' })).toBeNull();
+  });
+
+  it('shows the CAE their email as identifier, with no edit action and no extra text', async () => {
+    signIn('SUPERADMIN', { firstName: undefined, lastName: undefined });
+    await open();
+    expect(screen.getAllByText('ana@uts.edu.co').length).toBeGreaterThan(0);
+    expect(screen.queryByRole('button', { name: 'Editar nombre' })).toBeNull();
+    expect(screen.queryByText('Tu nombre lo gestiona el CAE')).toBeNull();
+  });
+
+  it('shows the confirmation only when it comes from a name change', async () => {
+    await open();
+    expect(screen.queryByText('Tu nombre se actualizó')).toBeNull();
+    await screen.unmount();
+    mockedParams.mockReturnValue({ nameChanged: '1' });
+    await open();
+    expect(screen.getByText('Tu nombre se actualizó')).toBeTruthy();
+  });
+
+  it('shows the new name on the account as soon as the session changes, with no reload', async () => {
+    await open();
+    expect(screen.getByText('Ana Pérez')).toBeTruthy();
+    await act(async () => useSession.getState().setUser({ ...useSession.getState().user!, firstName: 'María' }));
+    expect(screen.getByText('María Pérez')).toBeTruthy();
+  });
 });

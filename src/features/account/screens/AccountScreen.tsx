@@ -26,7 +26,10 @@ export function AccountScreen() {
   const { t } = useTranslation();
   const palette = usePalette();
   const user = useSession((state) => state.user);
-  const { passwordChanged } = useLocalSearchParams<{ passwordChanged?: string }>();
+  const { passwordChanged, nameChanged } = useLocalSearchParams<{
+    passwordChanged?: string;
+    nameChanged?: string;
+  }>();
   const push = usePushPermission();
   const signOut = useSignOut();
   if (!user) return null;
@@ -54,11 +57,13 @@ export function AccountScreen() {
         {passwordChanged ? (
           <Banner message={t('account.password.success')} severity="success" />
         ) : null}
+        {nameChanged ? <Banner message={t('account.name.success')} severity="success" /> : null}
 
         <Card style={styles.card}>
           {row('user', fullName ? t('account.fullName') : null, fullName || user.email)}
           {row('email', t('account.email'), user.email)}
           {row(ROLE_ICON[user.role], t('account.role'), t(`account.roles.${user.role}`))}
+          {user.role === 'TEACHER' ? row('info', null, t('account.name.teacherRule')) : null}
         </Card>
 
         <Card style={styles.card}>
@@ -93,6 +98,14 @@ export function AccountScreen() {
           ) : null}
         </Card>
 
+        {user.role === 'STUDENT' ? (
+          <Button
+            label={t('account.name.title')}
+            icon="edit"
+            variant="tonal"
+            onPress={() => router.push('/(student)/account-name' as never)}
+          />
+        ) : null}
         <Button
           label={t('changePassword.submit')}
           icon="key"

@@ -9,6 +9,8 @@ const ACCOUNT: HiddenSpec[] = [
   { name: 'account', titleKey: 'account.title' },
   { name: 'account-password', titleKey: 'account.password.title' },
 ];
+// Only students change their own name (spec 033, D-130).
+const ACCOUNT_NAME: HiddenSpec = { name: 'account-name', titleKey: 'account.name.title' };
 
 // The one declaration of the tab bar of each role: the tabs, and the screens that have no tab and are
 // reached from a link (the inbox from the bell, the changes list from the CAE dashboard). The layouts
@@ -22,7 +24,7 @@ export const ROLE_TABS: Record<Role, { tabs: TabSpec[]; hidden: HiddenSpec[] }> 
       { name: 'messages', titleKey: 'tabs.messages', icon: 'messages' },
       { name: 'pqrs', titleKey: 'tabs.pqrs', icon: 'pqrs' },
     ],
-    hidden: [INBOX, ...ACCOUNT],
+    hidden: [INBOX, ...ACCOUNT, ACCOUNT_NAME],
   },
   TEACHER: {
     tabs: [
