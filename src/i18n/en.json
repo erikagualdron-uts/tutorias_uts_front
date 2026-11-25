@@ -230,6 +230,14 @@
     "password": {
       "title": "Change password",
       "success": "Your password was changed"
+    },
+    "name": {
+      "title": "Edit name",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "submit": "Save name",
+      "success": "Your name was updated",
+      "teacherRule": "The CAE manages your name"
     }
   },
   "profile": {

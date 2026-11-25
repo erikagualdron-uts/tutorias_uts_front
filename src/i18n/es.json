@@ -230,6 +230,14 @@
     "password": {
       "title": "Cambiar contraseña",
       "success": "Tu contraseña se cambió"
+    },
+    "name": {
+      "title": "Editar nombre",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "submit": "Guardar nombre",
+      "success": "Tu nombre se actualizó",
+      "teacherRule": "Tu nombre lo gestiona el CAE"
     }
   },
   "profile": {
